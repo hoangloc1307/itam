@@ -1,0 +1,25 @@
+# Root
+/node_modules/
+
+# Frontend
+/fe/node_modules/
+/fe/dist/
+
+# Backend
+/be/node_modules/
+/be/dist/
+
+# Logs
+*.log
+
+# Environment
+**/.env
+**/.env.*
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
