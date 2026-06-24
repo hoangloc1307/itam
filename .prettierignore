@@ -5,3 +5,6 @@ coverage
 pnpm-lock.yaml
 *.min.js
 *.min.css
+
+# TanStack Router generated
+fe/src/routeTree.gen.ts
