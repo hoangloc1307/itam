@@ -1,7 +1,8 @@
-import { createFileRoute, Outlet, useLocation } from '@tanstack/react-router';
+import { createFileRoute, Outlet, redirect, useLocation } from '@tanstack/react-router';
 import banner from '~/assets/images/banner.png';
 import banner2 from '~/assets/images/banner2.png';
 import { Card, CardContent } from '~/components/ui/card';
+import { isAuthenticated } from '~/lib/auth';
 
 const AuthLayout = () => {
   const { pathname } = useLocation();
@@ -29,4 +30,11 @@ const AuthLayout = () => {
   );
 };
 
-export const Route = createFileRoute('/_auth')({ component: AuthLayout });
+export const Route = createFileRoute('/_auth')({
+  beforeLoad: () => {
+    if (isAuthenticated()) {
+      throw redirect({ to: '/dashboard' });
+    }
+  },
+  component: AuthLayout,
+});
