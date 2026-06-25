@@ -1,13 +1,11 @@
 # Root
-/node_modules/
+node_modules/
 
 # Frontend
-/fe/node_modules/
 /fe/dist/
 /fe/.tanstack/
 
 # Backend
-/be/node_modules/
 /be/dist/
 
 # Logs

@@ -4,7 +4,8 @@
     "commit": "git-cz",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
-    "prepare": "husky"
+    "prepare": "husky",
+    "dev": "pnpm --parallel -r run dev"
   },
   "devDependencies": {
     "@commitlint/cli": "^21.0.2",
