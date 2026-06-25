@@ -1,64 +1,52 @@
 import { createFileRoute, Link } from '@tanstack/react-router';
+import { registerSchema, type RegisterInput } from 'itam-shared/schemas/auth';
+import { FieldDescription, FieldGroup } from '~/components/ui/field';
+import { useAppForm } from '~/hooks/use-app-form';
 
-const RegisterPage = () => (
-  <>
-    <div className='text-center'>
-      <h1 className='text-2xl font-bold text-gray-900'>Đăng ký</h1>
-      <p className='mt-2 text-sm text-gray-600'>Tạo tài khoản mới</p>
-    </div>
+const RegisterPage = () => {
+  const form = useAppForm({
+    defaultValues: {
+      username: '',
+      email: '',
+      name: '',
+    } satisfies RegisterInput,
+    validators: {
+      onBlur: registerSchema,
+    },
+    onSubmit: async ({ value }) => {
+      console.log(value);
+    },
+  });
 
-    <form className='space-y-4'>
-      <div>
-        <label htmlFor='name' className='block text-sm font-medium text-gray-700'>
-          Họ tên
-        </label>
-        <input
-          id='name'
-          type='text'
-          placeholder='Nguyễn Văn A'
-          className='mt-1 block w-full rounded-lg border border-gray-300 px-3 py-2 shadow-sm focus:border-blue-500 focus:ring-1 focus:ring-blue-500 focus:outline-none'
-        />
+  return (
+    <form
+      className='p-6 md:p-8'
+      onSubmit={(e) => {
+        e.preventDefault();
+        form.handleSubmit();
+      }}
+    >
+      <div className='flex flex-col items-center gap-2 text-center'>
+        <h2 className='text-2xl font-bold'>Create an account</h2>
+        <p className='text-muted-foreground text-balance'>Register your VNN account</p>
       </div>
-
-      <div>
-        <label htmlFor='email' className='block text-sm font-medium text-gray-700'>
-          Email
-        </label>
-        <input
-          id='email'
-          type='email'
-          placeholder='you@example.com'
-          className='mt-1 block w-full rounded-lg border border-gray-300 px-3 py-2 shadow-sm focus:border-blue-500 focus:ring-1 focus:ring-blue-500 focus:outline-none'
+      <FieldGroup className='mt-4'>
+        <form.AppField name='username' children={(field) => <field.TextField label='Username' />} />
+        <form.AppField
+          name='email'
+          children={(field) => <field.TextField label='Email' type='email' />}
         />
-      </div>
+        <form.AppField name='name' children={(field) => <field.TextField label='Name' />} />
+        <form.AppForm>
+          <form.SubmitButton>Register</form.SubmitButton>
+        </form.AppForm>
 
-      <div>
-        <label htmlFor='password' className='block text-sm font-medium text-gray-700'>
-          Mật khẩu
-        </label>
-        <input
-          id='password'
-          type='password'
-          placeholder='••••••••'
-          className='mt-1 block w-full rounded-lg border border-gray-300 px-3 py-2 shadow-sm focus:border-blue-500 focus:ring-1 focus:ring-blue-500 focus:outline-none'
-        />
-      </div>
-
-      <button
-        type='submit'
-        className='block w-full rounded-lg bg-blue-600 px-4 py-2 text-center font-medium text-white hover:bg-blue-700 transition-colors'
-      >
-        Đăng ký
-      </button>
+        <FieldDescription className='text-center'>
+          Already have an account? <Link to='/login'>Sign in</Link>
+        </FieldDescription>
+      </FieldGroup>
     </form>
-
-    <p className='text-center text-sm text-gray-600'>
-      Đã có tài khoản?{' '}
-      <Link to='/login' className='font-medium text-blue-600 hover:text-blue-500'>
-        Đăng nhập
-      </Link>
-    </p>
-  </>
-);
+  );
+};
 
 export const Route = createFileRoute('/_auth/register')({ component: RegisterPage });
