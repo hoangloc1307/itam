@@ -1,4 +1,5 @@
 import { useId, type ComponentProps } from 'react';
+import { useTranslation } from 'react-i18next';
 import { Field, FieldError, FieldLabel } from '~/components/ui/field';
 import { Input } from '~/components/ui/input';
 import { useFieldContext } from '~/hooks/use-app-form';
@@ -9,6 +10,7 @@ type TextFieldProps = Omit<ComponentProps<'input'>, 'value' | 'onChange' | 'onBl
 
 export const TextField = ({ label, ...props }: TextFieldProps) => {
   const id = useId();
+  const { t } = useTranslation();
   const field = useFieldContext<string>();
   const isInvalid = field.state.meta.isTouched && field.state.meta.errors.length > 0;
 
@@ -23,7 +25,7 @@ export const TextField = ({ label, ...props }: TextFieldProps) => {
         aria-invalid={isInvalid}
         {...props}
       />
-      {isInvalid && <FieldError>{field.state.meta.errors[0].message}</FieldError>}
+      {isInvalid && <FieldError>{t(field.state.meta.errors[0].message)}</FieldError>}
     </Field>
   );
 };

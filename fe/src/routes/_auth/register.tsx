@@ -1,9 +1,11 @@
 import { createFileRoute, Link } from '@tanstack/react-router';
+import { useTranslation } from 'react-i18next';
 import { registerSchema, type RegisterInput } from 'itam-shared/schemas/auth';
 import { FieldDescription, FieldGroup } from '~/components/ui/field';
 import { useAppForm } from '~/hooks/use-app-form';
 
 const RegisterPage = () => {
+  const { t } = useTranslation('auth');
   const form = useAppForm({
     defaultValues: {
       username: '',
@@ -27,22 +29,25 @@ const RegisterPage = () => {
       }}
     >
       <div className='flex flex-col items-center gap-2 text-center'>
-        <h2 className='text-2xl font-bold'>Create an account</h2>
-        <p className='text-muted-foreground text-balance'>Register your VNN account</p>
+        <h2 className='text-2xl font-bold'>{t('createAccount')}</h2>
+        <p className='text-muted-foreground text-balance'>{t('registerVNN')}</p>
       </div>
       <FieldGroup className='mt-4'>
-        <form.AppField name='username' children={(field) => <field.TextField label='Username' />} />
+        <form.AppField
+          name='username'
+          children={(field) => <field.TextField label={t('username')} />}
+        />
         <form.AppField
           name='email'
-          children={(field) => <field.TextField label='Email' type='email' />}
+          children={(field) => <field.TextField label={t('email')} type='email' />}
         />
-        <form.AppField name='name' children={(field) => <field.TextField label='Name' />} />
+        <form.AppField name='name' children={(field) => <field.TextField label={t('name')} />} />
         <form.AppForm>
-          <form.SubmitButton>Register</form.SubmitButton>
+          <form.SubmitButton>{t('register')}</form.SubmitButton>
         </form.AppForm>
 
         <FieldDescription className='text-center'>
-          Already have an account? <Link to='/login'>Sign in</Link>
+          {t('alreadyHaveAccount')} <Link to='/login'>{t('signIn')}</Link>
         </FieldDescription>
       </FieldGroup>
     </form>
