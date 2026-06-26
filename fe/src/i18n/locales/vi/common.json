@@ -5,5 +5,7 @@
   "system": "Hệ thống",
   "changeLanguage": "Thay đổi ngôn ngữ",
   "hideSidebar": "Ẩn sidebar",
-  "showSidebar": "Hiện sidebar"
+  "showSidebar": "Hiện sidebar",
+  "profile": "Hồ sơ",
+  "logout": "Đăng xuất"
 }

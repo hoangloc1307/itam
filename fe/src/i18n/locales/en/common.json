@@ -5,5 +5,7 @@
   "system": "System",
   "changeLanguage": "Change language",
   "hideSidebar": "Hide sidebar",
-  "showSidebar": "show sidebar"
+  "showSidebar": "show sidebar",
+  "profile": "Profile",
+  "logout": "Logout"
 }

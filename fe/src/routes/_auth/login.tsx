@@ -1,21 +1,25 @@
 import { createFileRoute, Link } from '@tanstack/react-router';
-import { useTranslation } from 'react-i18next';
 import { loginSchema, type LoginInput } from 'itam-shared/schemas/auth';
+import { useTranslation } from 'react-i18next';
 import { FieldDescription, FieldGroup } from '~/components/ui/field';
+import { useLogin } from '~/hooks/mutations/use-auth';
 import { useAppForm } from '~/hooks/use-app-form';
 
 const LoginPage = () => {
   const { t } = useTranslation('auth');
+  const { mutateAsync } = useLogin();
+
   const form = useAppForm({
     defaultValues: {
       username: '',
       password: '',
     } satisfies LoginInput,
     validators: {
-      onBlur: loginSchema,
+      onSubmit: loginSchema,
     },
     onSubmit: async ({ value }) => {
-      console.log(value);
+      console.log('ok');
+      await mutateAsync(value);
     },
   });
 

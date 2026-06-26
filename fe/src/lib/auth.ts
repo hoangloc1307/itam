@@ -1,3 +1,5 @@
+import { useAuthStore } from '~/stores/auth';
+
 export function isAuthenticated(): boolean {
-  return !!localStorage.getItem('token');
+  return !!useAuthStore.getState().token;
 }
