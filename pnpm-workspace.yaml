@@ -2,3 +2,10 @@ packages:
   - 'fe'
   - 'be'
   - 'shared'
+allowBuilds:
+  esbuild: true
+
+catalog:
+  zod: ^4.4.3
+  '@types/node': ^24.13.2
+
