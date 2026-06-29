@@ -1,0 +1,115 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+// ==================== ENUMS ====================
+
+enum Action {
+  CREATE
+  READ
+  UPDATE
+  DELETE
+  MANAGE
+  APPROVAL
+}
+
+enum Decision {
+  ALLOW
+  DENY
+}
+
+// ==================== MODELS ====================
+
+model User {
+  username  String    @id @db.Char(8)
+  name      String?   @db.VarChar(100)
+  email     String?   @unique @db.VarChar(254)
+  password  String    @db.VarChar(255)
+  isActive  Boolean   @default(true) @map("is_active")
+  createdAt DateTime  @default(now()) @map("created_at") @db.Timestamptz(0)
+  createdBy String    @map("created_by") @db.Char(8)
+  updatedAt DateTime? @map("updated_at") @db.Timestamptz(0)
+  updatedBy String?   @map("updated_by") @db.Char(8)
+
+  userRoles       UserRole[]
+  userPermissions UserPermission[]
+
+  @@map("users")
+}
+
+model Role {
+  code      String    @id @db.VarChar(50)
+  name      String    @db.VarChar(100)
+  isActive  Boolean   @default(true) @map("is_active")
+  createdAt DateTime  @default(now()) @map("created_at") @db.Timestamptz(0)
+  createdBy String    @map("created_by") @db.Char(8)
+  updatedAt DateTime? @map("updated_at") @db.Timestamptz(0)
+  updatedBy String?   @map("updated_by") @db.Char(8)
+
+  userRoles       UserRole[]
+  rolePermissions RolePermission[]
+
+  @@map("roles")
+}
+
+model Feature {
+  code      String    @id @db.VarChar(100)
+  name      String    @db.VarChar(150)
+  isActive  Boolean   @default(true) @map("is_active")
+  createdAt DateTime  @default(now()) @map("created_at") @db.Timestamptz(0)
+  createdBy String    @map("created_by") @db.Char(8)
+  updatedAt DateTime? @map("updated_at") @db.Timestamptz(0)
+  updatedBy String?   @map("updated_by") @db.Char(8)
+
+  rolePermissions RolePermission[]
+  userPermissions UserPermission[]
+
+  @@map("features")
+}
+
+/// Gán role cho user. Một user có thể có nhiều role.
+model UserRole {
+  username String @db.Char(8)
+  roleCode String @map("role_code") @db.VarChar(50)
+
+  user User @relation(fields: [username], references: [username])
+  role Role @relation(fields: [roleCode], references: [code])
+
+  @@id([username, roleCode])
+  @@map("user_role")
+}
+
+/// Quyền của role trên feature.
+/// Không có cột decision — có record = có quyền (additive-only).
+model RolePermission {
+  roleCode    String @map("role_code") @db.VarChar(50)
+  featureCode String @map("feature_code") @db.VarChar(100)
+  action      Action
+
+  role    Role    @relation(fields: [roleCode], references: [code])
+  feature Feature @relation(fields: [featureCode], references: [code])
+
+  @@id([roleCode, featureCode, action])
+  @@map("role_permission")
+}
+
+/// Override quyền cá nhân cho user.
+/// decision = ALLOW → thêm quyền ngoài role.
+/// decision = DENY  → rút quyền mà role đã cấp.
+model UserPermission {
+  username    String   @db.Char(8)
+  featureCode String   @map("feature_code") @db.VarChar(100)
+  action      Action
+  decision    Decision
+
+  user    User    @relation(fields: [username], references: [username])
+  feature Feature @relation(fields: [featureCode], references: [code])
+
+  @@id([username, featureCode, action])
+  @@map("user_permission")
+}
