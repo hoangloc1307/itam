@@ -3,7 +3,9 @@ packages:
   - 'be'
   - 'shared'
 allowBuilds:
+  '@prisma/engines': true
   esbuild: true
+  prisma: true
 
 catalog:
   zod: ^4.4.3
