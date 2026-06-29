@@ -1,0 +1,16 @@
+{
+  "enabled": true,
+  "name": "Update Steering on Dependency Change",
+  "description": "When any package.json in the workspace is edited, the agent will review the change and update the relevant steering files (.kiro/steering/) if new packages, scripts, or structural changes are detected.",
+  "version": "1",
+  "when": {
+    "type": "fileEdited",
+    "patterns": [
+      "**/package.json"
+    ]
+  },
+  "then": {
+    "type": "askAgent",
+    "prompt": "A package.json file was just modified. Review the change and determine if any steering files in .kiro/steering/ (tech.md, structure.md, product.md) need to be updated to reflect new dependencies, scripts, or structural changes. If updates are needed, apply them. If not, do nothing."
+  }
+}
