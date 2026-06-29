@@ -1,7 +1,7 @@
 import cors from 'cors';
 import express from 'express';
 import helmet from 'helmet';
-import { corsConfig, helmetConfig } from './configs';
+import { corsConfig, helmetConfig } from '~/configs';
 
 const app = express();
 
