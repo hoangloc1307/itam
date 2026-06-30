@@ -4,3 +4,5 @@ variables:
     value: https://localhost:5000/api
   - name: AUTH_ENDPOINT
     value: auth
+  - secret: true
+    name: TOKEN

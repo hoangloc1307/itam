@@ -6,17 +6,22 @@ info:
 http:
   method: POST
   url: "{{API_URL}}/{{AUTH_ENDPOINT}}/login"
-  headers:
-    - name: Accept-Language
-      value: vi
   body:
     type: json
     data: |-
       {
         "username": "12314092",
-        "password": "12345"
+        "password": "123456"
       }
   auth: inherit
+
+runtime:
+  variables:
+    - name: ""
+      value: ""
+  scripts:
+    - type: after-response
+      code: bru.setEnvVar("TOKEN", res('data.token'));
 
 settings:
   encodeUrl: true
