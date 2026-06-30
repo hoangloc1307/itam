@@ -1,7 +1,6 @@
-import type { Request, Response } from 'express';
-import { ApiResponse } from '~/utils';
-import { HTTP_STATUS } from '~/constants/http-status';
+import type { Request, Response, NextFunction } from 'express';
+import { AppError } from '~/errors';
 
-export const notFoundHandler = (_req: Request, res: Response) => {
-  ApiResponse.error(res, 'Not found', HTTP_STATUS.NOT_FOUND);
+export const notFoundHandler = (_req: Request, _res: Response, next: NextFunction) => {
+  next(AppError.notFound());
 };

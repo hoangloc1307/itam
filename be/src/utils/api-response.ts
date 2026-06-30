@@ -8,28 +8,29 @@ interface Pagination {
   totalPages: number;
 }
 
-interface ApiResponseBody<T> {
-  success: boolean;
-  message: string;
-  data?: T | null;
-  pagination?: Pagination;
-}
-
 export class ApiResponse {
-  static ok<T>(res: Response, data?: T, message = 'OK') {
-    return res.status(HTTP_STATUS.OK).json({
-      success: true,
+  private static send<T>(
+    res: Response,
+    httpStatus: HttpStatus,
+    success: boolean,
+    message: string,
+    data?: T | null,
+    pagination?: Pagination,
+  ) {
+    return res.status(httpStatus).json({
+      success,
       message,
       data: data ?? null,
-    } satisfies ApiResponseBody<T>);
+      ...(pagination ? { pagination } : {}),
+    });
+  }
+
+  static ok<T>(res: Response, data?: T, message = 'OK') {
+    return ApiResponse.send(res, HTTP_STATUS.OK, true, message, data);
   }
 
   static created<T>(res: Response, data?: T, message = 'Created') {
-    return res.status(HTTP_STATUS.CREATED).json({
-      success: true,
-      message,
-      data: data ?? null,
-    } satisfies ApiResponseBody<T>);
+    return ApiResponse.send(res, HTTP_STATUS.CREATED, true, message, data);
   }
 
   static deleted(res: Response) {
@@ -44,27 +45,9 @@ export class ApiResponse {
   ) {
     const totalPages = Math.ceil(pagination.totalItems / pagination.limit);
 
-    return res.status(HTTP_STATUS.OK).json({
-      success: true,
-      message,
-      data,
-      pagination: {
-        page: pagination.page,
-        limit: pagination.limit,
-        totalItems: pagination.totalItems,
-        totalPages,
-      },
-    } satisfies ApiResponseBody<T>);
-  }
-
-  static error(
-    res: Response,
-    message: string,
-    httpStatus: HttpStatus = HTTP_STATUS.INTERNAL_SERVER_ERROR,
-  ) {
-    return res.status(httpStatus).json({
-      success: false,
-      message,
-    } satisfies ApiResponseBody<never>);
+    return ApiResponse.send(res, HTTP_STATUS.OK, true, message, data, {
+      ...pagination,
+      totalPages,
+    });
   }
 }
