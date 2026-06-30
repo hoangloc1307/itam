@@ -3,7 +3,6 @@ import { persist } from 'zustand/middleware';
 import STORAGE_KEYS from '~/constants/storage-keys';
 
 interface User {
-  id: string;
   username: string;
   name: string;
   email: string;

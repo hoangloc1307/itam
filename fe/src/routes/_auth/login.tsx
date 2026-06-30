@@ -18,7 +18,6 @@ const LoginPage = () => {
       onSubmit: loginSchema,
     },
     onSubmit: async ({ value }) => {
-      console.log('ok');
       await mutateAsync(value);
     },
   });

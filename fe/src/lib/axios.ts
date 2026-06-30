@@ -26,7 +26,7 @@ function processQueue(error: unknown, token: string | null) {
 
 const api = new HttpClient(
   {
-    baseURL: CONFIG.MAIN_API_URL || '/api',
+    baseURL: CONFIG.MAIN_API_URL,
     withCredentials: true,
   },
   (ins) => {
@@ -43,7 +43,11 @@ const api = new HttpClient(
       async (error) => {
         const originalRequest = error.config;
 
-        if (error.response?.status !== 401 || originalRequest._retry) {
+        if (
+          error.response?.status !== 401 ||
+          originalRequest._retry ||
+          originalRequest.url?.includes('/auth/login')
+        ) {
           return Promise.reject(error);
         }
 

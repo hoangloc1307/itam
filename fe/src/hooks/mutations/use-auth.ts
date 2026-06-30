@@ -11,8 +11,10 @@ export function useLogin() {
   return useMutation({
     mutationFn: (payload: LoginInput) => authApi.login(payload),
     onSuccess: (data) => {
-      setAuth({ token: data.token, user: data.user });
-      router.navigate({ to: '/dashboard' });
+      if (data.success && data.data) {
+        setAuth({ token: data.data.token, user: data.data.user });
+        router.navigate({ to: '/dashboard' });
+      }
     },
   });
 }
