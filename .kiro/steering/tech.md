@@ -62,4 +62,14 @@ pnpm --filter itam-be db:studio    # Open Prisma Studio
 - **Linting**: ESLint with TypeScript, React Hooks, React Refresh, TanStack Query & Router plugins
 - **Formatting**: EditorConfig (2-space indent, UTF-8, CRLF, trailing whitespace trimmed)
 - **Commits**: Conventional Commits enforced via commitlint + Husky (`feat`, `fix`, `docs`, `refactor`, etc.) with scopes `fe` / `be`
-- **Path alias**: `~` maps to `fe/src/` (used in imports like `~/components/...`)
+- **Path alias**: `~` maps to `src/` in both FE and BE
+
+## Dependency Sync Rules
+
+When a library is used by both `fe/` and `be/`:
+
+1. **Always** add it to `catalog` in `pnpm-workspace.yaml` so both use the same version.
+2. Use `"catalog:"` as the version in each workspace's `package.json`.
+3. Keep configuration patterns consistent between FE and BE (same fallback language, same namespace structure, same conventions).
+
+Currently shared via catalog: `zod`, `@types/node`, `i18next`.
