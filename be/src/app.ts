@@ -1,3 +1,4 @@
+import cookieParser from 'cookie-parser';
 import cors from 'cors';
 import express from 'express';
 import helmet from 'helmet';
@@ -10,6 +11,7 @@ const app = express();
 app.use(helmet(helmetConfig));
 app.use(cors(corsConfig));
 app.use(express.json());
+app.use(cookieParser());
 app.use(languageDetector);
 
 // Mount modules

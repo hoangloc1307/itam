@@ -13,7 +13,7 @@ export const requestValidator = (schema: ZodType) => {
         message: t(issue.message, { defaultValue: issue.message }),
       }));
 
-      throw AppError.badRequest(t('common.validationFailed'), translatedErrors);
+      throw AppError.badRequest(t('common:validationFailed'), translatedErrors);
     }
 
     req.body = result.data;
