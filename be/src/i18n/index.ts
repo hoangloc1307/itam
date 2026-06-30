@@ -1,18 +1,19 @@
+import path from 'path';
 import i18next from 'i18next';
-import en from '~/i18n/locales/en.json';
-import vi from '~/i18n/locales/vi.json';
+import Backend from 'i18next-fs-backend';
 
 const SUPPORTED_LANGUAGES = ['vi', 'en'];
 
-i18next.init({
+i18next.use(Backend).init({
+  // @ts-expect-error initImmediate is valid but missing from types
+  initImmediate: false,
   lng: 'vi',
   fallbackLng: 'vi',
   supportedLngs: SUPPORTED_LANGUAGES,
   ns: ['common', 'auth'],
   defaultNS: 'common',
-  resources: {
-    en: { common: en.common, auth: en.auth },
-    vi: { common: vi.common, auth: vi.auth },
+  backend: {
+    loadPath: path.join(import.meta.dirname, 'locales/{{lng}}/{{ns}}.json'),
   },
   interpolation: {
     escapeValue: false,

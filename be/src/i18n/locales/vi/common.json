@@ -1,0 +1,6 @@
+{
+  "notFound": "Không tìm thấy tài nguyên",
+  "badRequest": "Yêu cầu không hợp lệ",
+  "internalError": "Lỗi hệ thống",
+  "validationFailed": "Dữ liệu không hợp lệ"
+}

@@ -1,0 +1,6 @@
+{
+  "notFound": "Resource not found",
+  "badRequest": "Invalid request",
+  "internalError": "Internal server error",
+  "validationFailed": "Validation failed"
+}

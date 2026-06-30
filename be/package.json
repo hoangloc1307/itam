@@ -23,6 +23,7 @@
     "express": "^5.2.1",
     "helmet": "^8.2.0",
     "i18next": "catalog:",
+    "i18next-fs-backend": "^2.6.6",
     "itam-shared": "workspace:*",
     "jsonwebtoken": "^9.0.3",
     "pg": "^8.22.0",
