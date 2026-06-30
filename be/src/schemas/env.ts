@@ -8,6 +8,12 @@ export const envSchema = z.object({
     .min(1, { error: 'Must be greater than 0.' })
     .max(65535, { error: 'Must be less than 65536.' }),
 
+  // ==================== AUTH ====================
+  JWT_SECRET: z.string().min(1, { error: 'JWT_SECRET is required.' }),
+  JWT_REFRESH_SECRET: z.string().min(1, { error: 'JWT_REFRESH_SECRET is required.' }),
+  JWT_ACCESS_EXPIRY: z.string().min(1, { error: 'JWT_ACCESS_EXPIRY is required.' }),
+  JWT_REFRESH_EXPIRY: z.string().min(1, { error: 'JWT_REFRESH_EXPIRY is required.' }),
+
   // ==================== DATABASE ====================
   DATABASE_URL: z.url({ error: 'Must be a valid URL.' }),
   APP_DATABASE_URL: z.url({ error: 'Must be a valid URL.' }),

@@ -1,0 +1,27 @@
+export const ERROR_CODES = {
+  // ==================== AUTH ====================
+  UNAUTHORIZED: 'UNAUTHORIZED',
+  FORBIDDEN: 'FORBIDDEN',
+  INVALID_CREDENTIALS: 'INVALID_CREDENTIALS',
+  TOKEN_EXPIRED: 'TOKEN_EXPIRED',
+  USERNAME_EXISTS: 'USERNAME_EXISTS',
+
+  // ==================== COMMON ====================
+  BAD_REQUEST: 'BAD_REQUEST',
+  NOT_FOUND: 'NOT_FOUND',
+  CONFLICT: 'CONFLICT',
+  INTERNAL_SERVER_ERROR: 'INTERNAL_SERVER_ERROR',
+
+  // ==================== ASSET ====================
+  // ASSET_ALREADY_ALLOCATED: 'ASSET_ALREADY_ALLOCATED',
+  // ASSET_NOT_AVAILABLE: 'ASSET_NOT_AVAILABLE',
+
+  // ==================== MAINTENANCE ====================
+  // MAINTENANCE_SCHEDULE_CONFLICT: 'MAINTENANCE_SCHEDULE_CONFLICT',
+
+  // ==================== ALLOCATION ====================
+  // ALLOCATION_PENDING_APPROVAL: 'ALLOCATION_PENDING_APPROVAL',
+  // ALLOCATION_ALREADY_RETURNED: 'ALLOCATION_ALREADY_RETURNED',
+} as const;
+
+export type ErrorCode = (typeof ERROR_CODES)[keyof typeof ERROR_CODES];

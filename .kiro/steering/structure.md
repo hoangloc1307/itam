@@ -23,16 +23,22 @@ ITAM/
 │       └── routeTree.gen.ts # Auto-generated route tree (do not edit)
 ├── be/                     # Backend (Express)
 │   └── src/
-│       ├── configs/        # Middleware & service configs (cors, helmet, etc.)
-│       ├── generated/      # Auto-generated code (Prisma client — do not edit)
-│       ├── lib/            # Utility modules (prisma client instance, etc.)
-│       ├── app.ts          # Express app setup
-│       └── server.ts       # HTTP server bootstrap
+│       ├── configs/        # Middleware & service configs (cors, helmet, env)
+│       ├── middlewares/    # Shared middleware (authenticate, errorHandler, requestValidator)
+│       ├── modules/        # Feature modules (auth, asset, allocation, maintenance, report...)
+│       │   ├── auth/       # auth.route, auth.controller, auth.service, auth.validation
+│       │   └── index.ts    # Centralized route config (path + router + isPublic)
+│       ├── lib/            # Shared utilities (prisma client instance)
+│       ├── schemas/        # Shared schemas (env validation)
+│       ├── app.ts          # Express app setup + module mounting
+│       └── server.ts       # HTTP/HTTPS server bootstrap
+│   ├── generated/          # Auto-generated (Prisma client — do not edit)
 │   ├── prisma/
 │   │   └── schema.prisma   # Prisma schema definition
 │   └── prisma.config.ts    # Prisma config (datasource URL, migrations path)
 ├── shared/                 # Shared package
-│   └── src/schemas/        # Zod schemas + inferred types
+│   └── src/
+│       └── schemas/        # Zod schemas + inferred types
 ├── cert/                   # Local HTTPS certificates
 ├── pnpm-workspace.yaml     # Workspace definition
 └── commitlint.config.ts    # Commit convention config
@@ -45,5 +51,6 @@ ITAM/
 - **API layer**: Each domain gets a file in `api/` exporting an object with methods. Mutations wrap these via hooks in `hooks/mutations/`.
 - **State**: Zustand stores in `stores/` — one store per domain, using `persist` middleware where needed.
 - **Validation**: Schemas live in `shared/src/schemas/` so both FE and BE share the same validation logic and types.
+
 - **i18n keys**: Validation messages use namespaced i18n keys (e.g. `auth:validation.usernameRequired`) so error strings are translatable.
 - **UI components**: `components/ui/` contains low-level primitives (shadcn). App-specific composed components live directly in `components/`.
