@@ -1,0 +1,25 @@
+info:
+  name: Login
+  type: http
+  seq: 1
+
+http:
+  method: POST
+  url: "{{API_URL}}/{{AUTH_ENDPOINT}}/login"
+  headers:
+    - name: Accept-Language
+      value: vi
+  body:
+    type: json
+    data: |-
+      {
+        "username": "12314092",
+        "password": "12345"
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

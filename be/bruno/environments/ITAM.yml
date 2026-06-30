@@ -1,0 +1,6 @@
+name: ITAM
+variables:
+  - name: API_URL
+    value: https://localhost:5000/api
+  - name: AUTH_ENDPOINT
+    value: auth
