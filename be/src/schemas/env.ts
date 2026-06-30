@@ -17,4 +17,11 @@ export const envSchema = z.object({
   // ==================== DATABASE ====================
   DATABASE_URL: z.url({ error: 'Must be a valid URL.' }),
   APP_DATABASE_URL: z.url({ error: 'Must be a valid URL.' }),
+
+  // ==================== SMTP ====================
+  SMTP_HOST: z.string().min(1, { error: 'SMTP_HOST is required.' }),
+  SMTP_PORT: z.coerce.number({ error: 'SMTP_PORT must be a number.' }),
+  SMTP_USER: z.string().optional(),
+  SMTP_PASS: z.string().optional(),
+  SMTP_FROM: z.string().min(1, { error: 'SMTP_FROM is required.' }),
 });
