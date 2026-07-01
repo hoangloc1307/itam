@@ -7,5 +7,11 @@
   "hideSidebar": "サイドバーを非表示にする",
   "showSidebar": "サイドバーを表示する",
   "profile": "プロフィール",
-  "logout": "ログアウト"
+  "logout": "ログアウト",
+  "error": {
+    "title": "エラーが発生しました",
+    "retry": "再試行",
+    "goHome": "ホームに戻る",
+    "unknown": "エラーが発生しました"
+  }
 }

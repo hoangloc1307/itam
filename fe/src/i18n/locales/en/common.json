@@ -7,5 +7,11 @@
   "hideSidebar": "Hide sidebar",
   "showSidebar": "show sidebar",
   "profile": "Profile",
-  "logout": "Logout"
+  "logout": "Logout",
+  "error": {
+    "title": "An error occurred",
+    "retry": "Try again",
+    "goHome": "Go to homepage",
+    "unknown": "Something went wrong"
+  }
 }

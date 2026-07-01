@@ -3,9 +3,21 @@ import { formDevtoolsPlugin } from '@tanstack/react-form-devtools';
 import { createRouter, RouterProvider } from '@tanstack/react-router';
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
-import '~/i18n';
+import { toast } from 'sonner';
+import i18n from '~/i18n';
 import '~/index.css';
 import { routeTree } from '~/routeTree.gen';
+
+window.addEventListener('unhandledrejection', (event) => {
+  if (event.reason?.isAxiosError) {
+    event.preventDefault();
+    return;
+  }
+
+  event.preventDefault();
+  const message = event.reason instanceof Error ? event.reason.message : i18n.t('error.unknown');
+  toast.error(message);
+});
 
 const router = createRouter({ routeTree });
 

@@ -7,5 +7,11 @@
   "hideSidebar": "Ẩn sidebar",
   "showSidebar": "Hiện sidebar",
   "profile": "Hồ sơ",
-  "logout": "Đăng xuất"
+  "logout": "Đăng xuất",
+  "error": {
+    "title": "Đã xảy ra lỗi",
+    "retry": "Thử lại",
+    "goHome": "Về trang chủ",
+    "unknown": "Đã xảy ra lỗi"
+  }
 }

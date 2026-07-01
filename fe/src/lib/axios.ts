@@ -1,7 +1,7 @@
 import axios from 'axios';
 import CONFIG from '~/configs/app';
+import { HttpClient } from '~/lib/http-client';
 import { useAuthStore } from '~/stores/auth';
-import { HttpClient } from './http-client';
 
 // ============================================================
 // API chính (backend ITAM)
@@ -69,7 +69,7 @@ const api = new HttpClient(
             {},
             { withCredentials: true },
           );
-          const newToken = data.token;
+          const newToken = data.data.token;
           useAuthStore.getState().setToken(newToken);
           processQueue(null, newToken);
           originalRequest.headers.Authorization = `Bearer ${newToken}`;
@@ -77,6 +77,7 @@ const api = new HttpClient(
         } catch (refreshError) {
           processQueue(refreshError, null);
           useAuthStore.getState().logout();
+          window.location.href = '/login';
           return Promise.reject(refreshError);
         } finally {
           isRefreshing = false;
