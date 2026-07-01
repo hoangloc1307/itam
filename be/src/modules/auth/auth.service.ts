@@ -35,7 +35,12 @@ const login = async ({ username, password }: LoginInput) => {
 };
 
 const refresh = async (refreshToken: string) => {
-  const payload = verifyRefreshToken(refreshToken);
+  let payload;
+  try {
+    payload = verifyRefreshToken(refreshToken);
+  } catch {
+    throw AppError.unauthorized(t('auth:tokenExpired'));
+  }
 
   if (!payload.username) {
     throw AppError.unauthorized(t('auth:tokenExpired'));
