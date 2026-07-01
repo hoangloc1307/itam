@@ -61,7 +61,9 @@ pnpm --filter itam-be db:studio    # Open Prisma Studio
 
 - **Linting**: ESLint with TypeScript, React Hooks, React Refresh, TanStack Query & Router plugins
 - **Formatting**: EditorConfig (2-space indent, UTF-8, CRLF, trailing whitespace trimmed)
-- **Commits**: Conventional Commits enforced via commitlint + Husky (`feat`, `fix`, `docs`, `refactor`, etc.) with scopes `fe` / `be`
+- **Commits**: Conventional Commits enforced via commitlint + Husky (`feat`, `fix`, `docs`, `refactor`, etc.) with scopes `fe` / `be`. Emoji is required and must match the type:
+  - `feat` → ✨, `fix` → 🐛, `docs` → 📝, `style` → 💄, `refactor` → ♻️, `perf` → ⚡️, `test` → ✅, `build` → 📦️, `ci` → 🎡, `chore` → 🔨, `revert` → ⏪️
+  - Format: `type(scope): emoji message`
 - **Path alias**: `~` maps to `src/` in both FE and BE
 
 ## Dependency Sync Rules
