@@ -1,12 +1,12 @@
-import { createFileRoute, Outlet, redirect, useLocation } from '@tanstack/react-router';
+import { createFileRoute, Outlet, redirect, useMatch } from '@tanstack/react-router';
 import banner from '~/assets/images/banner.png';
 import banner2 from '~/assets/images/banner2.png';
 import { Card, CardContent } from '~/components/ui/card';
 import { isAuthenticated } from '~/lib/auth';
 
 const AuthLayout = () => {
-  const { pathname } = useLocation();
-  const isLogin = pathname === '/login';
+  const loginMatch = useMatch({ from: '/_auth/login', shouldThrow: false });
+  const isLogin = !!loginMatch;
 
   return (
     <div className='bg-muted flex min-h-svh items-center justify-center p-6 md:p-10'>

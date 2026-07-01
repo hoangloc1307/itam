@@ -13,9 +13,7 @@ export function useLogin() {
     onSuccess: (data) => {
       if (data.data) {
         setAuth({ token: data.data.token, user: data.data.user });
-        router.invalidate().then(() => {
-          router.navigate({ to: '/dashboard' });
-        });
+        router.navigate({ to: '/dashboard', replace: true });
       }
     },
   });
