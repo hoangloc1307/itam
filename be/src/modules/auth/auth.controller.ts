@@ -37,4 +37,9 @@ const logout = (_req: Request, res: Response) => {
   ApiResponse.ok(res, null, 'Logged out');
 };
 
-export const authController = { login, refresh, logout };
+const register = async (req: Request, res: Response) => {
+  await authService.register(req.body);
+  ApiResponse.created(res, null, t('auth:registerSuccess'));
+};
+
+export const authController = { login, refresh, logout, register };

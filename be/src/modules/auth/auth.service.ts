@@ -1,13 +1,16 @@
-import type { LoginInput } from 'itam-shared/schemas/auth';
+import type { LoginInput, RegisterInput } from 'itam-shared/schemas/auth';
 import { prisma } from '~/lib/prisma';
 import { AppError } from '~/errors';
 import { t } from '~/i18n';
 import {
   generateAccessToken,
+  generateRandomPassword,
   generateRefreshToken,
   verifyRefreshToken,
   verifyPassword,
+  hashPassword,
 } from '~/utils';
+import { mailService } from '~/services/mail.service';
 
 const login = async ({ username, password }: LoginInput) => {
   const user = await prisma.user.findUnique({
@@ -59,4 +62,32 @@ const refresh = async (refreshToken: string) => {
   return { accessToken };
 };
 
-export const authService = { login, refresh };
+const register = async ({ username, email, name }: RegisterInput) => {
+  const existing = await prisma.user.findUnique({ where: { username } });
+
+  if (existing) {
+    throw AppError.conflict(t('auth:usernameExists'));
+  }
+
+  const plainPassword = generateRandomPassword();
+  const hashedPassword = await hashPassword(plainPassword);
+
+  await prisma.user.create({
+    data: {
+      username,
+      email,
+      name,
+      password: hashedPassword,
+      createdBy: username,
+    },
+  });
+
+  await mailService.sendEmail({
+    to: email,
+    subject: 'ITAM - Tài khoản của bạn đã được tạo',
+    template: 'account-created',
+    data: { name, username, password: plainPassword },
+  });
+};
+
+export const authService = { login, refresh, register };

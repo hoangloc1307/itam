@@ -6,5 +6,5 @@ export {
   verifyRefreshToken,
 } from '~/utils/jwt';
 export type { AccessTokenPayload, RefreshTokenPayload } from '~/utils/jwt';
-export { hashPassword, verifyPassword } from '~/utils/password';
+export { generateRandomPassword, hashPassword, verifyPassword } from '~/utils/password';
 export { renderTemplate } from '~/utils/template';

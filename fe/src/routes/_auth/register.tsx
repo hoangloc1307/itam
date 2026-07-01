@@ -2,10 +2,13 @@ import { createFileRoute, Link } from '@tanstack/react-router';
 import { useTranslation } from 'react-i18next';
 import { registerSchema, type RegisterInput } from 'itam-shared/schemas/auth';
 import { FieldDescription, FieldGroup } from '~/components/ui/field';
+import { useRegister } from '~/hooks/mutations/use-auth';
 import { useAppForm } from '~/hooks/use-app-form';
 
 const RegisterPage = () => {
   const { t } = useTranslation('auth');
+  const { mutateAsync } = useRegister();
+
   const form = useAppForm({
     defaultValues: {
       username: '',
@@ -16,7 +19,7 @@ const RegisterPage = () => {
       onBlur: registerSchema,
     },
     onSubmit: async ({ value }) => {
-      console.log(value);
+      await mutateAsync(value);
     },
   });
 
