@@ -4,6 +4,7 @@ import { createRouter, RouterProvider } from '@tanstack/react-router';
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import { toast } from 'sonner';
+import { PageSkeleton } from '~/components/page-skeleton';
 import i18n from '~/i18n';
 import '~/index.css';
 import { routeTree } from '~/routeTree.gen';
@@ -19,7 +20,11 @@ window.addEventListener('unhandledrejection', (event) => {
   toast.error(message);
 });
 
-const router = createRouter({ routeTree });
+const router = createRouter({
+  routeTree,
+  defaultPendingComponent: PageSkeleton,
+  defaultPendingMinMs: 200,
+});
 
 declare module '@tanstack/react-router' {
   interface Register {

@@ -1,4 +1,6 @@
 import { createFileRoute, Outlet, redirect } from '@tanstack/react-router';
+import { Suspense } from 'react';
+import { PageSkeleton } from '~/components/page-skeleton';
 import { AppSidebar } from '~/components/app-sidebar';
 import { SiteHeader } from '~/components/site-header';
 import { SidebarInset, SidebarProvider } from '~/components/ui/sidebar';
@@ -10,7 +12,9 @@ const AppLayout = () => (
     <SidebarInset>
       <SiteHeader />
       <div className='flex-1 p-4'>
-        <Outlet />
+        <Suspense fallback={<PageSkeleton />}>
+          <Outlet />
+        </Suspense>
       </div>
     </SidebarInset>
   </SidebarProvider>
