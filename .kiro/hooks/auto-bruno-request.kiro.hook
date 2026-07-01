@@ -1,0 +1,16 @@
+{
+  "enabled": true,
+  "name": "Auto Bruno Request",
+  "description": "Automatically generates a Bruno request file when a new API route is added in the backend route files",
+  "version": "1",
+  "when": {
+    "type": "fileEdited",
+    "patterns": [
+      "be/src/modules/**/**.route.ts"
+    ]
+  },
+  "then": {
+    "type": "askAgent",
+    "prompt": "A backend route file was just edited. Check if a new route (router.get, router.post, router.put, router.patch, router.delete) was added. If so, create the corresponding Bruno .yml request file in be/bruno/ following the existing format (see be/bruno/Auth/Login.yml as reference). Use the module name as the folder and the route handler name as the file name. Include the correct HTTP method, URL using {{API_URL}} and appropriate endpoint variables, sample JSON body for POST/PUT/PATCH, and appropriate settings. If no new route was added, do nothing."
+  }
+}

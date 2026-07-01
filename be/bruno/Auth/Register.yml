@@ -1,0 +1,23 @@
+info:
+  name: Register
+  type: http
+  seq: 2
+
+http:
+  method: POST
+  url: '{{API_URL}}/{{AUTH_ENDPOINT}}/register'
+  body:
+    type: json
+    data: |-
+      {
+        "username": "NV000001",
+        "email": "user@example.com",
+        "name": "Nguyễn Văn A"
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
