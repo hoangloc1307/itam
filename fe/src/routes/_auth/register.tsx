@@ -16,7 +16,7 @@ const RegisterPage = () => {
       name: '',
     } satisfies RegisterInput,
     validators: {
-      onBlur: registerSchema,
+      onSubmit: registerSchema,
     },
     onSubmit: async ({ value }) => {
       await mutateAsync(value);
