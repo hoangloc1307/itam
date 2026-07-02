@@ -1,6 +1,5 @@
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { createRootRoute, Outlet, type ErrorComponentProps } from '@tanstack/react-router';
-import { TanStackRouterDevtools } from '@tanstack/react-router-devtools';
 import { useTranslation } from 'react-i18next';
 import { NotFound } from '~/components/not-found';
 import { Button } from '~/components/ui/button';
@@ -16,7 +15,6 @@ const RootLayout = () => {
     <QueryClientProvider client={queryClient}>
       <Outlet />
       <Toaster position='top-right' richColors closeButton />
-      <TanStackRouterDevtools position='bottom-right' />
     </QueryClientProvider>
   );
 };
