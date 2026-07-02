@@ -1,7 +1,7 @@
 import { IconFileSettings, IconLifebuoy, IconSend } from '@tabler/icons-react';
 import type { NavItem } from '~/components/nav-main';
 
-const MAIN_MENU = [
+const MAIN_MENU: NavItem[] = [
   {
     title: 'Master',
     url: '',
@@ -10,14 +10,16 @@ const MAIN_MENU = [
       {
         title: 'Category',
         url: '/category',
+        featureCode: 'MANAGE_CATEGORY',
       },
       {
         title: 'Model',
         url: '/model',
+        featureCode: 'MANAGE_MODEL',
       },
     ],
   },
-] as const satisfies NavItem[];
+];
 
 const SECONDARY_MENU = [
   {

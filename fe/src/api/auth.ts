@@ -8,9 +8,16 @@ interface User {
   email: string;
 }
 
+interface Permission {
+  featureCode: string;
+  action: string;
+  section: string | null;
+}
+
 interface LoginResponse {
   token: string;
   user: User;
+  permissions: Permission[];
 }
 
 const AUTH_ENDPOINT = '/auth';

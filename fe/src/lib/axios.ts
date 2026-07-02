@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { toast } from 'sonner';
 import CONFIG from '~/configs/app';
 import { HttpClient } from '~/lib/http-client';
 import { useAuthStore } from '~/stores/auth';
@@ -71,12 +72,16 @@ const api = new HttpClient(
           );
           const newToken = data.data.token;
           useAuthStore.getState().setToken(newToken);
+          if (data.data.permissions) {
+            useAuthStore.getState().setPermissions(data.data.permissions);
+          }
           processQueue(null, newToken);
           originalRequest.headers.Authorization = `Bearer ${newToken}`;
           return ins(originalRequest);
         } catch (refreshError) {
           processQueue(refreshError, null);
           useAuthStore.getState().logout();
+          toast.error('Phiên đăng nhập hết hạn');
           window.location.href = '/login';
           return Promise.reject(refreshError);
         } finally {

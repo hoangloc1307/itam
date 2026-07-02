@@ -14,7 +14,11 @@ export function useLogin() {
     mutationFn: (payload: LoginInput) => authApi.login(payload),
     onSuccess: (data) => {
       if (data.data) {
-        setAuth({ token: data.data.token, user: data.data.user });
+        setAuth({
+          token: data.data.token,
+          user: data.data.user,
+          permissions: data.data.permissions ?? [],
+        });
         router.navigate({ to: '/dashboard', replace: true });
       }
     },
