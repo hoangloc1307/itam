@@ -1,24 +1,17 @@
-import { createFileRoute } from '@tanstack/react-router';
+import { IconPlus } from '@tabler/icons-react';
 import { useSuspenseQuery } from '@tanstack/react-query';
-import { useTranslation } from 'react-i18next';
+import { createFileRoute } from '@tanstack/react-router';
 import { useState } from 'react';
-import { IconEdit, IconPlus, IconTrash } from '@tabler/icons-react';
+import { useTranslation } from 'react-i18next';
 import { type Category } from '~/api/category';
 import { categoryQueries } from '~/api/category.queries';
-import { Button } from '~/components/ui/button';
-import { Badge } from '~/components/ui/badge';
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from '~/components/ui/table';
-import { Dialog, DialogContent, DialogHeader, DialogTitle } from '~/components/ui/dialog';
-import { ConfirmDialog } from '~/components/confirm-dialog';
 import { CategoryForm } from '~/components/category-form';
+import { ConfirmDialog } from '~/components/confirm-dialog';
+import DataTable from '~/components/datatable/datatable';
+import { Button } from '~/components/ui/button';
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from '~/components/ui/dialog';
 import { useDeleteCategory } from '~/hooks/mutations/use-category';
+import useDatatable from '~/hooks/use-datatable';
 
 const CategoryPage = () => {
   const { t } = useTranslation('category');
@@ -28,6 +21,26 @@ const CategoryPage = () => {
   const { data } = useSuspenseQuery(categoryQueries.all());
   const deleteMutation = useDeleteCategory();
   const categories = data?.data ?? [];
+
+  const columns = [
+    {
+      header: 'ID',
+      accessorKey: 'id',
+    },
+    {
+      header: 'Name',
+      accessorKey: 'name',
+    },
+    {
+      header: 'Maintainance Interval (Hour)',
+      accessorKey: 'maintenanceIntervalHours',
+    },
+  ];
+
+  const table = useDatatable({
+    columns,
+    data: categories ?? [],
+  });
 
   const handleEdit = (category: Category) => {
     setEditing(category);
@@ -60,53 +73,7 @@ const CategoryPage = () => {
         </Button>
       </div>
 
-      <div className='rounded-lg border'>
-        <Table>
-          <TableHeader>
-            <TableRow>
-              <TableHead>{t('columns.id')}</TableHead>
-              <TableHead>{t('columns.name')}</TableHead>
-              <TableHead>{t('columns.serialKey')}</TableHead>
-              <TableHead>{t('columns.maintenanceIntervalHours')}</TableHead>
-              <TableHead>{t('columns.status')}</TableHead>
-              <TableHead className='w-24'>{t('columns.actions')}</TableHead>
-            </TableRow>
-          </TableHeader>
-          <TableBody>
-            {categories.length === 0 ? (
-              <TableRow>
-                <TableCell colSpan={6} className='text-muted-foreground text-center'>
-                  No data
-                </TableCell>
-              </TableRow>
-            ) : (
-              categories.map((cat) => (
-                <TableRow key={cat.id}>
-                  <TableCell className='font-mono'>{cat.id}</TableCell>
-                  <TableCell>{cat.name}</TableCell>
-                  <TableCell className='font-mono'>{cat.serialKey}</TableCell>
-                  <TableCell>{cat.maintenanceIntervalHours ?? '-'}</TableCell>
-                  <TableCell>
-                    <Badge variant={cat.isActive ? 'default' : 'secondary'}>
-                      {cat.isActive ? 'Active' : 'Inactive'}
-                    </Badge>
-                  </TableCell>
-                  <TableCell>
-                    <div className='flex gap-1'>
-                      <Button size='icon-xs' variant='ghost' onClick={() => handleEdit(cat)}>
-                        <IconEdit />
-                      </Button>
-                      <Button size='icon-xs' variant='ghost' onClick={() => setDeleteId(cat.id)}>
-                        <IconTrash />
-                      </Button>
-                    </div>
-                  </TableCell>
-                </TableRow>
-              ))
-            )}
-          </TableBody>
-        </Table>
-      </div>
+      <DataTable table={table} />
 
       <Dialog open={open} onOpenChange={setOpen}>
         <DialogContent>
