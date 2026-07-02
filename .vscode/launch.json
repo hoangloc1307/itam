@@ -16,8 +16,8 @@
       "skipFiles": ["<node_internals>/**", "**/node_modules/**"]
     },
     {
-      "name": "Debug FE (Chrome)",
-      "type": "chrome",
+      "name": "Debug FE (Edge)",
+      "type": "msedge",
       "request": "launch",
       "url": "https://localhost:5173",
       "webRoot": "${workspaceFolder}/fe/src",
@@ -32,7 +32,7 @@
   "compounds": [
     {
       "name": "Debug Full Stack",
-      "configurations": ["Debug BE (Express)", "Debug FE (Chrome)"]
+      "configurations": ["Debug BE (Express)", "Debug FE (Edge)"]
     }
   ]
 }
