@@ -2,5 +2,6 @@
   "notFound": "Không tìm thấy tài nguyên",
   "badRequest": "Yêu cầu không hợp lệ",
   "internalError": "Lỗi hệ thống",
-  "validationFailed": "Dữ liệu không hợp lệ"
+  "validationFailed": "Dữ liệu không hợp lệ",
+  "forbidden": "Bạn không có quyền thực hiện hành động này"
 }
