@@ -1,0 +1,35 @@
+{
+  "title": "Categories",
+  "addNew": "Add category",
+  "edit": "Edit category",
+  "deleteConfirm": "Are you sure you want to delete this category?",
+  "createSuccess": "Category created successfully",
+  "updateSuccess": "Category updated successfully",
+  "deleteSuccess": "Category deleted successfully",
+  "columns": {
+    "id": "ID",
+    "name": "Name",
+    "serialKey": "Serial Key",
+    "maintenanceIntervalHours": "Maintenance Interval (hrs)",
+    "status": "Status",
+    "actions": "Actions"
+  },
+  "form": {
+    "id": "Category ID",
+    "name": "Category name",
+    "serialKey": "Serial Key",
+    "maintenanceIntervalHours": "Maintenance Interval (hrs)",
+    "idPlaceholder": "Enter category ID",
+    "namePlaceholder": "Enter category name",
+    "serialKeyPlaceholder": "Enter serial key",
+    "maintenancePlaceholder": "Enter hours"
+  },
+  "validation": {
+    "idRequired": "Category ID is required",
+    "idMaxLength": "Category ID must be at most 30 characters",
+    "nameRequired": "Category name is required",
+    "nameMaxLength": "Category name must be at most 150 characters",
+    "serialKeyRequired": "Serial key is required",
+    "serialKeyMaxLength": "Serial key must be at most 30 characters"
+  }
+}

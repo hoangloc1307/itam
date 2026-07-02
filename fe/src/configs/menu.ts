@@ -10,12 +10,12 @@ const MAIN_MENU: NavItem[] = [
       {
         title: 'Category',
         url: '/category',
-        featureCode: 'MANAGE_CATEGORY',
+        featureCode: 'CATEGORY',
       },
       {
         title: 'Model',
         url: '/model',
-        featureCode: 'MANAGE_MODEL',
+        featureCode: 'MODEL',
       },
     ],
   },

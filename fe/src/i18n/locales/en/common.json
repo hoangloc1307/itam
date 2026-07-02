@@ -21,5 +21,11 @@
     "goHome": "Go back home",
     "goBack": "Go back",
     "contactSupport": "Contact support"
+  },
+  "confirm": {
+    "title": "Confirm",
+    "description": "Are you sure you want to perform this action?",
+    "ok": "Confirm",
+    "cancel": "Cancel"
   }
 }

@@ -1,0 +1,35 @@
+{
+  "title": "Danh mục",
+  "addNew": "Thêm danh mục",
+  "edit": "Sửa danh mục",
+  "deleteConfirm": "Bạn có chắc muốn xóa danh mục này?",
+  "createSuccess": "Tạo danh mục thành công",
+  "updateSuccess": "Cập nhật danh mục thành công",
+  "deleteSuccess": "Xóa danh mục thành công",
+  "columns": {
+    "id": "Mã",
+    "name": "Tên danh mục",
+    "serialKey": "Serial Key",
+    "maintenanceIntervalHours": "Chu kỳ bảo trì (giờ)",
+    "status": "Trạng thái",
+    "actions": "Thao tác"
+  },
+  "form": {
+    "id": "Mã danh mục",
+    "name": "Tên danh mục",
+    "serialKey": "Serial Key",
+    "maintenanceIntervalHours": "Chu kỳ bảo trì (giờ)",
+    "idPlaceholder": "Nhập mã danh mục",
+    "namePlaceholder": "Nhập tên danh mục",
+    "serialKeyPlaceholder": "Nhập serial key",
+    "maintenancePlaceholder": "Nhập số giờ"
+  },
+  "validation": {
+    "idRequired": "Mã danh mục là bắt buộc",
+    "idMaxLength": "Mã danh mục tối đa 30 ký tự",
+    "nameRequired": "Tên danh mục là bắt buộc",
+    "nameMaxLength": "Tên danh mục tối đa 150 ký tự",
+    "serialKeyRequired": "Serial key là bắt buộc",
+    "serialKeyMaxLength": "Serial key tối đa 30 ký tự"
+  }
+}

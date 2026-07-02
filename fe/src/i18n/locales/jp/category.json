@@ -1,0 +1,35 @@
+{
+  "title": "カテゴリー",
+  "addNew": "カテゴリーを追加",
+  "edit": "カテゴリーを編集",
+  "deleteConfirm": "このカテゴリーを削除してもよろしいですか？",
+  "createSuccess": "カテゴリーを作成しました",
+  "updateSuccess": "カテゴリーを更新しました",
+  "deleteSuccess": "カテゴリーを削除しました",
+  "columns": {
+    "id": "ID",
+    "name": "名前",
+    "serialKey": "シリアルキー",
+    "maintenanceIntervalHours": "メンテナンス間隔（時間）",
+    "status": "ステータス",
+    "actions": "操作"
+  },
+  "form": {
+    "id": "カテゴリーID",
+    "name": "カテゴリー名",
+    "serialKey": "シリアルキー",
+    "maintenanceIntervalHours": "メンテナンス間隔（時間）",
+    "idPlaceholder": "カテゴリーIDを入力",
+    "namePlaceholder": "カテゴリー名を入力",
+    "serialKeyPlaceholder": "シリアルキーを入力",
+    "maintenancePlaceholder": "時間を入力"
+  },
+  "validation": {
+    "idRequired": "カテゴリーIDは必須です",
+    "idMaxLength": "カテゴリーIDは最大30文字です",
+    "nameRequired": "カテゴリー名は必須です",
+    "nameMaxLength": "カテゴリー名は最大150文字です",
+    "serialKeyRequired": "シリアルキーは必須です",
+    "serialKeyMaxLength": "シリアルキーは最大30文字です"
+  }
+}

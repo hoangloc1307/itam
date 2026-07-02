@@ -21,5 +21,11 @@
     "goHome": "Về trang chủ",
     "goBack": "Quay lại",
     "contactSupport": "Liên hệ hỗ trợ"
+  },
+  "confirm": {
+    "title": "Xác nhận",
+    "description": "Bạn có chắc chắn muốn thực hiện hành động này?",
+    "ok": "Xác nhận",
+    "cancel": "Hủy"
   }
 }

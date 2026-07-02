@@ -21,5 +21,11 @@
     "goHome": "ホームに戻る",
     "goBack": "戻る",
     "contactSupport": "サポートに連絡"
+  },
+  "confirm": {
+    "title": "確認",
+    "description": "この操作を実行してもよろしいですか？",
+    "ok": "確認",
+    "cancel": "キャンセル"
   }
 }
