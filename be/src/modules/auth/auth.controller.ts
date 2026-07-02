@@ -7,7 +7,7 @@ import { t } from '~/i18n';
 const REFRESH_TOKEN_COOKIE = 'refreshToken';
 
 const login = async (req: Request, res: Response) => {
-  const { accessToken, refreshToken, user } = await authService.login(req.body);
+  const { accessToken, refreshToken, user, permissions } = await authService.login(req.body);
 
   res.cookie(REFRESH_TOKEN_COOKIE, refreshToken, {
     httpOnly: true,
@@ -17,7 +17,7 @@ const login = async (req: Request, res: Response) => {
     path: '/api/auth/refresh',
   });
 
-  ApiResponse.ok(res, { token: accessToken, user });
+  ApiResponse.ok(res, { token: accessToken, user, permissions });
 };
 
 const refresh = async (req: Request, res: Response) => {
@@ -27,9 +27,9 @@ const refresh = async (req: Request, res: Response) => {
     throw AppError.unauthorized(t('auth:tokenExpired'));
   }
 
-  const { accessToken } = await authService.refresh(refreshToken);
+  const { accessToken, permissions } = await authService.refresh(refreshToken);
 
-  ApiResponse.ok(res, { token: accessToken });
+  ApiResponse.ok(res, { token: accessToken, permissions });
 };
 
 const logout = (_req: Request, res: Response) => {

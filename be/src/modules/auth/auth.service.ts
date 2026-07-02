@@ -12,6 +12,65 @@ import {
 } from '~/utils';
 import { mailService } from '~/services/mail.service';
 
+export interface Permission {
+  featureCode: string;
+  action: string;
+  section: string | null;
+}
+
+const resolvePermissions = async (username: string): Promise<Permission[]> => {
+  const userRoles = await prisma.userRole.findMany({
+    where: { username },
+    select: { roleCode: true, section: true },
+  });
+
+  const roleCodes = [...new Set(userRoles.map((ur) => ur.roleCode))];
+  const rolePermissions = await prisma.rolePermission.findMany({
+    where: { roleCode: { in: roleCodes } },
+    select: { featureCode: true, action: true, roleCode: true, section: true },
+  });
+
+  const permissionSet = new Map<string, Permission>();
+
+  for (const rp of rolePermissions) {
+    const matchingUserRoles = userRoles.filter((ur) => ur.roleCode === rp.roleCode);
+
+    for (const ur of matchingUserRoles) {
+      if (rp.section !== null && ur.section !== null && rp.section !== ur.section) {
+        continue;
+      }
+
+      const effectiveSection = rp.section ?? ur.section;
+      const key = `${rp.featureCode}:${rp.action}:${effectiveSection ?? '*'}`;
+      permissionSet.set(key, {
+        featureCode: rp.featureCode,
+        action: rp.action,
+        section: effectiveSection,
+      });
+    }
+  }
+
+  const userPermissions = await prisma.userPermission.findMany({
+    where: { username },
+    select: { featureCode: true, action: true, decision: true, section: true },
+  });
+
+  for (const up of userPermissions) {
+    const key = `${up.featureCode}:${up.action}:${up.section ?? '*'}`;
+    if (up.decision === 'ALLOW') {
+      permissionSet.set(key, {
+        featureCode: up.featureCode,
+        action: up.action,
+        section: up.section,
+      });
+    } else {
+      permissionSet.delete(key);
+    }
+  }
+
+  return Array.from(permissionSet.values());
+};
+
 const login = async ({ username, password }: LoginInput) => {
   const user = await prisma.user.findUnique({
     where: { username },
@@ -29,11 +88,13 @@ const login = async ({ username, password }: LoginInput) => {
 
   const accessToken = generateAccessToken({ username: user.username });
   const refreshToken = generateRefreshToken({ username: user.username });
+  const permissions = await resolvePermissions(user.username);
 
   return {
     accessToken,
     refreshToken,
     user: { username: user.username, name: user.name, email: user.email },
+    permissions,
   };
 };
 
@@ -58,8 +119,9 @@ const refresh = async (refreshToken: string) => {
   }
 
   const accessToken = generateAccessToken({ username: user.username });
+  const permissions = await resolvePermissions(user.username);
 
-  return { accessToken };
+  return { accessToken, permissions };
 };
 
 const register = async ({ username, email, name }: RegisterInput) => {
