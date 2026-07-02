@@ -2,6 +2,7 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { createRootRoute, Outlet, type ErrorComponentProps } from '@tanstack/react-router';
 import { TanStackRouterDevtools } from '@tanstack/react-router-devtools';
 import { useTranslation } from 'react-i18next';
+import { NotFound } from '~/components/not-found';
 import { Button } from '~/components/ui/button';
 import { Toaster } from '~/components/ui/sonner';
 import { useTheme } from '~/hooks/use-theme';
@@ -42,4 +43,5 @@ const RootErrorComponent = ({ error, reset }: ErrorComponentProps) => {
 export const Route = createRootRoute({
   component: RootLayout,
   errorComponent: RootErrorComponent,
+  notFoundComponent: NotFound,
 });

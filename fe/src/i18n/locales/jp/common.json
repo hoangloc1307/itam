@@ -13,5 +13,13 @@
     "retry": "再試行",
     "goHome": "ホームに戻る",
     "unknown": "エラーが発生しました"
+  },
+  "notFound": {
+    "code": "404",
+    "title": "ページが見つかりません",
+    "description": "申し訳ありませんが、お探しのページが見つかりませんでした。",
+    "goHome": "ホームに戻る",
+    "goBack": "戻る",
+    "contactSupport": "サポートに連絡"
   }
 }

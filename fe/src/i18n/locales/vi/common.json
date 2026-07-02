@@ -13,5 +13,13 @@
     "retry": "Thử lại",
     "goHome": "Về trang chủ",
     "unknown": "Đã xảy ra lỗi"
+  },
+  "notFound": {
+    "code": "404",
+    "title": "Không tìm thấy trang",
+    "description": "Xin lỗi, chúng tôi không thể tìm thấy trang bạn đang tìm kiếm.",
+    "goHome": "Về trang chủ",
+    "goBack": "Quay lại",
+    "contactSupport": "Liên hệ hỗ trợ"
   }
 }

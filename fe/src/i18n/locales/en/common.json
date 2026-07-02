@@ -13,5 +13,13 @@
     "retry": "Try again",
     "goHome": "Go to homepage",
     "unknown": "Something went wrong"
+  },
+  "notFound": {
+    "code": "404",
+    "title": "Page not found",
+    "description": "Sorry, we couldn't find the page you're looking for.",
+    "goHome": "Go back home",
+    "goBack": "Go back",
+    "contactSupport": "Contact support"
   }
 }
