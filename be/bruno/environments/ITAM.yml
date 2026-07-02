@@ -6,3 +6,5 @@ variables:
     value: auth
   - secret: true
     name: TOKEN
+  - name: CATEGORY_ENDPOINT
+    value: categories

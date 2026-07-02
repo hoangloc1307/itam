@@ -1,0 +1,19 @@
+info:
+  name: GetById
+  type: http
+  seq: 2
+
+http:
+  method: GET
+  url: "{{API_URL}}/{{CATEGORY_ENDPOINT}}/:id"
+  params:
+    - name: id
+      value: LAPTOP
+      type: path
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

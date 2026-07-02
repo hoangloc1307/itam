@@ -1,0 +1,27 @@
+info:
+  name: Update
+  type: http
+  seq: 4
+
+http:
+  method: PUT
+  url: "{{API_URL}}/{{CATEGORY_ENDPOINT}}/:id"
+  params:
+    - name: id
+      value: LAPTOP
+      type: path
+  body:
+    type: json
+    data: |-
+      {
+        "name": "Laptop Updated",
+        "serialKey": "LPT",
+        "maintenanceIntervalHours": 4380
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
