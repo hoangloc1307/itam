@@ -73,43 +73,55 @@ model Feature {
 }
 
 /// Gán role cho user. Một user có thể có nhiều role.
+/// section = null → role áp dụng toàn hệ thống.
+/// section = "6100" → role chỉ có hiệu lực trong phạm vi section đó.
 model UserRole {
-  username String @db.Char(8)
-  roleCode String @map("role_code") @db.VarChar(50)
+  id       Int     @id @default(autoincrement())
+  username String  @db.Char(8)
+  roleCode String  @map("role_code") @db.VarChar(50)
+  section  String? @db.Char(4)
 
   user User @relation(fields: [username], references: [username])
   role Role @relation(fields: [roleCode], references: [code])
 
-  @@id([username, roleCode])
+  @@unique([username, roleCode, section])
   @@map("user_role")
 }
 
 /// Quyền của role trên feature.
 /// Không có cột decision — có record = có quyền (additive-only).
+/// section = null → quyền áp dụng cho tất cả section.
+/// section = "6100" → quyền chỉ áp dụng cho section đó.
 model RolePermission {
-  roleCode    String @map("role_code") @db.VarChar(50)
-  featureCode String @map("feature_code") @db.VarChar(100)
+  id          Int     @id @default(autoincrement())
+  roleCode    String  @map("role_code") @db.VarChar(50)
+  featureCode String  @map("feature_code") @db.VarChar(100)
   action      Action
+  section     String? @db.Char(4)
 
   role    Role    @relation(fields: [roleCode], references: [code])
   feature Feature @relation(fields: [featureCode], references: [code])
 
-  @@id([roleCode, featureCode, action])
+  @@unique([roleCode, featureCode, action, section])
   @@map("role_permission")
 }
 
 /// Override quyền cá nhân cho user.
 /// decision = ALLOW → thêm quyền ngoài role.
 /// decision = DENY  → rút quyền mà role đã cấp.
+/// section = null → áp dụng toàn hệ thống.
+/// section = "6100" → chỉ áp dụng trong section đó.
 model UserPermission {
+  id          Int      @id @default(autoincrement())
   username    String   @db.Char(8)
   featureCode String   @map("feature_code") @db.VarChar(100)
   action      Action
   decision    Decision
+  section     String?  @db.Char(4)
 
   user    User    @relation(fields: [username], references: [username])
   feature Feature @relation(fields: [featureCode], references: [code])
 
-  @@id([username, featureCode, action])
+  @@unique([username, featureCode, action, section])
   @@map("user_permission")
 }
