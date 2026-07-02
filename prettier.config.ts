@@ -14,6 +14,7 @@ const prettierConfig: Config = {
   bracketSameLine: false,
   jsxSingleQuote: true,
   proseWrap: 'preserve',
+  plugins: ['prettier-plugin-tailwindcss'],
 };
 
 export default prettierConfig;
