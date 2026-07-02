@@ -4,7 +4,6 @@ import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '~/component
 import {
   SidebarGroup,
   SidebarMenu,
-  SidebarMenuAction,
   SidebarMenuButton,
   SidebarMenuItem,
   SidebarMenuSub,
@@ -27,35 +26,39 @@ export function NavMain({ items }: { items: NavItem[] }) {
   return (
     <SidebarGroup>
       <SidebarMenu>
-        {items.map((item) => (
-          <Collapsible key={item.title} render={<SidebarMenuItem />}>
-            <SidebarMenuButton tooltip={item.title} render={<Link to={item.url} />}>
-              {item.icon && <item.icon />}
-              <span>{item.title}</span>
-            </SidebarMenuButton>
-            {item.children?.length ? (
-              <>
-                <CollapsibleTrigger
-                  render={<SidebarMenuAction className='aria-expanded:rotate-90' />}
-                >
-                  <IconChevronRight />
-                  <span className='sr-only'>Toggle</span>
-                </CollapsibleTrigger>
-                <CollapsibleContent>
-                  <SidebarMenuSub>
-                    {item.children?.map((subItem) => (
-                      <SidebarMenuSubItem key={subItem.title}>
-                        <SidebarMenuSubButton render={<a href={subItem.url} />}>
-                          <span>{subItem.title}</span>
-                        </SidebarMenuSubButton>
-                      </SidebarMenuSubItem>
-                    ))}
-                  </SidebarMenuSub>
-                </CollapsibleContent>
-              </>
-            ) : null}
-          </Collapsible>
-        ))}
+        {items.map((item) =>
+          item.children?.length ? (
+            <Collapsible key={item.title} render={<SidebarMenuItem />}>
+              <CollapsibleTrigger
+                render={
+                  <SidebarMenuButton tooltip={item.title}>
+                    {item.icon && <item.icon />}
+                    <span>{item.title}</span>
+                    <IconChevronRight className='ml-auto transition-transform duration-200 in-data-panel-open:rotate-90' />
+                  </SidebarMenuButton>
+                }
+              />
+              <CollapsibleContent>
+                <SidebarMenuSub>
+                  {item.children.map((subItem) => (
+                    <SidebarMenuSubItem key={subItem.title}>
+                      <SidebarMenuSubButton render={<Link to={subItem.url} />}>
+                        <span>{subItem.title}</span>
+                      </SidebarMenuSubButton>
+                    </SidebarMenuSubItem>
+                  ))}
+                </SidebarMenuSub>
+              </CollapsibleContent>
+            </Collapsible>
+          ) : (
+            <SidebarMenuItem key={item.title}>
+              <SidebarMenuButton tooltip={item.title} render={<Link to={item.url} />}>
+                {item.icon && <item.icon />}
+                <span>{item.title}</span>
+              </SidebarMenuButton>
+            </SidebarMenuItem>
+          ),
+        )}
       </SidebarMenu>
     </SidebarGroup>
   );
