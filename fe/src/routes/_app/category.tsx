@@ -1,6 +1,6 @@
 import { createFileRoute } from '@tanstack/react-router';
 
-const AboutPage = () => (
+const CategoryPage = () => (
   <div>
     <h2 className='text-2xl font-bold text-gray-900'>About</h2>
     <p className='mt-2 text-gray-600'>
@@ -10,4 +10,4 @@ const AboutPage = () => (
   </div>
 );
 
-export const Route = createFileRoute('/_app/about')({ component: AboutPage });
+export const Route = createFileRoute('/_app/category')({ component: CategoryPage });

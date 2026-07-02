@@ -15,7 +15,7 @@ import { Route as IndexRouteImport } from './routes/index';
 import { Route as AuthRegisterRouteImport } from './routes/_auth/register';
 import { Route as AuthLoginRouteImport } from './routes/_auth/login';
 import { Route as AppDashboardRouteImport } from './routes/_app/dashboard';
-import { Route as AppAboutRouteImport } from './routes/_app/about';
+import { Route as AppCategoryRouteImport } from './routes/_app/category';
 
 const AuthRoute = AuthRouteImport.update({
   id: '/_auth',
@@ -45,22 +45,22 @@ const AppDashboardRoute = AppDashboardRouteImport.update({
   path: '/dashboard',
   getParentRoute: () => AppRoute,
 } as any);
-const AppAboutRoute = AppAboutRouteImport.update({
-  id: '/about',
-  path: '/about',
+const AppCategoryRoute = AppCategoryRouteImport.update({
+  id: '/category',
+  path: '/category',
   getParentRoute: () => AppRoute,
 } as any);
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute;
-  '/about': typeof AppAboutRoute;
+  '/category': typeof AppCategoryRoute;
   '/dashboard': typeof AppDashboardRoute;
   '/login': typeof AuthLoginRoute;
   '/register': typeof AuthRegisterRoute;
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute;
-  '/about': typeof AppAboutRoute;
+  '/category': typeof AppCategoryRoute;
   '/dashboard': typeof AppDashboardRoute;
   '/login': typeof AuthLoginRoute;
   '/register': typeof AuthRegisterRoute;
@@ -70,22 +70,22 @@ export interface FileRoutesById {
   '/': typeof IndexRoute;
   '/_app': typeof AppRouteWithChildren;
   '/_auth': typeof AuthRouteWithChildren;
-  '/_app/about': typeof AppAboutRoute;
+  '/_app/category': typeof AppCategoryRoute;
   '/_app/dashboard': typeof AppDashboardRoute;
   '/_auth/login': typeof AuthLoginRoute;
   '/_auth/register': typeof AuthRegisterRoute;
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath;
-  fullPaths: '/' | '/about' | '/dashboard' | '/login' | '/register';
+  fullPaths: '/' | '/category' | '/dashboard' | '/login' | '/register';
   fileRoutesByTo: FileRoutesByTo;
-  to: '/' | '/about' | '/dashboard' | '/login' | '/register';
+  to: '/' | '/category' | '/dashboard' | '/login' | '/register';
   id:
     | '__root__'
     | '/'
     | '/_app'
     | '/_auth'
-    | '/_app/about'
+    | '/_app/category'
     | '/_app/dashboard'
     | '/_auth/login'
     | '/_auth/register';
@@ -141,23 +141,23 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppDashboardRouteImport;
       parentRoute: typeof AppRoute;
     };
-    '/_app/about': {
-      id: '/_app/about';
-      path: '/about';
-      fullPath: '/about';
-      preLoaderRoute: typeof AppAboutRouteImport;
+    '/_app/category': {
+      id: '/_app/category';
+      path: '/category';
+      fullPath: '/category';
+      preLoaderRoute: typeof AppCategoryRouteImport;
       parentRoute: typeof AppRoute;
     };
   }
 }
 
 interface AppRouteChildren {
-  AppAboutRoute: typeof AppAboutRoute;
+  AppCategoryRoute: typeof AppCategoryRoute;
   AppDashboardRoute: typeof AppDashboardRoute;
 }
 
 const AppRouteChildren: AppRouteChildren = {
-  AppAboutRoute: AppAboutRoute,
+  AppCategoryRoute: AppCategoryRoute,
   AppDashboardRoute: AppDashboardRoute,
 };
 
