@@ -1,0 +1,12 @@
+{
+  "notFound": "Không tìm thấy danh mục",
+  "alreadyExists": "Mã danh mục đã tồn tại",
+  "validation": {
+    "idRequired": "Mã danh mục là bắt buộc",
+    "idMaxLength": "Mã danh mục tối đa 30 ký tự",
+    "nameRequired": "Tên danh mục là bắt buộc",
+    "nameMaxLength": "Tên danh mục tối đa 150 ký tự",
+    "serialKeyRequired": "Serial key là bắt buộc",
+    "serialKeyMaxLength": "Serial key tối đa 30 ký tự"
+  }
+}

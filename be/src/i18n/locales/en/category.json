@@ -1,0 +1,12 @@
+{
+  "notFound": "Category not found",
+  "alreadyExists": "Category ID already exists",
+  "validation": {
+    "idRequired": "Category ID is required",
+    "idMaxLength": "Category ID must be at most 30 characters",
+    "nameRequired": "Category name is required",
+    "nameMaxLength": "Category name must be at most 150 characters",
+    "serialKeyRequired": "Serial key is required",
+    "serialKeyMaxLength": "Serial key must be at most 30 characters"
+  }
+}
