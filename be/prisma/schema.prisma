@@ -125,3 +125,17 @@ model UserPermission {
   @@unique([username, featureCode, action, section])
   @@map("user_permission")
 }
+
+model Category {
+  id                    String    @id @db.VarChar(30)
+  name                  String    @db.VarChar(150)
+  serialKey             String    @map("serial_key") @db.VarChar(30)
+  maintenanceIntervalHours Int?   @map("maintenance_interval_hours")
+  isActive              Boolean   @default(true) @map("is_active")
+  createdBy             String    @map("created_by") @db.Char(8)
+  createdAt             DateTime  @default(now()) @map("created_at") @db.Timestamptz(0)
+  updatedBy             String?   @map("updated_by") @db.Char(8)
+  updatedAt             DateTime? @map("updated_at") @db.Timestamptz(0)
+
+  @@map("categories")
+}
