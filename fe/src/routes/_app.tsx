@@ -9,7 +9,7 @@ import { isAuthenticated } from '~/lib/auth';
 const AppLayout = () => (
   <SidebarProvider>
     <AppSidebar variant='inset' />
-    <SidebarInset>
+    <SidebarInset className='overflow-hidden'>
       <SiteHeader />
       <div className='flex-1 p-4'>
         <Suspense fallback={<PageSkeleton />}>

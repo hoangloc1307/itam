@@ -1,3 +1,5 @@
+'use no memo';
+
 import { IconPlus } from '@tabler/icons-react';
 import { useSuspenseQuery } from '@tanstack/react-query';
 import { createFileRoute } from '@tanstack/react-router';
@@ -12,9 +14,10 @@ import { Button } from '~/components/ui/button';
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '~/components/ui/dialog';
 import { useDeleteCategory } from '~/hooks/mutations/use-category';
 import useDatatable from '~/hooks/use-datatable';
+import { getCategoryColumns } from '~/routes/_app/category/columns';
 
 const CategoryPage = () => {
-  const { t } = useTranslation('category');
+  const { t, i18n } = useTranslation('category');
   const [open, setOpen] = useState(false);
   const [editing, setEditing] = useState<Category | null>(null);
   const [deleteId, setDeleteId] = useState<string | null>(null);
@@ -22,20 +25,7 @@ const CategoryPage = () => {
   const deleteMutation = useDeleteCategory();
   const categories = data?.data ?? [];
 
-  const columns = [
-    {
-      header: 'ID',
-      accessorKey: 'id',
-    },
-    {
-      header: 'Name',
-      accessorKey: 'name',
-    },
-    {
-      header: 'Maintainance Interval (Hour)',
-      accessorKey: 'maintenanceIntervalHours',
-    },
-  ];
+  const columns = getCategoryColumns(t, i18n.language);
 
   const table = useDatatable({
     columns,
@@ -66,14 +56,14 @@ const CategoryPage = () => {
   return (
     <div>
       <div className='mb-4 flex items-center justify-between'>
-        <h1 className='text-2xl font-bold'>{t('title')}</h1>
+        <h1 className='text-foreground text-2xl font-bold'>{t('title')}</h1>
         <Button onClick={handleAdd}>
           <IconPlus data-icon='inline-start' />
           {t('addNew')}
         </Button>
       </div>
 
-      <DataTable table={table} />
+      <DataTable key={i18n.language} table={table} />
 
       <Dialog open={open} onOpenChange={setOpen}>
         <DialogContent>
@@ -96,4 +86,4 @@ const CategoryPage = () => {
   );
 };
 
-export const Route = createFileRoute('/_app/category')({ component: CategoryPage });
+export const Route = createFileRoute('/_app/category/')({ component: CategoryPage });

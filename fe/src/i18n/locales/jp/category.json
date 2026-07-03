@@ -6,12 +6,20 @@
   "createSuccess": "カテゴリーを作成しました",
   "updateSuccess": "カテゴリーを更新しました",
   "deleteSuccess": "カテゴリーを削除しました",
+  "status": {
+    "active": "有効",
+    "inactive": "無効"
+  },
   "columns": {
     "id": "ID",
     "name": "名前",
     "serialKey": "シリアルキー",
     "maintenanceIntervalHours": "メンテナンス間隔（時間）",
-    "status": "ステータス",
+    "isActive": "有効",
+    "createdBy": "作成者",
+    "createdAt": "作成日",
+    "updatedBy": "更新者",
+    "updatedAt": "更新日",
     "actions": "操作"
   },
   "form": {

@@ -6,12 +6,20 @@
   "createSuccess": "Tạo danh mục thành công",
   "updateSuccess": "Cập nhật danh mục thành công",
   "deleteSuccess": "Xóa danh mục thành công",
+  "status": {
+    "active": "Hoạt động",
+    "inactive": "Ngừng hoạt động"
+  },
   "columns": {
     "id": "Mã",
     "name": "Tên danh mục",
     "serialKey": "Serial Key",
     "maintenanceIntervalHours": "Chu kỳ bảo trì (giờ)",
-    "status": "Trạng thái",
+    "isActive": "Hoạt động",
+    "createdBy": "Người tạo",
+    "createdAt": "Ngày tạo",
+    "updatedBy": "Người cập nhật",
+    "updatedAt": "Ngày cập nhật",
     "actions": "Thao tác"
   },
   "form": {

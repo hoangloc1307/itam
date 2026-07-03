@@ -6,12 +6,20 @@
   "createSuccess": "Category created successfully",
   "updateSuccess": "Category updated successfully",
   "deleteSuccess": "Category deleted successfully",
+  "status": {
+    "active": "Active",
+    "inactive": "Inactive"
+  },
   "columns": {
     "id": "ID",
     "name": "Name",
     "serialKey": "Serial Key",
     "maintenanceIntervalHours": "Maintenance Interval (hrs)",
-    "status": "Status",
+    "isActive": "Active",
+    "createdBy": "Created By",
+    "createdAt": "Created Date",
+    "updatedBy": "Updated By",
+    "updatedAt": "Updated Date",
     "actions": "Actions"
   },
   "form": {
