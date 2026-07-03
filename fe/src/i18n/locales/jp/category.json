@@ -19,6 +19,7 @@
     "name": "カテゴリー名",
     "serialKey": "シリアルキー",
     "maintenanceIntervalHours": "メンテナンス間隔（時間）",
+    "isActive": "有効",
     "idPlaceholder": "カテゴリーIDを入力",
     "namePlaceholder": "カテゴリー名を入力",
     "serialKeyPlaceholder": "シリアルキーを入力",

@@ -10,14 +10,17 @@ interface ListParams {
 }
 
 const list = async ({ page, limit, search }: ListParams) => {
-  const where = search
-    ? {
-        OR: [
-          { id: { contains: search } },
-          { name: { contains: search, mode: 'insensitive' as const } },
-        ],
-      }
-    : {};
+  const where = {
+    deletedAt: null,
+    ...(search
+      ? {
+          OR: [
+            { id: { contains: search } },
+            { name: { contains: search, mode: 'insensitive' as const } },
+          ],
+        }
+      : {}),
+  };
 
   const [data, totalItems] = await Promise.all([
     prisma.category.findMany({
@@ -33,7 +36,7 @@ const list = async ({ page, limit, search }: ListParams) => {
 };
 
 const getById = async (id: string) => {
-  const category = await prisma.category.findUnique({ where: { id } });
+  const category = await prisma.category.findUnique({ where: { id, deletedAt: null } });
 
   if (!category) {
     throw AppError.notFound(t('category:notFound'));
@@ -61,7 +64,7 @@ const create = async (input: CreateCategoryInput, createdBy: string) => {
 };
 
 const update = async (id: string, input: UpdateCategoryInput, updatedBy: string) => {
-  const existing = await prisma.category.findUnique({ where: { id } });
+  const existing = await prisma.category.findUnique({ where: { id, deletedAt: null } });
 
   if (!existing) {
     throw AppError.notFound(t('category:notFound'));
@@ -78,7 +81,7 @@ const update = async (id: string, input: UpdateCategoryInput, updatedBy: string)
 };
 
 const remove = async (id: string) => {
-  const existing = await prisma.category.findUnique({ where: { id } });
+  const existing = await prisma.category.findUnique({ where: { id, deletedAt: null } });
 
   if (!existing) {
     throw AppError.notFound(t('category:notFound'));
@@ -86,7 +89,7 @@ const remove = async (id: string) => {
 
   return prisma.category.update({
     where: { id },
-    data: { isActive: false },
+    data: { deletedAt: new Date() },
   });
 };
 

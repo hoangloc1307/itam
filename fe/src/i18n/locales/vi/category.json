@@ -19,6 +19,7 @@
     "name": "Tên danh mục",
     "serialKey": "Serial Key",
     "maintenanceIntervalHours": "Chu kỳ bảo trì (giờ)",
+    "isActive": "Hoạt động",
     "idPlaceholder": "Nhập mã danh mục",
     "namePlaceholder": "Nhập tên danh mục",
     "serialKeyPlaceholder": "Nhập serial key",

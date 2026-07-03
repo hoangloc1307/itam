@@ -14,6 +14,7 @@ export const createCategorySchema = z.object({
     .nonempty('category:validation.serialKeyRequired')
     .max(30, 'category:validation.serialKeyMaxLength'),
   maintenanceIntervalHours: z.number().int().positive().nullable(),
+  isActive: z.boolean(),
 });
 
 export type CreateCategoryInput = z.infer<typeof createCategorySchema>;

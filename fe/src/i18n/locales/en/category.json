@@ -19,6 +19,7 @@
     "name": "Category name",
     "serialKey": "Serial Key",
     "maintenanceIntervalHours": "Maintenance Interval (hrs)",
+    "isActive": "Active",
     "idPlaceholder": "Enter category ID",
     "namePlaceholder": "Enter category name",
     "serialKeyPlaceholder": "Enter serial key",

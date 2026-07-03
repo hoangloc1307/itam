@@ -22,6 +22,7 @@ export function CategoryForm({ category, onSuccess }: CategoryFormProps) {
       name: category?.name ?? '',
       serialKey: category?.serialKey ?? '',
       maintenanceIntervalHours: category?.maintenanceIntervalHours ?? null,
+      isActive: category?.isActive ?? true,
     } satisfies CreateCategoryInput,
     validators: {
       onSubmit: createCategorySchema,
@@ -67,6 +68,11 @@ export function CategoryForm({ category, onSuccess }: CategoryFormProps) {
             )}
           />
         </div>
+
+        <form.AppField
+          name='isActive'
+          children={(field) => <field.SwitchButton label={t('form.isActive')} />}
+        />
 
         <form.AppForm>
           <form.SubmitButton>{isEditing ? t('edit') : t('addNew')}</form.SubmitButton>

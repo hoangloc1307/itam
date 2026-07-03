@@ -8,6 +8,7 @@ export interface Category {
   serialKey: string;
   maintenanceIntervalHours: number | null;
   isActive: boolean;
+  deletedAt: string | null;
   createdBy: string;
   createdAt: string;
   updatedBy: string | null;
