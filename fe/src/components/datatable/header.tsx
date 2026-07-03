@@ -1,3 +1,5 @@
+'use no memo';
+
 import type { Table } from '@tanstack/react-table';
 import { flexRender } from '@tanstack/react-table';
 import { Fragment } from 'react';
@@ -8,11 +10,11 @@ interface DataTableHeaderProps<TData> extends React.HTMLAttributes<HTMLDivElemen
 }
 
 export function DataTableHeader<TData>({ table }: DataTableHeaderProps<TData>) {
-  //   const showFilters = table.options.meta?.showFilters;
+  const showFilters = table.options.meta?.showFilters;
   //   const hasSorting = table.options.meta?.hasSorting;
 
   return (
-    <TableHeader className='bg-muted shadow-border sticky top-0 z-10 grid shadow [&_tr]:border-b-0'>
+    <TableHeader className='bg-table-header text-foreground shadow-border sticky top-0 z-10 grid shadow [&_tr]:border-b-0'>
       {table.getHeaderGroups().map((headerGroup) => (
         <Fragment key={headerGroup.id}>
           {/* <==> HEADER ROW <==> */}
@@ -71,7 +73,7 @@ export function DataTableHeader<TData>({ table }: DataTableHeaderProps<TData>) {
           </TableRow>
 
           {/* <==> FILTER ROW <==> */}
-          {/* {showFilters && (
+          {showFilters && (
             <TableRow className='flex w-full'>
               {headerGroup.headers.map((header) => {
                 const column = header.column;
@@ -97,12 +99,12 @@ export function DataTableHeader<TData>({ table }: DataTableHeaderProps<TData>) {
                       flex: `${header.getSize()} 0 auto`,
                     }}
                   >
-                    <DataTableColumnFilter column={header.column} />
+                    {/* <DataTableColumnFilter column={header.column} /> */}
                   </TableHead>
                 );
               })}
             </TableRow>
-          )} */}
+          )}
         </Fragment>
       ))}
     </TableHeader>

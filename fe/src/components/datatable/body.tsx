@@ -1,5 +1,8 @@
+'use no memo';
+
 import type { Cell, Table } from '@tanstack/react-table';
 import { flexRender } from '@tanstack/react-table';
+import { useTranslation } from 'react-i18next';
 import { TableBody, TableCell, TableRow } from '~/components/ui/table';
 
 interface DataTableBodyProps<TData> extends React.HTMLAttributes<HTMLDivElement> {
@@ -7,6 +10,7 @@ interface DataTableBodyProps<TData> extends React.HTMLAttributes<HTMLDivElement>
 }
 
 export function DataTableBody<TData>({ table }: DataTableBodyProps<TData>) {
+  const { t } = useTranslation('datatable');
   const emptyBody = Boolean(!table.getRowModel().rows?.length);
 
   return (
@@ -19,7 +23,7 @@ export function DataTableBody<TData>({ table }: DataTableBodyProps<TData>) {
               colSpan={table.getAllLeafColumns().length}
               className='flex h-14 w-full items-center justify-center text-center'
             >
-              Empty
+              {t('empty')}
             </TableCell>
           </TableRow>
         </TableBody>
