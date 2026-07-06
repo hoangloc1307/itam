@@ -7,13 +7,13 @@ import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { type Category } from '~/api/category';
 import { categoryQueries } from '~/api/category.queries';
-import { CategoryForm } from '~/components/category-form';
 import { ConfirmDialog } from '~/components/confirm-dialog';
 import DataTable from '~/components/datatable/datatable';
 import { Button } from '~/components/ui/button';
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '~/components/ui/dialog';
 import { useDeleteCategory } from '~/hooks/mutations/use-category';
 import useDatatable from '~/hooks/use-datatable';
+import { CategoryForm } from '~/routes/_app/category/category-form';
 import { getCategoryColumns } from '~/routes/_app/category/columns';
 
 const CategoryPage = () => {
@@ -29,7 +29,7 @@ const CategoryPage = () => {
 
   const table = useDatatable({
     columns,
-    data: categories ?? [],
+    data: categories,
   });
 
   const handleEdit = (category: Category) => {
@@ -63,7 +63,7 @@ const CategoryPage = () => {
         </Button>
       </div>
 
-      <DataTable key={i18n.language} table={table} />
+      <DataTable table={table} key={i18n.language} />
 
       <Dialog open={open} onOpenChange={setOpen}>
         <DialogContent>

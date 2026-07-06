@@ -1,3 +1,5 @@
+'use no memo';
+
 import { type ColumnDef } from '@tanstack/react-table';
 import type { TFunction } from 'i18next';
 import type { Category } from '~/api/category';
@@ -20,17 +22,27 @@ export const getCategoryColumns = (t: TFunction, lang: string): ColumnDef<Catego
   {
     header: t('columns.maintenanceIntervalHours'),
     accessorKey: 'maintenanceIntervalHours',
+    meta: {
+      filterVariant: 'number-range',
+    },
   },
   {
     header: t('columns.isActive'),
     accessorKey: 'isActive',
+    filterFn: (row, _columnId, filterValue) => {
+      if (!filterValue) return true;
+      const isActive = row.getValue<boolean>('isActive');
+      const label = isActive ? t('status.active') : t('status.inactive');
+      return label === filterValue;
+    },
     cell: ({ getValue }) => {
       const isActive = getValue<boolean>();
-      return (
-        <Badge variant={isActive ? 'success' : 'destructive'}>
-          {isActive ? t('status.active') : t('status.inactive')}
-        </Badge>
-      );
+      const label = isActive ? t('status.active') : t('status.inactive');
+      return <Badge variant={isActive ? 'success' : 'destructive'}>{label}</Badge>;
+    },
+    meta: {
+      filterVariant: 'select',
+      selectOptions: () => [t('status.active'), t('status.inactive')],
     },
   },
   {
