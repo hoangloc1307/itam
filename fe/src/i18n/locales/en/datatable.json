@@ -2,7 +2,12 @@
   "search": "Search",
   "searchPlaceholder": "Search...",
   "clearSearch": "Clear search",
+  "clearFilter": "Clear filter",
   "filter": "Filter",
+  "filterPlaceholder": "Filter...",
+  "all": "All",
+  "min": "Min",
+  "max": "Max",
   "columns": "Toggle columns",
   "fullScreen": "Full screen",
   "empty": "No data"

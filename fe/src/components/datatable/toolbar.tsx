@@ -20,11 +20,7 @@ import {
   DropdownMenuTrigger,
 } from '~/components/ui/dropdown-menu';
 
-interface DataTableToolbarProps<TData> {
-  table: Table<TData>;
-}
-
-export function DataTableToolbar<TData>({ table }: DataTableToolbarProps<TData>) {
+export function DataTableToolbar<TData>({ table }: { table: Table<TData> }) {
   const { t } = useTranslation('datatable');
   const meta = table.options.meta!;
 

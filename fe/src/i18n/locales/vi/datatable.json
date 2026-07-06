@@ -2,7 +2,12 @@
   "search": "Tìm kiếm",
   "searchPlaceholder": "Tìm kiếm...",
   "clearSearch": "Xóa tìm kiếm",
+  "clearFilter": "Xóa bộ lọc",
   "filter": "Bộ lọc",
+  "filterPlaceholder": "Lọc...",
+  "all": "Tất cả",
+  "min": "Từ",
+  "max": "Đến",
   "columns": "Hiển thị cột",
   "fullScreen": "Toàn màn hình",
   "empty": "Không có dữ liệu"

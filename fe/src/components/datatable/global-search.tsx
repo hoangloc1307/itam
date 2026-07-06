@@ -24,6 +24,7 @@ export function DataTableGlobalSearch<TData>({
       {showSearch && (
         <InputGroup className='h-8 w-[150px] lg:w-[250px]'>
           <InputGroupInput
+            autoFocus
             placeholder={t('searchPlaceholder')}
             value={table.getState().globalFilter ?? ''}
             onChange={(event) => table.setGlobalFilter(event.target.value)}

@@ -1,17 +1,14 @@
 'use no memo';
 
+import { IconCaretDownFilled, IconCaretUpFilled } from '@tabler/icons-react';
 import type { Table } from '@tanstack/react-table';
 import { flexRender } from '@tanstack/react-table';
 import { Fragment } from 'react';
+import DataTableColumnFilter from '~/components/datatable/column-filter';
 import { TableHead, TableHeader, TableRow } from '~/components/ui/table';
 
-interface DataTableHeaderProps<TData> extends React.HTMLAttributes<HTMLDivElement> {
-  table: Table<TData>;
-}
-
-export function DataTableHeader<TData>({ table }: DataTableHeaderProps<TData>) {
+export function DataTableHeader<TData>({ table }: { table: Table<TData> }) {
   const showFilters = table.options.meta?.showFilters;
-  //   const hasSorting = table.options.meta?.hasSorting;
 
   return (
     <TableHeader className='bg-table-header text-foreground shadow-border sticky top-0 z-10 grid shadow [&_tr]:border-b-0'>
@@ -20,8 +17,8 @@ export function DataTableHeader<TData>({ table }: DataTableHeaderProps<TData>) {
           {/* <==> HEADER ROW <==> */}
           <TableRow className='flex h-full w-full'>
             {headerGroup.headers.map((header) => {
-              //   const canSort = header.column.getCanSort();
-              //   const sortDir = header.column.getIsSorted();
+              const canSort = header.column.getCanSort();
+              const sortDir = header.column.getIsSorted();
 
               if (header.isPlaceholder) {
                 return (
@@ -45,28 +42,28 @@ export function DataTableHeader<TData>({ table }: DataTableHeaderProps<TData>) {
                 <TableHead
                   key={header.id}
                   colSpan={header.colSpan}
-                  className='flex h-full min-h-10 items-center px-2'
+                  className='flex h-full min-h-10 cursor-pointer items-center gap-0.5 p-2'
                   style={{
                     width: header.getSize(),
                     flex: `${header.getSize()} 0 auto`,
                   }}
-                  //   onClick={(e) => {
-                  //     if (!hasSorting || !canSort) return;
-                  //     header.column.toggleSorting(undefined, (e as React.MouseEvent).shiftKey);
-                  //   }}
+                  onClick={(e) => {
+                    if (!canSort) return;
+                    header.column.toggleSorting(undefined, (e as React.MouseEvent).shiftKey);
+                  }}
                 >
                   <p className='max-w-[calc(100%-16x)] whitespace-break-spaces capitalize select-none'>
                     {title}
                   </p>
-                  {/* {Boolean(canSort && hasSorting) && (
+                  {Boolean(canSort) && (
                     <Fragment>
                       {sortDir === 'desc' ? (
-                        <ChevronDown className='size-4' />
+                        <IconCaretDownFilled className='size-4' />
                       ) : sortDir === 'asc' ? (
-                        <ChevronUp className='size-4' />
+                        <IconCaretUpFilled className='size-4' />
                       ) : null}
                     </Fragment>
-                  )} */}
+                  )}
                 </TableHead>
               );
             })}
@@ -99,7 +96,7 @@ export function DataTableHeader<TData>({ table }: DataTableHeaderProps<TData>) {
                       flex: `${header.getSize()} 0 auto`,
                     }}
                   >
-                    {/* <DataTableColumnFilter column={header.column} /> */}
+                    <DataTableColumnFilter column={header.column} />
                   </TableHead>
                 );
               })}

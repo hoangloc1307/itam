@@ -8,11 +8,7 @@ import { DataTableToolbar } from '~/components/datatable/toolbar';
 import { Table, TableContainer } from '~/components/ui/table';
 import { cn } from '~/lib/utils';
 
-type DataTableProps<TData> = {
-  table: TableType<TData>;
-};
-
-export default function DataTable<TData>({ table }: DataTableProps<TData>) {
+export default function DataTable<TData>({ table }: { table: TableType<TData> }) {
   const meta = table.options.meta!;
   const tableContainerRef = useRef<HTMLDivElement>(null);
 

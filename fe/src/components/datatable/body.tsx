@@ -5,11 +5,7 @@ import { flexRender } from '@tanstack/react-table';
 import { useTranslation } from 'react-i18next';
 import { TableBody, TableCell, TableRow } from '~/components/ui/table';
 
-interface DataTableBodyProps<TData> extends React.HTMLAttributes<HTMLDivElement> {
-  table: Table<TData>;
-}
-
-export function DataTableBody<TData>({ table }: DataTableBodyProps<TData>) {
+export function DataTableBody<TData>({ table }: { table: Table<TData> }) {
   const { t } = useTranslation('datatable');
   const emptyBody = Boolean(!table.getRowModel().rows?.length);
 

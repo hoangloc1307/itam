@@ -2,7 +2,12 @@
   "search": "検索",
   "searchPlaceholder": "検索...",
   "clearSearch": "検索をクリア",
+  "clearFilter": "フィルターをクリア",
   "filter": "フィルター",
+  "filterPlaceholder": "フィルター...",
+  "all": "すべて",
+  "min": "最小",
+  "max": "最大",
   "columns": "列の表示",
   "fullScreen": "全画面",
   "empty": "データなし"
