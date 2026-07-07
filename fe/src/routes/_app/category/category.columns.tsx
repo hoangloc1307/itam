@@ -52,9 +52,13 @@ export const getCategoryColumns = (t: TFunction, lang: string): ColumnDef<Catego
   {
     header: t('columns.createdAt'),
     accessorKey: 'createdAt',
+    filterFn: 'dateRange',
     cell: ({ getValue }) => {
       const value = getValue<string>();
       return value ? formatDate(value, 'Pp', lang) : '';
+    },
+    meta: {
+      filterVariant: 'date-range',
     },
   },
   {

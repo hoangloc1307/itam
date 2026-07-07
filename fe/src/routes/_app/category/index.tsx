@@ -13,8 +13,8 @@ import { Button } from '~/components/ui/button';
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '~/components/ui/dialog';
 import { useDeleteCategory } from '~/hooks/mutations/use-category';
 import useDatatable from '~/hooks/use-datatable';
-import { CategoryForm } from '~/routes/_app/category/category-form';
-import { getCategoryColumns } from '~/routes/_app/category/columns';
+import { getCategoryColumns } from '~/routes/_app/category/category.columns';
+import { CategoryForm } from '~/routes/_app/category/category.form';
 
 const CategoryPage = () => {
   const { t, i18n } = useTranslation('category');
