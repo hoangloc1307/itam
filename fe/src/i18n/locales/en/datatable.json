@@ -9,6 +9,8 @@
   "min": "Min",
   "max": "Max",
   "columns": "Toggle columns",
+  "showAll": "Show all",
+  "hideAll": "Hide all",
   "fullScreen": "Full screen",
   "empty": "No data",
   "selectDate": "Select date",

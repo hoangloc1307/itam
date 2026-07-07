@@ -9,6 +9,8 @@
   "min": "最小",
   "max": "最大",
   "columns": "列の表示",
+  "showAll": "すべて表示",
+  "hideAll": "すべて非表示",
   "fullScreen": "全画面",
   "empty": "データなし",
   "selectDate": "日付を選択",

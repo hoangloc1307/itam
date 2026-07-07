@@ -9,6 +9,8 @@
   "min": "Từ",
   "max": "Đến",
   "columns": "Hiển thị cột",
+  "showAll": "Hiện tất cả",
+  "hideAll": "Ẩn tất cả",
   "fullScreen": "Toàn màn hình",
   "empty": "Không có dữ liệu",
   "selectDate": "Chọn ngày",

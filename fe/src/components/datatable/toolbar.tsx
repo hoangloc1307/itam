@@ -17,6 +17,7 @@ import {
   DropdownMenu,
   DropdownMenuCheckboxItem,
   DropdownMenuContent,
+  DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from '~/components/ui/dropdown-menu';
 
@@ -58,6 +59,19 @@ export function DataTableToolbar<TData>({ table }: { table: Table<TData> }) {
             }
           />
           <DropdownMenuContent align='end' className={'w-3xs'}>
+            <DropdownMenuCheckboxItem
+              checked={table.getIsAllColumnsVisible()}
+              onCheckedChange={(value) => table.toggleAllColumnsVisible(!!value)}
+            >
+              {t('showAll')}
+            </DropdownMenuCheckboxItem>
+            <DropdownMenuCheckboxItem
+              checked={!table.getIsAllColumnsVisible() && !table.getIsSomeColumnsVisible()}
+              onCheckedChange={() => table.toggleAllColumnsVisible(false)}
+            >
+              {t('hideAll')}
+            </DropdownMenuCheckboxItem>
+            <DropdownMenuSeparator />
             {table
               .getAllColumns()
               .filter((column) => typeof column.accessorFn !== 'undefined' && column.getCanHide())
