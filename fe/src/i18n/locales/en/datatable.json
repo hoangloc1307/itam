@@ -4,11 +4,13 @@
   "clearSearch": "Clear search",
   "clearFilter": "Clear filter",
   "filter": "Filter",
-  "filterPlaceholder": "Filter...",
+  "filterPlaceholder": "Filter",
   "all": "All",
   "min": "Min",
   "max": "Max",
   "columns": "Toggle columns",
   "fullScreen": "Full screen",
-  "empty": "No data"
+  "empty": "No data",
+  "selectDate": "Select date",
+  "selectDateRange": "Select date range"
 }

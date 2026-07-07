@@ -8,10 +8,35 @@ import {
   useReactTable,
   type ColumnDef,
   type ColumnFiltersState,
+  type FilterFn,
   type SortingState,
   type VisibilityState,
 } from '@tanstack/react-table';
+import { isAfter, isBefore, isSameDay, startOfDay } from 'date-fns';
 import { useState } from 'react';
+import { type DateRange } from 'react-day-picker';
+
+const dateFilterFn: FilterFn<unknown> = (row, columnId, filterValue: Date) => {
+  const cellValue = row.getValue<string | Date>(columnId);
+  if (!cellValue || !filterValue) return true;
+  const cellDate = startOfDay(new Date(cellValue));
+  const target = startOfDay(filterValue);
+  return isSameDay(cellDate, target);
+};
+
+const dateRangeFilterFn: FilterFn<unknown> = (row, columnId, filterValue: DateRange) => {
+  const cellValue = row.getValue<string | Date>(columnId);
+  if (!cellValue) return true;
+  if (!filterValue?.from) return true;
+  const cellDate = startOfDay(new Date(cellValue));
+  const from = startOfDay(filterValue.from);
+  if (!filterValue.to) return isSameDay(cellDate, from) || isAfter(cellDate, from);
+  const to = startOfDay(filterValue.to);
+  return (
+    (isSameDay(cellDate, from) || isAfter(cellDate, from)) &&
+    (isSameDay(cellDate, to) || isBefore(cellDate, to))
+  );
+};
 
 interface UseDataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
@@ -41,6 +66,10 @@ export default function useDatatable<TData, TValue>({
       columnFilters,
       globalFilter,
       sorting,
+    },
+    filterFns: {
+      date: dateFilterFn,
+      dateRange: dateRangeFilterFn,
     },
     getCoreRowModel: getCoreRowModel(),
     getFilteredRowModel: getFilteredRowModel(),

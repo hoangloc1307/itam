@@ -4,11 +4,13 @@
   "clearSearch": "Xóa tìm kiếm",
   "clearFilter": "Xóa bộ lọc",
   "filter": "Bộ lọc",
-  "filterPlaceholder": "Lọc...",
+  "filterPlaceholder": "Lọc",
   "all": "Tất cả",
   "min": "Từ",
   "max": "Đến",
   "columns": "Hiển thị cột",
   "fullScreen": "Toàn màn hình",
-  "empty": "Không có dữ liệu"
+  "empty": "Không có dữ liệu",
+  "selectDate": "Chọn ngày",
+  "selectDateRange": "Chọn khoảng ngày"
 }

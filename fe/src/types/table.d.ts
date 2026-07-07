@@ -10,7 +10,12 @@ declare module '@tanstack/react-table' {
   }
 
   interface ColumnMeta {
-    filterVariant?: 'text' | 'number-range' | 'select' | 'date';
+    filterVariant?: 'text' | 'number-range' | 'select' | 'date' | 'date-range';
     selectOptions?: () => string[];
+  }
+
+  interface FilterFns {
+    date: FilterFn<unknown>;
+    dateRange: FilterFn<unknown>;
   }
 }

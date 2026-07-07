@@ -4,11 +4,13 @@
   "clearSearch": "検索をクリア",
   "clearFilter": "フィルターをクリア",
   "filter": "フィルター",
-  "filterPlaceholder": "フィルター...",
+  "filterPlaceholder": "フィルター",
   "all": "すべて",
   "min": "最小",
   "max": "最大",
   "columns": "列の表示",
   "fullScreen": "全画面",
-  "empty": "データなし"
+  "empty": "データなし",
+  "selectDate": "日付を選択",
+  "selectDateRange": "期間を選択"
 }

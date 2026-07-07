@@ -28,6 +28,7 @@
     "i18next-resources-to-backend": "^1.2.1",
     "itam-shared": "workspace:*",
     "react": "^19.2.6",
+    "react-day-picker": "^10.0.1",
     "react-dom": "^19.2.6",
     "react-i18next": "^17.0.8",
     "react-number-format": "^5.4.5",
