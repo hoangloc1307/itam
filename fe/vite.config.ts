@@ -14,6 +14,7 @@ export default defineConfig({
       routesDirectory: './src/routes',
       generatedRouteTree: './src/routeTree.gen.ts',
       routeFileIgnorePrefix: '-',
+      routeFileIgnorePattern: '\\..+\\.tsx$',
       quoteStyle: 'single',
       semicolons: true,
     }),
