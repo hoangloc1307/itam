@@ -14,5 +14,14 @@
   "fullScreen": "Full screen",
   "empty": "No data",
   "selectDate": "Select date",
-  "selectDateRange": "Select date range"
+  "selectDateRange": "Select date range",
+  "pagination": {
+    "total": "{{count}} row(s)",
+    "rowsPerPage": "Rows per page",
+    "pageOf": "Page {{page}} of {{total}}",
+    "first": "First page",
+    "prev": "Previous page",
+    "next": "Next page",
+    "last": "Last page"
+  }
 }

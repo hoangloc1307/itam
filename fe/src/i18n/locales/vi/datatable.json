@@ -14,5 +14,14 @@
   "fullScreen": "Toàn màn hình",
   "empty": "Không có dữ liệu",
   "selectDate": "Chọn ngày",
-  "selectDateRange": "Chọn khoảng ngày"
+  "selectDateRange": "Chọn khoảng ngày",
+  "pagination": {
+    "total": "{{count}} dòng",
+    "rowsPerPage": "Số dòng mỗi trang",
+    "pageOf": "Trang {{page}} / {{total}}",
+    "first": "Trang đầu",
+    "prev": "Trang trước",
+    "next": "Trang sau",
+    "last": "Trang cuối"
+  }
 }

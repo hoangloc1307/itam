@@ -4,6 +4,7 @@ import { type Table as TableType } from '@tanstack/react-table';
 import { useRef } from 'react';
 import { DataTableBody } from '~/components/datatable/body';
 import { DataTableHeader } from '~/components/datatable/header';
+import { DataTablePagination } from '~/components/datatable/pagination';
 import { DataTableToolbar } from '~/components/datatable/toolbar';
 import { Table, TableContainer } from '~/components/ui/table';
 import { cn } from '~/lib/utils';
@@ -38,7 +39,7 @@ export default function DataTable<TData>({ table }: { table: TableType<TData> })
       </div>
 
       {/* <==> PAGINATION <==> */}
-      {/* <DataTablePagination table={table} /> */}
+      <DataTablePagination table={table} />
     </div>
   );
 }
