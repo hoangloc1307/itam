@@ -1,5 +1,5 @@
 import type { NextFunction, Request, Response } from 'express';
-import type { Action } from '~/../generated/prisma/enums';
+import type { Action } from 'itam-shared/constants';
 import { AppError } from '~/errors';
 import { t } from '~/i18n';
 import { prisma } from '~/lib/prisma';

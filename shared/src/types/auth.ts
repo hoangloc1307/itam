@@ -1,3 +1,5 @@
+import type { Action } from '../constants/actions';
+
 export interface UserInfo {
   username: string;
   name: string;
@@ -6,7 +8,7 @@ export interface UserInfo {
 
 export interface Permission {
   featureCode: string;
-  action: string;
+  action: Action;
   section: string | null;
 }
 

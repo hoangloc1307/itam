@@ -1,4 +1,5 @@
 import { IconFileSettings, IconLifebuoy, IconSend } from '@tabler/icons-react';
+import { FEATURES } from 'itam-shared/constants';
 import type { NavItem } from '~/components/nav-main';
 
 const MAIN_MENU: NavItem[] = [
@@ -10,12 +11,12 @@ const MAIN_MENU: NavItem[] = [
       {
         title: 'Category',
         url: '/category',
-        featureCode: 'CATEGORY',
+        featureCode: FEATURES.CATEGORY,
       },
       {
         title: 'Model',
         url: '/model',
-        featureCode: 'MODEL',
+        featureCode: FEATURES.MODEL,
       },
     ],
   },

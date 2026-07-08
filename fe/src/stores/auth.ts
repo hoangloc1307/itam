@@ -1,3 +1,5 @@
+import type { Action } from 'itam-shared/constants';
+import { ACTIONS } from 'itam-shared/constants';
 import type { Permission, UserInfo } from 'itam-shared/types';
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
@@ -11,7 +13,7 @@ interface AuthState {
   setToken: (token: string) => void;
   setPermissions: (permissions: Permission[]) => void;
   logout: () => void;
-  hasPermission: (featureCode: string, action?: string, section?: string) => boolean;
+  hasPermission: (featureCode: string, action?: Action, section?: string) => boolean;
 }
 
 export const useAuthStore = create<AuthState>()(
@@ -24,12 +26,12 @@ export const useAuthStore = create<AuthState>()(
       setToken: (token) => set({ token }),
       setPermissions: (permissions) => set({ permissions }),
       logout: () => set({ token: null, user: null, permissions: [] }),
-      hasPermission: (featureCode, action = 'READ', section) => {
+      hasPermission: (featureCode, action = ACTIONS.READ, section) => {
         const { permissions } = get();
         return permissions.some(
           (p) =>
             p.featureCode === featureCode &&
-            (p.action === action || p.action === 'MANAGE') &&
+            (p.action === action || p.action === ACTIONS.MANAGE) &&
             (p.section === null || !section || p.section === section),
         );
       },
