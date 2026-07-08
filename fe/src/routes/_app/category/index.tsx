@@ -3,9 +3,9 @@
 import { IconPlus } from '@tabler/icons-react';
 import { useSuspenseQuery } from '@tanstack/react-query';
 import { createFileRoute } from '@tanstack/react-router';
+import { type Category } from 'itam-shared/types';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { type Category } from '~/api/category';
 import { categoryQueries } from '~/api/category.queries';
 import { ConfirmDialog } from '~/components/confirm-dialog';
 import DataTable from '~/components/datatable/datatable';

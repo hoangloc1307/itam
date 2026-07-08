@@ -1,4 +1,5 @@
 import type { Request, Response } from 'express';
+import type { CategoryEntity } from 'itam-shared/types';
 import { categoryService } from '~/modules/category/category.service';
 import { ApiResponse } from '~/utils';
 
@@ -9,26 +10,30 @@ const list = async (req: Request, res: Response) => {
 
   const { data, totalItems } = await categoryService.list({ page, limit, search });
 
-  ApiResponse.paginated(res, data, { page, limit, totalItems });
+  ApiResponse.paginated<CategoryEntity[]>(res, data, { page, limit, totalItems });
 };
 
 const getById = async (req: Request, res: Response) => {
-  const category = await categoryService.getById(req.params.id);
-  ApiResponse.ok(res, category);
+  const category = await categoryService.getById(req.params.id as string);
+  ApiResponse.ok<CategoryEntity>(res, category);
 };
 
 const create = async (req: Request, res: Response) => {
   const category = await categoryService.create(req.body, req.user!.username);
-  ApiResponse.created(res, category);
+  ApiResponse.created<CategoryEntity>(res, category);
 };
 
 const update = async (req: Request, res: Response) => {
-  const category = await categoryService.update(req.params.id, req.body, req.user!.username);
-  ApiResponse.ok(res, category);
+  const category = await categoryService.update(
+    req.params.id as string,
+    req.body,
+    req.user!.username,
+  );
+  ApiResponse.ok<CategoryEntity>(res, category);
 };
 
 const remove = async (req: Request, res: Response) => {
-  await categoryService.remove(req.params.id);
+  await categoryService.remove(req.params.id as string);
   ApiResponse.deleted(res);
 };
 

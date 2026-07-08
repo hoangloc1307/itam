@@ -1,7 +1,7 @@
 import { useMutation, type UseMutationOptions } from '@tanstack/react-query';
 import type { AxiosError } from 'axios';
+import type { ApiResponse } from 'itam-shared/types';
 import { toast } from 'sonner';
-import type { ApiResponse } from '~/types/api';
 
 export function useAppMutation<TData, TVariables>(
   options: UseMutationOptions<TData, AxiosError<ApiResponse<unknown>>, TVariables>,

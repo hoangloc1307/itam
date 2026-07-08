@@ -1,8 +1,9 @@
 import type { Request, Response } from 'express';
-import { authService } from '~/modules/auth/auth.service';
-import { ApiResponse } from '~/utils';
+import type { LoginResponse, RefreshResponse } from 'itam-shared/types';
 import { AppError } from '~/errors';
 import { t } from '~/i18n';
+import { authService } from '~/modules/auth/auth.service';
+import { ApiResponse } from '~/utils';
 
 const REFRESH_TOKEN_COOKIE = 'refreshToken';
 
@@ -17,7 +18,7 @@ const login = async (req: Request, res: Response) => {
     path: '/api/auth/refresh',
   });
 
-  ApiResponse.ok(res, { token: accessToken, user, permissions });
+  ApiResponse.ok<LoginResponse>(res, { token: accessToken, user, permissions });
 };
 
 const refresh = async (req: Request, res: Response) => {
@@ -29,7 +30,7 @@ const refresh = async (req: Request, res: Response) => {
 
   const { accessToken, permissions } = await authService.refresh(refreshToken);
 
-  ApiResponse.ok(res, { token: accessToken, permissions });
+  ApiResponse.ok<RefreshResponse>(res, { token: accessToken, permissions });
 };
 
 const logout = (_req: Request, res: Response) => {

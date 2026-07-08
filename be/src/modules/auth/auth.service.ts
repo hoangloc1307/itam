@@ -1,22 +1,17 @@
 import type { LoginInput, RegisterInput } from 'itam-shared/schemas/auth';
-import { prisma } from '~/lib/prisma';
+import type { Permission } from 'itam-shared/types';
 import { AppError } from '~/errors';
 import { t } from '~/i18n';
+import { prisma } from '~/lib/prisma';
+import { mailService } from '~/services/mail.service';
 import {
   generateAccessToken,
   generateRandomPassword,
   generateRefreshToken,
-  verifyRefreshToken,
-  verifyPassword,
   hashPassword,
+  verifyPassword,
+  verifyRefreshToken,
 } from '~/utils';
-import { mailService } from '~/services/mail.service';
-
-export interface Permission {
-  featureCode: string;
-  action: string;
-  section: string | null;
-}
 
 const resolvePermissions = async (username: string): Promise<Permission[]> => {
   const userRoles = await prisma.userRole.findMany({
@@ -93,7 +88,7 @@ const login = async ({ username, password }: LoginInput) => {
   return {
     accessToken,
     refreshToken,
-    user: { username: user.username, name: user.name, email: user.email },
+    user: { username: user.username, name: user.name ?? '', email: user.email ?? '' },
     permissions,
   };
 };

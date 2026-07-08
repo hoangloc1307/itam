@@ -2,7 +2,7 @@
 
 import { type ColumnDef } from '@tanstack/react-table';
 import type { TFunction } from 'i18next';
-import type { Category } from '~/api/category';
+import type { Category } from 'itam-shared/types';
 import { Badge } from '~/components/ui/badge';
 import { formatDate } from '~/lib/date';
 

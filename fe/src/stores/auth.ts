@@ -1,24 +1,13 @@
+import type { Permission, UserInfo } from 'itam-shared/types';
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
 import STORAGE_KEYS from '~/constants/storage-keys';
 
-interface User {
-  username: string;
-  name: string;
-  email: string;
-}
-
-export interface Permission {
-  featureCode: string;
-  action: string;
-  section: string | null;
-}
-
 interface AuthState {
   token: string | null;
-  user: User | null;
+  user: UserInfo | null;
   permissions: Permission[];
-  setAuth: (data: { token: string; user: User; permissions: Permission[] }) => void;
+  setAuth: (data: { token: string; user: UserInfo; permissions: Permission[] }) => void;
   setToken: (token: string) => void;
   setPermissions: (permissions: Permission[]) => void;
   logout: () => void;

@@ -1,6 +1,6 @@
 import { createCategorySchema, type CreateCategoryInput } from 'itam-shared/schemas/category';
+import type { Category } from 'itam-shared/types';
 import { useTranslation } from 'react-i18next';
-import type { Category } from '~/api/category';
 import { FieldGroup } from '~/components/ui/field';
 import { useCreateCategory, useUpdateCategory } from '~/hooks/mutations/use-category';
 import { useAppForm } from '~/hooks/use-app-form';
