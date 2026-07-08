@@ -50,7 +50,9 @@
 
 ## Shared (`shared/`)
 
-Zod schemas and inferred TypeScript types consumed by both FE and BE via `itam-shared/schemas/*` exports.
+- Zod schemas and inferred TypeScript types consumed by both FE and BE via `itam-shared/schemas/*` exports.
+- Shared constants (endpoints, feature codes, actions) via `itam-shared/constants` export.
+- Shared TypeScript types (ApiResponse, Permission, Category, etc.) via `itam-shared/types` export.
 
 ## Common Commands
 

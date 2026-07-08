@@ -121,9 +121,19 @@ ITAM/
 │   └── prisma.config.ts    # Prisma config (datasource URL, migrations path)
 ├── shared/                 # Shared package (itam-shared)
 │   └── src/
-│       └── schemas/        # Zod schemas + inferred types
-│           ├── auth.ts     # loginSchema, registerSchema + types
-│           └── category.ts # createCategorySchema, updateCategorySchema + types
+│       ├── constants/       # Shared constants consumed by FE and BE
+│       │   ├── actions.ts      # Permission action constants (CREATE, READ, etc.)
+│       │   ├── endpoints.ts    # API endpoint path constants
+│       │   ├── features.ts     # Feature code constants (CATEGORY, MODEL, etc.)
+│       │   └── index.ts        # Re-exports (barrel file)
+│       ├── schemas/         # Zod schemas + inferred types
+│       │   ├── auth.ts      # loginSchema, registerSchema + types
+│       │   └── category.ts  # createCategorySchema, updateCategorySchema + types
+│       └── types/           # Shared TypeScript types consumed by FE and BE
+│           ├── api.ts       # ApiResponse<T>, Pagination
+│           ├── auth.ts      # UserInfo, Permission, LoginResponse, RefreshResponse
+│           ├── category.ts  # Category, CategoryEntity, CategoryBase
+│           └── index.ts     # Re-exports (barrel file)
 ├── cert/                   # Local HTTPS certificates (localhost-key.pem, localhost.pem)
 ├── pnpm-workspace.yaml     # Workspace definition + catalog deps
 └── commitlint.config.ts    # Commit convention config
