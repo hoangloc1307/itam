@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { ENDPOINTS } from 'itam-shared/constants';
 import { toast } from 'sonner';
 import CONFIG from '~/configs/app';
 import { HttpClient } from '~/lib/http-client';
@@ -47,7 +48,7 @@ const api = new HttpClient(
         if (
           error.response?.status !== 401 ||
           originalRequest._retry ||
-          originalRequest.url?.includes('/auth/login')
+          originalRequest.url?.includes(`${ENDPOINTS.AUTH}/login`)
         ) {
           return Promise.reject(error);
         }
@@ -66,7 +67,7 @@ const api = new HttpClient(
 
         try {
           const { data } = await axios.post(
-            `${ins.defaults.baseURL}/auth/refresh`,
+            `${ins.defaults.baseURL}${ENDPOINTS.AUTH}/refresh`,
             {},
             { withCredentials: true },
           );

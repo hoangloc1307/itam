@@ -1,4 +1,5 @@
 import type { Router } from 'express';
+import { ENDPOINTS } from 'itam-shared/constants';
 import authRouter from '~/modules/auth/auth.route';
 import categoryRouter from '~/modules/category/category.route';
 
@@ -9,6 +10,6 @@ interface ModuleConfig {
 }
 
 export const modulesConfig: ModuleConfig[] = [
-  { path: '/auth', router: authRouter, isPublic: true },
-  { path: '/categories', router: categoryRouter },
+  { path: ENDPOINTS.AUTH, router: authRouter, isPublic: true },
+  { path: ENDPOINTS.CATEGORIES, router: categoryRouter },
 ];
