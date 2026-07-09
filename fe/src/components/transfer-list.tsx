@@ -26,10 +26,9 @@ import {
   IconChevronRight,
   IconChevronsLeft,
   IconChevronsRight,
-  IconDeviceFloppy,
   IconGripVertical,
 } from '@tabler/icons-react';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Badge } from '~/components/ui/badge';
 import { Button } from '~/components/ui/button';
 import { ButtonGroup } from '~/components/ui/button-group';
@@ -55,8 +54,8 @@ export interface TransferListProps {
   availableSource: TransferItem[];
   /** Currently assigned items (with order and required flag) */
   assignedSource: AssignedItem[];
-  /** Called when user saves */
-  onSave: (assigned: AssignedItem[]) => void;
+  /** Called whenever assigned list changes */
+  onAssignedChange?: (assigned: AssignedItem[]) => void;
   /** Labels */
   labels: {
     available: string;
@@ -64,7 +63,6 @@ export interface TransferListProps {
     noAvailable: string;
     noAssigned: string;
     required: string;
-    save: string;
   };
 }
 
@@ -141,6 +139,7 @@ function DraggableCard({
 function OverlayCard({ item }: { item: AssignedItem }) {
   return (
     <div className='bg-background flex items-center gap-2 rounded-md border px-3 py-2 shadow-lg'>
+      <Checkbox />
       <IconGripVertical className='text-muted-foreground size-4' />
       <span className='flex-1 text-sm'>
         {item.label}
@@ -171,7 +170,7 @@ function DroppableContainer({ id, children }: { id: string; children: React.Reac
 export function TransferList({
   availableSource,
   assignedSource,
-  onSave,
+  onAssignedChange,
   labels,
 }: TransferListProps) {
   const assignedIds = new Set(assignedSource.map((a) => a.id));
@@ -314,9 +313,9 @@ export function TransferList({
     );
   };
 
-  const handleSave = () => {
-    onSave(assignedList);
-  };
+  useEffect(() => {
+    onAssignedChange?.(assignedList);
+  }, [assignedList, onAssignedChange]);
 
   const activeItem =
     activeId !== null
@@ -325,13 +324,6 @@ export function TransferList({
 
   return (
     <div className='space-y-4'>
-      <div className='flex justify-end'>
-        <Button onClick={handleSave}>
-          <IconDeviceFloppy data-icon='inline-start' />
-          {labels.save}
-        </Button>
-      </div>
-
       <DndContext
         sensors={sensors}
         collisionDetection={closestCorners}
