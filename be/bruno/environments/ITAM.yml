@@ -8,3 +8,5 @@ variables:
     name: TOKEN
   - name: CATEGORY_ENDPOINT
     value: categories
+  - name: ATTRIBUTE_ENDPOINT
+    value: attributes

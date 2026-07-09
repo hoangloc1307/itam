@@ -1,0 +1,9 @@
+{
+  "notFound": "Không tìm thấy thuộc tính",
+  "validation": {
+    "nameRequired": "Tên thuộc tính là bắt buộc",
+    "nameMaxLength": "Tên thuộc tính tối đa 150 ký tự",
+    "measurementUnitMaxLength": "Đơn vị tính tối đa 50 ký tự",
+    "dataTypeInvalid": "Loại dữ liệu không hợp lệ"
+  }
+}

@@ -1,0 +1,25 @@
+info:
+  name: Create
+  type: http
+  seq: 3
+
+http:
+  method: POST
+  url: '{{API_URL}}/{{ATTRIBUTE_ENDPOINT}}'
+  body:
+    type: json
+    data: |-
+      {
+        "name": "Screen Size",
+        "measurementUnit": "inch",
+        "dataType": "NUMBER",
+        "options": null,
+        "isActive": true
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

@@ -1,0 +1,47 @@
+{
+  "title": "属性",
+  "addNew": "属性を追加",
+  "edit": "属性を編集",
+  "deleteConfirm": "この属性を削除してもよろしいですか？",
+  "createSuccess": "属性を作成しました",
+  "updateSuccess": "属性を更新しました",
+  "deleteSuccess": "属性を削除しました",
+  "status": {
+    "active": "有効",
+    "inactive": "無効"
+  },
+  "dataTypes": {
+    "TEXT": "テキスト",
+    "NUMBER": "数値",
+    "DATE": "日付",
+    "SELECT": "選択",
+    "BOOLEAN": "真偽"
+  },
+  "columns": {
+    "id": "ID",
+    "name": "属性名",
+    "measurementUnit": "単位",
+    "dataType": "データ型",
+    "options": "オプション",
+    "isActive": "有効",
+    "createdBy": "作成者",
+    "createdAt": "作成日",
+    "actions": "操作"
+  },
+  "form": {
+    "name": "属性名",
+    "measurementUnit": "測定単位",
+    "dataType": "データ型",
+    "options": "オプション",
+    "isActive": "有効",
+    "namePlaceholder": "属性名を入力",
+    "measurementUnitPlaceholder": "例: GB, inch, GHz",
+    "optionsPlaceholder": "オプションを入力（カンマ区切り）"
+  },
+  "validation": {
+    "nameRequired": "属性名は必須です",
+    "nameMaxLength": "属性名は150文字以内で入力してください",
+    "measurementUnitMaxLength": "測定単位は50文字以内で入力してください",
+    "dataTypeInvalid": "無効なデータ型です"
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "notFound": "Attribute not found",
+  "validation": {
+    "nameRequired": "Attribute name is required",
+    "nameMaxLength": "Attribute name must be at most 150 characters",
+    "measurementUnitMaxLength": "Measurement unit must be at most 50 characters",
+    "dataTypeInvalid": "Invalid data type"
+  }
+}

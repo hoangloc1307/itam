@@ -1,0 +1,29 @@
+info:
+  name: Update
+  type: http
+  seq: 4
+
+http:
+  method: PUT
+  url: '{{API_URL}}/{{ATTRIBUTE_ENDPOINT}}/:id'
+  params:
+    - name: id
+      value: 1
+      type: path
+  body:
+    type: json
+    data: |-
+      {
+        "name": "Screen Size Updated",
+        "measurementUnit": "inch",
+        "dataType": "NUMBER",
+        "options": null,
+        "isActive": true
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

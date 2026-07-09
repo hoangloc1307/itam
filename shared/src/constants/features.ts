@@ -1,5 +1,6 @@
 export const FEATURES = {
   CATEGORY: 'CATEGORY',
+  ATTRIBUTE: 'ATTRIBUTE',
   MODEL: 'MODEL',
 } as const;
 

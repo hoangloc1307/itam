@@ -1,0 +1,47 @@
+{
+  "title": "Thuộc tính",
+  "addNew": "Thêm thuộc tính",
+  "edit": "Sửa thuộc tính",
+  "deleteConfirm": "Bạn có chắc muốn xóa thuộc tính này?",
+  "createSuccess": "Tạo thuộc tính thành công",
+  "updateSuccess": "Cập nhật thuộc tính thành công",
+  "deleteSuccess": "Xóa thuộc tính thành công",
+  "status": {
+    "active": "Hoạt động",
+    "inactive": "Ngừng hoạt động"
+  },
+  "dataTypes": {
+    "TEXT": "Văn bản",
+    "NUMBER": "Số",
+    "DATE": "Ngày",
+    "SELECT": "Lựa chọn",
+    "BOOLEAN": "Đúng/Sai"
+  },
+  "columns": {
+    "id": "ID",
+    "name": "Tên thuộc tính",
+    "measurementUnit": "Đơn vị",
+    "dataType": "Loại dữ liệu",
+    "options": "Tùy chọn",
+    "isActive": "Hoạt động",
+    "createdBy": "Người tạo",
+    "createdAt": "Ngày tạo",
+    "actions": "Thao tác"
+  },
+  "form": {
+    "name": "Tên thuộc tính",
+    "measurementUnit": "Đơn vị tính",
+    "dataType": "Loại dữ liệu",
+    "options": "Tùy chọn",
+    "isActive": "Hoạt động",
+    "namePlaceholder": "Nhập tên thuộc tính",
+    "measurementUnitPlaceholder": "VD: GB, inch, GHz",
+    "optionsPlaceholder": "Nhập tùy chọn (phân cách bằng dấu phẩy)"
+  },
+  "validation": {
+    "nameRequired": "Tên thuộc tính là bắt buộc",
+    "nameMaxLength": "Tên thuộc tính tối đa 150 ký tự",
+    "measurementUnitMaxLength": "Đơn vị tính tối đa 50 ký tự",
+    "dataTypeInvalid": "Loại dữ liệu không hợp lệ"
+  }
+}
