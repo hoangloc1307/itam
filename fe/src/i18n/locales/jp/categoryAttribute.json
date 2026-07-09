@@ -1,0 +1,16 @@
+{
+  "title": "カテゴリ属性",
+  "selectCategory": "カテゴリを選択",
+  "available": "利用可能な属性",
+  "assigned": "割り当て済み属性",
+  "noAvailable": "利用可能な属性がありません",
+  "noAssigned": "属性が割り当てられていません",
+  "required": "必須",
+  "save": "保存",
+  "syncSuccess": "属性を更新しました",
+  "syncError": "属性の更新に失敗しました",
+  "moveRight": "選択を右に移動",
+  "moveAllRight": "すべてを右に移動",
+  "moveLeft": "選択を左に移動",
+  "moveAllLeft": "すべてを左に移動"
+}

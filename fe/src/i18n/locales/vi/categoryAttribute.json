@@ -1,0 +1,16 @@
+{
+  "title": "Thuộc tính danh mục",
+  "selectCategory": "Chọn loại thiết bị",
+  "available": "Thuộc tính có sẵn",
+  "assigned": "Thuộc tính đã gán",
+  "noAvailable": "Không có thuộc tính nào",
+  "noAssigned": "Chưa gán thuộc tính nào",
+  "required": "Bắt buộc",
+  "save": "Lưu",
+  "syncSuccess": "Cập nhật thuộc tính thành công",
+  "syncError": "Cập nhật thuộc tính thất bại",
+  "moveRight": "Chuyển sang phải",
+  "moveAllRight": "Chuyển tất cả sang phải",
+  "moveLeft": "Chuyển sang trái",
+  "moveAllLeft": "Chuyển tất cả sang trái"
+}

@@ -12,6 +12,7 @@
     "master": "マスター",
     "category": "カテゴリ",
     "attribute": "属性",
+    "categoryAttribute": "カテゴリ属性",
     "model": "モデル",
     "support": "サポート",
     "feedback": "フィードバック"

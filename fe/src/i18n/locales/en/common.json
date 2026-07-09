@@ -12,6 +12,7 @@
     "master": "Master",
     "category": "Category",
     "attribute": "Attribute",
+    "categoryAttribute": "Category Attributes",
     "model": "Model",
     "support": "Support",
     "feedback": "Feedback"

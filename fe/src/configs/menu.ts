@@ -19,6 +19,11 @@ const MAIN_MENU: NavItem[] = [
         featureCode: FEATURES.ATTRIBUTE,
       },
       {
+        title: 'menu.categoryAttribute',
+        url: '/category-attribute',
+        featureCode: FEATURES.CATEGORY,
+      },
+      {
         title: 'menu.model',
         url: '/model',
         featureCode: FEATURES.MODEL,

@@ -146,6 +146,8 @@ model Category {
   updatedBy                String?   @map("updated_by") @db.Char(8)
   updatedAt                DateTime? @map("updated_at") @db.Timestamptz(0)
 
+  categoryAttributes CategoryAttribute[]
+
   @@map("categories")
 }
 
@@ -162,5 +164,24 @@ model Attribute {
   updatedBy       String?           @map("updated_by") @db.Char(8)
   updatedAt       DateTime?         @map("updated_at") @db.Timestamptz(0)
 
+  categoryAttributes CategoryAttribute[]
+
   @@map("attributes")
+}
+
+model CategoryAttribute {
+  categoryId  String  @map("category_id") @db.VarChar(30)
+  attributeId Int     @map("attribute_id")
+  sortOrder   Int     @default(0) @map("sort_order")
+  isRequired  Boolean @default(false) @map("is_required")
+  createdBy   String  @map("created_by") @db.Char(8)
+  createdAt   DateTime @default(now()) @map("created_at") @db.Timestamptz(0)
+  updatedBy   String? @map("updated_by") @db.Char(8)
+  updatedAt   DateTime? @map("updated_at") @db.Timestamptz(0)
+
+  category  Category  @relation(fields: [categoryId], references: [id])
+  attribute Attribute @relation(fields: [attributeId], references: [id])
+
+  @@id([categoryId, attributeId])
+  @@map("category_attributes")
 }

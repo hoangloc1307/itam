@@ -1,0 +1,16 @@
+{
+  "title": "Category Attributes",
+  "selectCategory": "Select a category",
+  "available": "Available Attributes",
+  "assigned": "Assigned Attributes",
+  "noAvailable": "No attributes available",
+  "noAssigned": "No attributes assigned",
+  "required": "Required",
+  "save": "Save",
+  "syncSuccess": "Attributes updated successfully",
+  "syncError": "Failed to update attributes",
+  "moveRight": "Move selected right",
+  "moveAllRight": "Move all right",
+  "moveLeft": "Move selected left",
+  "moveAllLeft": "Move all left"
+}

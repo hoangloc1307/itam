@@ -1,0 +1,437 @@
+// ==================== ENUMS ====================
+
+Enum Action {
+  CREATE
+  READ
+  UPDATE
+  DELETE
+  MANAGE
+  APPROVAL
+}
+
+Enum Decision {
+  ALLOW
+  DENY
+}
+
+Enum AttributeDataType {
+  TEXT
+  NUMBER
+  DATE
+  SELECT
+  BOOLEAN
+}
+
+// ==================== AUTH & RBAC ====================
+
+Table users {
+  username char(8) [pk]
+  name varchar(100)
+  email varchar(254) [unique]
+  password varchar(255) [not null]
+  is_active boolean [default: true]
+  created_at timestamptz [default: `now()`]
+  created_by char(8) [not null]
+  updated_at timestamptz
+  updated_by char(8)
+}
+
+Table roles {
+  code varchar(50) [pk]
+  name varchar(100) [not null]
+  is_active boolean [default: true]
+  created_at timestamptz [default: `now()`]
+  created_by char(8) [not null]
+  updated_at timestamptz
+  updated_by char(8)
+}
+
+Table features {
+  code varchar(100) [pk]
+  name varchar(150) [not null]
+  is_active boolean [default: true]
+  created_at timestamptz [default: `now()`]
+  created_by char(8) [not null]
+  updated_at timestamptz
+  updated_by char(8)
+}
+
+Table user_role {
+  id int [pk, increment]
+  username char(8) [not null]
+  role_code varchar(50) [not null]
+  section char(4)
+
+  indexes {
+    (username, role_code, section) [unique]
+  }
+}
+
+Table role_permission {
+  id int [pk, increment]
+  role_code varchar(50) [not null]
+  feature_code varchar(100) [not null]
+  action Action [not null]
+  section char(4)
+
+  indexes {
+    (role_code, feature_code, action, section) [unique]
+  }
+}
+
+Table user_permission {
+  id int [pk, increment]
+  username char(8) [not null]
+  feature_code varchar(100) [not null]
+  action Action [not null]
+  decision Decision [not null]
+  section char(4)
+
+  indexes {
+    (username, feature_code, action, section) [unique]
+  }
+}
+
+// ==================== MASTER DATA ====================
+
+Table categories {
+  id varchar(30) [pk]
+  name varchar(150) [not null]
+  serial_key varchar(30) [not null]
+  maintenance_interval_hours int
+  is_active boolean [default: true]
+  deleted_at timestamptz
+  created_by char(8) [not null]
+  created_at timestamptz [default: `now()`]
+  updated_by char(8)
+  updated_at timestamptz
+}
+
+Table attributes {
+  id int [pk, increment]
+  name varchar(150) [not null]
+  measurement_unit varchar(50)
+  data_type AttributeDataType [not null, default: 'TEXT']
+  options json [note: 'For SELECT type, e.g. ["Good","Average","Poor"]']
+  created_by char(8) [not null]
+  created_at timestamptz [default: `now()`]
+  updated_by char(8)
+  updated_at timestamptz
+  is_active boolean [default: true]
+}
+
+Table category_attributes {
+  category_id varchar(30) [not null]
+  attribute_id int [not null]
+  sort_order int [default: 0]
+  is_required boolean [default: false]
+  created_by char(8) [not null]
+  created_at timestamptz [default: `now()`]
+  updated_by char(8)
+  updated_at timestamptz
+  is_active boolean [default: true]
+
+  indexes {
+    (category_id, attribute_id) [pk]
+  }
+}
+
+Table item_masters {
+  id varchar(30) [pk]
+  category_id varchar(30) [not null]
+  manufacturer_id varchar(30)
+  name varchar(150) [not null]
+  manage_type varchar(50) [note: 'Individual or Bulk']
+  item_code varchar(50)
+  created_by char(8) [not null]
+  created_at timestamptz [default: `now()`]
+  updated_by char(8)
+  updated_at timestamptz
+  is_active boolean [default: true]
+}
+
+Table item_master_attribute_values {
+  attribute_id int [not null]
+  item_master_id varchar(30) [not null]
+  value text
+
+  indexes {
+    (attribute_id, item_master_id) [pk]
+  }
+}
+
+Table manufacturers {
+  id varchar(30) [pk]
+  name varchar(150) [not null]
+  brand_name varchar(150)
+  headquarters varchar(150)
+  country varchar(100)
+  website varchar(255)
+  created_by char(8) [not null]
+  created_at timestamptz [default: `now()`]
+  updated_by char(8)
+  updated_at timestamptz
+  is_active boolean [default: true]
+}
+
+Table vendors {
+  id varchar(30) [pk]
+  name varchar(150) [not null]
+  brand_name varchar(150)
+  tax_code varchar(50)
+  address text
+  created_by char(8) [not null]
+  created_at timestamptz [default: `now()`]
+  updated_by char(8)
+  updated_at timestamptz
+  is_active boolean [default: true]
+}
+
+Table file_types {
+  id varchar(30) [pk]
+  name varchar(150) [not null]
+  created_by char(8) [not null]
+  created_at timestamptz [default: `now()`]
+  updated_by char(8)
+  updated_at timestamptz
+  is_active boolean [default: true]
+}
+
+// ==================== ASSET ====================
+
+Table assets {
+  id varchar(50) [pk]
+  manage_code varchar(50)
+  asset_code varchar(50)
+  name varchar(200) [not null]
+  category_id varchar(30) [not null]
+  item_master_id varchar(30)
+  vendor_id varchar(30)
+  purchase_date date
+  purchase_price decimal(15,2)
+  warranty_start_date date
+  warranty_end_date date
+  warranty_month int
+  serial_number varchar(100)
+  location varchar(200)
+  maintenance_interval_hours int
+  last_maintenance_date timestamptz
+  quantity int [default: 1]
+  remain_quantity int [default: 1]
+  qr_code varchar(255)
+  asset_status varchar(50) [not null, note: 'Available, InUse, UnderRepair, Disposed, Lost']
+  created_by char(8) [not null]
+  created_at timestamptz [default: `now()`]
+  updated_by char(8)
+  updated_at timestamptz
+  is_active boolean [default: true]
+}
+
+Table asset_attribute_values {
+  id int [pk, increment]
+  attribute_id int [not null]
+  asset_id varchar(50) [not null]
+  value text
+
+  indexes {
+    (attribute_id, asset_id) [unique]
+  }
+}
+
+Table asset_history {
+  id int [pk, increment]
+  asset_id varchar(50) [not null]
+  location varchar(200)
+  employee_id varchar(30)
+  section_id char(4)
+  employee_receive_id varchar(30)
+  section_receive_id char(4)
+  quantity int
+  type varchar(50) [note: 'Assign, Transfer, Return, Repair, Dispose']
+  file_id varchar(30)
+  created_by char(8) [not null]
+  created_at timestamptz [default: `now()`]
+  updated_by char(8)
+  updated_at timestamptz
+  is_active boolean [default: true]
+}
+
+// ==================== INVENTORY ====================
+
+Table inventory_history {
+  id int [pk, increment]
+  item_master_id varchar(30) [not null]
+  section_id char(4)
+  inout int [note: '1 = In, -1 = Out']
+  quantity int [not null]
+  note text
+  created_by char(8) [not null]
+  created_at timestamptz [default: `now()`]
+  updated_by char(8)
+  updated_at timestamptz
+  is_active boolean [default: true]
+}
+
+// ==================== REQUEST & TRANSFER ====================
+
+Table requests {
+  id varchar(50) [pk]
+  request_no varchar(50) [not null]
+  type varchar(50) [not null, note: 'Assign, Transfer, Return, Repair']
+  issue_section char(4)
+  issue_date date
+  finish_date date
+  cancel_reason text
+  purpose text
+  description text
+  request_status varchar(50) [not null, note: 'Draft, Pending, Approved, Rejected, Completed, Cancelled']
+  created_by char(8) [not null]
+  created_at timestamptz [default: `now()`]
+  updated_by char(8)
+  updated_at timestamptz
+  is_active boolean [default: true]
+}
+
+Table assignment_details {
+  id int [pk, increment]
+  category_id varchar(30) [not null]
+  request_no varchar(50) [not null]
+  asset_id varchar(50)
+  status_of_asset varchar(50)
+  service_for varchar(200)
+  purpose text
+  description text
+  created_by char(8) [not null]
+  created_at timestamptz [default: `now()`]
+  updated_by char(8)
+  updated_at timestamptz
+  is_active boolean [default: true]
+}
+
+Table transfer_details {
+  id int [pk, increment]
+  request_no varchar(50) [not null]
+  asset_id varchar(50) [not null]
+  description text
+  from_employee_id varchar(30)
+  from_section_id char(4)
+  to_employee_id varchar(30)
+  to_section_id char(4)
+  transfer_date date
+  quantity int [default: 1]
+  check_by char(8)
+  created_by char(8) [not null]
+  created_at timestamptz [default: `now()`]
+  updated_by char(8)
+  updated_at timestamptz
+  is_active boolean [default: true]
+}
+
+// ==================== MAINTENANCE & REPAIR ====================
+
+Table maintenance_schedules {
+  id int [pk, increment]
+  name varchar(200) [not null]
+  type varchar(50) [note: 'Preventive, Corrective']
+  start_date date [not null]
+  actual_start_date date
+  end_date date [not null]
+  actual_end_date date
+  section_id char(4)
+  schedule_status varchar(50) [not null, note: 'Planned, InProgress, Completed, Cancelled']
+  description text
+  created_by char(8) [not null]
+  created_at timestamptz [default: `now()`]
+  updated_by char(8)
+  updated_at timestamptz
+  is_active boolean [default: true]
+}
+
+Table maintenance_schedule_assignees {
+  id int [pk, increment]
+  maintenance_schedule_id int [not null]
+  employee_id varchar(30) [not null]
+  role varchar(50) [note: 'Lead, Technician, Observer']
+  created_by char(8) [not null]
+  created_at timestamptz [default: `now()`]
+  updated_by char(8)
+  updated_at timestamptz
+  is_active boolean [default: true]
+}
+
+Table repair_details {
+  id int [pk, increment]
+  request_no varchar(50) [not null]
+  asset_id varchar(50) [not null]
+  type varchar(50) [note: 'Internal, External']
+  priority int [default: 3, note: '1=Critical, 2=High, 3=Normal, 4=Low']
+  description text
+  delivered_by char(8)
+  received_by char(8)
+  received_date date
+  performed_by char(8)
+  start_date date
+  finish_date date
+  return_date date
+  return_by char(8)
+  return_received_date date
+  cost decimal(15,2)
+  result text
+  maintenance_status varchar(50) [note: 'Pending, InProgress, Completed, Failed']
+  created_by char(8) [not null]
+  created_at timestamptz [default: `now()`]
+  updated_by char(8)
+  updated_at timestamptz
+  is_active boolean [default: true]
+}
+
+Table repair_asset_components {
+  id int [pk, increment]
+  request_id varchar(50) [not null]
+  asset_id varchar(50) [not null]
+  quantity int [default: 1]
+  installed_date date
+  created_by char(8) [not null]
+  created_at timestamptz [default: `now()`]
+  updated_by char(8)
+  updated_at timestamptz
+  is_active boolean [default: true]
+}
+
+// ==================== RELATIONSHIPS ====================
+
+// Auth & RBAC
+Ref: user_role.username > users.username
+Ref: user_role.role_code > roles.code
+Ref: role_permission.role_code > roles.code
+Ref: role_permission.feature_code > features.code
+Ref: user_permission.username > users.username
+Ref: user_permission.feature_code > features.code
+
+// Master data
+Ref: category_attributes.category_id > categories.id
+Ref: category_attributes.attribute_id > attributes.id
+Ref: item_masters.category_id > categories.id
+Ref: item_masters.manufacturer_id > manufacturers.id
+Ref: item_master_attribute_values.attribute_id > attributes.id
+Ref: item_master_attribute_values.item_master_id > item_masters.id
+
+// Asset
+Ref: assets.category_id > categories.id
+Ref: assets.item_master_id > item_masters.id
+Ref: assets.vendor_id > vendors.id
+Ref: asset_attribute_values.attribute_id > attributes.id
+Ref: asset_attribute_values.asset_id > assets.id
+Ref: asset_history.asset_id > assets.id
+
+// Inventory
+Ref: inventory_history.item_master_id > item_masters.id
+
+// Request & Transfer
+Ref: assignment_details.category_id > categories.id
+Ref: assignment_details.asset_id > assets.id
+Ref: transfer_details.asset_id > assets.id
+
+// Maintenance & Repair
+Ref: repair_details.asset_id > assets.id
+Ref: repair_asset_components.asset_id > assets.id

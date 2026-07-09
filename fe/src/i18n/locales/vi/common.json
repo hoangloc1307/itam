@@ -12,6 +12,7 @@
     "master": "Danh mục chung",
     "category": "Loại thiết bị",
     "attribute": "Thuộc tính",
+    "categoryAttribute": "Thuộc tính danh mục",
     "model": "Model",
     "support": "Hỗ trợ",
     "feedback": "Góp ý"
