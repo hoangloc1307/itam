@@ -4,6 +4,7 @@ import {
   SelectField,
   SubmitButton,
   SwitchButton,
+  TagInput,
   TextField,
 } from '~/components/app-input';
 
@@ -16,6 +17,7 @@ export const { useAppForm } = createFormHook({
     NumberField,
     SelectField,
     SwitchButton,
+    TagInput,
   },
   formComponents: {
     SubmitButton,
