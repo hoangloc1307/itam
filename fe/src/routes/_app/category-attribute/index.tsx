@@ -24,7 +24,9 @@ const CategoryAttributePage = () => {
 
   const { data: categoriesData } = useQuery(categoryQueries.all());
   const { data: attributesData } = useQuery(attributeQueries.all());
-  const { data: assignedData } = useQuery(categoryAttributeQueries.byCategory(selectedCategory));
+  const { data: assignedData, isFetched: isAssignedFetched } = useQuery(
+    categoryAttributeQueries.byCategory(selectedCategory),
+  );
   const syncMutation = useSyncCategoryAttributes();
 
   const categories = categoriesData?.data ?? [];
@@ -57,9 +59,9 @@ const CategoryAttributePage = () => {
         </Select>
       </div>
 
-      {selectedCategory && (
+      {selectedCategory && isAssignedFetched && (
         <TransferList
-          key={selectedCategory}
+          key={`${selectedCategory}-${assignedItems.length}`}
           allAttributes={allAttributes}
           assignedItems={assignedItems}
           onSync={handleSync}
