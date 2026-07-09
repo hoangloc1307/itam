@@ -4,22 +4,22 @@ import type { NavItem } from '~/components/nav-main';
 
 const MAIN_MENU: NavItem[] = [
   {
-    title: 'Master',
+    title: 'menu.master',
     url: '',
     icon: IconFileSettings,
     children: [
       {
-        title: 'Category',
+        title: 'menu.category',
         url: '/category',
         featureCode: FEATURES.CATEGORY,
       },
       {
-        title: 'Attribute',
+        title: 'menu.attribute',
         url: '/attribute',
         featureCode: FEATURES.ATTRIBUTE,
       },
       {
-        title: 'Model',
+        title: 'menu.model',
         url: '/model',
         featureCode: FEATURES.MODEL,
       },
@@ -29,12 +29,12 @@ const MAIN_MENU: NavItem[] = [
 
 const SECONDARY_MENU = [
   {
-    title: 'Support',
+    title: 'menu.support',
     url: '/',
     icon: IconLifebuoy,
   },
   {
-    title: 'Feedback',
+    title: 'menu.feedback',
     url: '/',
     icon: IconSend,
   },

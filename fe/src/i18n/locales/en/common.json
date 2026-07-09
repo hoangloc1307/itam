@@ -8,6 +8,14 @@
   "showSidebar": "show sidebar",
   "profile": "Profile",
   "logout": "Logout",
+  "menu": {
+    "master": "Master",
+    "category": "Category",
+    "attribute": "Attribute",
+    "model": "Model",
+    "support": "Support",
+    "feedback": "Feedback"
+  },
   "error": {
     "title": "An error occurred",
     "retry": "Try again",

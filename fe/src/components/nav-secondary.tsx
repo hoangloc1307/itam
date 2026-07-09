@@ -1,4 +1,5 @@
 import type { TablerIcon } from '@tabler/icons-react';
+import { useTranslation } from 'react-i18next';
 
 import {
   SidebarGroup,
@@ -20,6 +21,8 @@ export function NavSecondary({
 }: {
   items: NavSecondaryItem[];
 } & React.ComponentPropsWithoutRef<typeof SidebarGroup>) {
+  const { t } = useTranslation('common');
+
   return (
     <SidebarGroup {...props}>
       <SidebarGroupContent>
@@ -28,7 +31,7 @@ export function NavSecondary({
             <SidebarMenuItem key={item.title}>
               <SidebarMenuButton size='sm' render={<a href={item.url} />}>
                 {item.icon && <item.icon />}
-                <span>{item.title}</span>
+                <span>{t(item.title)}</span>
               </SidebarMenuButton>
             </SidebarMenuItem>
           ))}

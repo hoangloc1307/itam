@@ -8,6 +8,14 @@
   "showSidebar": "サイドバーを表示する",
   "profile": "プロフィール",
   "logout": "ログアウト",
+  "menu": {
+    "master": "マスター",
+    "category": "カテゴリ",
+    "attribute": "属性",
+    "model": "モデル",
+    "support": "サポート",
+    "feedback": "フィードバック"
+  },
   "error": {
     "title": "エラーが発生しました",
     "retry": "再試行",

@@ -1,5 +1,6 @@
 import { IconChevronRight, type TablerIcon } from '@tabler/icons-react';
 import { Link } from '@tanstack/react-router';
+import { useTranslation } from 'react-i18next';
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '~/components/ui/collapsible';
 import {
   SidebarGroup,
@@ -26,6 +27,7 @@ export type NavItem = {
 };
 
 export function NavMain({ items }: { items: NavItem[] }) {
+  const { t } = useTranslation('common');
   const hasPermission = useAuthStore((s) => s.hasPermission);
 
   const visibleItems = items
@@ -52,9 +54,9 @@ export function NavMain({ items }: { items: NavItem[] }) {
             <Collapsible key={item.title} render={<SidebarMenuItem />}>
               <CollapsibleTrigger
                 render={
-                  <SidebarMenuButton tooltip={item.title} className='font-semibold'>
-                    {item.icon && <item.icon className='size-6!' />}
-                    <span>{item.title}</span>
+                  <SidebarMenuButton tooltip={t(item.title)}>
+                    {item.icon && <item.icon />}
+                    <span>{t(item.title)}</span>
                     <IconChevronRight className='ml-auto transition-transform duration-200 in-data-panel-open:rotate-90' />
                   </SidebarMenuButton>
                 }
@@ -63,11 +65,8 @@ export function NavMain({ items }: { items: NavItem[] }) {
                 <SidebarMenuSub>
                   {item.children.map((subItem) => (
                     <SidebarMenuSubItem key={subItem.title}>
-                      <SidebarMenuSubButton
-                        className='font-semibold'
-                        render={<Link to={subItem.url} />}
-                      >
-                        <span>{subItem.title}</span>
+                      <SidebarMenuSubButton render={<Link to={subItem.url} />}>
+                        <span>{t(subItem.title)}</span>
                       </SidebarMenuSubButton>
                     </SidebarMenuSubItem>
                   ))}
@@ -76,13 +75,9 @@ export function NavMain({ items }: { items: NavItem[] }) {
             </Collapsible>
           ) : (
             <SidebarMenuItem key={item.title}>
-              <SidebarMenuButton
-                tooltip={item.title}
-                className='font-semibold'
-                render={<Link to={item.url} />}
-              >
-                {item.icon && <item.icon className='size-6!' />}
-                <span>{item.title}</span>
+              <SidebarMenuButton tooltip={t(item.title)} render={<Link to={item.url} />}>
+                {item.icon && <item.icon />}
+                <span>{t(item.title)}</span>
               </SidebarMenuButton>
             </SidebarMenuItem>
           ),

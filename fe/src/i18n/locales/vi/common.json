@@ -8,6 +8,14 @@
   "showSidebar": "Hiện sidebar",
   "profile": "Hồ sơ",
   "logout": "Đăng xuất",
+  "menu": {
+    "master": "Danh mục chung",
+    "category": "Loại thiết bị",
+    "attribute": "Thuộc tính",
+    "model": "Model",
+    "support": "Hỗ trợ",
+    "feedback": "Góp ý"
+  },
   "error": {
     "title": "Đã xảy ra lỗi",
     "retry": "Thử lại",
