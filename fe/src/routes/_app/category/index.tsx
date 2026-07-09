@@ -25,17 +25,20 @@ const CategoryPage = () => {
   const deleteMutation = useDeleteCategory();
   const categories = data?.data ?? [];
 
-  const columns = getCategoryColumns(t, i18n.language);
+  const handleEdit = (category: Category) => {
+    setEditing(category);
+    setOpen(true);
+  };
+
+  const columns = getCategoryColumns(t, i18n.language, {
+    onEdit: handleEdit,
+    onDelete: (id) => setDeleteId(id),
+  });
 
   const table = useDatatable({
     columns,
     data: categories,
   });
-
-  const handleEdit = (category: Category) => {
-    setEditing(category);
-    setOpen(true);
-  };
 
   const handleAdd = () => {
     setEditing(null);

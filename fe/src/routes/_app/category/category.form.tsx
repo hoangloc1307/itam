@@ -47,7 +47,10 @@ export function CategoryForm({ category, onSuccess }: CategoryFormProps) {
       className='space-y-4'
     >
       <FieldGroup>
-        <form.AppField name='id' children={(field) => <field.TextField label={t('form.id')} />} />
+        <form.AppField
+          name='id'
+          children={(field) => <field.TextField label={t('form.id')} disabled={isEditing} />}
+        />
         <form.AppField
           name='name'
           children={(field) => <field.TextField label={t('form.name')} />}

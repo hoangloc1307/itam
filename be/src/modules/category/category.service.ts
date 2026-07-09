@@ -48,8 +48,25 @@ const getById = async (id: string) => {
 const create = async (input: CreateCategoryInput, createdBy: string) => {
   const existing = await prisma.category.findUnique({ where: { id: input.id } });
 
-  if (existing) {
+  if (existing && !existing.deletedAt) {
     throw AppError.conflict(t('category:alreadyExists'));
+  }
+
+  if (existing && existing.deletedAt) {
+    return prisma.category.update({
+      where: { id: input.id },
+      data: {
+        name: input.name,
+        serialKey: input.serialKey,
+        maintenanceIntervalHours: input.maintenanceIntervalHours ?? null,
+        isActive: input.isActive,
+        deletedAt: null,
+        createdBy,
+        createdAt: new Date(),
+        updatedBy: null,
+        updatedAt: null,
+      },
+    });
   }
 
   return prisma.category.create({

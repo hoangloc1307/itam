@@ -1,12 +1,48 @@
 'use no memo';
 
+import { IconEdit, IconTrash } from '@tabler/icons-react';
 import { type ColumnDef } from '@tanstack/react-table';
 import type { TFunction } from 'i18next';
 import type { Category } from 'itam-shared/types';
 import { Badge } from '~/components/ui/badge';
+import { Button } from '~/components/ui/button';
 import { formatDate } from '~/lib/date';
 
-export const getCategoryColumns = (t: TFunction, lang: string): ColumnDef<Category>[] => [
+interface ColumnActions {
+  onEdit: (category: Category) => void;
+  onDelete: (id: string) => void;
+}
+
+export const getCategoryColumns = (
+  t: TFunction,
+  lang: string,
+  actions: ColumnActions,
+): ColumnDef<Category>[] => [
+  {
+    id: 'actions',
+    header: t('columns.actions'),
+    enableColumnFilter: false,
+    enableSorting: false,
+    cell: ({ row }) => (
+      <div className='flex items-center gap-1'>
+        <Button variant='ghost' size='icon' onClick={() => actions.onEdit(row.original)}>
+          <IconEdit className='size-4' />
+        </Button>
+        <Button variant='ghost' size='icon' onClick={() => actions.onDelete(row.original.id)}>
+          <IconTrash className='size-4' />
+        </Button>
+      </div>
+    ),
+    size: 100,
+  },
+  {
+    id: 'rowNumber',
+    header: '#',
+    enableColumnFilter: false,
+    enableSorting: false,
+    cell: ({ row }) => row.index + 1,
+    size: 50,
+  },
   {
     header: t('columns.id'),
     accessorKey: 'id',
