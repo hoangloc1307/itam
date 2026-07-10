@@ -36,6 +36,11 @@ const MAIN_MENU: NavItem[] = [
     icon: IconShieldCog,
     children: [
       {
+        title: 'menu.role',
+        url: '/role',
+        featureCode: FEATURES.ROLE,
+      },
+      {
         title: 'menu.user',
         url: '/user',
         featureCode: FEATURES.USER,

@@ -1,0 +1,36 @@
+{
+  "title": "Vai trò",
+  "addNew": "Thêm vai trò",
+  "edit": "Sửa vai trò",
+  "deleteConfirm": "Bạn có chắc muốn xóa vai trò này?",
+  "createSuccess": "Tạo vai trò thành công",
+  "updateSuccess": "Cập nhật vai trò thành công",
+  "deleteSuccess": "Xóa vai trò thành công",
+  "status": {
+    "active": "Hoạt động",
+    "inactive": "Ngừng hoạt động"
+  },
+  "columns": {
+    "code": "Mã",
+    "name": "Tên vai trò",
+    "isActive": "Hoạt động",
+    "createdBy": "Người tạo",
+    "createdAt": "Ngày tạo",
+    "updatedBy": "Người cập nhật",
+    "updatedAt": "Ngày cập nhật",
+    "actions": "Thao tác"
+  },
+  "form": {
+    "code": "Mã vai trò",
+    "name": "Tên vai trò",
+    "isActive": "Hoạt động",
+    "codePlaceholder": "Nhập mã vai trò",
+    "namePlaceholder": "Nhập tên vai trò"
+  },
+  "validation": {
+    "codeRequired": "Mã vai trò là bắt buộc",
+    "codeMaxLength": "Mã vai trò tối đa 50 ký tự",
+    "nameRequired": "Tên vai trò là bắt buộc",
+    "nameMaxLength": "Tên vai trò tối đa 100 ký tự"
+  }
+}

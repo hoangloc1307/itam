@@ -15,6 +15,7 @@
     "categoryAttribute": "Category Attributes",
     "model": "Model",
     "admin": "Administration",
+    "role": "Roles",
     "user": "Users",
     "support": "Support",
     "feedback": "Feedback"

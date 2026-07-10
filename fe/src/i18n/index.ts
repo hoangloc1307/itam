@@ -16,7 +16,16 @@ i18n
     interpolation: {
       escapeValue: false,
     },
-    ns: ['common', 'auth', 'category', 'datatable'],
+    ns: [
+      'common',
+      'auth',
+      'category',
+      'categoryAttribute',
+      'attribute',
+      'role',
+      'user',
+      'datatable',
+    ],
     defaultNS: 'common',
     detection: {
       caches: ['localStorage'],

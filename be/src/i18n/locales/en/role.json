@@ -1,0 +1,10 @@
+{
+  "notFound": "Role not found",
+  "alreadyExists": "Role code already exists",
+  "validation": {
+    "codeRequired": "Role code is required",
+    "codeMaxLength": "Role code must be at most 50 characters",
+    "nameRequired": "Role name is required",
+    "nameMaxLength": "Role name must be at most 100 characters"
+  }
+}

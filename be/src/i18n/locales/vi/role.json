@@ -1,0 +1,10 @@
+{
+  "notFound": "Không tìm thấy vai trò",
+  "alreadyExists": "Mã vai trò đã tồn tại",
+  "validation": {
+    "codeRequired": "Mã vai trò là bắt buộc",
+    "codeMaxLength": "Mã vai trò tối đa 50 ký tự",
+    "nameRequired": "Tên vai trò là bắt buộc",
+    "nameMaxLength": "Tên vai trò tối đa 100 ký tự"
+  }
+}

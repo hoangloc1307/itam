@@ -16,6 +16,7 @@ import { Route as AuthRegisterRouteImport } from './routes/_auth/register';
 import { Route as AuthLoginRouteImport } from './routes/_auth/login';
 import { Route as AppDashboardRouteImport } from './routes/_app/dashboard';
 import { Route as AppUserIndexRouteImport } from './routes/_app/user/index';
+import { Route as AppRoleIndexRouteImport } from './routes/_app/role/index';
 import { Route as AppCategoryIndexRouteImport } from './routes/_app/category/index';
 import { Route as AppCategoryAttributeIndexRouteImport } from './routes/_app/category-attribute/index';
 import { Route as AppAttributeIndexRouteImport } from './routes/_app/attribute/index';
@@ -53,6 +54,11 @@ const AppUserIndexRoute = AppUserIndexRouteImport.update({
   path: '/user/',
   getParentRoute: () => AppRoute,
 } as any);
+const AppRoleIndexRoute = AppRoleIndexRouteImport.update({
+  id: '/role/',
+  path: '/role/',
+  getParentRoute: () => AppRoute,
+} as any);
 const AppCategoryIndexRoute = AppCategoryIndexRouteImport.update({
   id: '/category/',
   path: '/category/',
@@ -78,6 +84,7 @@ export interface FileRoutesByFullPath {
   '/attribute/': typeof AppAttributeIndexRoute;
   '/category-attribute/': typeof AppCategoryAttributeIndexRoute;
   '/category/': typeof AppCategoryIndexRoute;
+  '/role/': typeof AppRoleIndexRoute;
   '/user/': typeof AppUserIndexRoute;
 }
 export interface FileRoutesByTo {
@@ -88,6 +95,7 @@ export interface FileRoutesByTo {
   '/attribute': typeof AppAttributeIndexRoute;
   '/category-attribute': typeof AppCategoryAttributeIndexRoute;
   '/category': typeof AppCategoryIndexRoute;
+  '/role': typeof AppRoleIndexRoute;
   '/user': typeof AppUserIndexRoute;
 }
 export interface FileRoutesById {
@@ -101,6 +109,7 @@ export interface FileRoutesById {
   '/_app/attribute/': typeof AppAttributeIndexRoute;
   '/_app/category-attribute/': typeof AppCategoryAttributeIndexRoute;
   '/_app/category/': typeof AppCategoryIndexRoute;
+  '/_app/role/': typeof AppRoleIndexRoute;
   '/_app/user/': typeof AppUserIndexRoute;
 }
 export interface FileRouteTypes {
@@ -113,6 +122,7 @@ export interface FileRouteTypes {
     | '/attribute/'
     | '/category-attribute/'
     | '/category/'
+    | '/role/'
     | '/user/';
   fileRoutesByTo: FileRoutesByTo;
   to:
@@ -123,6 +133,7 @@ export interface FileRouteTypes {
     | '/attribute'
     | '/category-attribute'
     | '/category'
+    | '/role'
     | '/user';
   id:
     | '__root__'
@@ -135,6 +146,7 @@ export interface FileRouteTypes {
     | '/_app/attribute/'
     | '/_app/category-attribute/'
     | '/_app/category/'
+    | '/_app/role/'
     | '/_app/user/';
   fileRoutesById: FileRoutesById;
 }
@@ -195,6 +207,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppUserIndexRouteImport;
       parentRoute: typeof AppRoute;
     };
+    '/_app/role/': {
+      id: '/_app/role/';
+      path: '/role';
+      fullPath: '/role/';
+      preLoaderRoute: typeof AppRoleIndexRouteImport;
+      parentRoute: typeof AppRoute;
+    };
     '/_app/category/': {
       id: '/_app/category/';
       path: '/category';
@@ -224,6 +243,7 @@ interface AppRouteChildren {
   AppAttributeIndexRoute: typeof AppAttributeIndexRoute;
   AppCategoryAttributeIndexRoute: typeof AppCategoryAttributeIndexRoute;
   AppCategoryIndexRoute: typeof AppCategoryIndexRoute;
+  AppRoleIndexRoute: typeof AppRoleIndexRoute;
   AppUserIndexRoute: typeof AppUserIndexRoute;
 }
 
@@ -232,6 +252,7 @@ const AppRouteChildren: AppRouteChildren = {
   AppAttributeIndexRoute: AppAttributeIndexRoute,
   AppCategoryAttributeIndexRoute: AppCategoryAttributeIndexRoute,
   AppCategoryIndexRoute: AppCategoryIndexRoute,
+  AppRoleIndexRoute: AppRoleIndexRoute,
   AppUserIndexRoute: AppUserIndexRoute,
 };
 

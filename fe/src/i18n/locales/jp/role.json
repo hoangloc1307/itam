@@ -1,0 +1,36 @@
+{
+  "title": "ロール",
+  "addNew": "ロールを追加",
+  "edit": "ロールを編集",
+  "deleteConfirm": "このロールを削除してもよろしいですか？",
+  "createSuccess": "ロールを作成しました",
+  "updateSuccess": "ロールを更新しました",
+  "deleteSuccess": "ロールを削除しました",
+  "status": {
+    "active": "有効",
+    "inactive": "無効"
+  },
+  "columns": {
+    "code": "コード",
+    "name": "名前",
+    "isActive": "有効",
+    "createdBy": "作成者",
+    "createdAt": "作成日",
+    "updatedBy": "更新者",
+    "updatedAt": "更新日",
+    "actions": "操作"
+  },
+  "form": {
+    "code": "ロールコード",
+    "name": "ロール名",
+    "isActive": "有効",
+    "codePlaceholder": "ロールコードを入力",
+    "namePlaceholder": "ロール名を入力"
+  },
+  "validation": {
+    "codeRequired": "ロールコードは必須です",
+    "codeMaxLength": "ロールコードは最大50文字です",
+    "nameRequired": "ロール名は必須です",
+    "nameMaxLength": "ロール名は最大100文字です"
+  }
+}

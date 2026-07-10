@@ -10,7 +10,7 @@ i18next.use(Backend).init({
   lng: 'vi',
   fallbackLng: 'vi',
   supportedLngs: SUPPORTED_LANGUAGES,
-  ns: ['common', 'auth', 'category'],
+  ns: ['common', 'auth', 'attribute', 'category', 'role', 'user'],
   defaultNS: 'common',
   backend: {
     loadPath: path.join(import.meta.dirname, 'locales/{{lng}}/{{ns}}.json'),
