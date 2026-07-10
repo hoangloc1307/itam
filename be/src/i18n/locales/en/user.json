@@ -1,0 +1,8 @@
+{
+  "notFound": "User not found",
+  "usernameExists": "Username already exists",
+  "emailExists": "Email already exists",
+  "createSuccess": "User created successfully",
+  "updateSuccess": "User updated successfully",
+  "resetPasswordSuccess": "Password has been reset successfully"
+}

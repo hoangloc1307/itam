@@ -1,0 +1,41 @@
+{
+  "title": "Người dùng",
+  "addNew": "Thêm người dùng",
+  "edit": "Chỉnh sửa người dùng",
+  "resetPassword": "Đặt lại mật khẩu",
+  "resetPasswordConfirm": "Bạn có chắc chắn muốn đặt lại mật khẩu cho người dùng này? Mật khẩu mới sẽ được gửi qua email.",
+  "createSuccess": "Tạo người dùng thành công",
+  "updateSuccess": "Cập nhật người dùng thành công",
+  "resetPasswordSuccess": "Đặt lại mật khẩu thành công",
+  "status": {
+    "active": "Hoạt động",
+    "inactive": "Ngừng hoạt động"
+  },
+  "columns": {
+    "username": "Tên đăng nhập",
+    "name": "Họ tên",
+    "email": "Email",
+    "isActive": "Trạng thái",
+    "createdBy": "Người tạo",
+    "createdAt": "Ngày tạo",
+    "updatedBy": "Người cập nhật",
+    "updatedAt": "Ngày cập nhật",
+    "actions": "Thao tác"
+  },
+  "form": {
+    "username": "Tên đăng nhập",
+    "name": "Họ tên",
+    "email": "Email",
+    "isActive": "Hoạt động",
+    "usernamePlaceholder": "Nhập tên đăng nhập 8 ký tự",
+    "namePlaceholder": "Nhập họ tên",
+    "emailPlaceholder": "Nhập địa chỉ email"
+  },
+  "validation": {
+    "usernameRequired": "Tên đăng nhập là bắt buộc",
+    "usernameLength": "Tên đăng nhập phải đúng 8 ký tự",
+    "emailInvalid": "Địa chỉ email không hợp lệ",
+    "nameRequired": "Họ tên là bắt buộc",
+    "nameMaxLength": "Họ tên không được vượt quá 100 ký tự"
+  }
+}

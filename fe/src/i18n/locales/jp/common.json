@@ -14,6 +14,8 @@
     "attribute": "属性",
     "categoryAttribute": "カテゴリ属性",
     "model": "モデル",
+    "admin": "管理",
+    "user": "ユーザー",
     "support": "サポート",
     "feedback": "フィードバック"
   },

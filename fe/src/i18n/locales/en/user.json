@@ -1,0 +1,41 @@
+{
+  "title": "Users",
+  "addNew": "Add user",
+  "edit": "Edit user",
+  "resetPassword": "Reset password",
+  "resetPasswordConfirm": "Are you sure you want to reset this user's password? A new password will be sent via email.",
+  "createSuccess": "User created successfully",
+  "updateSuccess": "User updated successfully",
+  "resetPasswordSuccess": "Password has been reset successfully",
+  "status": {
+    "active": "Active",
+    "inactive": "Inactive"
+  },
+  "columns": {
+    "username": "Username",
+    "name": "Name",
+    "email": "Email",
+    "isActive": "Status",
+    "createdBy": "Created By",
+    "createdAt": "Created Date",
+    "updatedBy": "Updated By",
+    "updatedAt": "Updated Date",
+    "actions": "Actions"
+  },
+  "form": {
+    "username": "Username",
+    "name": "Full name",
+    "email": "Email",
+    "isActive": "Active",
+    "usernamePlaceholder": "Enter 8-character username",
+    "namePlaceholder": "Enter full name",
+    "emailPlaceholder": "Enter email address"
+  },
+  "validation": {
+    "usernameRequired": "Username is required",
+    "usernameLength": "Username must be exactly 8 characters",
+    "emailInvalid": "Invalid email address",
+    "nameRequired": "Name is required",
+    "nameMaxLength": "Name must be at most 100 characters"
+  }
+}

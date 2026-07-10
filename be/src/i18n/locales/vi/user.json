@@ -1,0 +1,8 @@
+{
+  "notFound": "Không tìm thấy người dùng",
+  "usernameExists": "Tên đăng nhập đã tồn tại",
+  "emailExists": "Email đã tồn tại",
+  "createSuccess": "Tạo người dùng thành công",
+  "updateSuccess": "Cập nhật người dùng thành công",
+  "resetPasswordSuccess": "Đặt lại mật khẩu thành công"
+}

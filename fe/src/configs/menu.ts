@@ -1,4 +1,4 @@
-import { IconFileSettings, IconLifebuoy, IconSend } from '@tabler/icons-react';
+import { IconFileSettings, IconLifebuoy, IconSend, IconShieldCog } from '@tabler/icons-react';
 import { FEATURES } from 'itam-shared/constants';
 import type { NavItem } from '~/components/nav-main';
 
@@ -27,6 +27,18 @@ const MAIN_MENU: NavItem[] = [
         title: 'menu.model',
         url: '/model',
         featureCode: FEATURES.MODEL,
+      },
+    ],
+  },
+  {
+    title: 'menu.admin',
+    url: '',
+    icon: IconShieldCog,
+    children: [
+      {
+        title: 'menu.user',
+        url: '/user',
+        featureCode: FEATURES.USER,
       },
     ],
   },

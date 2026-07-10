@@ -1,0 +1,41 @@
+{
+  "title": "ユーザー",
+  "addNew": "ユーザー追加",
+  "edit": "ユーザー編集",
+  "resetPassword": "パスワードリセット",
+  "resetPasswordConfirm": "このユーザーのパスワードをリセットしてもよろしいですか？新しいパスワードがメールで送信されます。",
+  "createSuccess": "ユーザーが正常に作成されました",
+  "updateSuccess": "ユーザーが正常に更新されました",
+  "resetPasswordSuccess": "パスワードが正常にリセットされました",
+  "status": {
+    "active": "有効",
+    "inactive": "無効"
+  },
+  "columns": {
+    "username": "ユーザー名",
+    "name": "氏名",
+    "email": "メール",
+    "isActive": "ステータス",
+    "createdBy": "作成者",
+    "createdAt": "作成日",
+    "updatedBy": "更新者",
+    "updatedAt": "更新日",
+    "actions": "操作"
+  },
+  "form": {
+    "username": "ユーザー名",
+    "name": "氏名",
+    "email": "メールアドレス",
+    "isActive": "有効",
+    "usernamePlaceholder": "8文字のユーザー名を入力",
+    "namePlaceholder": "氏名を入力",
+    "emailPlaceholder": "メールアドレスを入力"
+  },
+  "validation": {
+    "usernameRequired": "ユーザー名は必須です",
+    "usernameLength": "ユーザー名は8文字でなければなりません",
+    "emailInvalid": "無効なメールアドレスです",
+    "nameRequired": "氏名は必須です",
+    "nameMaxLength": "氏名は100文字以内でなければなりません"
+  }
+}
