@@ -38,4 +38,9 @@ const resetPassword = async (req: Request, res: Response) => {
   ApiResponse.ok(res, null, t('user:resetPasswordSuccess'));
 };
 
-export const userController = { list, getById, create, update, resetPassword };
+const remove = async (req: Request, res: Response) => {
+  await userService.remove(req.params.username as string);
+  ApiResponse.deleted(res);
+};
+
+export const userController = { list, getById, create, update, remove, resetPassword };

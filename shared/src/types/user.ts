@@ -3,6 +3,7 @@ export interface UserBase<TDate = string> {
   name: string | null;
   email: string | null;
   isActive: boolean;
+  deletedAt: TDate | null;
   createdBy: string;
   createdAt: TDate;
   updatedBy: string | null;

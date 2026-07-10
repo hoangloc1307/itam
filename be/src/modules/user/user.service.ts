@@ -11,8 +11,21 @@ interface ListParams {
   search?: string;
 }
 
+const userSelect = {
+  username: true,
+  name: true,
+  email: true,
+  isActive: true,
+  deletedAt: true,
+  createdBy: true,
+  createdAt: true,
+  updatedBy: true,
+  updatedAt: true,
+} as const;
+
 const list = async ({ page, limit, search }: ListParams) => {
   const where = {
+    deletedAt: null,
     ...(search
       ? {
           OR: [
@@ -27,16 +40,7 @@ const list = async ({ page, limit, search }: ListParams) => {
   const [data, totalItems] = await Promise.all([
     prisma.user.findMany({
       where,
-      select: {
-        username: true,
-        name: true,
-        email: true,
-        isActive: true,
-        createdBy: true,
-        createdAt: true,
-        updatedBy: true,
-        updatedAt: true,
-      },
+      select: userSelect,
       skip: (page - 1) * limit,
       take: limit,
       orderBy: { createdAt: 'desc' },
@@ -49,17 +53,8 @@ const list = async ({ page, limit, search }: ListParams) => {
 
 const getById = async (username: string) => {
   const user = await prisma.user.findUnique({
-    where: { username },
-    select: {
-      username: true,
-      name: true,
-      email: true,
-      isActive: true,
-      createdBy: true,
-      createdAt: true,
-      updatedBy: true,
-      updatedAt: true,
-    },
+    where: { username, deletedAt: null },
+    select: userSelect,
   });
 
   if (!user) {
@@ -72,11 +67,13 @@ const getById = async (username: string) => {
 const create = async (input: CreateUserInput, createdBy: string) => {
   const existing = await prisma.user.findUnique({ where: { username: input.username } });
 
-  if (existing) {
+  if (existing && !existing.deletedAt) {
     throw AppError.conflict(t('user:usernameExists'));
   }
 
-  const emailExists = await prisma.user.findUnique({ where: { email: input.email } });
+  const emailExists = await prisma.user.findFirst({
+    where: { email: input.email, deletedAt: null },
+  });
 
   if (emailExists) {
     throw AppError.conflict(t('user:emailExists'));
@@ -85,26 +82,37 @@ const create = async (input: CreateUserInput, createdBy: string) => {
   const plainPassword = generateRandomPassword();
   const hashedPassword = await hashPassword(plainPassword);
 
-  const user = await prisma.user.create({
-    data: {
-      username: input.username,
-      email: input.email,
-      name: input.name,
-      password: hashedPassword,
-      isActive: input.isActive,
-      createdBy,
-    },
-    select: {
-      username: true,
-      name: true,
-      email: true,
-      isActive: true,
-      createdBy: true,
-      createdAt: true,
-      updatedBy: true,
-      updatedAt: true,
-    },
-  });
+  let user;
+
+  if (existing && existing.deletedAt) {
+    user = await prisma.user.update({
+      where: { username: input.username },
+      data: {
+        email: input.email,
+        name: input.name,
+        password: hashedPassword,
+        isActive: input.isActive,
+        deletedAt: null,
+        createdBy,
+        createdAt: new Date(),
+        updatedBy: null,
+        updatedAt: null,
+      },
+      select: userSelect,
+    });
+  } else {
+    user = await prisma.user.create({
+      data: {
+        username: input.username,
+        email: input.email,
+        name: input.name,
+        password: hashedPassword,
+        isActive: input.isActive,
+        createdBy,
+      },
+      select: userSelect,
+    });
+  }
 
   await mailService.sendEmail({
     to: input.email,
@@ -117,7 +125,7 @@ const create = async (input: CreateUserInput, createdBy: string) => {
 };
 
 const update = async (username: string, input: UpdateUserInput, updatedBy: string) => {
-  const existing = await prisma.user.findUnique({ where: { username } });
+  const existing = await prisma.user.findUnique({ where: { username, deletedAt: null } });
 
   if (!existing) {
     throw AppError.notFound(t('user:notFound'));
@@ -125,7 +133,7 @@ const update = async (username: string, input: UpdateUserInput, updatedBy: strin
 
   if (input.email && input.email !== existing.email) {
     const emailExists = await prisma.user.findFirst({
-      where: { email: input.email, username: { not: username } },
+      where: { email: input.email, username: { not: username }, deletedAt: null },
     });
 
     if (emailExists) {
@@ -140,21 +148,25 @@ const update = async (username: string, input: UpdateUserInput, updatedBy: strin
       updatedBy,
       updatedAt: new Date(),
     },
-    select: {
-      username: true,
-      name: true,
-      email: true,
-      isActive: true,
-      createdBy: true,
-      createdAt: true,
-      updatedBy: true,
-      updatedAt: true,
-    },
+    select: userSelect,
+  });
+};
+
+const remove = async (username: string) => {
+  const existing = await prisma.user.findUnique({ where: { username, deletedAt: null } });
+
+  if (!existing) {
+    throw AppError.notFound(t('user:notFound'));
+  }
+
+  return prisma.user.update({
+    where: { username },
+    data: { deletedAt: new Date() },
   });
 };
 
 const resetPassword = async (username: string) => {
-  const user = await prisma.user.findUnique({ where: { username } });
+  const user = await prisma.user.findUnique({ where: { username, deletedAt: null } });
 
   if (!user) {
     throw AppError.notFound(t('user:notFound'));
@@ -180,4 +192,4 @@ const resetPassword = async (username: string) => {
   return { username };
 };
 
-export const userService = { list, getById, create, update, resetPassword };
+export const userService = { list, getById, create, update, remove, resetPassword };

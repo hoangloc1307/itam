@@ -26,5 +26,6 @@ router.post(
   authorize(FEATURES.USER, 'UPDATE'),
   userController.resetPassword,
 );
+router.delete('/:username', authorize(FEATURES.USER, 'DELETE'), userController.remove);
 
 export default router;
