@@ -1,0 +1,27 @@
+info:
+  name: Update
+  type: http
+  seq: 4
+
+http:
+  method: PUT
+  url: "{{API_URL}}/{{USER_ENDPOINT}}/:username"
+  params:
+    - name: username
+      value: ""
+      type: path
+  body:
+    type: json
+    data: |-
+      {
+        "email": "updated@example.com",
+        "name": "Nguyen Van B",
+        "isActive": true
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

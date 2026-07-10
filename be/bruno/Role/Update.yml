@@ -1,0 +1,26 @@
+info:
+  name: Update
+  type: http
+  seq: 4
+
+http:
+  method: PUT
+  url: "{{API_URL}}/{{ROLE_ENDPOINT}}/:code"
+  params:
+    - name: code
+      value: ""
+      type: path
+  body:
+    type: json
+    data: |-
+      {
+        "name": "Updated Role Name",
+        "isActive": true
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

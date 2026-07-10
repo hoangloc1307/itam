@@ -1,0 +1,19 @@
+info:
+  name: Remove
+  type: http
+  seq: 5
+
+http:
+  method: DELETE
+  url: "{{API_URL}}/{{ROLE_ENDPOINT}}/:code"
+  params:
+    - name: code
+      value: ""
+      type: path
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

@@ -10,3 +10,7 @@ variables:
     value: categories
   - name: ATTRIBUTE_ENDPOINT
     value: attributes
+  - name: USER_ENDPOINT
+    value: users
+  - name: ROLE_ENDPOINT
+    value: roles

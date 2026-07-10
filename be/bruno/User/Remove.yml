@@ -1,0 +1,20 @@
+info:
+  name: Remove
+  type: http
+  seq: 6
+
+http:
+  method: DELETE
+  url: '{{API_URL}}/{{USER_ENDPOINT}}/:username'
+  params:
+    - name: username
+      value: ''
+      type: path
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
