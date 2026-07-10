@@ -18,4 +18,7 @@ const update = async (username: string, payload: UpdateUserInput) =>
 const resetPassword = async (username: string) =>
   await api.post<ApiResponse<null>>(`${ENDPOINTS.USERS}/${username}/reset-password`);
 
-export const userApi = { list, getById, create, update, resetPassword };
+const remove = async (username: string) =>
+  await api.delete<ApiResponse<null>>(`${ENDPOINTS.USERS}/${username}`);
+
+export const userApi = { list, getById, create, update, remove, resetPassword };

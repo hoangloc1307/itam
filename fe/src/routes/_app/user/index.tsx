@@ -11,7 +11,7 @@ import { ConfirmDialog } from '~/components/confirm-dialog';
 import DataTable from '~/components/datatable/datatable';
 import { Button } from '~/components/ui/button';
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '~/components/ui/dialog';
-import { useResetPassword } from '~/hooks/mutations/use-user';
+import { useResetPassword, useDeleteUser } from '~/hooks/mutations/use-user';
 import useDatatable from '~/hooks/use-datatable';
 import { getUserColumns } from '~/routes/_app/user/user.columns';
 import { UserForm } from '~/routes/_app/user/user.form';
@@ -21,8 +21,10 @@ const UserPage = () => {
   const [open, setOpen] = useState(false);
   const [editing, setEditing] = useState<User | null>(null);
   const [resetUsername, setResetUsername] = useState<string | null>(null);
+  const [deleteUsername, setDeleteUsername] = useState<string | null>(null);
   const { data } = useSuspenseQuery(userQueries.all());
   const resetPasswordMutation = useResetPassword();
+  const deleteMutation = useDeleteUser();
   const users = data?.data ?? [];
 
   const handleEdit = (user: User) => {
@@ -32,6 +34,7 @@ const UserPage = () => {
 
   const columns = getUserColumns(t, i18n.language, {
     onEdit: handleEdit,
+    onDelete: (username) => setDeleteUsername(username),
     onResetPassword: (username) => setResetUsername(username),
   });
 
@@ -53,6 +56,12 @@ const UserPage = () => {
   const handleResetPassword = () => {
     if (resetUsername) {
       resetPasswordMutation.mutate(resetUsername);
+    }
+  };
+
+  const handleDelete = () => {
+    if (deleteUsername) {
+      deleteMutation.mutate(deleteUsername);
     }
   };
 
@@ -84,6 +93,13 @@ const UserPage = () => {
         onOpenChange={(open) => !open && setResetUsername(null)}
         title={t('resetPasswordConfirm')}
         onConfirm={handleResetPassword}
+      />
+
+      <ConfirmDialog
+        open={!!deleteUsername}
+        onOpenChange={(open) => !open && setDeleteUsername(null)}
+        title={t('deleteConfirm')}
+        onConfirm={handleDelete}
       />
     </div>
   );

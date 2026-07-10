@@ -1,6 +1,6 @@
 'use no memo';
 
-import { IconEdit, IconKey } from '@tabler/icons-react';
+import { IconEdit, IconKey, IconTrash } from '@tabler/icons-react';
 import { type ColumnDef } from '@tanstack/react-table';
 import type { TFunction } from 'i18next';
 import type { User } from 'itam-shared/types';
@@ -10,6 +10,7 @@ import { formatDate } from '~/lib/date';
 
 interface ColumnActions {
   onEdit: (user: User) => void;
+  onDelete: (username: string) => void;
   onResetPassword: (username: string) => void;
 }
 
@@ -41,9 +42,17 @@ export const getUserColumns = (
         >
           <IconKey className='size-4' />
         </Button>
+        <Button
+          variant='ghost'
+          size='icon'
+          title={t('deleteConfirm')}
+          onClick={() => actions.onDelete(row.original.username)}
+        >
+          <IconTrash className='size-4' />
+        </Button>
       </div>
     ),
-    size: 100,
+    size: 130,
   },
   {
     id: 'rowNumber',

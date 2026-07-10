@@ -45,3 +45,16 @@ export function useResetPassword() {
     },
   });
 }
+
+export function useDeleteUser() {
+  const queryClient = useQueryClient();
+  const { t } = useTranslation('user');
+
+  return useAppMutation({
+    mutationFn: (username: string) => userApi.remove(username),
+    onSuccess: () => {
+      toast.success(t('deleteSuccess'));
+      queryClient.invalidateQueries({ queryKey: userQueries.all().queryKey });
+    },
+  });
+}

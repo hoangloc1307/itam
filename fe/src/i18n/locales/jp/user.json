@@ -7,6 +7,8 @@
   "createSuccess": "ユーザーが正常に作成されました",
   "updateSuccess": "ユーザーが正常に更新されました",
   "resetPasswordSuccess": "パスワードが正常にリセットされました",
+  "deleteConfirm": "このユーザーを削除してもよろしいですか？",
+  "deleteSuccess": "ユーザーが正常に削除されました",
   "status": {
     "active": "有効",
     "inactive": "無効"
