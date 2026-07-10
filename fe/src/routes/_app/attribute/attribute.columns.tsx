@@ -25,10 +25,20 @@ export const getAttributeColumns = (
     enableSorting: false,
     cell: ({ row }) => (
       <div className='flex items-center gap-1'>
-        <Button variant='ghost' size='icon' onClick={() => actions.onEdit(row.original)}>
+        <Button
+          variant='ghost'
+          size='icon'
+          title={t('edit')}
+          onClick={() => actions.onEdit(row.original)}
+        >
           <IconEdit className='size-5' />
         </Button>
-        <Button variant='ghost' size='icon' onClick={() => actions.onDelete(row.original.id)}>
+        <Button
+          variant='ghost'
+          size='icon'
+          title={t('deleteConfirm')}
+          onClick={() => actions.onDelete(row.original.id)}
+        >
           <IconTrash className='size-5' />
         </Button>
       </div>
