@@ -15,13 +15,13 @@ import {
 
 const resolvePermissions = async (username: string): Promise<Permission[]> => {
   const userRoles = await prisma.userRole.findMany({
-    where: { username },
+    where: { username, role: { isActive: true, deletedAt: null } },
     select: { roleCode: true, section: true },
   });
 
   const roleCodes = [...new Set(userRoles.map((ur) => ur.roleCode))];
   const rolePermissions = await prisma.rolePermission.findMany({
-    where: { roleCode: { in: roleCodes } },
+    where: { roleCode: { in: roleCodes }, feature: { isActive: true, deletedAt: null } },
     select: { featureCode: true, action: true, roleCode: true, section: true },
   });
 
@@ -46,7 +46,7 @@ const resolvePermissions = async (username: string): Promise<Permission[]> => {
   }
 
   const userPermissions = await prisma.userPermission.findMany({
-    where: { username },
+    where: { username, feature: { isActive: true, deletedAt: null } },
     select: { featureCode: true, action: true, decision: true, section: true },
   });
 

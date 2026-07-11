@@ -28,7 +28,7 @@ async function checkPermission(
   action: Action,
 ): Promise<boolean> {
   const userRoles = await prisma.userRole.findMany({
-    where: { username },
+    where: { username, role: { isActive: true, deletedAt: null } },
     select: { roleCode: true, section: true },
   });
 
@@ -39,6 +39,7 @@ async function checkPermission(
       roleCode: { in: roleCodes },
       featureCode,
       action: { in: [action, 'MANAGE'] },
+      feature: { isActive: true, deletedAt: null },
     },
     select: { roleCode: true, section: true },
   });
@@ -61,6 +62,7 @@ async function checkPermission(
         featureCode,
         action,
         decision: 'DENY',
+        feature: { isActive: true, deletedAt: null },
         OR: [
           { section: null }, // DENY toàn hệ thống
           { section: { in: userSections.filter((s): s is string => s !== null) } },
@@ -77,7 +79,13 @@ async function checkPermission(
 
     // Bị DENY ở section cụ thể → check còn section nào khác có quyền không
     const deniedSections = await prisma.userPermission.findMany({
-      where: { username, featureCode, action, decision: 'DENY' },
+      where: {
+        username,
+        featureCode,
+        action,
+        decision: 'DENY',
+        feature: { isActive: true, deletedAt: null },
+      },
       select: { section: true },
     });
     const deniedSet = new Set(deniedSections.map((d) => d.section));
@@ -97,7 +105,13 @@ async function checkPermission(
 
   // 4. Check UserPermission ALLOW override
   const allowed = await prisma.userPermission.findFirst({
-    where: { username, featureCode, action, decision: 'ALLOW' },
+    where: {
+      username,
+      featureCode,
+      action,
+      decision: 'ALLOW',
+      feature: { isActive: true, deletedAt: null },
+    },
   });
 
   return !!allowed;
