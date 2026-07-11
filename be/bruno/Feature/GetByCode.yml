@@ -1,0 +1,19 @@
+info:
+  name: GetByCode
+  type: http
+  seq: 2
+
+http:
+  method: GET
+  url: '{{API_URL}}/{{FEATURE_ENDPOINT}}/:code'
+  params:
+    - name: code
+      value: CATEGORY
+      type: path
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

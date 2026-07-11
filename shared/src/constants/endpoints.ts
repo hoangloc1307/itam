@@ -3,6 +3,7 @@ export const ENDPOINTS = {
   CATEGORIES: '/categories',
   ATTRIBUTES: '/attributes',
   CATEGORY_ATTRIBUTES: '/category-attributes',
+  FEATURES: '/features',
   ROLES: '/roles',
   USERS: '/users',
 } as const;

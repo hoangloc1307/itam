@@ -4,6 +4,7 @@ export const FEATURES = {
   MODEL: 'MODEL',
   ROLE: 'ROLE',
   USER: 'USER',
+  FEATURE: 'FEATURE',
 } as const;
 
 export type Feature = (typeof FEATURES)[keyof typeof FEATURES];

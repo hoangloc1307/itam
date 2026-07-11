@@ -1,0 +1,36 @@
+{
+  "title": "Chức năng",
+  "addNew": "Thêm chức năng",
+  "edit": "Sửa chức năng",
+  "deleteConfirm": "Bạn có chắc muốn xóa chức năng này?",
+  "createSuccess": "Tạo chức năng thành công",
+  "updateSuccess": "Cập nhật chức năng thành công",
+  "deleteSuccess": "Xóa chức năng thành công",
+  "status": {
+    "active": "Hoạt động",
+    "inactive": "Ngừng hoạt động"
+  },
+  "columns": {
+    "code": "Mã",
+    "name": "Tên chức năng",
+    "isActive": "Hoạt động",
+    "createdBy": "Người tạo",
+    "createdAt": "Ngày tạo",
+    "updatedBy": "Người cập nhật",
+    "updatedAt": "Ngày cập nhật",
+    "actions": "Thao tác"
+  },
+  "form": {
+    "code": "Mã chức năng",
+    "name": "Tên chức năng",
+    "isActive": "Hoạt động",
+    "codePlaceholder": "Nhập mã chức năng",
+    "namePlaceholder": "Nhập tên chức năng"
+  },
+  "validation": {
+    "codeRequired": "Mã chức năng là bắt buộc",
+    "codeMaxLength": "Mã chức năng tối đa 100 ký tự",
+    "nameRequired": "Tên chức năng là bắt buộc",
+    "nameMaxLength": "Tên chức năng tối đa 150 ký tự"
+  }
+}

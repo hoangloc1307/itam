@@ -22,6 +22,7 @@ i18n
       'category',
       'categoryAttribute',
       'attribute',
+      'feature',
       'role',
       'user',
       'datatable',

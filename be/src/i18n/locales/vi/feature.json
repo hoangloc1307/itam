@@ -1,0 +1,10 @@
+{
+  "notFound": "Không tìm thấy chức năng",
+  "alreadyExists": "Mã chức năng đã tồn tại",
+  "validation": {
+    "codeRequired": "Mã chức năng là bắt buộc",
+    "codeMaxLength": "Mã chức năng tối đa 100 ký tự",
+    "nameRequired": "Tên chức năng là bắt buộc",
+    "nameMaxLength": "Tên chức năng tối đa 150 ký tự"
+  }
+}

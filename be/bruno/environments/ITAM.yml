@@ -12,5 +12,7 @@ variables:
     value: attributes
   - name: USER_ENDPOINT
     value: users
+  - name: FEATURE_ENDPOINT
+    value: features
   - name: ROLE_ENDPOINT
     value: roles

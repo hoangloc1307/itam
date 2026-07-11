@@ -1,0 +1,10 @@
+{
+  "notFound": "Feature not found",
+  "alreadyExists": "Feature code already exists",
+  "validation": {
+    "codeRequired": "Feature code is required",
+    "codeMaxLength": "Feature code must be at most 100 characters",
+    "nameRequired": "Feature name is required",
+    "nameMaxLength": "Feature name must be at most 150 characters"
+  }
+}

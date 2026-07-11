@@ -1,0 +1,36 @@
+{
+  "title": "機能",
+  "addNew": "機能を追加",
+  "edit": "機能を編集",
+  "deleteConfirm": "この機能を削除してもよろしいですか？",
+  "createSuccess": "機能を作成しました",
+  "updateSuccess": "機能を更新しました",
+  "deleteSuccess": "機能を削除しました",
+  "status": {
+    "active": "有効",
+    "inactive": "無効"
+  },
+  "columns": {
+    "code": "コード",
+    "name": "名前",
+    "isActive": "有効",
+    "createdBy": "作成者",
+    "createdAt": "作成日",
+    "updatedBy": "更新者",
+    "updatedAt": "更新日",
+    "actions": "操作"
+  },
+  "form": {
+    "code": "機能コード",
+    "name": "機能名",
+    "isActive": "有効",
+    "codePlaceholder": "機能コードを入力",
+    "namePlaceholder": "機能名を入力"
+  },
+  "validation": {
+    "codeRequired": "機能コードは必須です",
+    "codeMaxLength": "機能コードは最大100文字です",
+    "nameRequired": "機能名は必須です",
+    "nameMaxLength": "機能名は最大150文字です"
+  }
+}
