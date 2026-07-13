@@ -27,6 +27,7 @@ i18n
       'rolePermission',
       'user',
       'userRole',
+      'userPermission',
       'datatable',
     ],
     defaultNS: 'common',

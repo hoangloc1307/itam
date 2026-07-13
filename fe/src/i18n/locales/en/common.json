@@ -19,6 +19,7 @@
     "role": "Roles",
     "rolePermission": "Role Permissions",
     "userRole": "User Roles",
+    "userPermission": "User Permissions",
     "user": "Users",
     "support": "Support",
     "feedback": "Feedback"

@@ -56,6 +56,11 @@ const MAIN_MENU: NavItem[] = [
         featureCode: FEATURES.USER,
       },
       {
+        title: 'menu.userPermission',
+        url: '/user-permission',
+        featureCode: FEATURES.USER,
+      },
+      {
         title: 'menu.user',
         url: '/user',
         featureCode: FEATURES.USER,

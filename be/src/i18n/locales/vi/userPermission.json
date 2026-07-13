@@ -1,0 +1,16 @@
+{
+  "notFound": "Không tìm thấy quyền người dùng",
+  "userNotFound": "Không tìm thấy người dùng",
+  "featureNotFound": "Không tìm thấy chức năng",
+  "alreadyExists": "Quyền này đã tồn tại cho người dùng",
+  "syncSuccess": "Đồng bộ quyền người dùng thành công",
+  "validation": {
+    "usernameRequired": "Tên đăng nhập là bắt buộc",
+    "usernameMaxLength": "Tên đăng nhập tối đa 8 ký tự",
+    "featureCodeRequired": "Mã chức năng là bắt buộc",
+    "featureCodeMaxLength": "Mã chức năng tối đa 100 ký tự",
+    "actionRequired": "Hành động là bắt buộc",
+    "decisionRequired": "Loại quyết định là bắt buộc",
+    "sectionMaxLength": "Mã bộ phận tối đa 4 ký tự"
+  }
+}

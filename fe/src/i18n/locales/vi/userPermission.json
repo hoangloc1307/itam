@@ -1,0 +1,43 @@
+{
+  "title": "Quyền riêng người dùng",
+  "addNew": "Thêm quyền",
+  "edit": "Sửa quyền",
+  "deleteConfirm": "Bạn có chắc muốn xóa quyền này?",
+  "createSuccess": "Thêm quyền thành công",
+  "syncSuccess": "Đồng bộ quyền thành công",
+  "deleteSuccess": "Xóa quyền thành công",
+  "updateSuccess": "Cập nhật quyền thành công",
+  "selectUser": "Chọn người dùng",
+  "searchUser": "Tìm người dùng...",
+  "noUserFound": "Không tìm thấy người dùng.",
+  "allSections": "Tất cả bộ phận",
+  "columns": {
+    "user": "Người dùng",
+    "feature": "Chức năng",
+    "action": "Hành động",
+    "decision": "Quyết định",
+    "section": "Bộ phận",
+    "actions": "Thao tác"
+  },
+  "form": {
+    "username": "Người dùng",
+    "featureCode": "Chức năng",
+    "action": "Hành động",
+    "decision": "Quyết định",
+    "section": "Bộ phận",
+    "usernamePlaceholder": "Chọn người dùng",
+    "featureCodePlaceholder": "Chọn chức năng",
+    "actionPlaceholder": "Chọn hành động",
+    "decisionPlaceholder": "Chọn loại quyết định",
+    "sectionPlaceholder": "Nhập mã bộ phận (tùy chọn)"
+  },
+  "validation": {
+    "usernameRequired": "Tên đăng nhập là bắt buộc",
+    "usernameMaxLength": "Tên đăng nhập tối đa 8 ký tự",
+    "featureCodeRequired": "Mã chức năng là bắt buộc",
+    "featureCodeMaxLength": "Mã chức năng tối đa 100 ký tự",
+    "actionRequired": "Hành động là bắt buộc",
+    "decisionRequired": "Loại quyết định là bắt buộc",
+    "sectionMaxLength": "Mã bộ phận tối đa 4 ký tự"
+  }
+}

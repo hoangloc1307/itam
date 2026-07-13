@@ -1,0 +1,43 @@
+{
+  "title": "User Permissions",
+  "addNew": "Add permission",
+  "edit": "Edit permission",
+  "deleteConfirm": "Are you sure you want to remove this permission?",
+  "createSuccess": "Permission added successfully",
+  "syncSuccess": "Permissions synced successfully",
+  "deleteSuccess": "Permission removed successfully",
+  "updateSuccess": "Permission updated successfully",
+  "selectUser": "Select user",
+  "searchUser": "Search user...",
+  "noUserFound": "No user found.",
+  "allSections": "All departments",
+  "columns": {
+    "user": "User",
+    "feature": "Feature",
+    "action": "Action",
+    "decision": "Decision",
+    "section": "Department",
+    "actions": "Actions"
+  },
+  "form": {
+    "username": "User",
+    "featureCode": "Feature",
+    "action": "Action",
+    "decision": "Decision",
+    "section": "Department",
+    "usernamePlaceholder": "Select a user",
+    "featureCodePlaceholder": "Select a feature",
+    "actionPlaceholder": "Select an action",
+    "decisionPlaceholder": "Select decision type",
+    "sectionPlaceholder": "Enter department code (optional)"
+  },
+  "validation": {
+    "usernameRequired": "Username is required",
+    "usernameMaxLength": "Username must be at most 8 characters",
+    "featureCodeRequired": "Feature code is required",
+    "featureCodeMaxLength": "Feature code must be at most 100 characters",
+    "actionRequired": "Action is required",
+    "decisionRequired": "Decision is required",
+    "sectionMaxLength": "Department code must be at most 4 characters"
+  }
+}

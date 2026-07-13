@@ -19,6 +19,7 @@ i18next.use(Backend).init({
     'role',
     'rolePermission',
     'user',
+    'userPermission',
     'userRole',
   ],
   defaultNS: 'common',

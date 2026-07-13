@@ -12,4 +12,11 @@ export type {
   RolePermissionGroup,
 } from './role-permission';
 export type { User, UserBase, UserEntity } from './user';
+export type {
+  UserPermission,
+  UserPermissionBase,
+  UserPermissionEntity,
+  UserPermissionGroup,
+  Decision,
+} from './user-permission';
 export type { UserRole, UserRoleBase, UserRoleEntity, UserRoleGroup } from './user-role';

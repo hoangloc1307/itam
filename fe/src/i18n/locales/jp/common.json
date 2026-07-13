@@ -19,6 +19,7 @@
     "role": "ロール",
     "rolePermission": "ロール権限",
     "userRole": "ユーザーロール",
+    "userPermission": "ユーザー権限",
     "user": "ユーザー",
     "support": "サポート",
     "feedback": "フィードバック"

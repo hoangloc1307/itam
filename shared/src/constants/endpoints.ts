@@ -6,6 +6,7 @@ export const ENDPOINTS = {
   FEATURES: '/features',
   ROLES: '/roles',
   ROLE_PERMISSIONS: '/role-permissions',
+  USER_PERMISSIONS: '/user-permissions',
   USER_ROLES: '/user-roles',
   USERS: '/users',
 } as const;

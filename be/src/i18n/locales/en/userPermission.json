@@ -1,0 +1,16 @@
+{
+  "notFound": "User permission not found",
+  "userNotFound": "User not found",
+  "featureNotFound": "Feature not found",
+  "alreadyExists": "This permission already exists for the user",
+  "syncSuccess": "User permissions synced successfully",
+  "validation": {
+    "usernameRequired": "Username is required",
+    "usernameMaxLength": "Username must be at most 8 characters",
+    "featureCodeRequired": "Feature code is required",
+    "featureCodeMaxLength": "Feature code must be at most 100 characters",
+    "actionRequired": "Action is required",
+    "decisionRequired": "Decision is required",
+    "sectionMaxLength": "Department code must be at most 4 characters"
+  }
+}

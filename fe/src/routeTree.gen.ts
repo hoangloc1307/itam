@@ -17,6 +17,7 @@ import { Route as AuthLoginRouteImport } from './routes/_auth/login';
 import { Route as AppDashboardRouteImport } from './routes/_app/dashboard';
 import { Route as AppUserIndexRouteImport } from './routes/_app/user/index';
 import { Route as AppUserRoleIndexRouteImport } from './routes/_app/user-role/index';
+import { Route as AppUserPermissionIndexRouteImport } from './routes/_app/user-permission/index';
 import { Route as AppRoleIndexRouteImport } from './routes/_app/role/index';
 import { Route as AppRolePermissionIndexRouteImport } from './routes/_app/role-permission/index';
 import { Route as AppFeatureIndexRouteImport } from './routes/_app/feature/index';
@@ -62,6 +63,11 @@ const AppUserRoleIndexRoute = AppUserRoleIndexRouteImport.update({
   path: '/user-role/',
   getParentRoute: () => AppRoute,
 } as any);
+const AppUserPermissionIndexRoute = AppUserPermissionIndexRouteImport.update({
+  id: '/user-permission/',
+  path: '/user-permission/',
+  getParentRoute: () => AppRoute,
+} as any);
 const AppRoleIndexRoute = AppRoleIndexRouteImport.update({
   id: '/role/',
   path: '/role/',
@@ -105,6 +111,7 @@ export interface FileRoutesByFullPath {
   '/feature/': typeof AppFeatureIndexRoute;
   '/role-permission/': typeof AppRolePermissionIndexRoute;
   '/role/': typeof AppRoleIndexRoute;
+  '/user-permission/': typeof AppUserPermissionIndexRoute;
   '/user-role/': typeof AppUserRoleIndexRoute;
   '/user/': typeof AppUserIndexRoute;
 }
@@ -119,6 +126,7 @@ export interface FileRoutesByTo {
   '/feature': typeof AppFeatureIndexRoute;
   '/role-permission': typeof AppRolePermissionIndexRoute;
   '/role': typeof AppRoleIndexRoute;
+  '/user-permission': typeof AppUserPermissionIndexRoute;
   '/user-role': typeof AppUserRoleIndexRoute;
   '/user': typeof AppUserIndexRoute;
 }
@@ -136,6 +144,7 @@ export interface FileRoutesById {
   '/_app/feature/': typeof AppFeatureIndexRoute;
   '/_app/role-permission/': typeof AppRolePermissionIndexRoute;
   '/_app/role/': typeof AppRoleIndexRoute;
+  '/_app/user-permission/': typeof AppUserPermissionIndexRoute;
   '/_app/user-role/': typeof AppUserRoleIndexRoute;
   '/_app/user/': typeof AppUserIndexRoute;
 }
@@ -152,6 +161,7 @@ export interface FileRouteTypes {
     | '/feature/'
     | '/role-permission/'
     | '/role/'
+    | '/user-permission/'
     | '/user-role/'
     | '/user/';
   fileRoutesByTo: FileRoutesByTo;
@@ -166,6 +176,7 @@ export interface FileRouteTypes {
     | '/feature'
     | '/role-permission'
     | '/role'
+    | '/user-permission'
     | '/user-role'
     | '/user';
   id:
@@ -182,6 +193,7 @@ export interface FileRouteTypes {
     | '/_app/feature/'
     | '/_app/role-permission/'
     | '/_app/role/'
+    | '/_app/user-permission/'
     | '/_app/user-role/'
     | '/_app/user/';
   fileRoutesById: FileRoutesById;
@@ -250,6 +262,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppUserRoleIndexRouteImport;
       parentRoute: typeof AppRoute;
     };
+    '/_app/user-permission/': {
+      id: '/_app/user-permission/';
+      path: '/user-permission';
+      fullPath: '/user-permission/';
+      preLoaderRoute: typeof AppUserPermissionIndexRouteImport;
+      parentRoute: typeof AppRoute;
+    };
     '/_app/role/': {
       id: '/_app/role/';
       path: '/role';
@@ -303,6 +322,7 @@ interface AppRouteChildren {
   AppFeatureIndexRoute: typeof AppFeatureIndexRoute;
   AppRolePermissionIndexRoute: typeof AppRolePermissionIndexRoute;
   AppRoleIndexRoute: typeof AppRoleIndexRoute;
+  AppUserPermissionIndexRoute: typeof AppUserPermissionIndexRoute;
   AppUserRoleIndexRoute: typeof AppUserRoleIndexRoute;
   AppUserIndexRoute: typeof AppUserIndexRoute;
 }
@@ -315,6 +335,7 @@ const AppRouteChildren: AppRouteChildren = {
   AppFeatureIndexRoute: AppFeatureIndexRoute,
   AppRolePermissionIndexRoute: AppRolePermissionIndexRoute,
   AppRoleIndexRoute: AppRoleIndexRoute,
+  AppUserPermissionIndexRoute: AppUserPermissionIndexRoute,
   AppUserRoleIndexRoute: AppUserRoleIndexRoute,
   AppUserIndexRoute: AppUserIndexRoute,
 };

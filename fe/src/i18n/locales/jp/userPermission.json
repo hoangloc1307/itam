@@ -1,0 +1,43 @@
+{
+  "title": "ユーザー権限",
+  "addNew": "権限を追加",
+  "edit": "権限を編集",
+  "deleteConfirm": "この権限を削除してもよろしいですか？",
+  "createSuccess": "権限を追加しました",
+  "syncSuccess": "権限を同期しました",
+  "deleteSuccess": "権限を削除しました",
+  "updateSuccess": "権限を更新しました",
+  "selectUser": "ユーザーを選択",
+  "searchUser": "ユーザーを検索...",
+  "noUserFound": "ユーザーが見つかりません。",
+  "allSections": "全部門",
+  "columns": {
+    "user": "ユーザー",
+    "feature": "機能",
+    "action": "アクション",
+    "decision": "決定",
+    "section": "部門",
+    "actions": "操作"
+  },
+  "form": {
+    "username": "ユーザー",
+    "featureCode": "機能",
+    "action": "アクション",
+    "decision": "決定",
+    "section": "部門",
+    "usernamePlaceholder": "ユーザーを選択",
+    "featureCodePlaceholder": "機能を選択",
+    "actionPlaceholder": "アクションを選択",
+    "decisionPlaceholder": "決定タイプを選択",
+    "sectionPlaceholder": "部門コードを入力（任意）"
+  },
+  "validation": {
+    "usernameRequired": "ユーザー名は必須です",
+    "usernameMaxLength": "ユーザー名は8文字以内で入力してください",
+    "featureCodeRequired": "機能コードは必須です",
+    "featureCodeMaxLength": "機能コードは100文字以内で入力してください",
+    "actionRequired": "アクションは必須です",
+    "decisionRequired": "決定タイプは必須です",
+    "sectionMaxLength": "部門コードは4文字以内で入力してください"
+  }
+}
