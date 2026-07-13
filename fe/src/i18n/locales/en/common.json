@@ -17,6 +17,7 @@
     "admin": "Administration",
     "feature": "Features",
     "role": "Roles",
+    "rolePermission": "Role Permissions",
     "user": "Users",
     "support": "Support",
     "feedback": "Feedback"

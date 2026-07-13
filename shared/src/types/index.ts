@@ -5,4 +5,10 @@ export type { Category, CategoryBase, CategoryEntity } from './category';
 export type { CategoryAttributeItem, SyncAttributePayload } from './category-attribute';
 export type { Feature, FeatureBase, FeatureEntity } from './feature';
 export type { Role, RoleBase, RoleEntity } from './role';
+export type {
+  RolePermission,
+  RolePermissionBase,
+  RolePermissionEntity,
+  RolePermissionGroup,
+} from './role-permission';
 export type { User, UserBase, UserEntity } from './user';

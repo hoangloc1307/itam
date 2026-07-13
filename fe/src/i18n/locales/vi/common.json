@@ -17,6 +17,7 @@
     "admin": "Quản trị",
     "feature": "Chức năng",
     "role": "Vai trò",
+    "rolePermission": "Phân quyền vai trò",
     "user": "Người dùng",
     "support": "Hỗ trợ",
     "feedback": "Góp ý"

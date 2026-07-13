@@ -1,0 +1,41 @@
+{
+  "title": "Phân quyền vai trò",
+  "addNew": "Thêm quyền",
+  "edit": "Sửa quyền",
+  "deleteConfirm": "Bạn có chắc muốn xóa quyền này?",
+  "createSuccess": "Thêm quyền thành công",
+  "syncSuccess": "Đồng bộ quyền thành công",
+  "deleteSuccess": "Xóa quyền thành công",
+  "updateSuccess": "Cập nhật quyền thành công",
+  "selectRole": "Chọn vai trò",
+  "searchRole": "Tìm vai trò...",
+  "noRoleFound": "Không tìm thấy vai trò.",
+  "selectFeature": "Chọn chức năng",
+  "selectAction": "Chọn hành động",
+  "allSections": "Tất cả bộ phận",
+  "columns": {
+    "role": "Vai trò",
+    "feature": "Chức năng",
+    "action": "Hành động",
+    "section": "Bộ phận",
+    "actions": "Thao tác"
+  },
+  "form": {
+    "roleCode": "Vai trò",
+    "featureCode": "Chức năng",
+    "action": "Hành động",
+    "section": "Bộ phận",
+    "roleCodePlaceholder": "Chọn vai trò",
+    "featureCodePlaceholder": "Chọn chức năng",
+    "actionPlaceholder": "Chọn hành động",
+    "sectionPlaceholder": "Nhập mã bộ phận (tùy chọn)"
+  },
+  "validation": {
+    "roleCodeRequired": "Mã vai trò là bắt buộc",
+    "roleCodeMaxLength": "Mã vai trò tối đa 50 ký tự",
+    "featureCodeRequired": "Mã chức năng là bắt buộc",
+    "featureCodeMaxLength": "Mã chức năng tối đa 100 ký tự",
+    "actionRequired": "Hành động là bắt buộc",
+    "sectionMaxLength": "Mã bộ phận tối đa 4 ký tự"
+  }
+}

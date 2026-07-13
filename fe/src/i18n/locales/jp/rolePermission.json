@@ -1,0 +1,41 @@
+{
+  "title": "ロール権限",
+  "addNew": "権限を追加",
+  "edit": "権限を編集",
+  "deleteConfirm": "この権限を削除してもよろしいですか？",
+  "createSuccess": "権限を追加しました",
+  "syncSuccess": "権限を同期しました",
+  "deleteSuccess": "権限を削除しました",
+  "updateSuccess": "権限を更新しました",
+  "selectRole": "ロールを選択",
+  "searchRole": "ロールを検索...",
+  "noRoleFound": "ロールが見つかりません。",
+  "selectFeature": "機能を選択",
+  "selectAction": "アクションを選択",
+  "allSections": "全部門",
+  "columns": {
+    "role": "ロール",
+    "feature": "機能",
+    "action": "アクション",
+    "section": "部門",
+    "actions": "操作"
+  },
+  "form": {
+    "roleCode": "ロール",
+    "featureCode": "機能",
+    "action": "アクション",
+    "section": "部門",
+    "roleCodePlaceholder": "ロールを選択",
+    "featureCodePlaceholder": "機能を選択",
+    "actionPlaceholder": "アクションを選択",
+    "sectionPlaceholder": "部門コードを入力（任意）"
+  },
+  "validation": {
+    "roleCodeRequired": "ロールコードは必須です",
+    "roleCodeMaxLength": "ロールコードは50文字以内で入力してください",
+    "featureCodeRequired": "機能コードは必須です",
+    "featureCodeMaxLength": "機能コードは100文字以内で入力してください",
+    "actionRequired": "アクションは必須です",
+    "sectionMaxLength": "部門コードは4文字以内で入力してください"
+  }
+}

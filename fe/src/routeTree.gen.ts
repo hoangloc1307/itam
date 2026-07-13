@@ -17,6 +17,7 @@ import { Route as AuthLoginRouteImport } from './routes/_auth/login';
 import { Route as AppDashboardRouteImport } from './routes/_app/dashboard';
 import { Route as AppUserIndexRouteImport } from './routes/_app/user/index';
 import { Route as AppRoleIndexRouteImport } from './routes/_app/role/index';
+import { Route as AppRolePermissionIndexRouteImport } from './routes/_app/role-permission/index';
 import { Route as AppFeatureIndexRouteImport } from './routes/_app/feature/index';
 import { Route as AppCategoryIndexRouteImport } from './routes/_app/category/index';
 import { Route as AppCategoryAttributeIndexRouteImport } from './routes/_app/category-attribute/index';
@@ -60,6 +61,11 @@ const AppRoleIndexRoute = AppRoleIndexRouteImport.update({
   path: '/role/',
   getParentRoute: () => AppRoute,
 } as any);
+const AppRolePermissionIndexRoute = AppRolePermissionIndexRouteImport.update({
+  id: '/role-permission/',
+  path: '/role-permission/',
+  getParentRoute: () => AppRoute,
+} as any);
 const AppFeatureIndexRoute = AppFeatureIndexRouteImport.update({
   id: '/feature/',
   path: '/feature/',
@@ -91,6 +97,7 @@ export interface FileRoutesByFullPath {
   '/category-attribute/': typeof AppCategoryAttributeIndexRoute;
   '/category/': typeof AppCategoryIndexRoute;
   '/feature/': typeof AppFeatureIndexRoute;
+  '/role-permission/': typeof AppRolePermissionIndexRoute;
   '/role/': typeof AppRoleIndexRoute;
   '/user/': typeof AppUserIndexRoute;
 }
@@ -103,6 +110,7 @@ export interface FileRoutesByTo {
   '/category-attribute': typeof AppCategoryAttributeIndexRoute;
   '/category': typeof AppCategoryIndexRoute;
   '/feature': typeof AppFeatureIndexRoute;
+  '/role-permission': typeof AppRolePermissionIndexRoute;
   '/role': typeof AppRoleIndexRoute;
   '/user': typeof AppUserIndexRoute;
 }
@@ -118,6 +126,7 @@ export interface FileRoutesById {
   '/_app/category-attribute/': typeof AppCategoryAttributeIndexRoute;
   '/_app/category/': typeof AppCategoryIndexRoute;
   '/_app/feature/': typeof AppFeatureIndexRoute;
+  '/_app/role-permission/': typeof AppRolePermissionIndexRoute;
   '/_app/role/': typeof AppRoleIndexRoute;
   '/_app/user/': typeof AppUserIndexRoute;
 }
@@ -132,6 +141,7 @@ export interface FileRouteTypes {
     | '/category-attribute/'
     | '/category/'
     | '/feature/'
+    | '/role-permission/'
     | '/role/'
     | '/user/';
   fileRoutesByTo: FileRoutesByTo;
@@ -144,6 +154,7 @@ export interface FileRouteTypes {
     | '/category-attribute'
     | '/category'
     | '/feature'
+    | '/role-permission'
     | '/role'
     | '/user';
   id:
@@ -158,6 +169,7 @@ export interface FileRouteTypes {
     | '/_app/category-attribute/'
     | '/_app/category/'
     | '/_app/feature/'
+    | '/_app/role-permission/'
     | '/_app/role/'
     | '/_app/user/';
   fileRoutesById: FileRoutesById;
@@ -226,6 +238,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppRoleIndexRouteImport;
       parentRoute: typeof AppRoute;
     };
+    '/_app/role-permission/': {
+      id: '/_app/role-permission/';
+      path: '/role-permission';
+      fullPath: '/role-permission/';
+      preLoaderRoute: typeof AppRolePermissionIndexRouteImport;
+      parentRoute: typeof AppRoute;
+    };
     '/_app/feature/': {
       id: '/_app/feature/';
       path: '/feature';
@@ -263,6 +282,7 @@ interface AppRouteChildren {
   AppCategoryAttributeIndexRoute: typeof AppCategoryAttributeIndexRoute;
   AppCategoryIndexRoute: typeof AppCategoryIndexRoute;
   AppFeatureIndexRoute: typeof AppFeatureIndexRoute;
+  AppRolePermissionIndexRoute: typeof AppRolePermissionIndexRoute;
   AppRoleIndexRoute: typeof AppRoleIndexRoute;
   AppUserIndexRoute: typeof AppUserIndexRoute;
 }
@@ -273,6 +293,7 @@ const AppRouteChildren: AppRouteChildren = {
   AppCategoryAttributeIndexRoute: AppCategoryAttributeIndexRoute,
   AppCategoryIndexRoute: AppCategoryIndexRoute,
   AppFeatureIndexRoute: AppFeatureIndexRoute,
+  AppRolePermissionIndexRoute: AppRolePermissionIndexRoute,
   AppRoleIndexRoute: AppRoleIndexRoute,
   AppUserIndexRoute: AppUserIndexRoute,
 };

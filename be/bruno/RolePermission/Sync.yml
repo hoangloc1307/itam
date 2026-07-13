@@ -1,0 +1,33 @@
+info:
+  name: Sync
+  type: http
+  seq: 4
+
+http:
+  method: PUT
+  url: "{{API_URL}}/{{ROLE_PERMISSION_ENDPOINT}}/sync"
+  body:
+    type: json
+    data: |-
+      {
+        "roleCode": "ADMIN",
+        "permissions": [
+          {
+            "featureCode": "CATEGORY",
+            "action": "READ",
+            "section": null
+          },
+          {
+            "featureCode": "CATEGORY",
+            "action": "CREATE",
+            "section": null
+          }
+        ]
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

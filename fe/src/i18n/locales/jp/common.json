@@ -17,6 +17,7 @@
     "admin": "管理",
     "feature": "機能",
     "role": "ロール",
+    "rolePermission": "ロール権限",
     "user": "ユーザー",
     "support": "サポート",
     "feedback": "フィードバック"

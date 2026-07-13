@@ -1,0 +1,15 @@
+{
+  "notFound": "Không tìm thấy quyền vai trò",
+  "roleNotFound": "Không tìm thấy vai trò",
+  "featureNotFound": "Không tìm thấy chức năng",
+  "alreadyExists": "Quyền này đã tồn tại cho vai trò",
+  "syncSuccess": "Đồng bộ quyền vai trò thành công",
+  "validation": {
+    "roleCodeRequired": "Mã vai trò là bắt buộc",
+    "roleCodeMaxLength": "Mã vai trò tối đa 50 ký tự",
+    "featureCodeRequired": "Mã chức năng là bắt buộc",
+    "featureCodeMaxLength": "Mã chức năng tối đa 100 ký tự",
+    "actionRequired": "Hành động là bắt buộc",
+    "sectionMaxLength": "Mã bộ phận tối đa 4 ký tự"
+  }
+}

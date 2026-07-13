@@ -24,6 +24,7 @@ i18n
       'attribute',
       'feature',
       'role',
+      'rolePermission',
       'user',
       'datatable',
     ],

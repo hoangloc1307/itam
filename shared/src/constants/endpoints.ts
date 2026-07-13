@@ -5,5 +5,6 @@ export const ENDPOINTS = {
   CATEGORY_ATTRIBUTES: '/category-attributes',
   FEATURES: '/features',
   ROLES: '/roles',
+  ROLE_PERMISSIONS: '/role-permissions',
   USERS: '/users',
 } as const;

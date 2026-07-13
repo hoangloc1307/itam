@@ -6,6 +6,7 @@ import categoryAttributeRouter from '~/modules/category-attribute/category-attri
 import categoryRouter from '~/modules/category/category.route';
 import featureRouter from '~/modules/feature/feature.route';
 import roleRouter from '~/modules/role/role.route';
+import rolePermissionRouter from '~/modules/role-permission/role-permission.route';
 import userRouter from '~/modules/user/user.route';
 
 interface ModuleConfig {
@@ -21,5 +22,6 @@ export const modulesConfig: ModuleConfig[] = [
   { path: ENDPOINTS.CATEGORIES, router: categoryRouter },
   { path: ENDPOINTS.FEATURES, router: featureRouter },
   { path: ENDPOINTS.ROLES, router: roleRouter },
+  { path: ENDPOINTS.ROLE_PERMISSIONS, router: rolePermissionRouter },
   { path: ENDPOINTS.USERS, router: userRouter },
 ];

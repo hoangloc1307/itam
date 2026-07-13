@@ -1,0 +1,41 @@
+{
+  "title": "Role Permissions",
+  "addNew": "Add permission",
+  "edit": "Edit permission",
+  "deleteConfirm": "Are you sure you want to delete this permission?",
+  "createSuccess": "Permission created successfully",
+  "syncSuccess": "Permissions synced successfully",
+  "deleteSuccess": "Permission deleted successfully",
+  "updateSuccess": "Permission updated successfully",
+  "selectRole": "Select role",
+  "searchRole": "Search role...",
+  "noRoleFound": "No role found.",
+  "selectFeature": "Select feature",
+  "selectAction": "Select action",
+  "allSections": "All departments",
+  "columns": {
+    "role": "Role",
+    "feature": "Feature",
+    "action": "Action",
+    "section": "Department",
+    "actions": "Actions"
+  },
+  "form": {
+    "roleCode": "Role",
+    "featureCode": "Feature",
+    "action": "Action",
+    "section": "Department",
+    "roleCodePlaceholder": "Select a role",
+    "featureCodePlaceholder": "Select a feature",
+    "actionPlaceholder": "Select an action",
+    "sectionPlaceholder": "Enter department code (optional)"
+  },
+  "validation": {
+    "roleCodeRequired": "Role code is required",
+    "roleCodeMaxLength": "Role code must be at most 50 characters",
+    "featureCodeRequired": "Feature code is required",
+    "featureCodeMaxLength": "Feature code must be at most 100 characters",
+    "actionRequired": "Action is required",
+    "sectionMaxLength": "Department code must be at most 4 characters"
+  }
+}

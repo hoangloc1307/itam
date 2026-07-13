@@ -16,3 +16,5 @@ variables:
     value: features
   - name: ROLE_ENDPOINT
     value: roles
+  - name: ROLE_PERMISSION_ENDPOINT
+    value: role-permissions

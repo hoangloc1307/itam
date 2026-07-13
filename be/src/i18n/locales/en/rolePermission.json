@@ -1,0 +1,15 @@
+{
+  "notFound": "Role permission not found",
+  "roleNotFound": "Role not found",
+  "featureNotFound": "Feature not found",
+  "alreadyExists": "This permission already exists for the role",
+  "syncSuccess": "Role permissions synced successfully",
+  "validation": {
+    "roleCodeRequired": "Role code is required",
+    "roleCodeMaxLength": "Role code must be at most 50 characters",
+    "featureCodeRequired": "Feature code is required",
+    "featureCodeMaxLength": "Feature code must be at most 100 characters",
+    "actionRequired": "Action is required",
+    "sectionMaxLength": "Department code must be at most 4 characters"
+  }
+}
