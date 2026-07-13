@@ -18,6 +18,7 @@
     "feature": "Features",
     "role": "Roles",
     "rolePermission": "Role Permissions",
+    "userRole": "User Roles",
     "user": "Users",
     "support": "Support",
     "feedback": "Feedback"

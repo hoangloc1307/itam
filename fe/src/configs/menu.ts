@@ -51,6 +51,11 @@ const MAIN_MENU: NavItem[] = [
         featureCode: FEATURES.ROLE,
       },
       {
+        title: 'menu.userRole',
+        url: '/user-role',
+        featureCode: FEATURES.USER,
+      },
+      {
         title: 'menu.user',
         url: '/user',
         featureCode: FEATURES.USER,

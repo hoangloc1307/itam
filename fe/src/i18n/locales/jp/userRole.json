@@ -1,0 +1,35 @@
+{
+  "title": "ユーザーロール",
+  "addNew": "ロールを追加",
+  "edit": "ロールを編集",
+  "deleteConfirm": "このロールを削除してもよろしいですか？",
+  "createSuccess": "ロールを追加しました",
+  "syncSuccess": "ロールを同期しました",
+  "deleteSuccess": "ロールを削除しました",
+  "updateSuccess": "ロールを更新しました",
+  "selectUser": "ユーザーを選択",
+  "searchUser": "ユーザーを検索...",
+  "noUserFound": "ユーザーが見つかりません。",
+  "allSections": "全部門",
+  "columns": {
+    "user": "ユーザー",
+    "role": "ロール",
+    "section": "部門",
+    "actions": "操作"
+  },
+  "form": {
+    "username": "ユーザー",
+    "roleCode": "ロール",
+    "section": "部門",
+    "usernamePlaceholder": "ユーザーを選択",
+    "roleCodePlaceholder": "ロールを選択",
+    "sectionPlaceholder": "部門コードを入力（任意）"
+  },
+  "validation": {
+    "usernameRequired": "ユーザー名は必須です",
+    "usernameMaxLength": "ユーザー名は8文字以内で入力してください",
+    "roleCodeRequired": "ロールコードは必須です",
+    "roleCodeMaxLength": "ロールコードは50文字以内で入力してください",
+    "sectionMaxLength": "部門コードは4文字以内で入力してください"
+  }
+}

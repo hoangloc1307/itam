@@ -1,0 +1,35 @@
+{
+  "title": "User Roles",
+  "addNew": "Add role",
+  "edit": "Edit role",
+  "deleteConfirm": "Are you sure you want to remove this role?",
+  "createSuccess": "Role assigned successfully",
+  "syncSuccess": "Roles synced successfully",
+  "deleteSuccess": "Role removed successfully",
+  "updateSuccess": "Role updated successfully",
+  "selectUser": "Select user",
+  "searchUser": "Search user...",
+  "noUserFound": "No user found.",
+  "allSections": "All departments",
+  "columns": {
+    "user": "User",
+    "role": "Role",
+    "section": "Department",
+    "actions": "Actions"
+  },
+  "form": {
+    "username": "User",
+    "roleCode": "Role",
+    "section": "Department",
+    "usernamePlaceholder": "Select a user",
+    "roleCodePlaceholder": "Select a role",
+    "sectionPlaceholder": "Enter department code (optional)"
+  },
+  "validation": {
+    "usernameRequired": "Username is required",
+    "usernameMaxLength": "Username must be at most 8 characters",
+    "roleCodeRequired": "Role code is required",
+    "roleCodeMaxLength": "Role code must be at most 50 characters",
+    "sectionMaxLength": "Department code must be at most 4 characters"
+  }
+}

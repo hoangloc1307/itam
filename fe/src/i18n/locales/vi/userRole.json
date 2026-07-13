@@ -1,0 +1,35 @@
+{
+  "title": "Gán vai trò người dùng",
+  "addNew": "Thêm vai trò",
+  "edit": "Sửa vai trò",
+  "deleteConfirm": "Bạn có chắc muốn xóa vai trò này?",
+  "createSuccess": "Thêm vai trò thành công",
+  "syncSuccess": "Đồng bộ vai trò thành công",
+  "deleteSuccess": "Xóa vai trò thành công",
+  "updateSuccess": "Cập nhật vai trò thành công",
+  "selectUser": "Chọn người dùng",
+  "searchUser": "Tìm người dùng...",
+  "noUserFound": "Không tìm thấy người dùng.",
+  "allSections": "Tất cả bộ phận",
+  "columns": {
+    "user": "Người dùng",
+    "role": "Vai trò",
+    "section": "Bộ phận",
+    "actions": "Thao tác"
+  },
+  "form": {
+    "username": "Người dùng",
+    "roleCode": "Vai trò",
+    "section": "Bộ phận",
+    "usernamePlaceholder": "Chọn người dùng",
+    "roleCodePlaceholder": "Chọn vai trò",
+    "sectionPlaceholder": "Nhập mã bộ phận (tùy chọn)"
+  },
+  "validation": {
+    "usernameRequired": "Tên đăng nhập là bắt buộc",
+    "usernameMaxLength": "Tên đăng nhập tối đa 8 ký tự",
+    "roleCodeRequired": "Mã vai trò là bắt buộc",
+    "roleCodeMaxLength": "Mã vai trò tối đa 50 ký tự",
+    "sectionMaxLength": "Mã bộ phận tối đa 4 ký tự"
+  }
+}

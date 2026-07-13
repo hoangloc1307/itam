@@ -18,6 +18,7 @@
     "feature": "機能",
     "role": "ロール",
     "rolePermission": "ロール権限",
+    "userRole": "ユーザーロール",
     "user": "ユーザー",
     "support": "サポート",
     "feedback": "フィードバック"

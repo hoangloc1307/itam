@@ -1,0 +1,14 @@
+{
+  "notFound": "User role not found",
+  "userNotFound": "User not found",
+  "roleNotFound": "Role not found",
+  "alreadyExists": "This role is already assigned to the user",
+  "syncSuccess": "User roles synced successfully",
+  "validation": {
+    "usernameRequired": "Username is required",
+    "usernameMaxLength": "Username must be at most 8 characters",
+    "roleCodeRequired": "Role code is required",
+    "roleCodeMaxLength": "Role code must be at most 50 characters",
+    "sectionMaxLength": "Department code must be at most 4 characters"
+  }
+}

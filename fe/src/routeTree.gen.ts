@@ -16,6 +16,7 @@ import { Route as AuthRegisterRouteImport } from './routes/_auth/register';
 import { Route as AuthLoginRouteImport } from './routes/_auth/login';
 import { Route as AppDashboardRouteImport } from './routes/_app/dashboard';
 import { Route as AppUserIndexRouteImport } from './routes/_app/user/index';
+import { Route as AppUserRoleIndexRouteImport } from './routes/_app/user-role/index';
 import { Route as AppRoleIndexRouteImport } from './routes/_app/role/index';
 import { Route as AppRolePermissionIndexRouteImport } from './routes/_app/role-permission/index';
 import { Route as AppFeatureIndexRouteImport } from './routes/_app/feature/index';
@@ -54,6 +55,11 @@ const AppDashboardRoute = AppDashboardRouteImport.update({
 const AppUserIndexRoute = AppUserIndexRouteImport.update({
   id: '/user/',
   path: '/user/',
+  getParentRoute: () => AppRoute,
+} as any);
+const AppUserRoleIndexRoute = AppUserRoleIndexRouteImport.update({
+  id: '/user-role/',
+  path: '/user-role/',
   getParentRoute: () => AppRoute,
 } as any);
 const AppRoleIndexRoute = AppRoleIndexRouteImport.update({
@@ -99,6 +105,7 @@ export interface FileRoutesByFullPath {
   '/feature/': typeof AppFeatureIndexRoute;
   '/role-permission/': typeof AppRolePermissionIndexRoute;
   '/role/': typeof AppRoleIndexRoute;
+  '/user-role/': typeof AppUserRoleIndexRoute;
   '/user/': typeof AppUserIndexRoute;
 }
 export interface FileRoutesByTo {
@@ -112,6 +119,7 @@ export interface FileRoutesByTo {
   '/feature': typeof AppFeatureIndexRoute;
   '/role-permission': typeof AppRolePermissionIndexRoute;
   '/role': typeof AppRoleIndexRoute;
+  '/user-role': typeof AppUserRoleIndexRoute;
   '/user': typeof AppUserIndexRoute;
 }
 export interface FileRoutesById {
@@ -128,6 +136,7 @@ export interface FileRoutesById {
   '/_app/feature/': typeof AppFeatureIndexRoute;
   '/_app/role-permission/': typeof AppRolePermissionIndexRoute;
   '/_app/role/': typeof AppRoleIndexRoute;
+  '/_app/user-role/': typeof AppUserRoleIndexRoute;
   '/_app/user/': typeof AppUserIndexRoute;
 }
 export interface FileRouteTypes {
@@ -143,6 +152,7 @@ export interface FileRouteTypes {
     | '/feature/'
     | '/role-permission/'
     | '/role/'
+    | '/user-role/'
     | '/user/';
   fileRoutesByTo: FileRoutesByTo;
   to:
@@ -156,6 +166,7 @@ export interface FileRouteTypes {
     | '/feature'
     | '/role-permission'
     | '/role'
+    | '/user-role'
     | '/user';
   id:
     | '__root__'
@@ -171,6 +182,7 @@ export interface FileRouteTypes {
     | '/_app/feature/'
     | '/_app/role-permission/'
     | '/_app/role/'
+    | '/_app/user-role/'
     | '/_app/user/';
   fileRoutesById: FileRoutesById;
 }
@@ -231,6 +243,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppUserIndexRouteImport;
       parentRoute: typeof AppRoute;
     };
+    '/_app/user-role/': {
+      id: '/_app/user-role/';
+      path: '/user-role';
+      fullPath: '/user-role/';
+      preLoaderRoute: typeof AppUserRoleIndexRouteImport;
+      parentRoute: typeof AppRoute;
+    };
     '/_app/role/': {
       id: '/_app/role/';
       path: '/role';
@@ -284,6 +303,7 @@ interface AppRouteChildren {
   AppFeatureIndexRoute: typeof AppFeatureIndexRoute;
   AppRolePermissionIndexRoute: typeof AppRolePermissionIndexRoute;
   AppRoleIndexRoute: typeof AppRoleIndexRoute;
+  AppUserRoleIndexRoute: typeof AppUserRoleIndexRoute;
   AppUserIndexRoute: typeof AppUserIndexRoute;
 }
 
@@ -295,6 +315,7 @@ const AppRouteChildren: AppRouteChildren = {
   AppFeatureIndexRoute: AppFeatureIndexRoute,
   AppRolePermissionIndexRoute: AppRolePermissionIndexRoute,
   AppRoleIndexRoute: AppRoleIndexRoute,
+  AppUserRoleIndexRoute: AppUserRoleIndexRoute,
   AppUserIndexRoute: AppUserIndexRoute,
 };
 

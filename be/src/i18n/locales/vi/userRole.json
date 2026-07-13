@@ -1,0 +1,14 @@
+{
+  "notFound": "Không tìm thấy vai trò người dùng",
+  "userNotFound": "Không tìm thấy người dùng",
+  "roleNotFound": "Không tìm thấy vai trò",
+  "alreadyExists": "Vai trò này đã được gán cho người dùng",
+  "syncSuccess": "Đồng bộ vai trò người dùng thành công",
+  "validation": {
+    "usernameRequired": "Tên đăng nhập là bắt buộc",
+    "usernameMaxLength": "Tên đăng nhập tối đa 8 ký tự",
+    "roleCodeRequired": "Mã vai trò là bắt buộc",
+    "roleCodeMaxLength": "Mã vai trò tối đa 50 ký tự",
+    "sectionMaxLength": "Mã bộ phận tối đa 4 ký tự"
+  }
+}

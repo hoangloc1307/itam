@@ -18,3 +18,5 @@ variables:
     value: roles
   - name: ROLE_PERMISSION_ENDPOINT
     value: role-permissions
+  - name: USER_ROLE_ENDPOINT
+    value: user-roles

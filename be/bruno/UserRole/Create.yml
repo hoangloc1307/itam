@@ -1,0 +1,23 @@
+info:
+  name: Create
+  type: http
+  seq: 3
+
+http:
+  method: POST
+  url: "{{API_URL}}/{{USER_ROLE_ENDPOINT}}"
+  body:
+    type: json
+    data: |-
+      {
+        "username": "admin001",
+        "roleCode": "ADMIN",
+        "section": null
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
