@@ -16,6 +16,7 @@ i18next.use(Backend).init({
     'attribute',
     'category',
     'feature',
+    'model',
     'role',
     'rolePermission',
     'user',

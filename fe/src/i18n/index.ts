@@ -23,6 +23,7 @@ i18n
       'categoryAttribute',
       'attribute',
       'feature',
+      'model',
       'role',
       'rolePermission',
       'user',

@@ -1,14 +1,628 @@
 {
   "version": "2.0.0",
-  "darkMode": false,
+  "darkMode": true,
   "gridEnabling": false,
   "currentViewName": null,
   "defaultView": {
     "detailLevel": "All",
-    "tablePositions": [],
+    "tablePositions": [
+      {
+        "name": "users",
+        "schemaName": "public",
+        "x": 1435.03076171875,
+        "y": 12
+      },
+      {
+        "name": "roles",
+        "schemaName": "public",
+        "x": 1435.03076171875,
+        "y": 378
+      },
+      {
+        "name": "features",
+        "schemaName": "public",
+        "x": 1435.03076171875,
+        "y": 680
+      },
+      {
+        "name": "user_role",
+        "schemaName": "public",
+        "x": 1959.33935546875,
+        "y": 12
+      },
+      {
+        "name": "role_permission",
+        "schemaName": "public",
+        "x": 1959.33935546875,
+        "y": 488
+      },
+      {
+        "name": "user_permission",
+        "schemaName": "public",
+        "x": 1959.33935546875,
+        "y": 218
+      },
+      {
+        "name": "categories",
+        "schemaName": "public",
+        "x": 12,
+        "y": 1420
+      },
+      {
+        "name": "attributes",
+        "schemaName": "public",
+        "x": 12,
+        "y": 1022
+      },
+      {
+        "name": "category_attributes",
+        "schemaName": "public",
+        "x": 621.86376953125,
+        "y": 1063
+      },
+      {
+        "name": "models",
+        "schemaName": "public",
+        "x": 621.86376953125,
+        "y": 1472
+      },
+      {
+        "name": "model_attribute_values",
+        "schemaName": "public",
+        "x": 1220.45361328125,
+        "y": 1084
+      },
+      {
+        "name": "manufacturers",
+        "schemaName": "public",
+        "x": 12,
+        "y": 1818
+      },
+      {
+        "name": "vendors",
+        "schemaName": "public",
+        "x": 12,
+        "y": 2248
+      },
+      {
+        "name": "file_types",
+        "schemaName": "public",
+        "x": 12,
+        "y": 12
+      },
+      {
+        "name": "assets",
+        "schemaName": "public",
+        "x": 1220.45361328125,
+        "y": 1258
+      },
+      {
+        "name": "asset_attribute_values",
+        "schemaName": "public",
+        "x": 1777.7265625,
+        "y": 1022
+      },
+      {
+        "name": "asset_history",
+        "schemaName": "public",
+        "x": 1777.7265625,
+        "y": 1722
+      },
+      {
+        "name": "inventory_history",
+        "schemaName": "public",
+        "x": 1220.45361328125,
+        "y": 2136
+      },
+      {
+        "name": "requests",
+        "schemaName": "public",
+        "x": 695.2001953125,
+        "y": 12
+      },
+      {
+        "name": "assignment_details",
+        "schemaName": "public",
+        "x": 1777.7265625,
+        "y": 1228
+      },
+      {
+        "name": "transfer_details",
+        "schemaName": "public",
+        "x": 1777.7265625,
+        "y": 2280
+      },
+      {
+        "name": "maintenance_schedules",
+        "schemaName": "public",
+        "x": 1061.291015625,
+        "y": 12
+      },
+      {
+        "name": "maintenance_schedule_assignees",
+        "schemaName": "public",
+        "x": 322.51025390625,
+        "y": 12
+      },
+      {
+        "name": "repair_details",
+        "schemaName": "public",
+        "x": 1777.7265625,
+        "y": 2870
+      },
+      {
+        "name": "repair_asset_components",
+        "schemaName": "public",
+        "x": 1777.7265625,
+        "y": 3684
+      },
+      {
+        "name": "item_masters",
+        "schemaName": "public",
+        "x": 12,
+        "y": 4086
+      },
+      {
+        "name": "item_master_attribute_values",
+        "schemaName": "public",
+        "x": 326.48779296875,
+        "y": 4086
+      }
+    ],
     "tableGroupCollapseStates": [],
     "stickyNoteLayouts": [],
-    "referencePaths": []
+    "referencePaths": [
+      {
+        "firstFieldNames": [
+          "username"
+        ],
+        "firstTableName": "user_role",
+        "firstSchemaName": "public",
+        "firstRelation": "*",
+        "secondFieldNames": [
+          "username"
+        ],
+        "secondTableName": "users",
+        "secondSchemaName": "public",
+        "secondRelation": "1",
+        "checkPoints": []
+      },
+      {
+        "firstFieldNames": [
+          "role_code"
+        ],
+        "firstTableName": "user_role",
+        "firstSchemaName": "public",
+        "firstRelation": "*",
+        "secondFieldNames": [
+          "code"
+        ],
+        "secondTableName": "roles",
+        "secondSchemaName": "public",
+        "secondRelation": "1",
+        "checkPoints": []
+      },
+      {
+        "firstFieldNames": [
+          "role_code"
+        ],
+        "firstTableName": "role_permission",
+        "firstSchemaName": "public",
+        "firstRelation": "*",
+        "secondFieldNames": [
+          "code"
+        ],
+        "secondTableName": "roles",
+        "secondSchemaName": "public",
+        "secondRelation": "1",
+        "checkPoints": []
+      },
+      {
+        "firstFieldNames": [
+          "feature_code"
+        ],
+        "firstTableName": "role_permission",
+        "firstSchemaName": "public",
+        "firstRelation": "*",
+        "secondFieldNames": [
+          "code"
+        ],
+        "secondTableName": "features",
+        "secondSchemaName": "public",
+        "secondRelation": "1",
+        "checkPoints": []
+      },
+      {
+        "firstFieldNames": [
+          "username"
+        ],
+        "firstTableName": "user_permission",
+        "firstSchemaName": "public",
+        "firstRelation": "*",
+        "secondFieldNames": [
+          "username"
+        ],
+        "secondTableName": "users",
+        "secondSchemaName": "public",
+        "secondRelation": "1",
+        "checkPoints": []
+      },
+      {
+        "firstFieldNames": [
+          "feature_code"
+        ],
+        "firstTableName": "user_permission",
+        "firstSchemaName": "public",
+        "firstRelation": "*",
+        "secondFieldNames": [
+          "code"
+        ],
+        "secondTableName": "features",
+        "secondSchemaName": "public",
+        "secondRelation": "1",
+        "checkPoints": []
+      },
+      {
+        "firstFieldNames": [
+          "category_id"
+        ],
+        "firstTableName": "category_attributes",
+        "firstSchemaName": "public",
+        "firstRelation": "*",
+        "secondFieldNames": [
+          "id"
+        ],
+        "secondTableName": "categories",
+        "secondSchemaName": "public",
+        "secondRelation": "1",
+        "checkPoints": []
+      },
+      {
+        "firstFieldNames": [
+          "attribute_id"
+        ],
+        "firstTableName": "category_attributes",
+        "firstSchemaName": "public",
+        "firstRelation": "*",
+        "secondFieldNames": [
+          "id"
+        ],
+        "secondTableName": "attributes",
+        "secondSchemaName": "public",
+        "secondRelation": "1",
+        "checkPoints": []
+      },
+      {
+        "firstFieldNames": [
+          "category_id"
+        ],
+        "firstTableName": "models",
+        "firstSchemaName": "public",
+        "firstRelation": "*",
+        "secondFieldNames": [
+          "id"
+        ],
+        "secondTableName": "categories",
+        "secondSchemaName": "public",
+        "secondRelation": "1",
+        "checkPoints": []
+      },
+      {
+        "firstFieldNames": [
+          "manufacturer_id"
+        ],
+        "firstTableName": "models",
+        "firstSchemaName": "public",
+        "firstRelation": "*",
+        "secondFieldNames": [
+          "id"
+        ],
+        "secondTableName": "manufacturers",
+        "secondSchemaName": "public",
+        "secondRelation": "1",
+        "checkPoints": []
+      },
+      {
+        "firstFieldNames": [
+          "attribute_id"
+        ],
+        "firstTableName": "model_attribute_values",
+        "firstSchemaName": "public",
+        "firstRelation": "*",
+        "secondFieldNames": [
+          "id"
+        ],
+        "secondTableName": "attributes",
+        "secondSchemaName": "public",
+        "secondRelation": "1",
+        "checkPoints": []
+      },
+      {
+        "firstFieldNames": [
+          "model_id"
+        ],
+        "firstTableName": "model_attribute_values",
+        "firstSchemaName": "public",
+        "firstRelation": "*",
+        "secondFieldNames": [
+          "id"
+        ],
+        "secondTableName": "models",
+        "secondSchemaName": "public",
+        "secondRelation": "1",
+        "checkPoints": []
+      },
+      {
+        "firstFieldNames": [
+          "category_id"
+        ],
+        "firstTableName": "assets",
+        "firstSchemaName": "public",
+        "firstRelation": "*",
+        "secondFieldNames": [
+          "id"
+        ],
+        "secondTableName": "categories",
+        "secondSchemaName": "public",
+        "secondRelation": "1",
+        "checkPoints": []
+      },
+      {
+        "firstFieldNames": [
+          "model_id"
+        ],
+        "firstTableName": "assets",
+        "firstSchemaName": "public",
+        "firstRelation": "*",
+        "secondFieldNames": [
+          "id"
+        ],
+        "secondTableName": "models",
+        "secondSchemaName": "public",
+        "secondRelation": "1",
+        "checkPoints": []
+      },
+      {
+        "firstFieldNames": [
+          "vendor_id"
+        ],
+        "firstTableName": "assets",
+        "firstSchemaName": "public",
+        "firstRelation": "*",
+        "secondFieldNames": [
+          "id"
+        ],
+        "secondTableName": "vendors",
+        "secondSchemaName": "public",
+        "secondRelation": "1",
+        "checkPoints": []
+      },
+      {
+        "firstFieldNames": [
+          "attribute_id"
+        ],
+        "firstTableName": "asset_attribute_values",
+        "firstSchemaName": "public",
+        "firstRelation": "*",
+        "secondFieldNames": [
+          "id"
+        ],
+        "secondTableName": "attributes",
+        "secondSchemaName": "public",
+        "secondRelation": "1",
+        "checkPoints": []
+      },
+      {
+        "firstFieldNames": [
+          "asset_id"
+        ],
+        "firstTableName": "asset_attribute_values",
+        "firstSchemaName": "public",
+        "firstRelation": "*",
+        "secondFieldNames": [
+          "id"
+        ],
+        "secondTableName": "assets",
+        "secondSchemaName": "public",
+        "secondRelation": "1",
+        "checkPoints": []
+      },
+      {
+        "firstFieldNames": [
+          "asset_id"
+        ],
+        "firstTableName": "asset_history",
+        "firstSchemaName": "public",
+        "firstRelation": "*",
+        "secondFieldNames": [
+          "id"
+        ],
+        "secondTableName": "assets",
+        "secondSchemaName": "public",
+        "secondRelation": "1",
+        "checkPoints": []
+      },
+      {
+        "firstFieldNames": [
+          "model_id"
+        ],
+        "firstTableName": "inventory_history",
+        "firstSchemaName": "public",
+        "firstRelation": "*",
+        "secondFieldNames": [
+          "id"
+        ],
+        "secondTableName": "models",
+        "secondSchemaName": "public",
+        "secondRelation": "1",
+        "checkPoints": []
+      },
+      {
+        "firstFieldNames": [
+          "category_id"
+        ],
+        "firstTableName": "assignment_details",
+        "firstSchemaName": "public",
+        "firstRelation": "*",
+        "secondFieldNames": [
+          "id"
+        ],
+        "secondTableName": "categories",
+        "secondSchemaName": "public",
+        "secondRelation": "1",
+        "checkPoints": []
+      },
+      {
+        "firstFieldNames": [
+          "asset_id"
+        ],
+        "firstTableName": "assignment_details",
+        "firstSchemaName": "public",
+        "firstRelation": "*",
+        "secondFieldNames": [
+          "id"
+        ],
+        "secondTableName": "assets",
+        "secondSchemaName": "public",
+        "secondRelation": "1",
+        "checkPoints": []
+      },
+      {
+        "firstFieldNames": [
+          "asset_id"
+        ],
+        "firstTableName": "transfer_details",
+        "firstSchemaName": "public",
+        "firstRelation": "*",
+        "secondFieldNames": [
+          "id"
+        ],
+        "secondTableName": "assets",
+        "secondSchemaName": "public",
+        "secondRelation": "1",
+        "checkPoints": []
+      },
+      {
+        "firstFieldNames": [
+          "asset_id"
+        ],
+        "firstTableName": "repair_details",
+        "firstSchemaName": "public",
+        "firstRelation": "*",
+        "secondFieldNames": [
+          "id"
+        ],
+        "secondTableName": "assets",
+        "secondSchemaName": "public",
+        "secondRelation": "1",
+        "checkPoints": []
+      },
+      {
+        "firstFieldNames": [
+          "asset_id"
+        ],
+        "firstTableName": "repair_asset_components",
+        "firstSchemaName": "public",
+        "firstRelation": "*",
+        "secondFieldNames": [
+          "id"
+        ],
+        "secondTableName": "assets",
+        "secondSchemaName": "public",
+        "secondRelation": "1",
+        "checkPoints": []
+      },
+      {
+        "firstFieldNames": [
+          "category_id"
+        ],
+        "firstTableName": "item_masters",
+        "firstSchemaName": "public",
+        "firstRelation": "*",
+        "secondFieldNames": [
+          "id"
+        ],
+        "secondTableName": "categories",
+        "secondSchemaName": "public",
+        "secondRelation": "1",
+        "checkPoints": []
+      },
+      {
+        "firstFieldNames": [
+          "manufacturer_id"
+        ],
+        "firstTableName": "item_masters",
+        "firstSchemaName": "public",
+        "firstRelation": "*",
+        "secondFieldNames": [
+          "id"
+        ],
+        "secondTableName": "manufacturers",
+        "secondSchemaName": "public",
+        "secondRelation": "1",
+        "checkPoints": []
+      },
+      {
+        "firstFieldNames": [
+          "attribute_id"
+        ],
+        "firstTableName": "item_master_attribute_values",
+        "firstSchemaName": "public",
+        "firstRelation": "*",
+        "secondFieldNames": [
+          "id"
+        ],
+        "secondTableName": "attributes",
+        "secondSchemaName": "public",
+        "secondRelation": "1",
+        "checkPoints": []
+      },
+      {
+        "firstFieldNames": [
+          "item_master_id"
+        ],
+        "firstTableName": "item_master_attribute_values",
+        "firstSchemaName": "public",
+        "firstRelation": "*",
+        "secondFieldNames": [
+          "id"
+        ],
+        "secondTableName": "item_masters",
+        "secondSchemaName": "public",
+        "secondRelation": "1",
+        "checkPoints": []
+      },
+      {
+        "firstFieldNames": [
+          "item_master_id"
+        ],
+        "firstTableName": "assets",
+        "firstSchemaName": "public",
+        "firstRelation": "*",
+        "secondFieldNames": [
+          "id"
+        ],
+        "secondTableName": "item_masters",
+        "secondSchemaName": "public",
+        "secondRelation": "1",
+        "checkPoints": []
+      },
+      {
+        "firstFieldNames": [
+          "item_master_id"
+        ],
+        "firstTableName": "inventory_history",
+        "firstSchemaName": "public",
+        "firstRelation": "*",
+        "secondFieldNames": [
+          "id"
+        ],
+        "secondTableName": "item_masters",
+        "secondSchemaName": "public",
+        "secondRelation": "1",
+        "checkPoints": []
+      }
+    ]
   },
   "views": {}
 }

@@ -1,0 +1,27 @@
+info:
+  name: Create
+  type: http
+  seq: 3
+
+http:
+  method: POST
+  url: '{{API_URL}}/{{MODEL_ENDPOINT}}'
+  body:
+    type: json
+    data: |-
+      {
+        "id": "MBP14-16-512",
+        "categoryId": "LAPTOP",
+        "manufacturerId": null,
+        "name": "MacBook Pro 14 - 16GB/512GB",
+        "manageType": "Individual",
+        "modelCode": null,
+        "isActive": true
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

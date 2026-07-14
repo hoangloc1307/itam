@@ -150,6 +150,7 @@ model Category {
   updatedAt                DateTime? @map("updated_at") @db.Timestamptz(0)
 
   categoryAttributes CategoryAttribute[]
+  models             ItemModel[]
 
   @@map("categories")
 }
@@ -167,7 +168,7 @@ model Attribute {
   updatedBy       String?           @map("updated_by") @db.Char(8)
   updatedAt       DateTime?         @map("updated_at") @db.Timestamptz(0)
 
-  categoryAttributes CategoryAttribute[]
+  categoryAttributes    CategoryAttribute[]
 
   @@map("attributes")
 }
@@ -187,4 +188,23 @@ model CategoryAttribute {
 
   @@id([categoryId, attributeId])
   @@map("category_attributes")
+}
+
+model ItemModel {
+  id               String    @id @db.VarChar(30)
+  categoryId       String    @map("category_id") @db.VarChar(30)
+  manufacturer     String?   @db.VarChar(150)
+  name             String    @db.VarChar(150)
+  manageType       String?   @map("manage_type") @db.VarChar(50)
+  modelCode        String?   @map("model_code") @db.VarChar(50)
+  isActive         Boolean   @default(true) @map("is_active")
+  deletedAt        DateTime? @map("deleted_at") @db.Timestamptz(0)
+  createdBy        String    @map("created_by") @db.Char(8)
+  createdAt        DateTime  @default(now()) @map("created_at") @db.Timestamptz(0)
+  updatedBy        String?   @map("updated_by") @db.Char(8)
+  updatedAt        DateTime? @map("updated_at") @db.Timestamptz(0)
+
+  category              Category               @relation(fields: [categoryId], references: [id])
+
+  @@map("models")
 }

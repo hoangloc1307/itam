@@ -20,6 +20,7 @@ import { Route as AppUserRoleIndexRouteImport } from './routes/_app/user-role/in
 import { Route as AppUserPermissionIndexRouteImport } from './routes/_app/user-permission/index';
 import { Route as AppRoleIndexRouteImport } from './routes/_app/role/index';
 import { Route as AppRolePermissionIndexRouteImport } from './routes/_app/role-permission/index';
+import { Route as AppModelIndexRouteImport } from './routes/_app/model/index';
 import { Route as AppFeatureIndexRouteImport } from './routes/_app/feature/index';
 import { Route as AppCategoryIndexRouteImport } from './routes/_app/category/index';
 import { Route as AppCategoryAttributeIndexRouteImport } from './routes/_app/category-attribute/index';
@@ -78,6 +79,11 @@ const AppRolePermissionIndexRoute = AppRolePermissionIndexRouteImport.update({
   path: '/role-permission/',
   getParentRoute: () => AppRoute,
 } as any);
+const AppModelIndexRoute = AppModelIndexRouteImport.update({
+  id: '/model/',
+  path: '/model/',
+  getParentRoute: () => AppRoute,
+} as any);
 const AppFeatureIndexRoute = AppFeatureIndexRouteImport.update({
   id: '/feature/',
   path: '/feature/',
@@ -109,6 +115,7 @@ export interface FileRoutesByFullPath {
   '/category-attribute/': typeof AppCategoryAttributeIndexRoute;
   '/category/': typeof AppCategoryIndexRoute;
   '/feature/': typeof AppFeatureIndexRoute;
+  '/model/': typeof AppModelIndexRoute;
   '/role-permission/': typeof AppRolePermissionIndexRoute;
   '/role/': typeof AppRoleIndexRoute;
   '/user-permission/': typeof AppUserPermissionIndexRoute;
@@ -124,6 +131,7 @@ export interface FileRoutesByTo {
   '/category-attribute': typeof AppCategoryAttributeIndexRoute;
   '/category': typeof AppCategoryIndexRoute;
   '/feature': typeof AppFeatureIndexRoute;
+  '/model': typeof AppModelIndexRoute;
   '/role-permission': typeof AppRolePermissionIndexRoute;
   '/role': typeof AppRoleIndexRoute;
   '/user-permission': typeof AppUserPermissionIndexRoute;
@@ -142,6 +150,7 @@ export interface FileRoutesById {
   '/_app/category-attribute/': typeof AppCategoryAttributeIndexRoute;
   '/_app/category/': typeof AppCategoryIndexRoute;
   '/_app/feature/': typeof AppFeatureIndexRoute;
+  '/_app/model/': typeof AppModelIndexRoute;
   '/_app/role-permission/': typeof AppRolePermissionIndexRoute;
   '/_app/role/': typeof AppRoleIndexRoute;
   '/_app/user-permission/': typeof AppUserPermissionIndexRoute;
@@ -159,6 +168,7 @@ export interface FileRouteTypes {
     | '/category-attribute/'
     | '/category/'
     | '/feature/'
+    | '/model/'
     | '/role-permission/'
     | '/role/'
     | '/user-permission/'
@@ -174,6 +184,7 @@ export interface FileRouteTypes {
     | '/category-attribute'
     | '/category'
     | '/feature'
+    | '/model'
     | '/role-permission'
     | '/role'
     | '/user-permission'
@@ -191,6 +202,7 @@ export interface FileRouteTypes {
     | '/_app/category-attribute/'
     | '/_app/category/'
     | '/_app/feature/'
+    | '/_app/model/'
     | '/_app/role-permission/'
     | '/_app/role/'
     | '/_app/user-permission/'
@@ -283,6 +295,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppRolePermissionIndexRouteImport;
       parentRoute: typeof AppRoute;
     };
+    '/_app/model/': {
+      id: '/_app/model/';
+      path: '/model';
+      fullPath: '/model/';
+      preLoaderRoute: typeof AppModelIndexRouteImport;
+      parentRoute: typeof AppRoute;
+    };
     '/_app/feature/': {
       id: '/_app/feature/';
       path: '/feature';
@@ -320,6 +339,7 @@ interface AppRouteChildren {
   AppCategoryAttributeIndexRoute: typeof AppCategoryAttributeIndexRoute;
   AppCategoryIndexRoute: typeof AppCategoryIndexRoute;
   AppFeatureIndexRoute: typeof AppFeatureIndexRoute;
+  AppModelIndexRoute: typeof AppModelIndexRoute;
   AppRolePermissionIndexRoute: typeof AppRolePermissionIndexRoute;
   AppRoleIndexRoute: typeof AppRoleIndexRoute;
   AppUserPermissionIndexRoute: typeof AppUserPermissionIndexRoute;
@@ -333,6 +353,7 @@ const AppRouteChildren: AppRouteChildren = {
   AppCategoryAttributeIndexRoute: AppCategoryAttributeIndexRoute,
   AppCategoryIndexRoute: AppCategoryIndexRoute,
   AppFeatureIndexRoute: AppFeatureIndexRoute,
+  AppModelIndexRoute: AppModelIndexRoute,
   AppRolePermissionIndexRoute: AppRolePermissionIndexRoute,
   AppRoleIndexRoute: AppRoleIndexRoute,
   AppUserPermissionIndexRoute: AppUserPermissionIndexRoute,

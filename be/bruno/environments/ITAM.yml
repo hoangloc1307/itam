@@ -22,3 +22,5 @@ variables:
     value: user-roles
   - name: USER_PERMISSION_ENDPOINT
     value: user-permissions
+  - name: MODEL_ENDPOINT
+    value: models

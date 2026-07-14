@@ -1,0 +1,53 @@
+{
+  "title": "モデル",
+  "addNew": "モデルを追加",
+  "edit": "モデルを編集",
+  "deleteConfirm": "このモデルを削除してもよろしいですか？",
+  "createSuccess": "モデルを作成しました",
+  "updateSuccess": "モデルを更新しました",
+  "deleteSuccess": "モデルを削除しました",
+  "status": {
+    "active": "有効",
+    "inactive": "無効"
+  },
+  "manageTypes": {
+    "individual": "個別管理",
+    "bulk": "数量管理"
+  },
+  "columns": {
+    "id": "ID",
+    "name": "名前",
+    "categoryId": "カテゴリ",
+    "manufacturer": "メーカー",
+    "manageType": "管理タイプ",
+    "modelCode": "モデルコード",
+    "isActive": "有効",
+    "createdBy": "作成者",
+    "createdAt": "作成日",
+    "updatedBy": "更新者",
+    "updatedAt": "更新日",
+    "actions": "操作"
+  },
+  "form": {
+    "id": "モデルID",
+    "name": "モデル名",
+    "categoryId": "カテゴリ",
+    "manufacturer": "メーカー",
+    "manageType": "管理タイプ",
+    "modelCode": "モデルコード",
+    "isActive": "有効",
+    "idPlaceholder": "モデルIDを入力",
+    "namePlaceholder": "モデル名を入力",
+    "categoryIdPlaceholder": "カテゴリを選択",
+    "manufacturerPlaceholder": "メーカーを入力",
+    "manageTypePlaceholder": "管理タイプを選択",
+    "modelCodePlaceholder": "購入システムコードを入力"
+  },
+  "validation": {
+    "codeRequired": "モデルIDは必須です",
+    "codeMaxLength": "モデルIDは最大30文字です",
+    "categoryIdRequired": "カテゴリは必須です",
+    "nameRequired": "モデル名は必須です",
+    "nameMaxLength": "モデル名は最大150文字です"
+  }
+}

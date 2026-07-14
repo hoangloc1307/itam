@@ -10,9 +10,7 @@ export const createUserPermissionSchema = z.object({
     .nonempty('userPermission:validation.featureCodeRequired')
     .max(100, 'userPermission:validation.featureCodeMaxLength'),
   action: z.string().nonempty('userPermission:validation.actionRequired'),
-  decision: z.enum(['ALLOW', 'DENY'], {
-    required_error: 'userPermission:validation.decisionRequired',
-  }),
+  decision: z.enum(['ALLOW', 'DENY'], 'userPermission:validation.decisionRequired'),
   section: z
     .string()
     .max(4, 'userPermission:validation.sectionMaxLength')
@@ -34,9 +32,7 @@ export const syncUserPermissionsSchema = z.object({
         .nonempty('userPermission:validation.featureCodeRequired')
         .max(100, 'userPermission:validation.featureCodeMaxLength'),
       action: z.string().nonempty('userPermission:validation.actionRequired'),
-      decision: z.enum(['ALLOW', 'DENY'], {
-        required_error: 'userPermission:validation.decisionRequired',
-      }),
+      decision: z.enum(['ALLOW', 'DENY'], 'userPermission:validation.decisionRequired'),
       section: z
         .string()
         .max(4, 'userPermission:validation.sectionMaxLength')
@@ -54,9 +50,7 @@ export const updateUserPermissionSchema = z.object({
     .nonempty('userPermission:validation.featureCodeRequired')
     .max(100, 'userPermission:validation.featureCodeMaxLength'),
   action: z.string().nonempty('userPermission:validation.actionRequired'),
-  decision: z.enum(['ALLOW', 'DENY'], {
-    required_error: 'userPermission:validation.decisionRequired',
-  }),
+  decision: z.enum(['ALLOW', 'DENY'], 'userPermission:validation.decisionRequired'),
   section: z
     .string()
     .max(4, 'userPermission:validation.sectionMaxLength')

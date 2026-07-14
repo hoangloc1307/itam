@@ -1,0 +1,27 @@
+info:
+  name: Update
+  type: http
+  seq: 4
+
+http:
+  method: PUT
+  url: '{{API_URL}}/{{MODEL_ENDPOINT}}/:id'
+  params:
+    - name: id
+      value: MBP14-16-512
+      type: path
+  body:
+    type: json
+    data: |-
+      {
+        "name": "MacBook Pro 14 - 16GB/512GB Updated",
+        "manageType": "Individual",
+        "isActive": true
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

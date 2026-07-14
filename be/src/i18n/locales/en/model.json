@@ -1,0 +1,11 @@
+{
+  "notFound": "Model not found",
+  "alreadyExists": "Model ID already exists",
+  "validation": {
+    "idRequired": "Model ID is required",
+    "idMaxLength": "Model ID must be at most 30 characters",
+    "categoryIdRequired": "Category is required",
+    "nameRequired": "Model name is required",
+    "nameMaxLength": "Model name must be at most 150 characters"
+  }
+}

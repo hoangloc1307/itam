@@ -4,6 +4,7 @@ export type { LoginResponse, Permission, RefreshResponse, UserInfo } from './aut
 export type { Category, CategoryBase, CategoryEntity } from './category';
 export type { CategoryAttributeItem, SyncAttributePayload } from './category-attribute';
 export type { Feature, FeatureBase, FeatureEntity } from './feature';
+export type { Model, ModelBase, ModelEntity } from './model';
 export type { Role, RoleBase, RoleEntity } from './role';
 export type {
   RolePermission,

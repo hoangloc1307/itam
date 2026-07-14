@@ -4,6 +4,7 @@ export const ENDPOINTS = {
   ATTRIBUTES: '/attributes',
   CATEGORY_ATTRIBUTES: '/category-attributes',
   FEATURES: '/features',
+  MODELS: '/models',
   ROLES: '/roles',
   ROLE_PERMISSIONS: '/role-permissions',
   USER_PERMISSIONS: '/user-permissions',

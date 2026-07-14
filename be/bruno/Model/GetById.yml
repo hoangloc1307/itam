@@ -1,0 +1,19 @@
+info:
+  name: GetById
+  type: http
+  seq: 2
+
+http:
+  method: GET
+  url: '{{API_URL}}/{{MODEL_ENDPOINT}}/:id'
+  params:
+    - name: id
+      value: MBP14-16-512
+      type: path
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

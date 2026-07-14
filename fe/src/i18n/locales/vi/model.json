@@ -1,0 +1,53 @@
+{
+  "title": "Model",
+  "addNew": "Thêm model",
+  "edit": "Sửa model",
+  "deleteConfirm": "Bạn có chắc muốn xóa model này?",
+  "createSuccess": "Tạo model thành công",
+  "updateSuccess": "Cập nhật model thành công",
+  "deleteSuccess": "Xóa model thành công",
+  "status": {
+    "active": "Hoạt động",
+    "inactive": "Ngừng hoạt động"
+  },
+  "manageTypes": {
+    "individual": "Quản lý riêng",
+    "bulk": "Quản lý số lượng"
+  },
+  "columns": {
+    "id": "Mã",
+    "name": "Tên model",
+    "categoryId": "Loại thiết bị",
+    "manufacturer": "Hãng sản xuất",
+    "manageType": "Kiểu quản lý",
+    "modelCode": "Mã liên kết",
+    "isActive": "Hoạt động",
+    "createdBy": "Người tạo",
+    "createdAt": "Ngày tạo",
+    "updatedBy": "Người cập nhật",
+    "updatedAt": "Ngày cập nhật",
+    "actions": "Thao tác"
+  },
+  "form": {
+    "id": "Mã model",
+    "name": "Tên model",
+    "categoryId": "Loại thiết bị",
+    "manufacturer": "Hãng sản xuất",
+    "manageType": "Kiểu quản lý",
+    "modelCode": "Mã liên kết",
+    "isActive": "Hoạt động",
+    "idPlaceholder": "Nhập mã model",
+    "namePlaceholder": "Nhập tên model",
+    "categoryIdPlaceholder": "Chọn loại thiết bị",
+    "manufacturerPlaceholder": "Nhập hãng sản xuất",
+    "manageTypePlaceholder": "Chọn kiểu quản lý",
+    "modelCodePlaceholder": "Nhập mã liên kết hệ thống mua hàng"
+  },
+  "validation": {
+    "idRequired": "Mã model là bắt buộc",
+    "idMaxLength": "Mã model tối đa 30 ký tự",
+    "categoryIdRequired": "Loại thiết bị là bắt buộc",
+    "nameRequired": "Tên model là bắt buộc",
+    "nameMaxLength": "Tên model tối đa 150 ký tự"
+  }
+}
