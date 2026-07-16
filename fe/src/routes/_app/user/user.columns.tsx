@@ -59,7 +59,12 @@ export const getUserColumns = (
     header: '#',
     enableColumnFilter: false,
     enableSorting: false,
-    cell: ({ row }) => row.index + 1,
+    cell: ({ row, table }) => {
+      const { pageIndex, pageSize } = table.getState().pagination;
+      const sortedRows = table.getRowModel().rows;
+      const indexInPage = sortedRows.findIndex((r) => r.id === row.id);
+      return pageIndex * pageSize + indexInPage + 1;
+    },
     size: 50,
   },
   {
