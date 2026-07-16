@@ -49,5 +49,16 @@
     "categoryIdRequired": "Category is required",
     "nameRequired": "Model name is required",
     "nameMaxLength": "Model name must be at most 150 characters"
+  },
+  "attributeValues": {
+    "title": "Attribute Values",
+    "save": "Save values",
+    "syncSuccess": "Attribute values saved successfully",
+    "loading": "Loading attributes...",
+    "noAttributes": "No attributes configured for this category",
+    "ungrouped": "General",
+    "selectPlaceholder": "Select...",
+    "yes": "Yes",
+    "no": "No"
   }
 }

@@ -5,6 +5,7 @@ export const ENDPOINTS = {
   CATEGORIES: '/categories',
   CATEGORY_ATTRIBUTES: '/category-attributes',
   FEATURES: '/features',
+  MODEL_ATTRIBUTE_VALUES: '/model-attribute-values',
   MODELS: '/models',
   ROLES: '/roles',
   ROLE_PERMISSIONS: '/role-permissions',

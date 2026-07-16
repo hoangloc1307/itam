@@ -6,6 +6,7 @@ import authRouter from '~/modules/auth/auth.route';
 import categoryAttributeRouter from '~/modules/category-attribute/category-attribute.route';
 import categoryRouter from '~/modules/category/category.route';
 import featureRouter from '~/modules/feature/feature.route';
+import modelAttributeValueRouter from '~/modules/model-attribute-value/model-attribute-value.route';
 import modelRouter from '~/modules/model/model.route';
 import roleRouter from '~/modules/role/role.route';
 import rolePermissionRouter from '~/modules/role-permission/role-permission.route';
@@ -26,6 +27,7 @@ export const modulesConfig: ModuleConfig[] = [
   { path: ENDPOINTS.CATEGORY_ATTRIBUTES, router: categoryAttributeRouter },
   { path: ENDPOINTS.CATEGORIES, router: categoryRouter },
   { path: ENDPOINTS.FEATURES, router: featureRouter },
+  { path: ENDPOINTS.MODEL_ATTRIBUTE_VALUES, router: modelAttributeValueRouter },
   { path: ENDPOINTS.MODELS, router: modelRouter },
   { path: ENDPOINTS.ROLES, router: roleRouter },
   { path: ENDPOINTS.ROLE_PERMISSIONS, router: rolePermissionRouter },

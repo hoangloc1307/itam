@@ -49,5 +49,16 @@
     "categoryIdRequired": "Loại thiết bị là bắt buộc",
     "nameRequired": "Tên model là bắt buộc",
     "nameMaxLength": "Tên model tối đa 150 ký tự"
+  },
+  "attributeValues": {
+    "title": "Giá trị thuộc tính",
+    "save": "Lưu giá trị",
+    "syncSuccess": "Lưu giá trị thuộc tính thành công",
+    "loading": "Đang tải thuộc tính...",
+    "noAttributes": "Chưa cấu hình thuộc tính cho loại thiết bị này",
+    "ungrouped": "Thông tin chung",
+    "selectPlaceholder": "Chọn...",
+    "yes": "Có",
+    "no": "Không"
   }
 }

@@ -49,5 +49,16 @@
     "categoryIdRequired": "カテゴリは必須です",
     "nameRequired": "モデル名は必須です",
     "nameMaxLength": "モデル名は最大150文字です"
+  },
+  "attributeValues": {
+    "title": "属性値",
+    "save": "保存",
+    "syncSuccess": "属性値を保存しました",
+    "loading": "属性を読み込んでいます...",
+    "noAttributes": "このカテゴリには属性が設定されていません",
+    "ungrouped": "一般情報",
+    "selectPlaceholder": "選択...",
+    "yes": "はい",
+    "no": "いいえ"
   }
 }

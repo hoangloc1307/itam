@@ -1,10 +1,10 @@
 'use no memo';
 
-import { IconEdit, IconTrash } from '@tabler/icons-react';
+import { IconEdit, IconListDetails, IconTrash } from '@tabler/icons-react';
 import { type ColumnDef } from '@tanstack/react-table';
 import type { TFunction } from 'i18next';
-import type { Category, Model } from 'itam-shared/types';
 import { MANAGE_TYPES } from 'itam-shared/constants';
+import type { Category, Model } from 'itam-shared/types';
 import { Badge } from '~/components/ui/badge';
 import { Button } from '~/components/ui/button';
 import { formatDate } from '~/lib/date';
@@ -12,6 +12,7 @@ import { formatDate } from '~/lib/date';
 interface ColumnActions {
   onEdit: (model: Model) => void;
   onDelete: (id: string) => void;
+  onSetValues: (model: Model) => void;
 }
 
 export const getModelColumns = (
@@ -38,6 +39,14 @@ export const getModelColumns = (
         <Button
           variant='ghost'
           size='icon'
+          title={t('attributeValues.title')}
+          onClick={() => actions.onSetValues(row.original)}
+        >
+          <IconListDetails className='size-4' />
+        </Button>
+        <Button
+          variant='ghost'
+          size='icon'
           title={t('deleteConfirm')}
           onClick={() => actions.onDelete(row.original.id)}
         >
@@ -45,7 +54,6 @@ export const getModelColumns = (
         </Button>
       </div>
     ),
-    size: 100,
   },
   {
     id: 'rowNumber',

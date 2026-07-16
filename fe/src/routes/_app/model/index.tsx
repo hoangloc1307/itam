@@ -14,6 +14,7 @@ import { Button } from '~/components/ui/button';
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '~/components/ui/dialog';
 import { useDeleteModel } from '~/hooks/mutations/use-model';
 import useDatatable from '~/hooks/use-datatable';
+import { ModelAttributeValues } from '~/routes/_app/model/model-attribute.form';
 import { getModelColumns } from '~/routes/_app/model/model.columns';
 import { ModelForm } from '~/routes/_app/model/model.form';
 
@@ -22,6 +23,7 @@ const ModelPage = () => {
   const [open, setOpen] = useState(false);
   const [editing, setEditing] = useState<Model | null>(null);
   const [deleteId, setDeleteId] = useState<string | null>(null);
+  const [valuesModel, setValuesModel] = useState<Model | null>(null);
   const { data } = useSuspenseQuery(modelQueries.all());
   const { data: categoryData } = useSuspenseQuery(categoryQueries.all());
   const deleteMutation = useDeleteModel();
@@ -33,12 +35,17 @@ const ModelPage = () => {
     setOpen(true);
   };
 
+  const handleSetValues = (model: Model) => {
+    setValuesModel(model);
+  };
+
   const columns = getModelColumns(
     t,
     i18n.language,
     {
       onEdit: handleEdit,
       onDelete: (id) => setDeleteId(id),
+      onSetValues: handleSetValues,
     },
     categories,
   );
@@ -84,6 +91,19 @@ const ModelPage = () => {
             </DialogTitle>
           </DialogHeader>
           <ModelForm model={editing} categories={categories} onSuccess={handleClose} />
+        </DialogContent>
+      </Dialog>
+
+      <Dialog open={!!valuesModel} onOpenChange={(open) => !open && setValuesModel(null)}>
+        <DialogContent className='max-h-[80vh] overflow-y-auto sm:max-w-lg'>
+          <DialogHeader>
+            <DialogTitle className='text-lg'>
+              {t('attributeValues.title')} - {valuesModel?.name}
+            </DialogTitle>
+          </DialogHeader>
+          {valuesModel && (
+            <ModelAttributeValues modelId={valuesModel.id} onSuccess={() => setValuesModel(null)} />
+          )}
         </DialogContent>
       </Dialog>
 
