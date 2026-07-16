@@ -58,6 +58,7 @@
     "noAttributes": "No attributes configured for this category",
     "ungrouped": "General",
     "selectPlaceholder": "Select...",
+    "required": "This field is required",
     "yes": "Yes",
     "no": "No"
   }

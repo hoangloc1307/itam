@@ -68,6 +68,11 @@ function ModelAttributeValuesForm({ modelId, attributes, onSuccess }: FormProps)
     },
   });
 
+  // Build required field set for validation
+  const requiredFields = new Set(
+    attributes.filter((a) => a.isRequired).map((a) => String(a.attributeId)),
+  );
+
   // Group attributes by groupName
   const grouped = attributes.reduce<Record<string, ModelAttributeValueItem[]>>((acc, attr) => {
     const groupKey = attr.groupName ?? t('attributeValues.ungrouped');
@@ -91,15 +96,24 @@ function ModelAttributeValuesForm({ modelId, attributes, onSuccess }: FormProps)
             <div className='grid grid-cols-1 gap-4 sm:grid-cols-2'>
               {attrs.map((attr) => {
                 const fieldName = String(attr.attributeId);
-                const label = attr.measurementUnit
+                const baseLabel = attr.measurementUnit
                   ? `${attr.name} (${attr.measurementUnit})`
                   : attr.name;
+                const isRequired = requiredFields.has(fieldName);
+                const label = isRequired ? `${baseLabel} *` : baseLabel;
+                const validators = isRequired
+                  ? {
+                      onSubmit: ({ value }: { value: string }) =>
+                        !value ? { message: t('attributeValues.required') } : undefined,
+                    }
+                  : undefined;
 
                 if (attr.dataType === 'SELECT' && attr.options) {
                   return (
                     <div key={fieldName}>
                       <form.AppField
                         name={fieldName}
+                        validators={validators}
                         children={(field) => (
                           <field.SelectField
                             label={label}
@@ -116,6 +130,7 @@ function ModelAttributeValuesForm({ modelId, attributes, onSuccess }: FormProps)
                     <div key={fieldName}>
                       <form.AppField
                         name={fieldName}
+                        validators={validators}
                         children={(field) => (
                           <field.SelectField
                             label={label}
@@ -135,6 +150,7 @@ function ModelAttributeValuesForm({ modelId, attributes, onSuccess }: FormProps)
                     <div key={fieldName}>
                       <form.AppField
                         name={fieldName}
+                        validators={validators}
                         children={(field) => <field.NumberField label={label} />}
                       />
                     </div>
@@ -145,6 +161,7 @@ function ModelAttributeValuesForm({ modelId, attributes, onSuccess }: FormProps)
                   <div key={fieldName}>
                     <form.AppField
                       name={fieldName}
+                      validators={validators}
                       children={(field) => <field.TextField label={label} />}
                     />
                   </div>

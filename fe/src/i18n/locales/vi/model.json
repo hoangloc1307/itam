@@ -58,6 +58,7 @@
     "noAttributes": "Chưa cấu hình thuộc tính cho loại thiết bị này",
     "ungrouped": "Thông tin chung",
     "selectPlaceholder": "Chọn...",
+    "required": "Trường này là bắt buộc",
     "yes": "Có",
     "no": "Không"
   }
