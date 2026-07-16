@@ -1,5 +1,5 @@
 export type { ApiResponse, Pagination } from './api';
-export type { Attribute, AttributeBase, AttributeEntity } from './attribute';
+export type { Attribute, AttributeBase, AttributeEntity, AttributeGroupInfo } from './attribute';
 export type { AttributeGroup, AttributeGroupBase, AttributeGroupEntity } from './attribute-group';
 export type { LoginResponse, Permission, RefreshResponse, UserInfo } from './auth';
 export type { Category, CategoryBase, CategoryEntity } from './category';

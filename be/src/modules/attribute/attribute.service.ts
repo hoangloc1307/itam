@@ -22,6 +22,7 @@ const list = async ({ page, limit, search }: ListParams) => {
   const [data, totalItems] = await Promise.all([
     prisma.attribute.findMany({
       where,
+      include: { group: { select: { id: true, name: true } } },
       skip: (page - 1) * limit,
       take: limit,
       orderBy: { createdAt: 'desc' },
@@ -46,6 +47,7 @@ const create = async (input: CreateAttributeInput, createdBy: string) => {
   return prisma.attribute.create({
     data: {
       name: input.name,
+      groupId: input.groupId ?? null,
       measurementUnit: input.measurementUnit ?? null,
       dataType: input.dataType,
       options: input.options ?? undefined,

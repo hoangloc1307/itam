@@ -20,6 +20,7 @@
   "columns": {
     "id": "ID",
     "name": "Name",
+    "group": "Group",
     "measurementUnit": "Unit",
     "dataType": "Data Type",
     "options": "Options",
@@ -30,6 +31,8 @@
   },
   "form": {
     "name": "Attribute name",
+    "group": "Attribute group",
+    "groupPlaceholder": "Select group",
     "measurementUnit": "Measurement unit",
     "dataType": "Data type",
     "options": "Options",

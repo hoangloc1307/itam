@@ -1,3 +1,4 @@
+import { useSuspenseQuery } from '@tanstack/react-query';
 import {
   createAttributeSchema,
   attributeDataTypes,
@@ -5,6 +6,7 @@ import {
 } from 'itam-shared/schemas/attribute';
 import type { Attribute } from 'itam-shared/types';
 import { useTranslation } from 'react-i18next';
+import { attributeGroupQueries } from '~/api/attribute-group.queries';
 import { FieldGroup } from '~/components/ui/field';
 import { useCreateAttribute, useUpdateAttribute } from '~/hooks/mutations/use-attribute';
 import { useAppForm } from '~/hooks/use-app-form';
@@ -19,23 +21,40 @@ export function AttributeForm({ attribute, onSuccess }: AttributeFormProps) {
   const createMutation = useCreateAttribute();
   const updateMutation = useUpdateAttribute();
   const isEditing = !!attribute;
+  const { data: groupsData } = useSuspenseQuery(attributeGroupQueries.all());
+  const groups = groupsData?.data ?? [];
+
+  const groupOptions = groups.map((g) => ({
+    label: g.name,
+    value: String(g.id),
+  }));
 
   const form = useAppForm({
     defaultValues: {
       name: attribute?.name ?? '',
+      groupId: attribute?.groupId != null ? String(attribute.groupId) : '',
       measurementUnit: attribute?.measurementUnit ?? null,
       dataType: attribute?.dataType ?? 'TEXT',
       options: attribute?.options ?? null,
       isActive: attribute?.isActive ?? true,
-    } satisfies CreateAttributeInput,
-    validators: {
-      onSubmit: createAttributeSchema,
     },
     onSubmit: async ({ value }) => {
+      const payload: CreateAttributeInput = {
+        name: value.name,
+        groupId: value.groupId ? Number(value.groupId) : null,
+        measurementUnit: value.measurementUnit,
+        dataType: value.dataType,
+        options: value.options,
+        isActive: value.isActive,
+      };
+
+      const result = createAttributeSchema.safeParse(payload);
+      if (!result.success) return;
+
       if (isEditing) {
-        await updateMutation.mutateAsync({ id: attribute.id, ...value });
+        await updateMutation.mutateAsync({ id: attribute.id, ...payload });
       } else {
-        await createMutation.mutateAsync(value);
+        await createMutation.mutateAsync(payload);
       }
       onSuccess();
     },
@@ -53,6 +72,17 @@ export function AttributeForm({ attribute, onSuccess }: AttributeFormProps) {
         <form.AppField
           name='name'
           children={(field) => <field.TextField label={t('form.name')} />}
+        />
+
+        <form.AppField
+          name='groupId'
+          children={(field) => (
+            <field.ComboboxField
+              label={t('form.group')}
+              placeholder={t('form.groupPlaceholder')}
+              options={groupOptions}
+            />
+          )}
         />
 
         <div className='grid grid-cols-2 gap-4'>

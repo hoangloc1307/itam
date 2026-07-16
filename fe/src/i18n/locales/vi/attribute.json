@@ -20,6 +20,7 @@
   "columns": {
     "id": "ID",
     "name": "Tên thuộc tính",
+    "group": "Nhóm",
     "measurementUnit": "Đơn vị",
     "dataType": "Loại dữ liệu",
     "options": "Tùy chọn",
@@ -30,6 +31,8 @@
   },
   "form": {
     "name": "Tên thuộc tính",
+    "group": "Nhóm thuộc tính",
+    "groupPlaceholder": "Chọn nhóm",
     "measurementUnit": "Đơn vị tính",
     "dataType": "Loại dữ liệu",
     "options": "Tùy chọn",

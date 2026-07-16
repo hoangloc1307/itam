@@ -20,6 +20,7 @@
   "columns": {
     "id": "ID",
     "name": "属性名",
+    "group": "グループ",
     "measurementUnit": "単位",
     "dataType": "データ型",
     "options": "オプション",
@@ -30,6 +31,8 @@
   },
   "form": {
     "name": "属性名",
+    "group": "属性グループ",
+    "groupPlaceholder": "グループを選択",
     "measurementUnit": "測定単位",
     "dataType": "データ型",
     "options": "オプション",

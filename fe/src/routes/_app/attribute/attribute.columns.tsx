@@ -58,6 +58,12 @@ export const getAttributeColumns = (
     accessorKey: 'name',
   },
   {
+    header: t('columns.group'),
+    id: 'group',
+    accessorFn: (row) => row.group?.name ?? '',
+    cell: ({ row }) => row.original.group?.name ?? '',
+  },
+  {
     header: t('columns.measurementUnit'),
     accessorKey: 'measurementUnit',
     cell: ({ getValue }) => getValue<string | null>(),

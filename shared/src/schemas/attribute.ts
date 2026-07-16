@@ -8,6 +8,7 @@ export const createAttributeSchema = z.object({
     .string()
     .nonempty('attribute:validation.nameRequired')
     .max(150, 'attribute:validation.nameMaxLength'),
+  groupId: z.number().int().nullable(),
   measurementUnit: z.string().max(50, 'attribute:validation.measurementUnitMaxLength').nullable(),
   dataType: z.enum(attributeDataTypes, {
     error: 'attribute:validation.dataTypeInvalid',
