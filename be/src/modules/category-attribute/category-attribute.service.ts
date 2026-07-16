@@ -22,6 +22,7 @@ const getByCategoryId = async (categoryId: string) => {
           measurementUnit: true,
           dataType: true,
           options: true,
+          group: { select: { name: true, sortOrder: true } },
         },
       },
     },
@@ -34,6 +35,8 @@ const getByCategoryId = async (categoryId: string) => {
     measurementUnit: item.attribute.measurementUnit,
     dataType: item.attribute.dataType,
     options: item.attribute.options as string[] | null,
+    groupName: item.attribute.group?.name ?? null,
+    groupSortOrder: item.attribute.group?.sortOrder ?? null,
     sortOrder: item.sortOrder,
     isRequired: item.isRequired,
   }));

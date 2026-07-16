@@ -6,6 +6,7 @@
   "noAvailable": "No attributes available",
   "noAssigned": "No attributes assigned",
   "required": "Required",
+  "ungrouped": "Other",
   "save": "Save",
   "syncSuccess": "Attributes updated successfully",
   "syncError": "Failed to update attributes",

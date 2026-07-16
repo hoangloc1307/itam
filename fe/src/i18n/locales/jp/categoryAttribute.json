@@ -6,6 +6,7 @@
   "noAvailable": "利用可能な属性がありません",
   "noAssigned": "属性が割り当てられていません",
   "required": "必須",
+  "ungrouped": "その他",
   "save": "保存",
   "syncSuccess": "属性を更新しました",
   "syncError": "属性の更新に失敗しました",

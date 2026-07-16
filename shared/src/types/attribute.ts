@@ -3,6 +3,7 @@ import type { AttributeDataType } from '../schemas/attribute';
 export interface AttributeGroupInfo {
   id: number;
   name: string;
+  sortOrder: number;
 }
 
 export interface AttributeBase<TDate = string> {

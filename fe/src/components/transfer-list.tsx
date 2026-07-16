@@ -43,6 +43,8 @@ export interface TransferItem {
   label: string;
   description?: string;
   badge?: string;
+  group?: string;
+  groupSortOrder?: number;
 }
 
 export interface AssignedItem extends TransferItem {
@@ -63,6 +65,7 @@ export interface TransferListProps {
     noAvailable: string;
     noAssigned: string;
     required: string;
+    ungrouped?: string;
   };
 }
 
@@ -346,16 +349,38 @@ export function TransferList({
                 strategy={verticalListSortingStrategy}
               >
                 <DroppableContainer id={AVAILABLE_CONTAINER}>
-                  {availableItems.map((item) => (
-                    <DraggableCard
-                      key={item.id}
-                      item={item}
-                      containerId={AVAILABLE_CONTAINER}
-                      checked={checkedAvailable.has(item.id)}
-                      onCheck={toggleCheckAvailable}
-                      showRequired={false}
-                    />
-                  ))}
+                  {(() => {
+                    const ungroupedLabel = labels.ungrouped || 'Khác';
+                    const grouped: Record<string, { items: AssignedItem[]; sortOrder: number }> =
+                      {};
+                    for (const item of availableItems) {
+                      const key = item.group || ungroupedLabel;
+                      if (!grouped[key]) {
+                        grouped[key] = { items: [], sortOrder: item.groupSortOrder ?? 9999 };
+                      }
+                      grouped[key].items.push(item);
+                    }
+                    const entries = Object.entries(grouped).sort(([, a], [, b]) => {
+                      return a.sortOrder - b.sortOrder;
+                    });
+                    return entries.map(([groupName, { items }]) => (
+                      <div key={groupName}>
+                        <div className='text-muted-foreground sticky top-0 bg-inherit px-1 py-1.5 text-xs font-semibold'>
+                          {groupName}
+                        </div>
+                        {items.map((item) => (
+                          <DraggableCard
+                            key={item.id}
+                            item={item}
+                            containerId={AVAILABLE_CONTAINER}
+                            checked={checkedAvailable.has(item.id)}
+                            onCheck={toggleCheckAvailable}
+                            showRequired={false}
+                          />
+                        ))}
+                      </div>
+                    ));
+                  })()}
                   {availableItems.length === 0 && (
                     <p className='text-muted-foreground py-4 text-center text-sm'>
                       {labels.noAvailable}
@@ -418,18 +443,40 @@ export function TransferList({
                 strategy={verticalListSortingStrategy}
               >
                 <DroppableContainer id={ASSIGNED_CONTAINER}>
-                  {assignedList.map((item) => (
-                    <DraggableCard
-                      key={item.id}
-                      item={item}
-                      containerId={ASSIGNED_CONTAINER}
-                      checked={checkedAssigned.has(item.id)}
-                      onCheck={toggleCheckAssigned}
-                      showRequired={true}
-                      onToggleRequired={toggleRequired}
-                      requiredLabel={labels.required}
-                    />
-                  ))}
+                  {(() => {
+                    const ungroupedLabel = labels.ungrouped || 'Khác';
+                    const grouped: Record<string, { items: AssignedItem[]; sortOrder: number }> =
+                      {};
+                    for (const item of assignedList) {
+                      const key = item.group || ungroupedLabel;
+                      if (!grouped[key]) {
+                        grouped[key] = { items: [], sortOrder: item.groupSortOrder ?? 9999 };
+                      }
+                      grouped[key].items.push(item);
+                    }
+                    const entries = Object.entries(grouped).sort(([, a], [, b]) => {
+                      return a.sortOrder - b.sortOrder;
+                    });
+                    return entries.map(([groupName, { items }]) => (
+                      <div key={groupName}>
+                        <div className='text-muted-foreground sticky top-0 bg-inherit px-1 py-1.5 text-xs font-semibold'>
+                          {groupName}
+                        </div>
+                        {items.map((item) => (
+                          <DraggableCard
+                            key={item.id}
+                            item={item}
+                            containerId={ASSIGNED_CONTAINER}
+                            checked={checkedAssigned.has(item.id)}
+                            onCheck={toggleCheckAssigned}
+                            showRequired={true}
+                            onToggleRequired={toggleRequired}
+                            requiredLabel={labels.required}
+                          />
+                        ))}
+                      </div>
+                    ));
+                  })()}
                   {assignedList.length === 0 && (
                     <p className='text-muted-foreground py-4 text-center text-sm'>
                       {labels.noAssigned}

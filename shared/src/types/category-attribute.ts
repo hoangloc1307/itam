@@ -6,6 +6,8 @@ export interface CategoryAttributeItem {
   measurementUnit: string | null;
   dataType: AttributeDataType;
   options: string[] | null;
+  groupName: string | null;
+  groupSortOrder: number | null;
   sortOrder: number;
   isRequired: boolean;
 }

@@ -41,6 +41,8 @@ const CategoryAttributePage = () => {
     label: attr.name,
     description: attr.measurementUnit ?? undefined,
     badge: attr.dataType,
+    group: attr.group?.name ?? undefined,
+    groupSortOrder: attr.group?.sortOrder ?? undefined,
   }));
 
   const assignedSource: AssignedItem[] = assignedItems.map((item) => ({
@@ -48,6 +50,8 @@ const CategoryAttributePage = () => {
     label: item.name,
     description: item.measurementUnit ?? undefined,
     badge: item.dataType,
+    group: item.groupName ?? undefined,
+    groupSortOrder: item.groupSortOrder ?? undefined,
     isRequired: item.isRequired,
   }));
 
@@ -102,6 +106,7 @@ const CategoryAttributePage = () => {
             noAvailable: t('noAvailable'),
             noAssigned: t('noAssigned'),
             required: t('required'),
+            ungrouped: t('ungrouped'),
           }}
         />
       )}

@@ -22,7 +22,7 @@ const list = async ({ page, limit, search }: ListParams) => {
   const [data, totalItems] = await Promise.all([
     prisma.attribute.findMany({
       where,
-      include: { group: { select: { id: true, name: true } } },
+      include: { group: { select: { id: true, name: true, sortOrder: true } } },
       skip: (page - 1) * limit,
       take: limit,
       orderBy: { createdAt: 'desc' },
