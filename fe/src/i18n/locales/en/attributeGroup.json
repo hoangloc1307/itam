@@ -1,0 +1,32 @@
+{
+  "title": "Attribute Groups",
+  "addNew": "Add group",
+  "edit": "Edit group",
+  "deleteConfirm": "Are you sure you want to delete this attribute group?",
+  "createSuccess": "Attribute group created successfully",
+  "updateSuccess": "Attribute group updated successfully",
+  "deleteSuccess": "Attribute group deleted successfully",
+  "status": {
+    "active": "Active",
+    "inactive": "Inactive"
+  },
+  "columns": {
+    "id": "ID",
+    "name": "Name",
+    "sortOrder": "Sort Order",
+    "isActive": "Active",
+    "createdBy": "Created By",
+    "createdAt": "Created Date",
+    "actions": "Actions"
+  },
+  "form": {
+    "name": "Group name",
+    "sortOrder": "Sort order",
+    "isActive": "Active",
+    "namePlaceholder": "Enter group name"
+  },
+  "validation": {
+    "nameRequired": "Group name is required",
+    "nameMaxLength": "Group name must be at most 150 characters"
+  }
+}

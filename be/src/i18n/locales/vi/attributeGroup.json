@@ -1,0 +1,7 @@
+{
+  "notFound": "Không tìm thấy nhóm thuộc tính",
+  "validation": {
+    "nameRequired": "Tên nhóm thuộc tính là bắt buộc",
+    "nameMaxLength": "Tên nhóm thuộc tính tối đa 150 ký tự"
+  }
+}

@@ -14,6 +14,7 @@ i18next.use(Backend).init({
     'common',
     'auth',
     'attribute',
+    'attributeGroup',
     'category',
     'feature',
     'model',

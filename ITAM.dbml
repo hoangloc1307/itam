@@ -107,8 +107,20 @@ Table categories {
   updated_at timestamptz
 }
 
+Table attribute_groups {
+  id int [pk, increment]
+  name varchar(150) [not null]
+  sort_order int [default: 0]
+  is_active boolean [default: true]
+  created_by char(8) [not null]
+  created_at timestamptz [default: `now()`]
+  updated_by char(8)
+  updated_at timestamptz
+}
+
 Table attributes {
   id int [pk, increment]
+  group_id int [note: 'Nullable, attribute can exist without a group']
   name varchar(150) [not null]
   measurement_unit varchar(50)
   data_type AttributeDataType [not null, default: 'TEXT']
@@ -410,6 +422,7 @@ Ref: user_permission.username > users.username
 Ref: user_permission.feature_code > features.code
 
 // Master data
+Ref: attributes.group_id > attribute_groups.id
 Ref: category_attributes.category_id > categories.id
 Ref: category_attributes.attribute_id > attributes.id
 Ref: models.category_id > categories.id

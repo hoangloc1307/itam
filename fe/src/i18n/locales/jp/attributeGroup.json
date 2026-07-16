@@ -1,0 +1,32 @@
+{
+  "title": "属性グループ",
+  "addNew": "グループを追加",
+  "edit": "グループを編集",
+  "deleteConfirm": "この属性グループを削除してもよろしいですか？",
+  "createSuccess": "属性グループを作成しました",
+  "updateSuccess": "属性グループを更新しました",
+  "deleteSuccess": "属性グループを削除しました",
+  "status": {
+    "active": "有効",
+    "inactive": "無効"
+  },
+  "columns": {
+    "id": "ID",
+    "name": "グループ名",
+    "sortOrder": "表示順",
+    "isActive": "有効",
+    "createdBy": "作成者",
+    "createdAt": "作成日",
+    "actions": "操作"
+  },
+  "form": {
+    "name": "グループ名",
+    "sortOrder": "表示順",
+    "isActive": "有効",
+    "namePlaceholder": "グループ名を入力"
+  },
+  "validation": {
+    "nameRequired": "グループ名は必須です",
+    "nameMaxLength": "グループ名は150文字以内で入力してください"
+  }
+}

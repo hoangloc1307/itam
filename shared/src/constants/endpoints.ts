@@ -1,7 +1,8 @@
 export const ENDPOINTS = {
   AUTH: '/auth',
-  CATEGORIES: '/categories',
+  ATTRIBUTE_GROUPS: '/attribute-groups',
   ATTRIBUTES: '/attributes',
+  CATEGORIES: '/categories',
   CATEGORY_ATTRIBUTES: '/category-attributes',
   FEATURES: '/features',
   MODELS: '/models',

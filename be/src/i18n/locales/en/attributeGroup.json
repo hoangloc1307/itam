@@ -1,0 +1,7 @@
+{
+  "notFound": "Attribute group not found",
+  "validation": {
+    "nameRequired": "Attribute group name is required",
+    "nameMaxLength": "Attribute group name must be at most 150 characters"
+  }
+}

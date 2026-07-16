@@ -1,0 +1,32 @@
+{
+  "title": "Nhóm thuộc tính",
+  "addNew": "Thêm nhóm",
+  "edit": "Sửa nhóm",
+  "deleteConfirm": "Bạn có chắc muốn xóa nhóm thuộc tính này?",
+  "createSuccess": "Tạo nhóm thuộc tính thành công",
+  "updateSuccess": "Cập nhật nhóm thuộc tính thành công",
+  "deleteSuccess": "Xóa nhóm thuộc tính thành công",
+  "status": {
+    "active": "Hoạt động",
+    "inactive": "Ngừng hoạt động"
+  },
+  "columns": {
+    "id": "ID",
+    "name": "Tên nhóm",
+    "sortOrder": "Thứ tự",
+    "isActive": "Hoạt động",
+    "createdBy": "Người tạo",
+    "createdAt": "Ngày tạo",
+    "actions": "Thao tác"
+  },
+  "form": {
+    "name": "Tên nhóm",
+    "sortOrder": "Thứ tự sắp xếp",
+    "isActive": "Hoạt động",
+    "namePlaceholder": "Nhập tên nhóm"
+  },
+  "validation": {
+    "nameRequired": "Tên nhóm thuộc tính là bắt buộc",
+    "nameMaxLength": "Tên nhóm thuộc tính tối đa 150 ký tự"
+  }
+}

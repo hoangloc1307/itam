@@ -12,6 +12,7 @@
     "master": "Master",
     "category": "Category",
     "attribute": "Attribute",
+    "attributeGroup": "Attribute Groups",
     "categoryAttribute": "Category Attributes",
     "model": "Model",
     "admin": "Administration",

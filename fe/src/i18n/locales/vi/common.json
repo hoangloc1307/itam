@@ -12,6 +12,7 @@
     "master": "Danh mục chung",
     "category": "Loại thiết bị",
     "attribute": "Thuộc tính",
+    "attributeGroup": "Nhóm thuộc tính",
     "categoryAttribute": "Thuộc tính danh mục",
     "model": "Model",
     "admin": "Quản trị",
