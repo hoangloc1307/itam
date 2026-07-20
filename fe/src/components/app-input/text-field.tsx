@@ -19,7 +19,7 @@ export const TextField = ({ label, ...props }: TextFieldProps) => {
       <FieldLabel htmlFor={id}>{label}</FieldLabel>
       <Input
         id={id}
-        value={field.state.value}
+        value={field.state.value ?? ''}
         onChange={(e) => field.handleChange(e.target.value)}
         onBlur={field.handleBlur}
         aria-invalid={isInvalid}

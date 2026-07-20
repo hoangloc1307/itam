@@ -1,0 +1,44 @@
+info:
+  name: CreateBatch
+  type: http
+  seq: 4
+
+http:
+  method: POST
+  url: "{{API_URL}}/{{ASSET_ENDPOINT}}/batch"
+  body:
+    type: json
+    data: |-
+      {
+        "name": "Laptop Dell Latitude 5540",
+        "categoryId": "CAT001",
+        "modelId": null,
+        "vendorId": null,
+        "purchaseDate": "2024-01-15",
+        "purchasePrice": 25000000,
+        "warrantyStartDate": "2024-01-15",
+        "warrantyEndDate": "2025-01-15",
+        "warrantyMonth": 12,
+        "location": "HCM Office",
+        "maintenanceIntervalHours": 8760,
+        "assetStatus": "AVAILABLE",
+        "items": [
+          {
+            "id": "AST001",
+            "assetCode": "LPT-001",
+            "serialNumber": "SN-12345"
+          },
+          {
+            "id": "AST002",
+            "assetCode": "LPT-002",
+            "serialNumber": "SN-12346"
+          }
+        ]
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

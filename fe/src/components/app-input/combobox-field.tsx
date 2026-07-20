@@ -20,9 +20,10 @@ type ComboboxFieldProps = {
   label?: string;
   options: Option[];
   placeholder?: string;
+  onChange?: (value: string) => void;
 };
 
-export const ComboboxField = ({ label, options, placeholder }: ComboboxFieldProps) => {
+export const ComboboxField = ({ label, options, placeholder, onChange }: ComboboxFieldProps) => {
   const id = useId();
   const { t } = useTranslation();
   const field = useFieldContext<string>();
@@ -35,7 +36,11 @@ export const ComboboxField = ({ label, options, placeholder }: ComboboxFieldProp
       <Combobox
         items={options}
         value={selectedOption}
-        onValueChange={(val) => field.handleChange(val?.value ?? '')}
+        onValueChange={(val) => {
+          const newValue = val?.value ?? '';
+          field.handleChange(newValue);
+          onChange?.(newValue);
+        }}
         itemToStringValue={(item) => item.label}
       >
         <ComboboxInput
