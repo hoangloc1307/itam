@@ -18,6 +18,7 @@ i18n
     },
     ns: [
       'common',
+      'asset',
       'auth',
       'category',
       'categoryAttribute',

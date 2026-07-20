@@ -26,6 +26,7 @@ import { Route as AppCategoryIndexRouteImport } from './routes/_app/category/ind
 import { Route as AppCategoryAttributeIndexRouteImport } from './routes/_app/category-attribute/index';
 import { Route as AppAttributeIndexRouteImport } from './routes/_app/attribute/index';
 import { Route as AppAttributeGroupIndexRouteImport } from './routes/_app/attribute-group/index';
+import { Route as AppAssetIndexRouteImport } from './routes/_app/asset/index';
 
 const AuthRoute = AuthRouteImport.update({
   id: '/_auth',
@@ -111,12 +112,18 @@ const AppAttributeGroupIndexRoute = AppAttributeGroupIndexRouteImport.update({
   path: '/attribute-group/',
   getParentRoute: () => AppRoute,
 } as any);
+const AppAssetIndexRoute = AppAssetIndexRouteImport.update({
+  id: '/asset/',
+  path: '/asset/',
+  getParentRoute: () => AppRoute,
+} as any);
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute;
   '/dashboard': typeof AppDashboardRoute;
   '/login': typeof AuthLoginRoute;
   '/register': typeof AuthRegisterRoute;
+  '/asset/': typeof AppAssetIndexRoute;
   '/attribute-group/': typeof AppAttributeGroupIndexRoute;
   '/attribute/': typeof AppAttributeIndexRoute;
   '/category-attribute/': typeof AppCategoryAttributeIndexRoute;
@@ -134,6 +141,7 @@ export interface FileRoutesByTo {
   '/dashboard': typeof AppDashboardRoute;
   '/login': typeof AuthLoginRoute;
   '/register': typeof AuthRegisterRoute;
+  '/asset': typeof AppAssetIndexRoute;
   '/attribute-group': typeof AppAttributeGroupIndexRoute;
   '/attribute': typeof AppAttributeIndexRoute;
   '/category-attribute': typeof AppCategoryAttributeIndexRoute;
@@ -154,6 +162,7 @@ export interface FileRoutesById {
   '/_app/dashboard': typeof AppDashboardRoute;
   '/_auth/login': typeof AuthLoginRoute;
   '/_auth/register': typeof AuthRegisterRoute;
+  '/_app/asset/': typeof AppAssetIndexRoute;
   '/_app/attribute-group/': typeof AppAttributeGroupIndexRoute;
   '/_app/attribute/': typeof AppAttributeIndexRoute;
   '/_app/category-attribute/': typeof AppCategoryAttributeIndexRoute;
@@ -173,6 +182,7 @@ export interface FileRouteTypes {
     | '/dashboard'
     | '/login'
     | '/register'
+    | '/asset/'
     | '/attribute-group/'
     | '/attribute/'
     | '/category-attribute/'
@@ -190,6 +200,7 @@ export interface FileRouteTypes {
     | '/dashboard'
     | '/login'
     | '/register'
+    | '/asset'
     | '/attribute-group'
     | '/attribute'
     | '/category-attribute'
@@ -209,6 +220,7 @@ export interface FileRouteTypes {
     | '/_app/dashboard'
     | '/_auth/login'
     | '/_auth/register'
+    | '/_app/asset/'
     | '/_app/attribute-group/'
     | '/_app/attribute/'
     | '/_app/category-attribute/'
@@ -349,11 +361,19 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppAttributeGroupIndexRouteImport;
       parentRoute: typeof AppRoute;
     };
+    '/_app/asset/': {
+      id: '/_app/asset/';
+      path: '/asset';
+      fullPath: '/asset/';
+      preLoaderRoute: typeof AppAssetIndexRouteImport;
+      parentRoute: typeof AppRoute;
+    };
   }
 }
 
 interface AppRouteChildren {
   AppDashboardRoute: typeof AppDashboardRoute;
+  AppAssetIndexRoute: typeof AppAssetIndexRoute;
   AppAttributeGroupIndexRoute: typeof AppAttributeGroupIndexRoute;
   AppAttributeIndexRoute: typeof AppAttributeIndexRoute;
   AppCategoryAttributeIndexRoute: typeof AppCategoryAttributeIndexRoute;
@@ -369,6 +389,7 @@ interface AppRouteChildren {
 
 const AppRouteChildren: AppRouteChildren = {
   AppDashboardRoute: AppDashboardRoute,
+  AppAssetIndexRoute: AppAssetIndexRoute,
   AppAttributeGroupIndexRoute: AppAttributeGroupIndexRoute,
   AppAttributeIndexRoute: AppAttributeIndexRoute,
   AppCategoryAttributeIndexRoute: AppCategoryAttributeIndexRoute,

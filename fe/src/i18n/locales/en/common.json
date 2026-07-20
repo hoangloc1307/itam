@@ -16,6 +16,8 @@
     "categoryAttribute": "Category Attributes",
     "model": "Model",
     "admin": "Administration",
+    "assetManagement": "Asset Management",
+    "asset": "Assets",
     "feature": "Features",
     "role": "Roles",
     "rolePermission": "Role Permissions",

@@ -16,6 +16,8 @@
     "categoryAttribute": "Thuộc tính danh mục",
     "model": "Model",
     "admin": "Quản trị",
+    "assetManagement": "Quản lý tài sản",
+    "asset": "Tài sản",
     "feature": "Chức năng",
     "role": "Vai trò",
     "rolePermission": "Phân quyền vai trò",

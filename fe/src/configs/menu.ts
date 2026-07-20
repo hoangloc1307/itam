@@ -1,8 +1,26 @@
-import { IconFileSettings, IconLifebuoy, IconSend, IconShieldCog } from '@tabler/icons-react';
+import {
+  IconDeviceDesktop,
+  IconFileSettings,
+  IconLifebuoy,
+  IconSend,
+  IconShieldCog,
+} from '@tabler/icons-react';
 import { FEATURES } from 'itam-shared/constants';
 import type { NavItem } from '~/components/nav-main';
 
 const MAIN_MENU: NavItem[] = [
+  {
+    title: 'menu.assetManagement',
+    url: '',
+    icon: IconDeviceDesktop,
+    children: [
+      {
+        title: 'menu.asset',
+        url: '/asset',
+        featureCode: FEATURES.ASSET,
+      },
+    ],
+  },
   {
     title: 'menu.master',
     url: '',
