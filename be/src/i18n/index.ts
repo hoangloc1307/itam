@@ -12,6 +12,7 @@ i18next.use(Backend).init({
   supportedLngs: SUPPORTED_LANGUAGES,
   ns: [
     'common',
+    'asset',
     'auth',
     'attribute',
     'attributeGroup',

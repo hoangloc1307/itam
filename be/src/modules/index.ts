@@ -1,5 +1,6 @@
 import type { Router } from 'express';
 import { ENDPOINTS } from 'itam-shared/constants';
+import assetRouter from '~/modules/asset/asset.route';
 import attributeGroupRouter from '~/modules/attribute-group/attribute-group.route';
 import attributeRouter from '~/modules/attribute/attribute.route';
 import authRouter from '~/modules/auth/auth.route';
@@ -21,6 +22,7 @@ interface ModuleConfig {
 }
 
 export const modulesConfig: ModuleConfig[] = [
+  { path: ENDPOINTS.ASSETS, router: assetRouter },
   { path: ENDPOINTS.ATTRIBUTE_GROUPS, router: attributeGroupRouter },
   { path: ENDPOINTS.ATTRIBUTES, router: attributeRouter },
   { path: ENDPOINTS.AUTH, router: authRouter, isPublic: true },

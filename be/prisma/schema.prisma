@@ -31,6 +31,22 @@ enum AttributeDataType {
   BOOLEAN
 }
 
+enum AssetStatus {
+  AVAILABLE
+  IN_USE
+  UNDER_REPAIR
+  DISPOSED
+  LOST
+}
+
+enum AssetHistoryType {
+  ASSIGN
+  TRANSFER
+  RETURN
+  REPAIR
+  DISPOSE
+}
+
 // ==================== MODELS ====================
 
 model User {
@@ -151,6 +167,7 @@ model Category {
 
   categoryAttributes CategoryAttribute[]
   models             ItemModel[]
+  assets             Asset[]
 
   @@map("categories")
 }
@@ -188,6 +205,7 @@ model Attribute {
   group              AttributeGroup?        @relation(fields: [groupId], references: [id])
   categoryAttributes CategoryAttribute[]
   modelAttributeValues ModelAttributeValue[]
+  assetAttributeValues AssetAttributeValue[]
 
   @@map("attributes")
 }
@@ -225,6 +243,7 @@ model ItemModel {
 
   category              Category               @relation(fields: [categoryId], references: [id])
   attributeValues       ModelAttributeValue[]
+  assets                Asset[]
 
   @@map("models")
 }
@@ -239,4 +258,78 @@ model ModelAttributeValue {
 
   @@id([attributeId, modelId])
   @@map("model_attribute_values")
+}
+
+
+// ==================== ASSET ====================
+
+model Asset {
+  id                       String      @id @db.VarChar(50)
+  assetCode                String?     @unique @map("asset_code") @db.VarChar(50)
+  name                     String      @db.VarChar(200)
+  categoryId               String      @map("category_id") @db.VarChar(30)
+  modelId                  String?     @map("model_id") @db.VarChar(30)
+  vendorId                 String?     @map("vendor_id") @db.VarChar(30)
+  purchaseDate             DateTime?   @map("purchase_date") @db.Date
+  purchasePrice            Decimal?    @map("purchase_price") @db.Decimal(15, 2)
+  warrantyStartDate        DateTime?   @map("warranty_start_date") @db.Date
+  warrantyEndDate          DateTime?   @map("warranty_end_date") @db.Date
+  warrantyMonth            Int?        @map("warranty_month")
+  serialNumber             String?     @map("serial_number") @db.VarChar(100)
+  location                 String?     @db.VarChar(200)
+  maintenanceIntervalHours Int?        @map("maintenance_interval_hours")
+  lastMaintenanceDate      DateTime?   @map("last_maintenance_date") @db.Timestamptz(0)
+  quantity                 Int         @default(1)
+  remainQuantity           Int         @default(1) @map("remain_quantity")
+  qrCode                   String?     @map("qr_code") @db.VarChar(255)
+  assetStatus              AssetStatus @default(AVAILABLE) @map("asset_status")
+  assignedTo               String?     @map("assigned_to") @db.Char(8)
+  currentSection           String?     @map("current_section") @db.Char(4)
+  deletedAt                DateTime?   @map("deleted_at") @db.Timestamptz(0)
+  createdBy                String      @map("created_by") @db.Char(8)
+  createdAt                DateTime    @default(now()) @map("created_at") @db.Timestamptz(0)
+  updatedBy                String?     @map("updated_by") @db.Char(8)
+  updatedAt                DateTime?   @map("updated_at") @db.Timestamptz(0)
+
+  category        Category              @relation(fields: [categoryId], references: [id])
+  model           ItemModel?            @relation(fields: [modelId], references: [id])
+  attributeValues AssetAttributeValue[]
+  history         AssetHistory[]
+
+  @@map("assets")
+}
+
+model AssetAttributeValue {
+  id          Int     @id @default(autoincrement())
+  attributeId Int     @map("attribute_id")
+  assetId     String  @map("asset_id") @db.VarChar(50)
+  value       String? @db.Text
+
+  attribute Attribute @relation(fields: [attributeId], references: [id])
+  asset     Asset     @relation(fields: [assetId], references: [id])
+
+  @@unique([attributeId, assetId])
+  @@map("asset_attribute_values")
+}
+
+model AssetHistory {
+  id                Int              @id @default(autoincrement())
+  assetId           String           @map("asset_id") @db.VarChar(50)
+  type              AssetHistoryType
+  location          String?          @db.VarChar(200)
+  employeeId        String?          @map("employee_id") @db.VarChar(30)
+  sectionId         String?          @map("section_id") @db.Char(4)
+  employeeReceiveId String?          @map("employee_receive_id") @db.VarChar(30)
+  sectionReceiveId  String?          @map("section_receive_id") @db.Char(4)
+  quantity          Int?
+  note              String?          @db.Text
+  isActive          Boolean          @default(true) @map("is_active")
+  createdBy         String           @map("created_by") @db.Char(8)
+  createdAt         DateTime         @default(now()) @map("created_at") @db.Timestamptz(0)
+  updatedBy         String?          @map("updated_by") @db.Char(8)
+  updatedAt         DateTime?        @map("updated_at") @db.Timestamptz(0)
+
+  asset Asset @relation(fields: [assetId], references: [id])
+
+  @@map("asset_history")
 }

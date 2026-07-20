@@ -1,0 +1,15 @@
+{
+  "notFound": "Asset not found",
+  "alreadyExists": "Asset ID already exists",
+  "batchConflict": "Asset IDs already exist: {{ids}}",
+  "validation": {
+    "idRequired": "Asset ID is required",
+    "idMaxLength": "Asset ID must be at most 50 characters",
+    "assetCodeMaxLength": "Asset code must be at most 50 characters",
+    "nameRequired": "Asset name is required",
+    "nameMaxLength": "Asset name must be at most 200 characters",
+    "categoryIdRequired": "Category is required",
+    "categoryIdMaxLength": "Category ID must be at most 30 characters",
+    "itemsRequired": "At least one asset item is required"
+  }
+}

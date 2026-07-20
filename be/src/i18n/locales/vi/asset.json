@@ -1,0 +1,15 @@
+{
+  "notFound": "Không tìm thấy tài sản",
+  "alreadyExists": "Mã tài sản đã tồn tại",
+  "batchConflict": "Các mã tài sản đã tồn tại: {{ids}}",
+  "validation": {
+    "idRequired": "Mã tài sản là bắt buộc",
+    "idMaxLength": "Mã tài sản tối đa 50 ký tự",
+    "assetCodeMaxLength": "Mã tài sản kế toán tối đa 50 ký tự",
+    "nameRequired": "Tên tài sản là bắt buộc",
+    "nameMaxLength": "Tên tài sản tối đa 200 ký tự",
+    "categoryIdRequired": "Danh mục là bắt buộc",
+    "categoryIdMaxLength": "Mã danh mục tối đa 30 ký tự",
+    "itemsRequired": "Cần ít nhất một tài sản"
+  }
+}
