@@ -4,7 +4,7 @@
   "validation": {
     "idRequired": "Mã model là bắt buộc",
     "idMaxLength": "Mã model tối đa 30 ký tự",
-    "categoryIdRequired": "Loại thiết bị là bắt buộc",
+    "categoryIdRequired": "Danh mục tài sản là bắt buộc",
     "nameRequired": "Tên model là bắt buộc",
     "nameMaxLength": "Tên model tối đa 150 ký tự"
   }

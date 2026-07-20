@@ -17,7 +17,7 @@
   "columns": {
     "id": "Mã",
     "name": "Tên model",
-    "categoryId": "Loại thiết bị",
+    "categoryId": "Danh mục tài sản",
     "manufacturer": "Hãng sản xuất",
     "manageType": "Kiểu quản lý",
     "modelCode": "Mã liên kết",
@@ -31,14 +31,14 @@
   "form": {
     "id": "Mã model",
     "name": "Tên model",
-    "categoryId": "Loại thiết bị",
+    "categoryId": "Danh mục tài sản",
     "manufacturer": "Hãng sản xuất",
     "manageType": "Kiểu quản lý",
     "modelCode": "Mã liên kết",
     "isActive": "Hoạt động",
     "idPlaceholder": "Nhập mã model",
     "namePlaceholder": "Nhập tên model",
-    "categoryIdPlaceholder": "Chọn loại thiết bị",
+    "categoryIdPlaceholder": "Chọn danh mục tài sản",
     "manufacturerPlaceholder": "Nhập hãng sản xuất",
     "manageTypePlaceholder": "Chọn kiểu quản lý",
     "modelCodePlaceholder": "Nhập mã liên kết hệ thống mua hàng"
@@ -46,7 +46,7 @@
   "validation": {
     "idRequired": "Mã model là bắt buộc",
     "idMaxLength": "Mã model tối đa 30 ký tự",
-    "categoryIdRequired": "Loại thiết bị là bắt buộc",
+    "categoryIdRequired": "Danh mục tài sản là bắt buộc",
     "nameRequired": "Tên model là bắt buộc",
     "nameMaxLength": "Tên model tối đa 150 ký tự"
   },
@@ -55,7 +55,7 @@
     "save": "Lưu giá trị",
     "syncSuccess": "Lưu giá trị thuộc tính thành công",
     "loading": "Đang tải thuộc tính...",
-    "noAttributes": "Chưa cấu hình thuộc tính cho loại thiết bị này",
+    "noAttributes": "Chưa cấu hình thuộc tính cho danh mục tài sản này",
     "ungrouped": "Thông tin chung",
     "selectPlaceholder": "Chọn...",
     "required": "Trường này là bắt buộc",
