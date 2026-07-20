@@ -89,9 +89,10 @@ function ModelAttributeValuesForm({ modelId, attributes, onSuccess }: FormProps)
       }}
       className='space-y-6'
     >
-      {Object.entries(grouped).map(([groupName, attrs]) => (
+      {Object.entries(grouped).map(([groupName, attrs], index) => (
         <div key={groupName} className='space-y-3'>
-          <h4 className='text-muted-foreground text-sm font-semibold'>{groupName}</h4>
+          {index > 0 && <hr className='border-border' />}
+          <h4 className='text-primary text-sm font-bold'>{groupName}</h4>
           <FieldGroup>
             <div className='grid grid-cols-1 gap-4 sm:grid-cols-2'>
               {attrs.map((attr) => {
