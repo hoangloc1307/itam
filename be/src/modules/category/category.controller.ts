@@ -4,13 +4,10 @@ import { categoryService } from '~/modules/category/category.service';
 import { ApiResponse } from '~/utils';
 
 const list = async (req: Request, res: Response) => {
-  const page = Math.max(1, Number(req.query.page) || 1);
-  const limit = Math.min(100, Math.max(1, Number(req.query.limit) || 10));
   const search = (req.query.search as string) || undefined;
+  const data = await categoryService.list({ search });
 
-  const { data, totalItems } = await categoryService.list({ page, limit, search });
-
-  ApiResponse.paginated<CategoryEntity[]>(res, data, { page, limit, totalItems });
+  ApiResponse.ok<CategoryEntity[]>(res, data);
 };
 
 const getById = async (req: Request, res: Response) => {

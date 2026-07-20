@@ -4,13 +4,11 @@ import { AppError } from '~/errors';
 import { t } from '~/i18n';
 
 interface ListParams {
-  page: number;
-  limit: number;
   search?: string;
   categoryId?: string;
 }
 
-const list = async ({ page, limit, search, categoryId }: ListParams) => {
+const list = async ({ search, categoryId }: ListParams) => {
   const where = {
     deletedAt: null,
     ...(categoryId ? { categoryId } : {}),
@@ -25,17 +23,12 @@ const list = async ({ page, limit, search, categoryId }: ListParams) => {
       : {}),
   };
 
-  const [data, totalItems] = await Promise.all([
-    prisma.itemModel.findMany({
-      where,
-      skip: (page - 1) * limit,
-      take: limit,
-      orderBy: { createdAt: 'desc' },
-    }),
-    prisma.itemModel.count({ where }),
-  ]);
+  const data = await prisma.itemModel.findMany({
+    where,
+    orderBy: { createdAt: 'desc' },
+  });
 
-  return { data, totalItems };
+  return data;
 };
 
 const getById = async (id: string) => {

@@ -4,13 +4,11 @@ import { featureService } from '~/modules/feature/feature.service';
 import { ApiResponse } from '~/utils';
 
 const list = async (req: Request, res: Response) => {
-  const page = Math.max(1, Number(req.query.page) || 1);
-  const limit = Math.min(100, Math.max(1, Number(req.query.limit) || 10));
   const search = (req.query.search as string) || undefined;
 
-  const { data, totalItems } = await featureService.list({ page, limit, search });
+  const data = await featureService.list({ search });
 
-  ApiResponse.paginated<FeatureEntity[]>(res, data, { page, limit, totalItems });
+  ApiResponse.ok<FeatureEntity[]>(res, data);
 };
 
 const getByCode = async (req: Request, res: Response) => {

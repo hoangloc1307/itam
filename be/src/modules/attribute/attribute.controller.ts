@@ -4,13 +4,11 @@ import { attributeService } from '~/modules/attribute/attribute.service';
 import { ApiResponse } from '~/utils';
 
 const list = async (req: Request, res: Response) => {
-  const page = Math.max(1, Number(req.query.page) || 1);
-  const limit = Math.min(100, Math.max(1, Number(req.query.limit) || 10));
   const search = (req.query.search as string) || undefined;
 
-  const { data, totalItems } = await attributeService.list({ page, limit, search });
+  const data = await attributeService.list({ search });
 
-  ApiResponse.paginated(res, data as unknown as AttributeEntity[], { page, limit, totalItems });
+  ApiResponse.ok(res, data as unknown as AttributeEntity[]);
 };
 
 const getById = async (req: Request, res: Response) => {

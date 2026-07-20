@@ -5,13 +5,11 @@ import { userService } from '~/modules/user/user.service';
 import { ApiResponse } from '~/utils';
 
 const list = async (req: Request, res: Response) => {
-  const page = Math.max(1, Number(req.query.page) || 1);
-  const limit = Math.min(100, Math.max(1, Number(req.query.limit) || 10));
   const search = (req.query.search as string) || undefined;
 
-  const { data, totalItems } = await userService.list({ page, limit, search });
+  const data = await userService.list({ search });
 
-  ApiResponse.paginated<UserEntity[]>(res, data, { page, limit, totalItems });
+  ApiResponse.ok<UserEntity[]>(res, data);
 };
 
 const getById = async (req: Request, res: Response) => {

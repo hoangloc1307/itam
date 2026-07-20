@@ -4,17 +4,11 @@ import { attributeGroupService } from '~/modules/attribute-group/attribute-group
 import { ApiResponse } from '~/utils';
 
 const list = async (req: Request, res: Response) => {
-  const page = Math.max(1, Number(req.query.page) || 1);
-  const limit = Math.min(100, Math.max(1, Number(req.query.limit) || 10));
   const search = (req.query.search as string) || undefined;
 
-  const { data, totalItems } = await attributeGroupService.list({ page, limit, search });
+  const data = await attributeGroupService.list({ search });
 
-  ApiResponse.paginated(res, data as unknown as AttributeGroupEntity[], {
-    page,
-    limit,
-    totalItems,
-  });
+  ApiResponse.ok(res, data as unknown as AttributeGroupEntity[]);
 };
 
 const getById = async (req: Request, res: Response) => {

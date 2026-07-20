@@ -4,13 +4,11 @@ import { roleService } from '~/modules/role/role.service';
 import { ApiResponse } from '~/utils';
 
 const list = async (req: Request, res: Response) => {
-  const page = Math.max(1, Number(req.query.page) || 1);
-  const limit = Math.min(100, Math.max(1, Number(req.query.limit) || 10));
   const search = (req.query.search as string) || undefined;
 
-  const { data, totalItems } = await roleService.list({ page, limit, search });
+  const data = await roleService.list({ search });
 
-  ApiResponse.paginated<RoleEntity[]>(res, data, { page, limit, totalItems });
+  ApiResponse.ok<RoleEntity[]>(res, data);
 };
 
 const getByCode = async (req: Request, res: Response) => {

@@ -8,33 +8,26 @@ import { AppError } from '~/errors';
 import { t } from '~/i18n';
 
 interface ListParams {
-  page: number;
-  limit: number;
   username?: string;
   roleCode?: string;
 }
 
-const list = async ({ page, limit, username, roleCode }: ListParams) => {
+const list = async ({ username, roleCode }: ListParams) => {
   const where = {
     ...(username ? { username } : {}),
     ...(roleCode ? { roleCode } : {}),
   };
 
-  const [data, totalItems] = await Promise.all([
-    prisma.userRole.findMany({
-      where,
-      skip: (page - 1) * limit,
-      take: limit,
-      orderBy: [{ username: 'asc' }, { roleCode: 'asc' }],
-      include: {
-        user: { select: { name: true } },
-        role: { select: { name: true } },
-      },
-    }),
-    prisma.userRole.count({ where }),
-  ]);
+  const data = await prisma.userRole.findMany({
+    where,
+    orderBy: [{ username: 'asc' }, { roleCode: 'asc' }],
+    include: {
+      user: { select: { name: true } },
+      role: { select: { name: true } },
+    },
+  });
 
-  return { data, totalItems };
+  return data;
 };
 
 const getByUsername = async (username: string) => {

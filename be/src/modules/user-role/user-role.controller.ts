@@ -4,19 +4,12 @@ import { userRoleService } from '~/modules/user-role/user-role.service';
 import { ApiResponse } from '~/utils';
 
 const list = async (req: Request, res: Response) => {
-  const page = Math.max(1, Number(req.query.page) || 1);
-  const limit = Math.min(100, Math.max(1, Number(req.query.limit) || 10));
   const username = (req.query.username as string) || undefined;
   const roleCode = (req.query.roleCode as string) || undefined;
 
-  const { data, totalItems } = await userRoleService.list({
-    page,
-    limit,
-    username,
-    roleCode,
-  });
+  const data = await userRoleService.list({ username, roleCode });
 
-  ApiResponse.paginated<UserRoleEntity[]>(res, data, { page, limit, totalItems });
+  ApiResponse.ok<UserRoleEntity[]>(res, data);
 };
 
 const getByUsername = async (req: Request, res: Response) => {

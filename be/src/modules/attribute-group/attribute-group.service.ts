@@ -7,12 +7,10 @@ import { t } from '~/i18n';
 import { prisma } from '~/lib/prisma';
 
 interface ListParams {
-  page: number;
-  limit: number;
   search?: string;
 }
 
-const list = async ({ page, limit, search }: ListParams) => {
+const list = async ({ search }: ListParams) => {
   const where = {
     deletedAt: null,
     ...(search
@@ -22,17 +20,12 @@ const list = async ({ page, limit, search }: ListParams) => {
       : {}),
   };
 
-  const [data, totalItems] = await Promise.all([
-    prisma.attributeGroup.findMany({
-      where,
-      skip: (page - 1) * limit,
-      take: limit,
-      orderBy: { sortOrder: 'asc' },
-    }),
-    prisma.attributeGroup.count({ where }),
-  ]);
+  const data = await prisma.attributeGroup.findMany({
+    where,
+    orderBy: { sortOrder: 'asc' },
+  });
 
-  return { data, totalItems };
+  return data;
 };
 
 const getById = async (id: number) => {

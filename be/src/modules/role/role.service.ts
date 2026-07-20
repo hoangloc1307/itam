@@ -4,12 +4,10 @@ import { AppError } from '~/errors';
 import { t } from '~/i18n';
 
 interface ListParams {
-  page: number;
-  limit: number;
   search?: string;
 }
 
-const list = async ({ page, limit, search }: ListParams) => {
+const list = async ({ search }: ListParams) => {
   const where = {
     deletedAt: null,
     ...(search
@@ -22,17 +20,12 @@ const list = async ({ page, limit, search }: ListParams) => {
       : {}),
   };
 
-  const [data, totalItems] = await Promise.all([
-    prisma.role.findMany({
-      where,
-      skip: (page - 1) * limit,
-      take: limit,
-      orderBy: { createdAt: 'desc' },
-    }),
-    prisma.role.count({ where }),
-  ]);
+  const data = await prisma.role.findMany({
+    where,
+    orderBy: { createdAt: 'desc' },
+  });
 
-  return { data, totalItems };
+  return data;
 };
 
 const getByCode = async (code: string) => {

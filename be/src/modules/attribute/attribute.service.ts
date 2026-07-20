@@ -4,12 +4,10 @@ import { t } from '~/i18n';
 import { prisma } from '~/lib/prisma';
 
 interface ListParams {
-  page: number;
-  limit: number;
   search?: string;
 }
 
-const list = async ({ page, limit, search }: ListParams) => {
+const list = async ({ search }: ListParams) => {
   const where = {
     deletedAt: null,
     ...(search
@@ -19,18 +17,13 @@ const list = async ({ page, limit, search }: ListParams) => {
       : {}),
   };
 
-  const [data, totalItems] = await Promise.all([
-    prisma.attribute.findMany({
-      where,
-      include: { group: { select: { id: true, name: true, sortOrder: true } } },
-      skip: (page - 1) * limit,
-      take: limit,
-      orderBy: { createdAt: 'desc' },
-    }),
-    prisma.attribute.count({ where }),
-  ]);
+  const data = await prisma.attribute.findMany({
+    where,
+    include: { group: { select: { id: true, name: true, sortOrder: true } } },
+    orderBy: { createdAt: 'desc' },
+  });
 
-  return { data, totalItems };
+  return data;
 };
 
 const getById = async (id: number) => {

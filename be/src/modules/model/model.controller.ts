@@ -3,14 +3,12 @@ import { modelService } from '~/modules/model/model.service';
 import { ApiResponse } from '~/utils';
 
 const list = async (req: Request, res: Response) => {
-  const page = Math.max(1, Number(req.query.page) || 1);
-  const limit = Math.min(100, Math.max(1, Number(req.query.limit) || 10));
   const search = (req.query.search as string) || undefined;
   const categoryId = (req.query.categoryId as string) || undefined;
 
-  const { data, totalItems } = await modelService.list({ page, limit, search, categoryId });
+  const data = await modelService.list({ search, categoryId });
 
-  ApiResponse.paginated(res, data, { page, limit, totalItems });
+  ApiResponse.ok(res, data);
 };
 
 const getById = async (req: Request, res: Response) => {

@@ -4,19 +4,12 @@ import { rolePermissionService } from '~/modules/role-permission/role-permission
 import { ApiResponse } from '~/utils';
 
 const list = async (req: Request, res: Response) => {
-  const page = Math.max(1, Number(req.query.page) || 1);
-  const limit = Math.min(100, Math.max(1, Number(req.query.limit) || 10));
   const roleCode = (req.query.roleCode as string) || undefined;
   const featureCode = (req.query.featureCode as string) || undefined;
 
-  const { data, totalItems } = await rolePermissionService.list({
-    page,
-    limit,
-    roleCode,
-    featureCode,
-  });
+  const data = await rolePermissionService.list({ roleCode, featureCode });
 
-  ApiResponse.paginated<RolePermissionEntity[]>(res, data, { page, limit, totalItems });
+  ApiResponse.ok<RolePermissionEntity[]>(res, data);
 };
 
 const getByRoleCode = async (req: Request, res: Response) => {

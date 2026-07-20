@@ -4,19 +4,12 @@ import { userPermissionService } from '~/modules/user-permission/user-permission
 import { ApiResponse } from '~/utils';
 
 const list = async (req: Request, res: Response) => {
-  const page = Math.max(1, Number(req.query.page) || 1);
-  const limit = Math.min(100, Math.max(1, Number(req.query.limit) || 10));
   const username = (req.query.username as string) || undefined;
   const featureCode = (req.query.featureCode as string) || undefined;
 
-  const { data, totalItems } = await userPermissionService.list({
-    page,
-    limit,
-    username,
-    featureCode,
-  });
+  const data = await userPermissionService.list({ username, featureCode });
 
-  ApiResponse.paginated<UserPermissionEntity[]>(res, data, { page, limit, totalItems });
+  ApiResponse.ok<UserPermissionEntity[]>(res, data);
 };
 
 const getByUsername = async (req: Request, res: Response) => {

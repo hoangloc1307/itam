@@ -8,33 +8,26 @@ import { AppError } from '~/errors';
 import { t } from '~/i18n';
 
 interface ListParams {
-  page: number;
-  limit: number;
   roleCode?: string;
   featureCode?: string;
 }
 
-const list = async ({ page, limit, roleCode, featureCode }: ListParams) => {
+const list = async ({ roleCode, featureCode }: ListParams) => {
   const where = {
     ...(roleCode ? { roleCode } : {}),
     ...(featureCode ? { featureCode } : {}),
   };
 
-  const [data, totalItems] = await Promise.all([
-    prisma.rolePermission.findMany({
-      where,
-      skip: (page - 1) * limit,
-      take: limit,
-      orderBy: [{ roleCode: 'asc' }, { featureCode: 'asc' }, { action: 'asc' }],
-      include: {
-        role: { select: { name: true } },
-        feature: { select: { name: true } },
-      },
-    }),
-    prisma.rolePermission.count({ where }),
-  ]);
+  const data = await prisma.rolePermission.findMany({
+    where,
+    orderBy: [{ roleCode: 'asc' }, { featureCode: 'asc' }, { action: 'asc' }],
+    include: {
+      role: { select: { name: true } },
+      feature: { select: { name: true } },
+    },
+  });
 
-  return { data, totalItems };
+  return data;
 };
 
 const getByRoleCode = async (roleCode: string) => {

@@ -6,8 +6,6 @@ import { mailService } from '~/services/mail.service';
 import { generateRandomPassword, hashPassword } from '~/utils';
 
 interface ListParams {
-  page: number;
-  limit: number;
   search?: string;
 }
 
@@ -23,7 +21,7 @@ const userSelect = {
   updatedAt: true,
 } as const;
 
-const list = async ({ page, limit, search }: ListParams) => {
+const list = async ({ search }: ListParams) => {
   const where = {
     deletedAt: null,
     ...(search
@@ -37,18 +35,13 @@ const list = async ({ page, limit, search }: ListParams) => {
       : {}),
   };
 
-  const [data, totalItems] = await Promise.all([
-    prisma.user.findMany({
-      where,
-      select: userSelect,
-      skip: (page - 1) * limit,
-      take: limit,
-      orderBy: { createdAt: 'desc' },
-    }),
-    prisma.user.count({ where }),
-  ]);
+  const data = await prisma.user.findMany({
+    where,
+    select: userSelect,
+    orderBy: { createdAt: 'desc' },
+  });
 
-  return { data, totalItems };
+  return data;
 };
 
 const getById = async (username: string) => {
