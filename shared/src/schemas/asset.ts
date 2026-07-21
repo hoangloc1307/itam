@@ -1,6 +1,18 @@
 import { z } from 'zod';
+import { ASSET_STATUSES } from '../constants/asset-statuses';
 
-const assetStatusEnum = z.enum(['AVAILABLE', 'IN_USE', 'UNDER_REPAIR', 'DISPOSED', 'LOST']);
+const assetStatusEnum = z.enum([
+  ASSET_STATUSES.AVAILABLE,
+  ASSET_STATUSES.IN_USE,
+  ASSET_STATUSES.UNDER_REPAIR,
+  ASSET_STATUSES.DISPOSED,
+  ASSET_STATUSES.LOST,
+]);
+
+export const assetAttributeValueSchema = z.object({
+  attributeId: z.number().int().positive(),
+  value: z.string().nullable(),
+});
 
 export const createAssetSchema = z.object({
   id: z.string().nonempty('asset:validation.idRequired').max(50, 'asset:validation.idMaxLength'),
@@ -29,11 +41,17 @@ export const createAssetSchema = z.object({
   assetStatus: assetStatusEnum,
   assignedTo: z.string().max(8).nullable(),
   currentSection: z.string().max(4).nullable(),
+  attributeValues: z.array(assetAttributeValueSchema).optional(),
 });
 
 export type CreateAssetInput = z.infer<typeof createAssetSchema>;
 
-export const updateAssetSchema = createAssetSchema.omit({ id: true }).partial();
+export const updateAssetSchema = createAssetSchema
+  .omit({ id: true })
+  .partial()
+  .extend({
+    attributeValues: z.array(assetAttributeValueSchema).optional(),
+  });
 
 export type UpdateAssetInput = z.infer<typeof updateAssetSchema>;
 

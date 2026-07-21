@@ -1,4 +1,18 @@
-export type AssetStatus = 'AVAILABLE' | 'IN_USE' | 'UNDER_REPAIR' | 'DISPOSED' | 'LOST';
+import type { AssetStatus } from '../constants/asset-statuses';
+
+export type { AssetStatus };
+
+export interface AssetAttributeValueItem {
+  attributeId: number;
+  name: string;
+  measurementUnit: string | null;
+  dataType: string;
+  options: string[] | null;
+  groupId: number | null;
+  groupName: string | null;
+  isRequired: boolean;
+  value: string | null;
+}
 
 export interface AssetBase<TDate = string, TDecimal = string> {
   id: string;
@@ -34,3 +48,8 @@ export type Asset = AssetBase<string, string>;
 
 /** BE type — dates as Date objects, Decimal from Prisma */
 export type AssetEntity = AssetBase<Date, unknown>;
+
+/** Asset with attribute values for detail view */
+export interface AssetDetail extends Asset {
+  attributeValues: AssetAttributeValueItem[];
+}

@@ -1,5 +1,12 @@
 export type { ApiResponse, Pagination } from './api';
-export type { Asset, AssetBase, AssetEntity, AssetStatus } from './asset';
+export type {
+  Asset,
+  AssetAttributeValueItem,
+  AssetBase,
+  AssetDetail,
+  AssetEntity,
+  AssetStatus,
+} from './asset';
 export type { Attribute, AttributeBase, AttributeEntity, AttributeGroupInfo } from './attribute';
 export type { AttributeGroup, AttributeGroupBase, AttributeGroupEntity } from './attribute-group';
 export type { LoginResponse, Permission, RefreshResponse, UserInfo } from './auth';

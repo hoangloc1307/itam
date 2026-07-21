@@ -35,13 +35,67 @@ const list = async ({ search }: ListParams) => {
 };
 
 const getById = async (id: string) => {
-  const asset = await prisma.asset.findUnique({ where: { id, deletedAt: null } });
+  const asset = await prisma.asset.findUnique({
+    where: { id, deletedAt: null },
+    include: {
+      attributeValues: {
+        include: {
+          attribute: {
+            select: {
+              id: true,
+              name: true,
+              measurementUnit: true,
+              dataType: true,
+              options: true,
+              groupId: true,
+              group: { select: { name: true } },
+            },
+          },
+        },
+      },
+    },
+  });
 
   if (!asset) {
     throw AppError.notFound(t('asset:notFound'));
   }
 
-  return asset;
+  // Get category attributes to include all fields (even those without values)
+  const categoryAttributes = await prisma.categoryAttribute.findMany({
+    where: { categoryId: asset.categoryId },
+    include: {
+      attribute: {
+        select: {
+          id: true,
+          name: true,
+          measurementUnit: true,
+          dataType: true,
+          options: true,
+          groupId: true,
+          group: { select: { name: true } },
+        },
+      },
+    },
+    orderBy: { sortOrder: 'asc' },
+  });
+
+  const valueMap = new Map(asset.attributeValues.map((v) => [v.attributeId, v.value]));
+
+  const attributeValues = categoryAttributes.map((ca) => ({
+    attributeId: ca.attribute.id,
+    name: ca.attribute.name,
+    measurementUnit: ca.attribute.measurementUnit,
+    dataType: ca.attribute.dataType,
+    options: ca.attribute.options as string[] | null,
+    groupId: ca.attribute.groupId,
+    groupName: ca.attribute.group?.name ?? null,
+    isRequired: ca.isRequired,
+    value: valueMap.get(ca.attribute.id) ?? null,
+  }));
+
+  const { attributeValues: _av, ...assetData } = asset;
+
+  return { ...assetData, attributeValues };
 };
 
 const create = async (input: CreateAssetInput, createdBy: string) => {
@@ -51,63 +105,96 @@ const create = async (input: CreateAssetInput, createdBy: string) => {
     throw AppError.conflict(t('asset:alreadyExists'));
   }
 
-  if (existing && existing.deletedAt) {
-    return prisma.asset.update({
-      where: { id: input.id },
-      data: {
-        assetCode: input.assetCode ?? null,
-        name: input.name,
-        categoryId: input.categoryId,
-        modelId: input.modelId ?? null,
-        vendorId: input.vendorId ?? null,
-        purchaseDate: input.purchaseDate ? new Date(input.purchaseDate) : null,
-        purchasePrice: input.purchasePrice ?? null,
-        warrantyStartDate: input.warrantyStartDate ? new Date(input.warrantyStartDate) : null,
-        warrantyEndDate: input.warrantyEndDate ? new Date(input.warrantyEndDate) : null,
-        warrantyMonth: input.warrantyMonth ?? null,
-        serialNumber: input.serialNumber ?? null,
-        location: input.location ?? null,
-        maintenanceIntervalHours: input.maintenanceIntervalHours ?? null,
-        quantity: input.quantity,
-        remainQuantity: input.remainQuantity,
-        qrCode: input.qrCode ?? null,
-        assetStatus: input.assetStatus,
-        assignedTo: input.assignedTo ?? null,
-        currentSection: input.currentSection ?? null,
-        deletedAt: null,
-        createdBy,
-        createdAt: new Date(),
-        updatedBy: null,
-        updatedAt: null,
-      },
-    });
-  }
+  const { attributeValues, ...assetData } = input;
 
-  return prisma.asset.create({
-    data: {
-      id: input.id,
-      assetCode: input.assetCode ?? null,
-      name: input.name,
-      categoryId: input.categoryId,
-      modelId: input.modelId ?? null,
-      vendorId: input.vendorId ?? null,
-      purchaseDate: input.purchaseDate ? new Date(input.purchaseDate) : null,
-      purchasePrice: input.purchasePrice ?? null,
-      warrantyStartDate: input.warrantyStartDate ? new Date(input.warrantyStartDate) : null,
-      warrantyEndDate: input.warrantyEndDate ? new Date(input.warrantyEndDate) : null,
-      warrantyMonth: input.warrantyMonth ?? null,
-      serialNumber: input.serialNumber ?? null,
-      location: input.location ?? null,
-      maintenanceIntervalHours: input.maintenanceIntervalHours ?? null,
-      quantity: input.quantity,
-      remainQuantity: input.remainQuantity,
-      qrCode: input.qrCode ?? null,
-      assetStatus: input.assetStatus,
-      assignedTo: input.assignedTo ?? null,
-      currentSection: input.currentSection ?? null,
-      createdBy,
-    },
+  const asset = await prisma.$transaction(async (tx) => {
+    let created;
+
+    if (existing && existing.deletedAt) {
+      created = await tx.asset.update({
+        where: { id: assetData.id },
+        data: {
+          assetCode: assetData.assetCode ?? null,
+          name: assetData.name,
+          categoryId: assetData.categoryId,
+          modelId: assetData.modelId ?? null,
+          vendorId: assetData.vendorId ?? null,
+          purchaseDate: assetData.purchaseDate ? new Date(assetData.purchaseDate) : null,
+          purchasePrice: assetData.purchasePrice ?? null,
+          warrantyStartDate: assetData.warrantyStartDate
+            ? new Date(assetData.warrantyStartDate)
+            : null,
+          warrantyEndDate: assetData.warrantyEndDate ? new Date(assetData.warrantyEndDate) : null,
+          warrantyMonth: assetData.warrantyMonth ?? null,
+          serialNumber: assetData.serialNumber ?? null,
+          location: assetData.location ?? null,
+          maintenanceIntervalHours: assetData.maintenanceIntervalHours ?? null,
+          quantity: assetData.quantity,
+          remainQuantity: assetData.remainQuantity,
+          qrCode: assetData.qrCode ?? null,
+          assetStatus: assetData.assetStatus,
+          assignedTo: assetData.assignedTo ?? null,
+          currentSection: assetData.currentSection ?? null,
+          deletedAt: null,
+          createdBy,
+          createdAt: new Date(),
+          updatedBy: null,
+          updatedAt: null,
+        },
+      });
+
+      // Remove old attribute values
+      await tx.assetAttributeValue.deleteMany({ where: { assetId: created.id } });
+    } else {
+      created = await tx.asset.create({
+        data: {
+          id: assetData.id,
+          assetCode: assetData.assetCode ?? null,
+          name: assetData.name,
+          categoryId: assetData.categoryId,
+          modelId: assetData.modelId ?? null,
+          vendorId: assetData.vendorId ?? null,
+          purchaseDate: assetData.purchaseDate ? new Date(assetData.purchaseDate) : null,
+          purchasePrice: assetData.purchasePrice ?? null,
+          warrantyStartDate: assetData.warrantyStartDate
+            ? new Date(assetData.warrantyStartDate)
+            : null,
+          warrantyEndDate: assetData.warrantyEndDate ? new Date(assetData.warrantyEndDate) : null,
+          warrantyMonth: assetData.warrantyMonth ?? null,
+          serialNumber: assetData.serialNumber ?? null,
+          location: assetData.location ?? null,
+          maintenanceIntervalHours: assetData.maintenanceIntervalHours ?? null,
+          quantity: assetData.quantity,
+          remainQuantity: assetData.remainQuantity,
+          qrCode: assetData.qrCode ?? null,
+          assetStatus: assetData.assetStatus,
+          assignedTo: assetData.assignedTo ?? null,
+          currentSection: assetData.currentSection ?? null,
+          createdBy,
+        },
+      });
+    }
+
+    // Insert attribute values
+    if (attributeValues && attributeValues.length > 0) {
+      const toInsert = attributeValues.filter(
+        (v) => v.value !== null && v.value !== undefined && v.value !== '',
+      );
+      if (toInsert.length > 0) {
+        await tx.assetAttributeValue.createMany({
+          data: toInsert.map((v) => ({
+            assetId: created.id,
+            attributeId: v.attributeId,
+            value: v.value,
+          })),
+        });
+      }
+    }
+
+    return created;
   });
+
+  return asset;
 };
 
 const update = async (id: string, input: UpdateAssetInput, updatedBy: string) => {
@@ -117,31 +204,59 @@ const update = async (id: string, input: UpdateAssetInput, updatedBy: string) =>
     throw AppError.notFound(t('asset:notFound'));
   }
 
-  return prisma.asset.update({
-    where: { id },
-    data: {
-      ...input,
-      purchaseDate:
-        input.purchaseDate !== undefined
-          ? input.purchaseDate
-            ? new Date(input.purchaseDate)
-            : null
-          : undefined,
-      warrantyStartDate:
-        input.warrantyStartDate !== undefined
-          ? input.warrantyStartDate
-            ? new Date(input.warrantyStartDate)
-            : null
-          : undefined,
-      warrantyEndDate:
-        input.warrantyEndDate !== undefined
-          ? input.warrantyEndDate
-            ? new Date(input.warrantyEndDate)
-            : null
-          : undefined,
-      updatedBy,
-      updatedAt: new Date(),
-    },
+  const { attributeValues, ...updateData } = input;
+
+  return prisma.$transaction(async (tx) => {
+    const updated = await tx.asset.update({
+      where: { id },
+      data: {
+        ...updateData,
+        purchaseDate:
+          updateData.purchaseDate !== undefined
+            ? updateData.purchaseDate
+              ? new Date(updateData.purchaseDate)
+              : null
+            : undefined,
+        warrantyStartDate:
+          updateData.warrantyStartDate !== undefined
+            ? updateData.warrantyStartDate
+              ? new Date(updateData.warrantyStartDate)
+              : null
+            : undefined,
+        warrantyEndDate:
+          updateData.warrantyEndDate !== undefined
+            ? updateData.warrantyEndDate
+              ? new Date(updateData.warrantyEndDate)
+              : null
+            : undefined,
+        updatedBy,
+        updatedAt: new Date(),
+      },
+    });
+
+    // Update attribute values if provided
+    if (attributeValues !== undefined) {
+      // Delete all existing attribute values
+      await tx.assetAttributeValue.deleteMany({ where: { assetId: id } });
+
+      // Insert new values
+      if (attributeValues && attributeValues.length > 0) {
+        const toInsert = attributeValues.filter(
+          (v) => v.value !== null && v.value !== undefined && v.value !== '',
+        );
+        if (toInsert.length > 0) {
+          await tx.assetAttributeValue.createMany({
+            data: toInsert.map((v) => ({
+              assetId: id,
+              attributeId: v.attributeId,
+              value: v.value,
+            })),
+          });
+        }
+      }
+    }
+
+    return updated;
   });
 };
 
