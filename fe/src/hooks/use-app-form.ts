@@ -1,6 +1,7 @@
 import { createFormHook, createFormHookContexts } from '@tanstack/react-form';
 import {
   ComboboxField,
+  DatePickerField,
   NumberField,
   SelectField,
   SubmitButton,
@@ -20,6 +21,7 @@ export const { useAppForm } = createFormHook({
     ComboboxField,
     SwitchButton,
     TagInput,
+    DatePickerField,
   },
   formComponents: {
     SubmitButton,

@@ -46,5 +46,6 @@
     "description": "Bạn có chắc chắn muốn thực hiện hành động này?",
     "ok": "Xác nhận",
     "cancel": "Hủy"
-  }
+  },
+  "selectDate": "Chọn ngày"
 }
