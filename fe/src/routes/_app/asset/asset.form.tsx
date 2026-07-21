@@ -1,4 +1,5 @@
 import { createAssetSchema, type CreateAssetInput } from 'itam-shared/schemas/asset';
+import { ASSET_STATUSES } from 'itam-shared/constants';
 import type { Asset, AssetStatus } from 'itam-shared/types';
 import { useQuery, useSuspenseQuery } from '@tanstack/react-query';
 import { useState } from 'react';
@@ -14,13 +15,10 @@ interface AssetFormProps {
   onSuccess: () => void;
 }
 
-const ASSET_STATUS_OPTIONS: { label: string; value: AssetStatus }[] = [
-  { label: 'AVAILABLE', value: 'AVAILABLE' },
-  { label: 'IN_USE', value: 'IN_USE' },
-  { label: 'UNDER_REPAIR', value: 'UNDER_REPAIR' },
-  { label: 'DISPOSED', value: 'DISPOSED' },
-  { label: 'LOST', value: 'LOST' },
-];
+const ASSET_STATUS_OPTIONS = Object.values(ASSET_STATUSES).map((value) => ({
+  label: value,
+  value: value as AssetStatus,
+}));
 
 export function AssetForm({ asset, onSuccess }: AssetFormProps) {
   const { t } = useTranslation('asset');
@@ -70,12 +68,12 @@ export function AssetForm({ asset, onSuccess }: AssetFormProps) {
       quantity: asset?.quantity ?? 1,
       remainQuantity: asset?.remainQuantity ?? 1,
       qrCode: asset?.qrCode ?? null,
-      assetStatus: asset?.assetStatus ?? 'AVAILABLE',
+      assetStatus: asset?.assetStatus ?? ASSET_STATUSES.AVAILABLE,
       assignedTo: asset?.assignedTo ?? null,
       currentSection: asset?.currentSection ?? null,
-    } satisfies CreateAssetInput,
+    } satisfies Omit<CreateAssetInput, 'attributeValues'>,
     validators: {
-      onSubmit: createAssetSchema,
+      onSubmit: createAssetSchema.omit({ attributeValues: true }),
     },
     onSubmit: async ({ value }) => {
       if (isEditing) {

@@ -18,6 +18,21 @@
     "DISPOSED": "Disposed",
     "LOST": "Lost"
   },
+  "sections": {
+    "basicInfo": "Basic Information",
+    "purchaseWarranty": "Purchase & Warranty",
+    "attributes": "Configuration"
+  },
+  "attributeForm": {
+    "noAttributes": "No attributes defined for this category",
+    "prefilledFromModel": "Values are pre-filled from model configuration. You can modify them for this specific asset.",
+    "selectPlaceholder": "Select a value...",
+    "ungrouped": "Other"
+  },
+  "actions": {
+    "cancel": "Cancel",
+    "back": "Back"
+  },
   "columns": {
     "id": "ID",
     "assetCode": "Asset Code",

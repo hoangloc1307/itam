@@ -4,14 +4,14 @@ import type {
   CreateBatchAssetInput,
   UpdateAssetInput,
 } from 'itam-shared/schemas/asset';
-import type { ApiResponse, Asset } from 'itam-shared/types';
+import type { ApiResponse, Asset, AssetDetail } from 'itam-shared/types';
 import api from '~/lib/axios';
 
 const list = async (params?: { search?: string }) =>
   await api.get<ApiResponse<Asset[]>>(ENDPOINTS.ASSETS, params);
 
 const getById = async (id: string) =>
-  await api.get<ApiResponse<Asset>>(`${ENDPOINTS.ASSETS}/${id}`);
+  await api.get<ApiResponse<AssetDetail>>(`${ENDPOINTS.ASSETS}/${id}`);
 
 const create = async (payload: CreateAssetInput) =>
   await api.post<ApiResponse<Asset>>(ENDPOINTS.ASSETS, payload);

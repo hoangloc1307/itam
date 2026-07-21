@@ -1,4 +1,5 @@
 import type { AssetStatus } from 'itam-shared/types';
+import { ASSET_STATUSES } from 'itam-shared/constants';
 import type { BatchAssetItem, CreateBatchAssetInput } from 'itam-shared/schemas/asset';
 import { useQuery, useSuspenseQuery } from '@tanstack/react-query';
 import { useState } from 'react';
@@ -16,13 +17,10 @@ interface AssetBatchFormProps {
   onSuccess: () => void;
 }
 
-const ASSET_STATUS_OPTIONS: { label: string; value: AssetStatus }[] = [
-  { label: 'AVAILABLE', value: 'AVAILABLE' },
-  { label: 'IN_USE', value: 'IN_USE' },
-  { label: 'UNDER_REPAIR', value: 'UNDER_REPAIR' },
-  { label: 'DISPOSED', value: 'DISPOSED' },
-  { label: 'LOST', value: 'LOST' },
-];
+const ASSET_STATUS_OPTIONS = Object.values(ASSET_STATUSES).map((value) => ({
+  label: value,
+  value: value as AssetStatus,
+}));
 
 export function AssetBatchForm({ onSuccess }: AssetBatchFormProps) {
   const { t } = useTranslation('asset');
@@ -69,7 +67,7 @@ export function AssetBatchForm({ onSuccess }: AssetBatchFormProps) {
       warrantyMonth: null as number | null,
       location: null as string | null,
       maintenanceIntervalHours: null as number | null,
-      assetStatus: 'AVAILABLE' as AssetStatus,
+      assetStatus: ASSET_STATUSES.AVAILABLE as AssetStatus,
     },
     onSubmit: async ({ value }) => {
       const payload: CreateBatchAssetInput = {

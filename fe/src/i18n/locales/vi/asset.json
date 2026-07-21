@@ -18,6 +18,21 @@
     "DISPOSED": "Đã thanh lý",
     "LOST": "Mất"
   },
+  "sections": {
+    "basicInfo": "Thông tin cơ bản",
+    "purchaseWarranty": "Mua sắm & Bảo hành",
+    "attributes": "Cấu hình"
+  },
+  "attributeForm": {
+    "noAttributes": "Không có thuộc tính nào cho danh mục này",
+    "prefilledFromModel": "Giá trị được lấy từ cấu hình model. Bạn có thể chỉnh sửa cho tài sản cụ thể này.",
+    "selectPlaceholder": "Chọn giá trị...",
+    "ungrouped": "Khác"
+  },
+  "actions": {
+    "cancel": "Hủy",
+    "back": "Quay lại"
+  },
   "columns": {
     "id": "Mã",
     "assetCode": "Mã tài sản",
@@ -37,7 +52,7 @@
     "remainQuantity": "Còn lại",
     "assetStatus": "Trạng thái",
     "assignedTo": "Người sử dụng",
-    "currentSection": "Đơn vị",
+    "currentSection": "Bộ phận",
     "isActive": "Hoạt động",
     "createdBy": "Người tạo",
     "createdAt": "Ngày tạo",
@@ -64,7 +79,7 @@
     "remainQuantity": "Còn lại",
     "assetStatus": "Trạng thái",
     "assignedTo": "Người sử dụng",
-    "currentSection": "Đơn vị",
+    "currentSection": "Bộ phận",
     "isActive": "Hoạt động"
   },
   "validation": {

@@ -44,9 +44,10 @@ export function useUpdateAsset() {
   return useAppMutation({
     mutationFn: ({ id, ...payload }: UpdateAssetInput & { id: string }) =>
       assetApi.update(id, payload),
-    onSuccess: () => {
+    onSuccess: (_data, variables) => {
       toast.success(t('updateSuccess'));
       queryClient.invalidateQueries({ queryKey: assetQueries.all().queryKey });
+      queryClient.invalidateQueries({ queryKey: assetQueries.detail(variables.id).queryKey });
     },
   });
 }

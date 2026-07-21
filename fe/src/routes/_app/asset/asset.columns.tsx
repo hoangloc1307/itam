@@ -3,6 +3,7 @@
 import { IconEdit, IconTrash } from '@tabler/icons-react';
 import { type ColumnDef } from '@tanstack/react-table';
 import type { TFunction } from 'i18next';
+import { ASSET_STATUSES } from 'itam-shared/constants';
 import type { Asset } from 'itam-shared/types';
 import { Badge } from '~/components/ui/badge';
 import { Button } from '~/components/ui/button';
@@ -15,15 +16,15 @@ interface ColumnActions {
 
 const statusVariant = (status: string) => {
   switch (status) {
-    case 'AVAILABLE':
+    case ASSET_STATUSES.AVAILABLE:
       return 'success';
-    case 'IN_USE':
+    case ASSET_STATUSES.IN_USE:
       return 'info';
-    case 'UNDER_REPAIR':
+    case ASSET_STATUSES.UNDER_REPAIR:
       return 'warning';
-    case 'DISPOSED':
+    case ASSET_STATUSES.DISPOSED:
       return 'purple';
-    case 'LOST':
+    case ASSET_STATUSES.LOST:
       return 'destructive';
     default:
       return 'default';

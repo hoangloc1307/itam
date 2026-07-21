@@ -18,6 +18,21 @@
     "DISPOSED": "廃棄済み",
     "LOST": "紛失"
   },
+  "sections": {
+    "basicInfo": "基本情報",
+    "purchaseWarranty": "購入・保証",
+    "attributes": "構成"
+  },
+  "attributeForm": {
+    "noAttributes": "このカテゴリには属性が定義されていません",
+    "prefilledFromModel": "モデルの構成から値が事前入力されています。この資産に対して変更できます。",
+    "selectPlaceholder": "値を選択...",
+    "ungrouped": "その他"
+  },
+  "actions": {
+    "cancel": "キャンセル",
+    "back": "戻る"
+  },
   "columns": {
     "id": "ID",
     "assetCode": "資産コード",

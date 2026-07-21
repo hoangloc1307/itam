@@ -1,8 +1,8 @@
 'use no memo';
 
-import { IconPlus, IconPlaylistAdd } from '@tabler/icons-react';
+import { IconPlaylistAdd, IconPlus } from '@tabler/icons-react';
 import { useSuspenseQuery } from '@tanstack/react-query';
-import { createFileRoute } from '@tanstack/react-router';
+import { createFileRoute, useNavigate } from '@tanstack/react-router';
 import { type Asset } from 'itam-shared/types';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -13,23 +13,20 @@ import { Button } from '~/components/ui/button';
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '~/components/ui/dialog';
 import { useDeleteAsset } from '~/hooks/mutations/use-asset';
 import useDatatable from '~/hooks/use-datatable';
-import { getAssetColumns } from '~/routes/_app/asset/asset.columns';
 import { AssetBatchForm } from '~/routes/_app/asset/asset-batch.form';
-import { AssetForm } from '~/routes/_app/asset/asset.form';
+import { getAssetColumns } from '~/routes/_app/asset/asset.columns';
 
 const AssetPage = () => {
   const { t, i18n } = useTranslation('asset');
-  const [open, setOpen] = useState(false);
+  const navigate = useNavigate();
   const [batchOpen, setBatchOpen] = useState(false);
-  const [editing, setEditing] = useState<Asset | null>(null);
   const [deleteId, setDeleteId] = useState<string | null>(null);
   const { data } = useSuspenseQuery(assetQueries.all());
   const deleteMutation = useDeleteAsset();
   const assets = data?.data ?? [];
 
   const handleEdit = (asset: Asset) => {
-    setEditing(asset);
-    setOpen(true);
+    navigate({ to: '/asset/$id/edit', params: { id: asset.id } });
   };
 
   const columns = getAssetColumns(t, i18n.language, {
@@ -43,13 +40,7 @@ const AssetPage = () => {
   });
 
   const handleAdd = () => {
-    setEditing(null);
-    setOpen(true);
-  };
-
-  const handleClose = () => {
-    setOpen(false);
-    setEditing(null);
+    navigate({ to: '/asset/create' });
   };
 
   const handleBatchClose = () => {
@@ -79,17 +70,6 @@ const AssetPage = () => {
       </div>
 
       <DataTable table={table} key={i18n.language} />
-
-      <Dialog open={open} onOpenChange={setOpen}>
-        <DialogContent className='max-w-2xl'>
-          <DialogHeader>
-            <DialogTitle className='text-lg capitalize'>
-              {editing ? t('edit') : t('addNew')}
-            </DialogTitle>
-          </DialogHeader>
-          <AssetForm asset={editing} onSuccess={handleClose} />
-        </DialogContent>
-      </Dialog>
 
       <Dialog open={batchOpen} onOpenChange={setBatchOpen}>
         <DialogContent className='max-w-3xl'>

@@ -27,6 +27,8 @@ import { Route as AppCategoryAttributeIndexRouteImport } from './routes/_app/cat
 import { Route as AppAttributeIndexRouteImport } from './routes/_app/attribute/index';
 import { Route as AppAttributeGroupIndexRouteImport } from './routes/_app/attribute-group/index';
 import { Route as AppAssetIndexRouteImport } from './routes/_app/asset/index';
+import { Route as AppAssetCreateRouteImport } from './routes/_app/asset/create';
+import { Route as AppAssetIdEditRouteImport } from './routes/_app/asset/$id/edit';
 
 const AuthRoute = AuthRouteImport.update({
   id: '/_auth',
@@ -117,12 +119,23 @@ const AppAssetIndexRoute = AppAssetIndexRouteImport.update({
   path: '/asset/',
   getParentRoute: () => AppRoute,
 } as any);
+const AppAssetCreateRoute = AppAssetCreateRouteImport.update({
+  id: '/asset/create',
+  path: '/asset/create',
+  getParentRoute: () => AppRoute,
+} as any);
+const AppAssetIdEditRoute = AppAssetIdEditRouteImport.update({
+  id: '/asset/$id/edit',
+  path: '/asset/$id/edit',
+  getParentRoute: () => AppRoute,
+} as any);
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute;
   '/dashboard': typeof AppDashboardRoute;
   '/login': typeof AuthLoginRoute;
   '/register': typeof AuthRegisterRoute;
+  '/asset/create': typeof AppAssetCreateRoute;
   '/asset/': typeof AppAssetIndexRoute;
   '/attribute-group/': typeof AppAttributeGroupIndexRoute;
   '/attribute/': typeof AppAttributeIndexRoute;
@@ -135,12 +148,14 @@ export interface FileRoutesByFullPath {
   '/user-permission/': typeof AppUserPermissionIndexRoute;
   '/user-role/': typeof AppUserRoleIndexRoute;
   '/user/': typeof AppUserIndexRoute;
+  '/asset/$id/edit': typeof AppAssetIdEditRoute;
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute;
   '/dashboard': typeof AppDashboardRoute;
   '/login': typeof AuthLoginRoute;
   '/register': typeof AuthRegisterRoute;
+  '/asset/create': typeof AppAssetCreateRoute;
   '/asset': typeof AppAssetIndexRoute;
   '/attribute-group': typeof AppAttributeGroupIndexRoute;
   '/attribute': typeof AppAttributeIndexRoute;
@@ -153,6 +168,7 @@ export interface FileRoutesByTo {
   '/user-permission': typeof AppUserPermissionIndexRoute;
   '/user-role': typeof AppUserRoleIndexRoute;
   '/user': typeof AppUserIndexRoute;
+  '/asset/$id/edit': typeof AppAssetIdEditRoute;
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport;
@@ -162,6 +178,7 @@ export interface FileRoutesById {
   '/_app/dashboard': typeof AppDashboardRoute;
   '/_auth/login': typeof AuthLoginRoute;
   '/_auth/register': typeof AuthRegisterRoute;
+  '/_app/asset/create': typeof AppAssetCreateRoute;
   '/_app/asset/': typeof AppAssetIndexRoute;
   '/_app/attribute-group/': typeof AppAttributeGroupIndexRoute;
   '/_app/attribute/': typeof AppAttributeIndexRoute;
@@ -174,6 +191,7 @@ export interface FileRoutesById {
   '/_app/user-permission/': typeof AppUserPermissionIndexRoute;
   '/_app/user-role/': typeof AppUserRoleIndexRoute;
   '/_app/user/': typeof AppUserIndexRoute;
+  '/_app/asset/$id/edit': typeof AppAssetIdEditRoute;
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath;
@@ -182,6 +200,7 @@ export interface FileRouteTypes {
     | '/dashboard'
     | '/login'
     | '/register'
+    | '/asset/create'
     | '/asset/'
     | '/attribute-group/'
     | '/attribute/'
@@ -193,13 +212,15 @@ export interface FileRouteTypes {
     | '/role/'
     | '/user-permission/'
     | '/user-role/'
-    | '/user/';
+    | '/user/'
+    | '/asset/$id/edit';
   fileRoutesByTo: FileRoutesByTo;
   to:
     | '/'
     | '/dashboard'
     | '/login'
     | '/register'
+    | '/asset/create'
     | '/asset'
     | '/attribute-group'
     | '/attribute'
@@ -211,7 +232,8 @@ export interface FileRouteTypes {
     | '/role'
     | '/user-permission'
     | '/user-role'
-    | '/user';
+    | '/user'
+    | '/asset/$id/edit';
   id:
     | '__root__'
     | '/'
@@ -220,6 +242,7 @@ export interface FileRouteTypes {
     | '/_app/dashboard'
     | '/_auth/login'
     | '/_auth/register'
+    | '/_app/asset/create'
     | '/_app/asset/'
     | '/_app/attribute-group/'
     | '/_app/attribute/'
@@ -231,7 +254,8 @@ export interface FileRouteTypes {
     | '/_app/role/'
     | '/_app/user-permission/'
     | '/_app/user-role/'
-    | '/_app/user/';
+    | '/_app/user/'
+    | '/_app/asset/$id/edit';
   fileRoutesById: FileRoutesById;
 }
 export interface RootRouteChildren {
@@ -368,11 +392,26 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppAssetIndexRouteImport;
       parentRoute: typeof AppRoute;
     };
+    '/_app/asset/create': {
+      id: '/_app/asset/create';
+      path: '/asset/create';
+      fullPath: '/asset/create';
+      preLoaderRoute: typeof AppAssetCreateRouteImport;
+      parentRoute: typeof AppRoute;
+    };
+    '/_app/asset/$id/edit': {
+      id: '/_app/asset/$id/edit';
+      path: '/asset/$id/edit';
+      fullPath: '/asset/$id/edit';
+      preLoaderRoute: typeof AppAssetIdEditRouteImport;
+      parentRoute: typeof AppRoute;
+    };
   }
 }
 
 interface AppRouteChildren {
   AppDashboardRoute: typeof AppDashboardRoute;
+  AppAssetCreateRoute: typeof AppAssetCreateRoute;
   AppAssetIndexRoute: typeof AppAssetIndexRoute;
   AppAttributeGroupIndexRoute: typeof AppAttributeGroupIndexRoute;
   AppAttributeIndexRoute: typeof AppAttributeIndexRoute;
@@ -385,10 +424,12 @@ interface AppRouteChildren {
   AppUserPermissionIndexRoute: typeof AppUserPermissionIndexRoute;
   AppUserRoleIndexRoute: typeof AppUserRoleIndexRoute;
   AppUserIndexRoute: typeof AppUserIndexRoute;
+  AppAssetIdEditRoute: typeof AppAssetIdEditRoute;
 }
 
 const AppRouteChildren: AppRouteChildren = {
   AppDashboardRoute: AppDashboardRoute,
+  AppAssetCreateRoute: AppAssetCreateRoute,
   AppAssetIndexRoute: AppAssetIndexRoute,
   AppAttributeGroupIndexRoute: AppAttributeGroupIndexRoute,
   AppAttributeIndexRoute: AppAttributeIndexRoute,
@@ -401,6 +442,7 @@ const AppRouteChildren: AppRouteChildren = {
   AppUserPermissionIndexRoute: AppUserPermissionIndexRoute,
   AppUserRoleIndexRoute: AppUserRoleIndexRoute,
   AppUserIndexRoute: AppUserIndexRoute,
+  AppAssetIdEditRoute: AppAssetIdEditRoute,
 };
 
 const AppRouteWithChildren = AppRoute._addFileChildren(AppRouteChildren);
