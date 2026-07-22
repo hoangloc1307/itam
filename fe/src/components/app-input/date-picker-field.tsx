@@ -53,7 +53,12 @@ export const DatePickerField = ({ label, placeholder }: DatePickerFieldProps) =>
             : (placeholder ?? t('common:selectDate'))}
         </PopoverTrigger>
         <PopoverContent className='w-auto p-0' align='start'>
-          <Calendar mode='single' selected={dateValue} onSelect={handleSelect} />
+          <Calendar
+            mode='single'
+            captionLayout='dropdown'
+            selected={dateValue}
+            onSelect={handleSelect}
+          />
         </PopoverContent>
       </Popover>
       {isInvalid && <FieldError>{t(field.state.meta.errors[0].message)}</FieldError>}
