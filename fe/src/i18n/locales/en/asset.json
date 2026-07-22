@@ -100,6 +100,7 @@
     "startNumber": "Start number",
     "quantity": "Quantity",
     "preview": "Preview",
+    "generate": "Generate",
     "next": "Next",
     "back": "Back",
     "itemsTitle": "Assets to create ({{count}})",

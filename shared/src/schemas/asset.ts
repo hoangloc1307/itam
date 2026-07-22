@@ -80,6 +80,9 @@ export const createBatchAssetSchema = z.object({
   location: z.string().max(200).nullable(),
   maintenanceIntervalHours: z.number().int().positive().nullable(),
   assetStatus: assetStatusEnum,
+  assignedTo: z.string().max(8).nullable(),
+  currentSection: z.string().max(4).nullable(),
+  attributeValues: z.array(assetAttributeValueSchema).optional(),
   items: z.array(batchAssetItemSchema).min(1, 'asset:validation.itemsRequired'),
 });
 

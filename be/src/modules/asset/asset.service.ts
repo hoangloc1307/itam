@@ -300,6 +300,8 @@ const createBatch = async (input: CreateBatchAssetInput, createdBy: string) => {
     warrantyMonth: input.warrantyMonth ?? null,
     location: input.location ?? null,
     maintenanceIntervalHours: input.maintenanceIntervalHours ?? null,
+    assignedTo: input.assignedTo ?? null,
+    currentSection: input.currentSection ?? null,
     assetStatus: input.assetStatus,
     quantity: 1,
     remainQuantity: 1,
@@ -307,6 +309,18 @@ const createBatch = async (input: CreateBatchAssetInput, createdBy: string) => {
   }));
 
   const result = await prisma.asset.createMany({ data });
+
+  // Save attribute values for each asset
+  if (input.attributeValues && input.attributeValues.length > 0) {
+    const attrData = ids.flatMap((assetId) =>
+      input.attributeValues!.map((av) => ({
+        assetId,
+        attributeId: av.attributeId,
+        value: av.value ?? null,
+      })),
+    );
+    await prisma.assetAttributeValue.createMany({ data: attrData });
+  }
 
   return { count: result.count };
 };

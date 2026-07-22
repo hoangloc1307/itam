@@ -100,6 +100,7 @@
     "startNumber": "Số bắt đầu",
     "quantity": "Số lượng",
     "preview": "Xem trước",
+    "generate": "Sinh mã",
     "next": "Tiếp theo",
     "back": "Quay lại",
     "itemsTitle": "Tài sản sẽ tạo ({{count}})",

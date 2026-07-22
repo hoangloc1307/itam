@@ -10,6 +10,7 @@ import { Button } from '~/components/ui/button';
 import { Input } from '~/components/ui/input';
 import { Label } from '~/components/ui/label';
 import { FieldGroup } from '~/components/ui/field';
+import { Separator } from '~/components/ui/separator';
 import { useCreateBatchAsset } from '~/hooks/mutations/use-asset';
 import { useAppForm } from '~/hooks/use-app-form';
 
@@ -68,6 +69,8 @@ export function AssetBatchForm({ onSuccess }: AssetBatchFormProps) {
       location: null as string | null,
       maintenanceIntervalHours: null as number | null,
       assetStatus: ASSET_STATUSES.AVAILABLE as AssetStatus,
+      assignedTo: null as string | null,
+      currentSection: null as string | null,
     },
     onSubmit: async ({ value }) => {
       const payload: CreateBatchAssetInput = {
@@ -134,6 +137,28 @@ export function AssetBatchForm({ onSuccess }: AssetBatchFormProps) {
               children={(field) => <field.TextField label={t('form.location')} />}
             />
             <form.AppField
+              name='assetStatus'
+              children={(field) => (
+                <field.SelectField label={t('form.assetStatus')} options={statusOptions} />
+              )}
+            />
+          </div>
+
+          <div className='grid grid-cols-2 gap-4'>
+            <form.AppField
+              name='assignedTo'
+              children={(field) => <field.TextField label={t('form.assignedTo')} />}
+            />
+            <form.AppField
+              name='currentSection'
+              children={(field) => <field.TextField label={t('form.currentSection')} />}
+            />
+          </div>
+
+          <Separator />
+
+          <div className='grid grid-cols-2 gap-4'>
+            <form.AppField
               name='purchasePrice'
               children={(field) => (
                 <field.NumberField
@@ -143,18 +168,20 @@ export function AssetBatchForm({ onSuccess }: AssetBatchFormProps) {
                 />
               )}
             />
+            <form.AppField
+              name='purchaseDate'
+              children={(field) => <field.DatePickerField label={t('form.purchaseDate')} />}
+            />
           </div>
 
-          <div className='grid grid-cols-2 gap-4'>
+          <div className='grid grid-cols-3 gap-4'>
             <form.AppField
-              name='maintenanceIntervalHours'
-              children={(field) => (
-                <field.NumberField
-                  label={t('form.maintenanceIntervalHours')}
-                  allowNegative={false}
-                  decimalScale={0}
-                />
-              )}
+              name='warrantyStartDate'
+              children={(field) => <field.DatePickerField label={t('form.warrantyStartDate')} />}
+            />
+            <form.AppField
+              name='warrantyEndDate'
+              children={(field) => <field.DatePickerField label={t('form.warrantyEndDate')} />}
             />
             <form.AppField
               name='warrantyMonth'
@@ -169,14 +196,20 @@ export function AssetBatchForm({ onSuccess }: AssetBatchFormProps) {
           </div>
 
           <form.AppField
-            name='assetStatus'
+            name='maintenanceIntervalHours'
             children={(field) => (
-              <field.SelectField label={t('form.assetStatus')} options={statusOptions} />
+              <field.NumberField
+                label={t('form.maintenanceIntervalHours')}
+                allowNegative={false}
+                decimalScale={0}
+              />
             )}
           />
         </FieldGroup>
 
-        <div className='border-t pt-4'>
+        <Separator />
+
+        <div>
           <h3 className='mb-3 text-sm font-medium'>{t('batch.generateTitle')}</h3>
           <div className='grid grid-cols-3 gap-4'>
             <div>
