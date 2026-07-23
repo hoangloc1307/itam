@@ -1,0 +1,28 @@
+info:
+  name: Create
+  type: http
+  seq: 3
+
+http:
+  method: POST
+  url: '{{API_URL}}/{{DOCUMENT_SEQUENCE_ENDPOINT}}'
+  body:
+    type: json
+    data: |-
+      {
+        "code": "PO",
+        "name": "Purchase Order",
+        "prefix": "PO",
+        "separator": "-",
+        "dateFormat": "YYYYMMDD",
+        "paddingLength": 4,
+        "resetCycle": "DAILY",
+        "isActive": true
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

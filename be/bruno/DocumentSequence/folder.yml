@@ -1,0 +1,7 @@
+info:
+  name: DocumentSequence
+  type: folder
+  seq: 12
+
+request:
+  auth: inherit

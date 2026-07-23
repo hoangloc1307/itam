@@ -17,6 +17,7 @@ i18next.use(Backend).init({
     'attribute',
     'attributeGroup',
     'category',
+    'documentSequence',
     'feature',
     'model',
     'role',

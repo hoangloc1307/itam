@@ -1,0 +1,59 @@
+{
+  "title": "Document Sequences",
+  "addNew": "Add sequence",
+  "edit": "Edit sequence",
+  "deleteConfirm": "Are you sure you want to delete this sequence?",
+  "createSuccess": "Sequence created successfully",
+  "updateSuccess": "Sequence updated successfully",
+  "deleteSuccess": "Sequence deleted successfully",
+  "preview": "Preview",
+  "previewResult": "Next code: {{code}}",
+  "status": {
+    "active": "Active",
+    "inactive": "Inactive"
+  },
+  "columns": {
+    "id": "ID",
+    "code": "Code",
+    "name": "Name",
+    "prefix": "Prefix",
+    "separator": "Separator",
+    "dateFormat": "Date Format",
+    "paddingLength": "Padding",
+    "resetCycle": "Reset Cycle",
+    "currentNumber": "Current Number",
+    "lastCode": "Last Code",
+    "isActive": "Active",
+    "createdBy": "Created By",
+    "createdAt": "Created Date",
+    "actions": "Actions"
+  },
+  "form": {
+    "code": "Sequence Code",
+    "name": "Sequence Name",
+    "prefix": "Prefix",
+    "separator": "Separator",
+    "dateFormat": "Date Format",
+    "paddingLength": "Padding Length",
+    "resetCycle": "Reset Cycle",
+    "isActive": "Active"
+  },
+  "resetCycle": {
+    "DAILY": "Daily",
+    "MONTHLY": "Monthly",
+    "YEARLY": "Yearly",
+    "NEVER": "Never"
+  },
+  "validation": {
+    "codeRequired": "Sequence code is required",
+    "codeMaxLength": "Sequence code must be at most 50 characters",
+    "nameRequired": "Sequence name is required",
+    "nameMaxLength": "Sequence name must be at most 150 characters",
+    "prefixMaxLength": "Prefix must be at most 20 characters",
+    "separatorMaxLength": "Separator must be at most 5 characters",
+    "dateFormatMaxLength": "Date format must be at most 20 characters",
+    "resetCycleInvalid": "Invalid reset cycle",
+    "paddingLengthMin": "Padding length must be at least 1",
+    "paddingLengthMax": "Padding length must be at most 10"
+  }
+}

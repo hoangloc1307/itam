@@ -23,6 +23,7 @@ i18n
       'category',
       'categoryAttribute',
       'attribute',
+      'documentSequence',
       'feature',
       'model',
       'role',

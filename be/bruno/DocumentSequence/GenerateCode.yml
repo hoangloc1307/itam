@@ -1,0 +1,19 @@
+info:
+  name: GenerateCode
+  type: http
+  seq: 6
+
+http:
+  method: POST
+  url: "{{API_URL}}/{{DOCUMENT_SEQUENCE_ENDPOINT}}/:code/generate"
+  params:
+    - name: code
+      value: LAPTOP
+      type: path
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

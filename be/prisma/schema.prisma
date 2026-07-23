@@ -261,6 +261,49 @@ model ModelAttributeValue {
 }
 
 
+// ==================== DOCUMENT SEQUENCE ====================
+
+enum ResetCycle {
+  DAILY
+  MONTHLY
+  YEARLY
+  NEVER
+}
+
+model DocumentSequence {
+  id            Int        @id @default(autoincrement())
+  code          String     @unique @db.VarChar(50)
+  name          String     @db.VarChar(150)
+  prefix        String     @default("") @db.VarChar(20)
+  separator     String     @default("-") @db.VarChar(5)
+  dateFormat    String     @default("YYYYMMDD") @map("date_format") @db.VarChar(20)
+  paddingLength Int        @default(4) @map("padding_length")
+  resetCycle    ResetCycle @default(DAILY) @map("reset_cycle")
+  isActive      Boolean    @default(true) @map("is_active")
+  deletedAt     DateTime?  @map("deleted_at") @db.Timestamptz(0)
+  createdBy     String     @map("created_by") @db.Char(8)
+  createdAt     DateTime   @default(now()) @map("created_at") @db.Timestamptz(0)
+  updatedBy     String?    @map("updated_by") @db.Char(8)
+  updatedAt     DateTime?  @map("updated_at") @db.Timestamptz(0)
+
+  counters DocumentSequenceCounter[]
+
+  @@map("document_sequences")
+}
+
+model DocumentSequenceCounter {
+  id         Int      @id @default(autoincrement())
+  sequenceId Int      @map("sequence_id")
+  periodKey  String   @map("period_key") @db.VarChar(10)
+  lastNumber Int      @default(0) @map("last_number")
+  updatedAt  DateTime @updatedAt @map("updated_at") @db.Timestamptz(0)
+
+  sequence DocumentSequence @relation(fields: [sequenceId], references: [id])
+
+  @@unique([sequenceId, periodKey])
+  @@map("document_sequence_counters")
+}
+
 // ==================== ASSET ====================
 
 model Asset {

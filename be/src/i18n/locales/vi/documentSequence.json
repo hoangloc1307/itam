@@ -1,0 +1,17 @@
+{
+  "notFound": "Không tìm thấy cấu hình mã phiếu",
+  "alreadyExists": "Mã cấu hình phiếu đã tồn tại",
+  "inactive": "Cấu hình mã phiếu đang không hoạt động",
+  "validation": {
+    "codeRequired": "Mã cấu hình là bắt buộc",
+    "codeMaxLength": "Mã cấu hình tối đa 50 ký tự",
+    "nameRequired": "Tên cấu hình là bắt buộc",
+    "nameMaxLength": "Tên cấu hình tối đa 150 ký tự",
+    "prefixMaxLength": "Tiền tố tối đa 20 ký tự",
+    "separatorMaxLength": "Ký tự phân cách tối đa 5 ký tự",
+    "dateFormatMaxLength": "Định dạng ngày tối đa 20 ký tự",
+    "resetCycleInvalid": "Chu kỳ reset không hợp lệ. Cho phép: DAILY, MONTHLY, YEARLY, NEVER",
+    "paddingLengthMin": "Độ dài số phải tối thiểu 1",
+    "paddingLengthMax": "Độ dài số tối đa 10"
+  }
+}

@@ -12,6 +12,12 @@ export type { AttributeGroup, AttributeGroupBase, AttributeGroupEntity } from '.
 export type { LoginResponse, Permission, RefreshResponse, UserInfo } from './auth';
 export type { Category, CategoryBase, CategoryEntity } from './category';
 export type { CategoryAttributeItem, SyncAttributePayload } from './category-attribute';
+export type {
+  DocumentSequence,
+  DocumentSequenceBase,
+  DocumentSequenceEntity,
+  GenerateCodeResponse,
+} from './document-sequence';
 export type { Feature, FeatureBase, FeatureEntity } from './feature';
 export type { Model, ModelBase, ModelEntity } from './model';
 export type {

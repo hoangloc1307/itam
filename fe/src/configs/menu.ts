@@ -51,6 +51,11 @@ const MAIN_MENU: NavItem[] = [
         url: '/model',
         featureCode: FEATURES.MODEL,
       },
+      {
+        title: 'menu.documentSequence',
+        url: '/document-sequence',
+        featureCode: FEATURES.DOCUMENT_SEQUENCE,
+      },
     ],
   },
   {

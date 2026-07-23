@@ -24,5 +24,7 @@ variables:
     value: user-permissions
   - name: ASSET_ENDPOINT
     value: assets
+  - name: DOCUMENT_SEQUENCE_ENDPOINT
+    value: document-sequences
   - name: MODEL_ENDPOINT
     value: models

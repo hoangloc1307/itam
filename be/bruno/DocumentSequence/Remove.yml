@@ -1,0 +1,19 @@
+info:
+  name: Remove
+  type: http
+  seq: 5
+
+http:
+  method: DELETE
+  url: '{{API_URL}}/{{DOCUMENT_SEQUENCE_ENDPOINT}}/:id'
+  params:
+    - name: id
+      value: PO
+      type: path
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

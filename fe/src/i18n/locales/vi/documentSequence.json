@@ -1,0 +1,59 @@
+{
+  "title": "Cấu hình mã phiếu",
+  "addNew": "Thêm cấu hình",
+  "edit": "Sửa cấu hình",
+  "deleteConfirm": "Bạn có chắc chắn muốn xóa cấu hình này?",
+  "createSuccess": "Tạo cấu hình thành công",
+  "updateSuccess": "Cập nhật cấu hình thành công",
+  "deleteSuccess": "Xóa cấu hình thành công",
+  "preview": "Xem trước",
+  "previewResult": "Mã tiếp theo: {{code}}",
+  "status": {
+    "active": "Hoạt động",
+    "inactive": "Không hoạt động"
+  },
+  "columns": {
+    "id": "ID",
+    "code": "Mã",
+    "name": "Tên",
+    "prefix": "Tiền tố",
+    "separator": "Phân cách",
+    "dateFormat": "Định dạng ngày",
+    "paddingLength": "Độ dài số",
+    "resetCycle": "Chu kỳ reset",
+    "currentNumber": "Số hiện tại",
+    "lastCode": "Mã mới nhất",
+    "isActive": "Trạng thái",
+    "createdBy": "Người tạo",
+    "createdAt": "Ngày tạo",
+    "actions": "Thao tác"
+  },
+  "form": {
+    "code": "Mã cấu hình",
+    "name": "Tên cấu hình",
+    "prefix": "Tiền tố",
+    "separator": "Ký tự phân cách",
+    "dateFormat": "Định dạng ngày",
+    "paddingLength": "Độ dài phần số",
+    "resetCycle": "Chu kỳ reset",
+    "isActive": "Hoạt động"
+  },
+  "resetCycle": {
+    "DAILY": "Hàng ngày",
+    "MONTHLY": "Hàng tháng",
+    "YEARLY": "Hàng năm",
+    "NEVER": "Không reset"
+  },
+  "validation": {
+    "codeRequired": "Mã cấu hình là bắt buộc",
+    "codeMaxLength": "Mã cấu hình tối đa 50 ký tự",
+    "nameRequired": "Tên cấu hình là bắt buộc",
+    "nameMaxLength": "Tên cấu hình tối đa 150 ký tự",
+    "prefixMaxLength": "Tiền tố tối đa 20 ký tự",
+    "separatorMaxLength": "Ký tự phân cách tối đa 5 ký tự",
+    "dateFormatMaxLength": "Định dạng ngày tối đa 20 ký tự",
+    "resetCycleInvalid": "Chu kỳ reset không hợp lệ",
+    "paddingLengthMin": "Độ dài số phải tối thiểu 1",
+    "paddingLengthMax": "Độ dài số tối đa 10"
+  }
+}

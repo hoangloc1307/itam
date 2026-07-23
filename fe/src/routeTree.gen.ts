@@ -22,6 +22,7 @@ import { Route as AppRoleIndexRouteImport } from './routes/_app/role/index';
 import { Route as AppRolePermissionIndexRouteImport } from './routes/_app/role-permission/index';
 import { Route as AppModelIndexRouteImport } from './routes/_app/model/index';
 import { Route as AppFeatureIndexRouteImport } from './routes/_app/feature/index';
+import { Route as AppDocumentSequenceIndexRouteImport } from './routes/_app/document-sequence/index';
 import { Route as AppCategoryIndexRouteImport } from './routes/_app/category/index';
 import { Route as AppCategoryAttributeIndexRouteImport } from './routes/_app/category-attribute/index';
 import { Route as AppAttributeIndexRouteImport } from './routes/_app/attribute/index';
@@ -94,6 +95,12 @@ const AppFeatureIndexRoute = AppFeatureIndexRouteImport.update({
   path: '/feature/',
   getParentRoute: () => AppRoute,
 } as any);
+const AppDocumentSequenceIndexRoute =
+  AppDocumentSequenceIndexRouteImport.update({
+    id: '/document-sequence/',
+    path: '/document-sequence/',
+    getParentRoute: () => AppRoute,
+  } as any);
 const AppCategoryIndexRoute = AppCategoryIndexRouteImport.update({
   id: '/category/',
   path: '/category/',
@@ -148,6 +155,7 @@ export interface FileRoutesByFullPath {
   '/attribute/': typeof AppAttributeIndexRoute;
   '/category-attribute/': typeof AppCategoryAttributeIndexRoute;
   '/category/': typeof AppCategoryIndexRoute;
+  '/document-sequence/': typeof AppDocumentSequenceIndexRoute;
   '/feature/': typeof AppFeatureIndexRoute;
   '/model/': typeof AppModelIndexRoute;
   '/role-permission/': typeof AppRolePermissionIndexRoute;
@@ -169,6 +177,7 @@ export interface FileRoutesByTo {
   '/attribute': typeof AppAttributeIndexRoute;
   '/category-attribute': typeof AppCategoryAttributeIndexRoute;
   '/category': typeof AppCategoryIndexRoute;
+  '/document-sequence': typeof AppDocumentSequenceIndexRoute;
   '/feature': typeof AppFeatureIndexRoute;
   '/model': typeof AppModelIndexRoute;
   '/role-permission': typeof AppRolePermissionIndexRoute;
@@ -193,6 +202,7 @@ export interface FileRoutesById {
   '/_app/attribute/': typeof AppAttributeIndexRoute;
   '/_app/category-attribute/': typeof AppCategoryAttributeIndexRoute;
   '/_app/category/': typeof AppCategoryIndexRoute;
+  '/_app/document-sequence/': typeof AppDocumentSequenceIndexRoute;
   '/_app/feature/': typeof AppFeatureIndexRoute;
   '/_app/model/': typeof AppModelIndexRoute;
   '/_app/role-permission/': typeof AppRolePermissionIndexRoute;
@@ -216,6 +226,7 @@ export interface FileRouteTypes {
     | '/attribute/'
     | '/category-attribute/'
     | '/category/'
+    | '/document-sequence/'
     | '/feature/'
     | '/model/'
     | '/role-permission/'
@@ -237,6 +248,7 @@ export interface FileRouteTypes {
     | '/attribute'
     | '/category-attribute'
     | '/category'
+    | '/document-sequence'
     | '/feature'
     | '/model'
     | '/role-permission'
@@ -260,6 +272,7 @@ export interface FileRouteTypes {
     | '/_app/attribute/'
     | '/_app/category-attribute/'
     | '/_app/category/'
+    | '/_app/document-sequence/'
     | '/_app/feature/'
     | '/_app/model/'
     | '/_app/role-permission/'
@@ -369,6 +382,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppFeatureIndexRouteImport;
       parentRoute: typeof AppRoute;
     };
+    '/_app/document-sequence/': {
+      id: '/_app/document-sequence/';
+      path: '/document-sequence';
+      fullPath: '/document-sequence/';
+      preLoaderRoute: typeof AppDocumentSequenceIndexRouteImport;
+      parentRoute: typeof AppRoute;
+    };
     '/_app/category/': {
       id: '/_app/category/';
       path: '/category';
@@ -437,6 +457,7 @@ interface AppRouteChildren {
   AppAttributeIndexRoute: typeof AppAttributeIndexRoute;
   AppCategoryAttributeIndexRoute: typeof AppCategoryAttributeIndexRoute;
   AppCategoryIndexRoute: typeof AppCategoryIndexRoute;
+  AppDocumentSequenceIndexRoute: typeof AppDocumentSequenceIndexRoute;
   AppFeatureIndexRoute: typeof AppFeatureIndexRoute;
   AppModelIndexRoute: typeof AppModelIndexRoute;
   AppRolePermissionIndexRoute: typeof AppRolePermissionIndexRoute;
@@ -456,6 +477,7 @@ const AppRouteChildren: AppRouteChildren = {
   AppAttributeIndexRoute: AppAttributeIndexRoute,
   AppCategoryAttributeIndexRoute: AppCategoryAttributeIndexRoute,
   AppCategoryIndexRoute: AppCategoryIndexRoute,
+  AppDocumentSequenceIndexRoute: AppDocumentSequenceIndexRoute,
   AppFeatureIndexRoute: AppFeatureIndexRoute,
   AppModelIndexRoute: AppModelIndexRoute,
   AppRolePermissionIndexRoute: AppRolePermissionIndexRoute,

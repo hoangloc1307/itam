@@ -1,0 +1,59 @@
+{
+  "title": "採番設定",
+  "addNew": "設定追加",
+  "edit": "設定編集",
+  "deleteConfirm": "この設定を削除してもよろしいですか？",
+  "createSuccess": "設定を作成しました",
+  "updateSuccess": "設定を更新しました",
+  "deleteSuccess": "設定を削除しました",
+  "preview": "プレビュー",
+  "previewResult": "次の番号: {{code}}",
+  "status": {
+    "active": "有効",
+    "inactive": "無効"
+  },
+  "columns": {
+    "id": "ID",
+    "code": "コード",
+    "name": "名称",
+    "prefix": "接頭辞",
+    "separator": "区切り文字",
+    "dateFormat": "日付形式",
+    "paddingLength": "桁数",
+    "resetCycle": "リセット周期",
+    "currentNumber": "現在の番号",
+    "lastCode": "最新コード",
+    "isActive": "状態",
+    "createdBy": "作成者",
+    "createdAt": "作成日",
+    "actions": "操作"
+  },
+  "form": {
+    "code": "設定コード",
+    "name": "設定名",
+    "prefix": "接頭辞",
+    "separator": "区切り文字",
+    "dateFormat": "日付形式",
+    "paddingLength": "番号桁数",
+    "resetCycle": "リセット周期",
+    "isActive": "有効"
+  },
+  "resetCycle": {
+    "DAILY": "日次",
+    "MONTHLY": "月次",
+    "YEARLY": "年次",
+    "NEVER": "リセットなし"
+  },
+  "validation": {
+    "codeRequired": "設定コードは必須です",
+    "codeMaxLength": "設定コードは50文字以内で入力してください",
+    "nameRequired": "設定名は必須です",
+    "nameMaxLength": "設定名は150文字以内で入力してください",
+    "prefixMaxLength": "接頭辞は20文字以内で入力してください",
+    "separatorMaxLength": "区切り文字は5文字以内で入力してください",
+    "dateFormatMaxLength": "日付形式は20文字以内で入力してください",
+    "resetCycleInvalid": "リセット周期が無効です",
+    "paddingLengthMin": "番号桁数は1以上を入力してください",
+    "paddingLengthMax": "番号桁数は10以内で入力してください"
+  }
+}

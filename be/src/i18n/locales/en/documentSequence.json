@@ -1,0 +1,17 @@
+{
+  "notFound": "Document sequence not found",
+  "alreadyExists": "Document sequence code already exists",
+  "inactive": "Document sequence is inactive",
+  "validation": {
+    "codeRequired": "Sequence code is required",
+    "codeMaxLength": "Sequence code must be at most 50 characters",
+    "nameRequired": "Sequence name is required",
+    "nameMaxLength": "Sequence name must be at most 150 characters",
+    "prefixMaxLength": "Prefix must be at most 20 characters",
+    "separatorMaxLength": "Separator must be at most 5 characters",
+    "dateFormatMaxLength": "Date format must be at most 20 characters",
+    "resetCycleInvalid": "Invalid reset cycle. Allowed: DAILY, MONTHLY, YEARLY, NEVER",
+    "paddingLengthMin": "Padding length must be at least 1",
+    "paddingLengthMax": "Padding length must be at most 10"
+  }
+}
