@@ -91,7 +91,7 @@ When a library is used by both `fe/` and `be/`:
 2. Use `"catalog:"` as the version in each workspace's `package.json`.
 3. Keep configuration patterns consistent between FE and BE (same fallback language, same namespace structure, same conventions).
 
-Currently shared via catalog: `zod` (^4.4.3), `@types/node` (^24.13.2), `i18next` (^26.3.2).
+Currently shared via catalog: `zod` (^4.4.3), `@types/node` (^24.13.2), `i18next` (^26.3.2), `date-fns` (^4.4.0).
 
 ## Database
 
