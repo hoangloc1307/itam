@@ -1,7 +1,7 @@
 'use no memo';
 
 import { createFileRoute } from '@tanstack/react-router';
-import { AssetFormPage } from '~/routes/_app/asset/asset-form-page';
+import { AssetFormPage } from '~/routes/_app/asset/asset.form';
 
 const CreateAssetPage = () => {
   return <AssetFormPage />;

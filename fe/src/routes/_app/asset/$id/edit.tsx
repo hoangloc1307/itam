@@ -3,7 +3,7 @@
 import { useSuspenseQuery } from '@tanstack/react-query';
 import { createFileRoute } from '@tanstack/react-router';
 import { assetQueries } from '~/api/asset.queries';
-import { AssetFormPage } from '~/routes/_app/asset/asset-form-page';
+import { AssetFormPage } from '~/routes/_app/asset/asset.form';
 
 const EditAssetPage = () => {
   const { id } = Route.useParams();

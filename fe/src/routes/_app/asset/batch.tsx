@@ -20,7 +20,7 @@ import { FieldGroup } from '~/components/ui/field';
 import { Separator } from '~/components/ui/separator';
 import { useCreateBatchAsset } from '~/hooks/mutations/use-asset';
 import { useAppForm } from '~/hooks/use-app-form';
-import { AssetAttributeForm } from '~/routes/_app/asset/asset-attribute-form';
+import { AssetAttributeForm } from '~/routes/_app/asset/asset-attribute.form';
 
 const ASSET_STATUS_OPTIONS = Object.values(ASSET_STATUSES).map((value) => ({
   label: value,
