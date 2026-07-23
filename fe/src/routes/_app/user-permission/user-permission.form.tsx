@@ -92,7 +92,12 @@ export function UserPermissionForm({
         <form.AppField
           name='featureCode'
           children={(field) => (
-            <field.SelectField label={t('form.featureCode')} options={featureOptions} />
+            <field.ComboboxField
+              label={t('form.featureCode')}
+              placeholder={t('form.featureCodePlaceholder')}
+              options={featureOptions}
+              disabled={isEdit}
+            />
           )}
         />
         <form.AppField
