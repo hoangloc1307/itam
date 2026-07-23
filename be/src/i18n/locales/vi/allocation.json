@@ -1,0 +1,14 @@
+{
+  "notFound": "Không tìm thấy phiếu cấp phát",
+  "assetNotFound": "Không tìm thấy tài sản",
+  "insufficientQuantity": "Số lượng còn lại của tài sản không đủ",
+  "recipientRequired": "Phải có ít nhất nhân viên hoặc bộ phận nhận",
+  "alreadyReturned": "Phiếu cấp phát này đã được thu hồi",
+  "validation": {
+    "assetIdRequired": "Mã tài sản là bắt buộc",
+    "assetIdMaxLength": "Mã tài sản tối đa 50 ký tự",
+    "employeeIdMaxLength": "Mã nhân viên tối đa 8 ký tự",
+    "sectionIdMaxLength": "Mã bộ phận tối đa 4 ký tự",
+    "quantityPositive": "Số lượng phải là số dương"
+  }
+}

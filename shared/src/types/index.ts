@@ -1,4 +1,5 @@
 export type { ApiResponse, Pagination } from './api';
+export type { Allocation, AllocationBase, AllocationDetail, AllocationEntity } from './allocation';
 export type {
   Asset,
   AssetAttributeValueItem,

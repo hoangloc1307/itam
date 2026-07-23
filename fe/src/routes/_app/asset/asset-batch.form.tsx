@@ -69,8 +69,6 @@ export function AssetBatchForm({ onSuccess }: AssetBatchFormProps) {
       location: null as string | null,
       maintenanceIntervalHours: null as number | null,
       assetStatus: ASSET_STATUSES.AVAILABLE as AssetStatus,
-      assignedTo: null as string | null,
-      currentSection: null as string | null,
     },
     onSubmit: async ({ value }) => {
       const payload: CreateBatchAssetInput = {
@@ -141,17 +139,6 @@ export function AssetBatchForm({ onSuccess }: AssetBatchFormProps) {
               children={(field) => (
                 <field.SelectField label={t('form.assetStatus')} options={statusOptions} />
               )}
-            />
-          </div>
-
-          <div className='grid grid-cols-2 gap-4'>
-            <form.AppField
-              name='assignedTo'
-              children={(field) => <field.TextField label={t('form.assignedTo')} />}
-            />
-            <form.AppField
-              name='currentSection'
-              children={(field) => <field.TextField label={t('form.currentSection')} />}
             />
           </div>
 

@@ -126,14 +126,6 @@ export const getAssetColumns = (
     },
   },
   {
-    header: t('columns.assignedTo'),
-    accessorKey: 'assignedTo',
-  },
-  {
-    header: t('columns.currentSection'),
-    accessorKey: 'currentSection',
-  },
-  {
     header: t('columns.quantity'),
     accessorKey: 'quantity',
     meta: {

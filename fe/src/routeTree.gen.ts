@@ -28,6 +28,7 @@ import { Route as AppCategoryAttributeIndexRouteImport } from './routes/_app/cat
 import { Route as AppAttributeIndexRouteImport } from './routes/_app/attribute/index';
 import { Route as AppAttributeGroupIndexRouteImport } from './routes/_app/attribute-group/index';
 import { Route as AppAssetIndexRouteImport } from './routes/_app/asset/index';
+import { Route as AppAllocationIndexRouteImport } from './routes/_app/allocation/index';
 import { Route as AppAssetCreateRouteImport } from './routes/_app/asset/create';
 import { Route as AppAssetBatchRouteImport } from './routes/_app/asset/batch';
 import { Route as AppAssetIdEditRouteImport } from './routes/_app/asset/$id/edit';
@@ -127,6 +128,11 @@ const AppAssetIndexRoute = AppAssetIndexRouteImport.update({
   path: '/asset/',
   getParentRoute: () => AppRoute,
 } as any);
+const AppAllocationIndexRoute = AppAllocationIndexRouteImport.update({
+  id: '/allocation/',
+  path: '/allocation/',
+  getParentRoute: () => AppRoute,
+} as any);
 const AppAssetCreateRoute = AppAssetCreateRouteImport.update({
   id: '/asset/create',
   path: '/asset/create',
@@ -150,6 +156,7 @@ export interface FileRoutesByFullPath {
   '/register': typeof AuthRegisterRoute;
   '/asset/batch': typeof AppAssetBatchRoute;
   '/asset/create': typeof AppAssetCreateRoute;
+  '/allocation/': typeof AppAllocationIndexRoute;
   '/asset/': typeof AppAssetIndexRoute;
   '/attribute-group/': typeof AppAttributeGroupIndexRoute;
   '/attribute/': typeof AppAttributeIndexRoute;
@@ -172,6 +179,7 @@ export interface FileRoutesByTo {
   '/register': typeof AuthRegisterRoute;
   '/asset/batch': typeof AppAssetBatchRoute;
   '/asset/create': typeof AppAssetCreateRoute;
+  '/allocation': typeof AppAllocationIndexRoute;
   '/asset': typeof AppAssetIndexRoute;
   '/attribute-group': typeof AppAttributeGroupIndexRoute;
   '/attribute': typeof AppAttributeIndexRoute;
@@ -197,6 +205,7 @@ export interface FileRoutesById {
   '/_auth/register': typeof AuthRegisterRoute;
   '/_app/asset/batch': typeof AppAssetBatchRoute;
   '/_app/asset/create': typeof AppAssetCreateRoute;
+  '/_app/allocation/': typeof AppAllocationIndexRoute;
   '/_app/asset/': typeof AppAssetIndexRoute;
   '/_app/attribute-group/': typeof AppAttributeGroupIndexRoute;
   '/_app/attribute/': typeof AppAttributeIndexRoute;
@@ -221,6 +230,7 @@ export interface FileRouteTypes {
     | '/register'
     | '/asset/batch'
     | '/asset/create'
+    | '/allocation/'
     | '/asset/'
     | '/attribute-group/'
     | '/attribute/'
@@ -243,6 +253,7 @@ export interface FileRouteTypes {
     | '/register'
     | '/asset/batch'
     | '/asset/create'
+    | '/allocation'
     | '/asset'
     | '/attribute-group'
     | '/attribute'
@@ -267,6 +278,7 @@ export interface FileRouteTypes {
     | '/_auth/register'
     | '/_app/asset/batch'
     | '/_app/asset/create'
+    | '/_app/allocation/'
     | '/_app/asset/'
     | '/_app/attribute-group/'
     | '/_app/attribute/'
@@ -424,6 +436,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppAssetIndexRouteImport;
       parentRoute: typeof AppRoute;
     };
+    '/_app/allocation/': {
+      id: '/_app/allocation/';
+      path: '/allocation';
+      fullPath: '/allocation/';
+      preLoaderRoute: typeof AppAllocationIndexRouteImport;
+      parentRoute: typeof AppRoute;
+    };
     '/_app/asset/create': {
       id: '/_app/asset/create';
       path: '/asset/create';
@@ -452,6 +471,7 @@ interface AppRouteChildren {
   AppDashboardRoute: typeof AppDashboardRoute;
   AppAssetBatchRoute: typeof AppAssetBatchRoute;
   AppAssetCreateRoute: typeof AppAssetCreateRoute;
+  AppAllocationIndexRoute: typeof AppAllocationIndexRoute;
   AppAssetIndexRoute: typeof AppAssetIndexRoute;
   AppAttributeGroupIndexRoute: typeof AppAttributeGroupIndexRoute;
   AppAttributeIndexRoute: typeof AppAttributeIndexRoute;
@@ -472,6 +492,7 @@ const AppRouteChildren: AppRouteChildren = {
   AppDashboardRoute: AppDashboardRoute,
   AppAssetBatchRoute: AppAssetBatchRoute,
   AppAssetCreateRoute: AppAssetCreateRoute,
+  AppAllocationIndexRoute: AppAllocationIndexRoute,
   AppAssetIndexRoute: AppAssetIndexRoute,
   AppAttributeGroupIndexRoute: AppAttributeGroupIndexRoute,
   AppAttributeIndexRoute: AppAttributeIndexRoute,

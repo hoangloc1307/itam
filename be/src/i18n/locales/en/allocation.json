@@ -1,0 +1,14 @@
+{
+  "notFound": "Allocation not found",
+  "assetNotFound": "Asset not found",
+  "insufficientQuantity": "Insufficient remaining quantity for this asset",
+  "recipientRequired": "At least one of employee or section is required",
+  "alreadyReturned": "This allocation has already been returned",
+  "validation": {
+    "assetIdRequired": "Asset ID is required",
+    "assetIdMaxLength": "Asset ID must be at most 50 characters",
+    "employeeIdMaxLength": "Employee ID must be at most 8 characters",
+    "sectionIdMaxLength": "Section ID must be at most 4 characters",
+    "quantityPositive": "Quantity must be a positive number"
+  }
+}

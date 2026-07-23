@@ -1,0 +1,43 @@
+{
+  "title": "Cấp phát tài sản",
+  "addNew": "Cấp phát mới",
+  "return": "Thu hồi",
+  "delete": "Xóa",
+  "returnConfirm": "Bạn có chắc muốn thu hồi tài sản này?",
+  "returnDescription": "Tài sản \"{{asset}}\" sẽ được thu hồi và trả về kho.",
+  "deleteConfirm": "Bạn có chắc muốn xóa phiếu cấp phát này?",
+  "createSuccess": "Cấp phát tài sản thành công",
+  "returnSuccess": "Thu hồi tài sản thành công",
+  "deleteSuccess": "Xóa phiếu cấp phát thành công",
+  "status": {
+    "active": "Đang sử dụng",
+    "returned": "Đã thu hồi"
+  },
+  "form": {
+    "assetId": "Tài sản",
+    "assetPlaceholder": "Tìm và chọn tài sản...",
+    "assetCode": "Mã tài sản (kế toán)",
+    "employeeId": "Mã nhân viên",
+    "sectionId": "Mã bộ phận",
+    "quantity": "Số lượng",
+    "assignedDate": "Ngày cấp phát",
+    "requestNo": "Số phiếu yêu cầu",
+    "note": "Ghi chú",
+    "submit": "Cấp phát"
+  },
+  "columns": {
+    "actions": "Thao tác",
+    "assetName": "Tên tài sản",
+    "assetCode": "Mã quản lý",
+    "categoryName": "Danh mục",
+    "modelName": "Model",
+    "serialNumber": "Số serial",
+    "employeeId": "Nhân viên",
+    "sectionId": "Bộ phận",
+    "quantity": "Số lượng",
+    "assignedDate": "Ngày cấp phát",
+    "isActive": "Trạng thái",
+    "createdBy": "Người tạo",
+    "createdAt": "Ngày tạo"
+  }
+}

@@ -161,8 +161,6 @@ export function AssetFormPage({ asset = null }: AssetFormPageProps) {
       remainQuantity: asset?.remainQuantity ?? 1,
       qrCode: asset?.qrCode ?? null,
       assetStatus: asset?.assetStatus ?? ASSET_STATUSES.AVAILABLE,
-      assignedTo: asset?.assignedTo ?? null,
-      currentSection: asset?.currentSection ?? null,
     } as FormValues,
     validators: {
       onSubmit: createAssetSchema.omit({ id: true, attributeValues: true }),
@@ -304,28 +302,16 @@ export function AssetFormPage({ asset = null }: AssetFormPageProps) {
                     )}
                   />
                 </div>
-                <div className='col-span-6 md:col-span-3 xl:col-span-4'>
+                <div className='col-span-6 md:col-span-4 xl:col-span-4'>
                   <form.AppField
                     name='serialNumber'
                     children={(field) => <field.TextField label={t('form.serialNumber')} />}
                   />
                 </div>
-                <div className='col-span-6 md:col-span-6'>
+                <div className='col-span-6 md:col-span-6 xl:col-span-5'>
                   <form.AppField
                     name='location'
                     children={(field) => <field.TextField label={t('form.location')} />}
-                  />
-                </div>
-                <div className='col-span-6 md:col-span-3'>
-                  <form.AppField
-                    name='assignedTo'
-                    children={(field) => <field.TextField label={t('form.assignedTo')} />}
-                  />
-                </div>
-                <div className='col-span-6 md:col-span-3'>
-                  <form.AppField
-                    name='currentSection'
-                    children={(field) => <field.TextField label={t('form.currentSection')} />}
                   />
                 </div>
                 <div className='col-span-3 md:col-span-2 xl:col-span-2'>

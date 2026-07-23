@@ -326,8 +326,6 @@ model Asset {
   remainQuantity           Int         @default(1) @map("remain_quantity")
   qrCode                   String?     @map("qr_code") @db.VarChar(255)
   assetStatus              AssetStatus @default(AVAILABLE) @map("asset_status")
-  assignedTo               String?     @map("assigned_to") @db.Char(8)
-  currentSection           String?     @map("current_section") @db.Char(4)
   deletedAt                DateTime?   @map("deleted_at") @db.Timestamptz(0)
   createdBy                String      @map("created_by") @db.Char(8)
   createdAt                DateTime    @default(now()) @map("created_at") @db.Timestamptz(0)
@@ -338,6 +336,7 @@ model Asset {
   model           ItemModel?            @relation(fields: [modelId], references: [id])
   attributeValues AssetAttributeValue[]
   history         AssetHistory[]
+  allocations     AssetAllocation[]
 
   @@map("assets")
 }
@@ -374,4 +373,28 @@ model AssetHistory {
   asset Asset @relation(fields: [assetId], references: [id])
 
   @@map("asset_history")
+}
+
+/// Bảng lưu trạng thái cấp phát hiện tại của tài sản.
+/// Individual: luôn có đúng 1 record active (quantity = 1).
+/// Bulk: có nhiều record active, mỗi record = 1 lần cấp cho 1 người/bộ phận.
+/// Khi trả lại/điều chuyển → set isActive = false.
+model AssetAllocation {
+  id          Int       @id @default(autoincrement())
+  assetId     String    @map("asset_id") @db.VarChar(50)
+  employeeId  String?   @map("employee_id") @db.Char(8)
+  sectionId   String?   @map("section_id") @db.Char(4)
+  quantity    Int       @default(1)
+  assignedDate DateTime @map("assigned_date") @db.Date
+  requestNo   String?  @map("request_no") @db.VarChar(50)
+  note        String?  @db.Text
+  isActive    Boolean   @default(true) @map("is_active")
+  createdBy   String    @map("created_by") @db.Char(8)
+  createdAt   DateTime  @default(now()) @map("created_at") @db.Timestamptz(0)
+  updatedBy   String?   @map("updated_by") @db.Char(8)
+  updatedAt   DateTime? @map("updated_at") @db.Timestamptz(0)
+
+  asset Asset @relation(fields: [assetId], references: [id])
+
+  @@map("asset_allocations")
 }

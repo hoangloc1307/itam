@@ -1,0 +1,43 @@
+{
+  "title": "Asset Allocation",
+  "addNew": "New Allocation",
+  "return": "Return",
+  "delete": "Delete",
+  "returnConfirm": "Are you sure you want to return this asset?",
+  "returnDescription": "Asset \"{{asset}}\" will be returned to inventory.",
+  "deleteConfirm": "Are you sure you want to delete this allocation?",
+  "createSuccess": "Asset allocated successfully",
+  "returnSuccess": "Asset returned successfully",
+  "deleteSuccess": "Allocation deleted successfully",
+  "status": {
+    "active": "In Use",
+    "returned": "Returned"
+  },
+  "form": {
+    "assetId": "Asset",
+    "assetPlaceholder": "Search and select asset...",
+    "assetCode": "Asset Code (accounting)",
+    "employeeId": "Employee ID",
+    "sectionId": "Section ID",
+    "quantity": "Quantity",
+    "assignedDate": "Assigned Date",
+    "requestNo": "Request No.",
+    "note": "Note",
+    "submit": "Allocate"
+  },
+  "columns": {
+    "actions": "Actions",
+    "assetName": "Asset Name",
+    "assetCode": "Asset Code",
+    "categoryName": "Category",
+    "modelName": "Model",
+    "serialNumber": "Serial No.",
+    "employeeId": "Employee",
+    "sectionId": "Section",
+    "quantity": "Quantity",
+    "assignedDate": "Assigned Date",
+    "isActive": "Status",
+    "createdBy": "Created By",
+    "createdAt": "Created At"
+  }
+}

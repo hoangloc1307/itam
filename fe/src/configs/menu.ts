@@ -19,6 +19,11 @@ const MAIN_MENU: NavItem[] = [
         url: '/asset',
         featureCode: FEATURES.ASSET,
       },
+      {
+        title: 'menu.allocation',
+        url: '/allocation',
+        featureCode: FEATURES.ALLOCATION,
+      },
     ],
   },
   {

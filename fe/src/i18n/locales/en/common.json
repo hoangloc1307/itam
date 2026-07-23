@@ -19,6 +19,7 @@
     "admin": "Administration",
     "assetManagement": "Asset Management",
     "asset": "Assets",
+    "allocation": "Allocation",
     "feature": "Features",
     "role": "Roles",
     "rolePermission": "Role Permissions",

@@ -1,0 +1,43 @@
+{
+  "title": "資産割当",
+  "addNew": "新規割当",
+  "return": "返却",
+  "delete": "削除",
+  "returnConfirm": "この資産を返却しますか？",
+  "returnDescription": "資産「{{asset}}」が在庫に返却されます。",
+  "deleteConfirm": "この割当を削除しますか？",
+  "createSuccess": "資産割当が完了しました",
+  "returnSuccess": "資産返却が完了しました",
+  "deleteSuccess": "割当が削除されました",
+  "status": {
+    "active": "使用中",
+    "returned": "返却済"
+  },
+  "form": {
+    "assetId": "資産",
+    "assetPlaceholder": "資産を検索して選択...",
+    "assetCode": "資産コード（経理）",
+    "employeeId": "社員ID",
+    "sectionId": "部門ID",
+    "quantity": "数量",
+    "assignedDate": "割当日",
+    "requestNo": "申請番号",
+    "note": "備考",
+    "submit": "割当"
+  },
+  "columns": {
+    "actions": "操作",
+    "assetName": "資産名",
+    "assetCode": "管理コード",
+    "categoryName": "カテゴリ",
+    "modelName": "モデル",
+    "serialNumber": "シリアル番号",
+    "employeeId": "社員",
+    "sectionId": "部門",
+    "quantity": "数量",
+    "assignedDate": "割当日",
+    "isActive": "ステータス",
+    "createdBy": "作成者",
+    "createdAt": "作成日"
+  }
+}

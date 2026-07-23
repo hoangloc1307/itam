@@ -269,6 +269,22 @@ Table asset_history {
   is_active boolean [default: true]
 }
 
+Table asset_allocations {
+  id int [pk, increment]
+  asset_id varchar(50) [not null]
+  employee_id char(8)
+  section_id char(4)
+  quantity int [default: 1]
+  assigned_date date [not null]
+  request_no varchar(50)
+  note text
+  is_active boolean [default: true]
+  created_by char(8) [not null]
+  created_at timestamptz [default: `now()`]
+  updated_by char(8)
+  updated_at timestamptz
+}
+
 // ==================== INVENTORY ====================
 
 Table inventory_history {
@@ -436,6 +452,7 @@ Ref: assets.vendor_id > vendors.id
 Ref: asset_attribute_values.attribute_id > attributes.id
 Ref: asset_attribute_values.asset_id > assets.id
 Ref: asset_history.asset_id > assets.id
+Ref: asset_allocations.asset_id > assets.id
 
 // Inventory
 Ref: inventory_history.model_id > models.id

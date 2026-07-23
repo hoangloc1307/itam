@@ -134,8 +134,6 @@ const BatchAssetPage = () => {
       location: null as string | null,
       maintenanceIntervalHours: null as number | null,
       assetStatus: ASSET_STATUSES.AVAILABLE as AssetStatus,
-      assignedTo: null as string | null,
-      currentSection: null as string | null,
     },
     onSubmit: async ({ value }) => {
       if (items.length === 0) return;
@@ -252,18 +250,6 @@ const BatchAssetPage = () => {
                     children={(field) => (
                       <field.SelectField label={t('form.assetStatus')} options={statusOptions} />
                     )}
-                  />
-                </div>
-                <div className='col-span-6 md:col-span-3'>
-                  <form.AppField
-                    name='assignedTo'
-                    children={(field) => <field.TextField label={t('form.assignedTo')} />}
-                  />
-                </div>
-                <div className='col-span-6 md:col-span-3'>
-                  <form.AppField
-                    name='currentSection'
-                    children={(field) => <field.TextField label={t('form.currentSection')} />}
                   />
                 </div>
               </div>

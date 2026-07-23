@@ -1,4 +1,5 @@
 export const ENDPOINTS = {
+  ALLOCATIONS: '/allocations',
   ASSETS: '/assets',
   AUTH: '/auth',
   ATTRIBUTE_GROUPS: '/attribute-groups',

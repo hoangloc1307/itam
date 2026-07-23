@@ -34,8 +34,6 @@ export interface AssetBase<TDate = string, TDecimal = string> {
   remainQuantity: number;
   qrCode: string | null;
   assetStatus: AssetStatus;
-  assignedTo: string | null;
-  currentSection: string | null;
   deletedAt: TDate | null;
   createdBy: string;
   createdAt: TDate;
