@@ -10,9 +10,11 @@ import {
 } from 'itam-shared/schemas/asset';
 import { ASSET_STATUSES } from 'itam-shared/constants';
 import type { AssetDetail, AssetAttributeValueItem } from 'itam-shared/types';
+import { addMonths, format } from 'date-fns';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { categoryQueries } from '~/api/category.queries';
+import { documentSequenceApi } from '~/api/document-sequence';
 import { modelAttributeValueQueries } from '~/api/model-attribute-value.queries';
 import { modelQueries } from '~/api/model.queries';
 import { categoryAttributeQueries } from '~/api/category-attribute.queries';
@@ -42,6 +44,7 @@ export function AssetFormPage({ asset = null }: AssetFormPageProps) {
 
   const [selectedCategoryId, setSelectedCategoryId] = useState(asset?.categoryId ?? '');
   const [selectedModelId, setSelectedModelId] = useState<string | null>(asset?.modelId ?? null);
+  const [previewAssetCode, setPreviewAssetCode] = useState<string | null>(null);
   const [attributeValues, setAttributeValues] = useState<
     { attributeId: number; value: string | null }[]
   >(
@@ -137,11 +140,10 @@ export function AssetFormPage({ asset = null }: AssetFormPageProps) {
     );
   }
 
-  type FormValues = Omit<CreateAssetInput, 'id' | 'attributeValues'> & { id?: string };
+  type FormValues = Omit<CreateAssetInput, 'id' | 'attributeValues'>;
 
   const form = useAppForm({
     defaultValues: {
-      ...(isEditing ? {} : { id: '' }),
       assetCode: asset?.assetCode ?? null,
       name: asset?.name ?? '',
       categoryId: asset?.categoryId ?? '',
@@ -163,9 +165,7 @@ export function AssetFormPage({ asset = null }: AssetFormPageProps) {
       currentSection: asset?.currentSection ?? null,
     } as FormValues,
     validators: {
-      onSubmit: isEditing
-        ? createAssetSchema.omit({ id: true, attributeValues: true })
-        : createAssetSchema.omit({ attributeValues: true }),
+      onSubmit: createAssetSchema.omit({ id: true, attributeValues: true }),
     },
     onSubmit: async ({ value }) => {
       if (isEditing) {
@@ -177,7 +177,8 @@ export function AssetFormPage({ asset = null }: AssetFormPageProps) {
         await updateMutation.mutateAsync(payload);
       } else {
         const payload: CreateAssetInput = {
-          ...(value as Omit<CreateAssetInput, 'attributeValues'>),
+          id: '',
+          ...value,
           attributeValues,
         };
         await createMutation.mutateAsync(payload);
@@ -234,10 +235,14 @@ export function AssetFormPage({ asset = null }: AssetFormPageProps) {
                       <Input value={asset.id} disabled />
                     </Field>
                   ) : (
-                    <form.AppField
-                      name='id'
-                      children={(field) => <field.TextField label={t('form.id')} />}
-                    />
+                    <Field>
+                      <FieldLabel>{t('form.id')}</FieldLabel>
+                      <Input
+                        value={previewAssetCode ?? ''}
+                        placeholder={t('form.idAutoGenerate')}
+                        disabled
+                      />
+                    </Field>
                   )}
                 </div>
                 <div className='col-span-6 md:col-span-3'>
@@ -259,11 +264,27 @@ export function AssetFormPage({ asset = null }: AssetFormPageProps) {
                       <field.ComboboxField
                         label={t('form.categoryId')}
                         options={categoryOptions}
-                        onChange={(value) => {
+                        onChange={async (value) => {
                           setSelectedCategoryId(value);
                           setSelectedModelId(null);
                           form.setFieldValue('modelId', null);
                           setAttributeValues([]);
+                          setPreviewAssetCode(null);
+
+                          // Fetch preview code based on category's serialKey
+                          if (value) {
+                            const category = (categoriesData?.data ?? []).find(
+                              (c) => c.id === value,
+                            );
+                            if (category?.serialKey) {
+                              try {
+                                const res = await documentSequenceApi.preview(category.serialKey);
+                                setPreviewAssetCode(res.data?.code ?? null);
+                              } catch {
+                                setPreviewAssetCode(null);
+                              }
+                            }
+                          }
                         }}
                       />
                     )}
@@ -367,22 +388,16 @@ export function AssetFormPage({ asset = null }: AssetFormPageProps) {
                 <div className='col-span-6 md:col-span-4 lg:col-span-3 xl:col-span-2'>
                   <form.AppField
                     name='purchaseDate'
-                    children={(field) => <field.DatePickerField label={t('form.purchaseDate')} />}
-                  />
-                </div>
-                <div className='col-span-6 md:col-span-4 lg:col-span-3 xl:col-span-2'>
-                  <form.AppField
-                    name='warrantyStartDate'
                     children={(field) => (
-                      <field.DatePickerField label={t('form.warrantyStartDate')} />
-                    )}
-                  />
-                </div>
-                <div className='col-span-6 md:col-span-4 lg:col-span-3 xl:col-span-2'>
-                  <form.AppField
-                    name='warrantyEndDate'
-                    children={(field) => (
-                      <field.DatePickerField label={t('form.warrantyEndDate')} />
+                      <field.DatePickerField
+                        label={t('form.purchaseDate')}
+                        onChange={(value) => {
+                          // Auto-fill warrantyStartDate = purchaseDate
+                          if (value && !form.getFieldValue('warrantyStartDate')) {
+                            form.setFieldValue('warrantyStartDate', value);
+                          }
+                        }}
+                      />
                     )}
                   />
                 </div>
@@ -394,7 +409,41 @@ export function AssetFormPage({ asset = null }: AssetFormPageProps) {
                         label={t('form.warrantyMonth')}
                         allowNegative={false}
                         decimalScale={0}
+                        onChange={(value) => {
+                          // Recalculate warrantyEndDate if warrantyStartDate is set
+                          const startDate = form.getFieldValue('warrantyStartDate');
+                          if (startDate && value) {
+                            const endDate = addMonths(new Date(startDate as string), value);
+                            form.setFieldValue('warrantyEndDate', format(endDate, 'yyyy-MM-dd'));
+                          }
+                        }}
                       />
+                    )}
+                  />
+                </div>
+                <div className='col-span-6 md:col-span-4 lg:col-span-3 xl:col-span-2'>
+                  <form.AppField
+                    name='warrantyStartDate'
+                    children={(field) => (
+                      <field.DatePickerField
+                        label={t('form.warrantyStartDate')}
+                        onChange={(value) => {
+                          // Recalculate warrantyEndDate if warrantyMonth is set
+                          const months = form.getFieldValue('warrantyMonth') as number | null;
+                          if (value && months) {
+                            const endDate = addMonths(new Date(value), months);
+                            form.setFieldValue('warrantyEndDate', format(endDate, 'yyyy-MM-dd'));
+                          }
+                        }}
+                      />
+                    )}
+                  />
+                </div>
+                <div className='col-span-6 md:col-span-4 lg:col-span-3 xl:col-span-2'>
+                  <form.AppField
+                    name='warrantyEndDate'
+                    children={(field) => (
+                      <field.DatePickerField label={t('form.warrantyEndDate')} />
                     )}
                   />
                 </div>

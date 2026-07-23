@@ -5,11 +5,15 @@ import { Field, FieldError, FieldLabel } from '~/components/ui/field';
 import { Input } from '~/components/ui/input';
 import { useFieldContext } from '~/hooks/use-app-form';
 
-type NumberFieldProps = Omit<NumericFormatProps, 'value' | 'onValueChange' | 'onBlur'> & {
+type NumberFieldProps = Omit<
+  NumericFormatProps,
+  'value' | 'onValueChange' | 'onBlur' | 'onChange'
+> & {
   label?: string;
+  onChange?: (value: number | null) => void;
 };
 
-export const NumberField = ({ label, ...props }: NumberFieldProps) => {
+export const NumberField = ({ label, onChange, ...props }: NumberFieldProps) => {
   const id = useId();
   const { t } = useTranslation();
   const field = useFieldContext<number | null>();
@@ -23,7 +27,9 @@ export const NumberField = ({ label, ...props }: NumberFieldProps) => {
         customInput={Input}
         value={field.state.value ?? ''}
         onValueChange={(values) => {
-          field.handleChange(values.floatValue ?? null);
+          const newValue = values.floatValue ?? null;
+          field.handleChange(newValue);
+          onChange?.(newValue);
         }}
         onBlur={field.handleBlur}
         aria-invalid={isInvalid}

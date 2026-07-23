@@ -15,7 +15,7 @@ export const assetAttributeValueSchema = z.object({
 });
 
 export const createAssetSchema = z.object({
-  id: z.string().nonempty('asset:validation.idRequired').max(50, 'asset:validation.idMaxLength'),
+  id: z.string().max(50, 'asset:validation.idMaxLength'),
   assetCode: z.string().max(50, 'asset:validation.assetCodeMaxLength').nullable(),
   name: z
     .string()
@@ -56,7 +56,7 @@ export const updateAssetSchema = createAssetSchema
 export type UpdateAssetInput = z.infer<typeof updateAssetSchema>;
 
 export const batchAssetItemSchema = z.object({
-  id: z.string().nonempty('asset:validation.idRequired').max(50, 'asset:validation.idMaxLength'),
+  id: z.string().max(50, 'asset:validation.idMaxLength'),
   assetCode: z.string().max(50, 'asset:validation.assetCodeMaxLength').nullable(),
   serialNumber: z.string().max(100).nullable(),
 });

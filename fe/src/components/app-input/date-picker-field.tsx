@@ -12,9 +12,10 @@ import { useFieldContext } from '~/hooks/use-app-form';
 type DatePickerFieldProps = {
   label?: string;
   placeholder?: string;
+  onChange?: (value: string | null) => void;
 };
 
-export const DatePickerField = ({ label, placeholder }: DatePickerFieldProps) => {
+export const DatePickerField = ({ label, placeholder, onChange }: DatePickerFieldProps) => {
   const id = useId();
   const { t } = useTranslation();
   const field = useFieldContext<string | null>();
@@ -25,7 +26,9 @@ export const DatePickerField = ({ label, placeholder }: DatePickerFieldProps) =>
     : undefined;
 
   const handleSelect = (date: Date | undefined) => {
-    field.handleChange(date ? format(date, 'yyyy-MM-dd') : null);
+    const value = date ? format(date, 'yyyy-MM-dd') : null;
+    field.handleChange(value);
+    onChange?.(value);
   };
 
   return (
@@ -58,6 +61,8 @@ export const DatePickerField = ({ label, placeholder }: DatePickerFieldProps) =>
             captionLayout='dropdown'
             selected={dateValue}
             onSelect={handleSelect}
+            startMonth={new Date(2000, 0)}
+            endMonth={new Date(2050, 11)}
           />
         </PopoverContent>
       </Popover>

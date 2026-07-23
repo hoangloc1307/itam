@@ -34,7 +34,7 @@
     "back": "Back"
   },
   "columns": {
-    "id": "ID",
+    "id": "Management Code",
     "assetCode": "Asset Code",
     "name": "Name",
     "categoryId": "Category",
@@ -61,7 +61,8 @@
     "actions": "Actions"
   },
   "form": {
-    "id": "Asset ID",
+    "id": "Management Code",
+    "idAutoGenerate": "Auto-generated on save",
     "assetCode": "Asset Code",
     "name": "Asset Name",
     "categoryId": "Category",
@@ -101,6 +102,7 @@
     "quantity": "Quantity",
     "preview": "Preview",
     "generate": "Generate",
+    "autoGenerate": "Leave prefix empty → management code will be auto-generated from category config",
     "next": "Next",
     "back": "Back",
     "itemsTitle": "Assets to create ({{count}})",

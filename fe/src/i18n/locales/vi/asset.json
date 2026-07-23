@@ -34,7 +34,7 @@
     "back": "Quay lại"
   },
   "columns": {
-    "id": "Mã",
+    "id": "Mã quản lý",
     "assetCode": "Mã tài sản",
     "name": "Tên tài sản",
     "categoryId": "Danh mục",
@@ -61,8 +61,9 @@
     "actions": "Thao tác"
   },
   "form": {
-    "id": "Mã tài sản",
-    "assetCode": "Mã tài sản kế toán",
+    "id": "Mã quản lý",
+    "idAutoGenerate": "Tự động sinh khi lưu",
+    "assetCode": "Mã tài sản",
     "name": "Tên tài sản",
     "categoryId": "Danh mục",
     "modelId": "Model",
@@ -83,9 +84,9 @@
     "isActive": "Hoạt động"
   },
   "validation": {
-    "idRequired": "Mã tài sản là bắt buộc",
-    "idMaxLength": "Mã tài sản tối đa 50 ký tự",
-    "assetCodeMaxLength": "Mã tài sản kế toán tối đa 50 ký tự",
+    "idRequired": "Mã quản lý là bắt buộc",
+    "idMaxLength": "Mã quản lý tối đa 50 ký tự",
+    "assetCodeMaxLength": "Mã tài sản tối đa 50 ký tự",
     "nameRequired": "Tên tài sản là bắt buộc",
     "nameMaxLength": "Tên tài sản tối đa 200 ký tự",
     "categoryIdRequired": "Danh mục là bắt buộc",
@@ -101,6 +102,7 @@
     "quantity": "Số lượng",
     "preview": "Xem trước",
     "generate": "Sinh mã",
+    "autoGenerate": "Để trống tiền tố → mã quản lý sẽ được tự động sinh từ cấu hình danh mục",
     "next": "Tiếp theo",
     "back": "Quay lại",
     "itemsTitle": "Tài sản sẽ tạo ({{count}})",

@@ -6,6 +6,7 @@ import { createFileRoute, useNavigate } from '@tanstack/react-router';
 import type { AssetAttributeValueItem, AssetStatus } from 'itam-shared/types';
 import { ASSET_STATUSES } from 'itam-shared/constants';
 import type { BatchAssetItem, CreateBatchAssetInput } from 'itam-shared/schemas/asset';
+import { addMonths, format } from 'date-fns';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { categoryQueries } from '~/api/category.queries';
@@ -31,8 +32,6 @@ const BatchAssetPage = () => {
   const navigate = useNavigate();
   const createBatchMutation = useCreateBatchAsset();
   const [quantity, setQuantity] = useState(1);
-  const [prefix, setPrefix] = useState('');
-  const [startNumber, setStartNumber] = useState(1);
   const [items, setItems] = useState<BatchAssetItem[]>([]);
   const [selectedCategoryId, setSelectedCategoryId] = useState('');
   const [selectedModelId, setSelectedModelId] = useState<string | null>(null);
@@ -153,9 +152,8 @@ const BatchAssetPage = () => {
   const generateItems = () => {
     const generated: BatchAssetItem[] = [];
     for (let i = 0; i < quantity; i++) {
-      const num = String(startNumber + i).padStart(4, '0');
       generated.push({
-        id: `${prefix}${num}`,
+        id: '',
         assetCode: null,
         serialNumber: null,
       });
@@ -296,22 +294,15 @@ const BatchAssetPage = () => {
                 <div className='col-span-6 md:col-span-4 lg:col-span-3 xl:col-span-2'>
                   <form.AppField
                     name='purchaseDate'
-                    children={(field) => <field.DatePickerField label={t('form.purchaseDate')} />}
-                  />
-                </div>
-                <div className='col-span-6 md:col-span-4 lg:col-span-3 xl:col-span-2'>
-                  <form.AppField
-                    name='warrantyStartDate'
                     children={(field) => (
-                      <field.DatePickerField label={t('form.warrantyStartDate')} />
-                    )}
-                  />
-                </div>
-                <div className='col-span-6 md:col-span-4 lg:col-span-3 xl:col-span-2'>
-                  <form.AppField
-                    name='warrantyEndDate'
-                    children={(field) => (
-                      <field.DatePickerField label={t('form.warrantyEndDate')} />
+                      <field.DatePickerField
+                        label={t('form.purchaseDate')}
+                        onChange={(value) => {
+                          if (value && !form.getFieldValue('warrantyStartDate')) {
+                            form.setFieldValue('warrantyStartDate', value);
+                          }
+                        }}
+                      />
                     )}
                   />
                 </div>
@@ -323,7 +314,41 @@ const BatchAssetPage = () => {
                         label={t('form.warrantyMonth')}
                         allowNegative={false}
                         decimalScale={0}
+                        onChange={(value) => {
+                          const startDate = form.getFieldValue('warrantyStartDate') as
+                            | string
+                            | null;
+                          if (startDate && value) {
+                            const endDate = addMonths(new Date(startDate), value);
+                            form.setFieldValue('warrantyEndDate', format(endDate, 'yyyy-MM-dd'));
+                          }
+                        }}
                       />
+                    )}
+                  />
+                </div>
+                <div className='col-span-6 md:col-span-4 lg:col-span-3 xl:col-span-2'>
+                  <form.AppField
+                    name='warrantyStartDate'
+                    children={(field) => (
+                      <field.DatePickerField
+                        label={t('form.warrantyStartDate')}
+                        onChange={(value) => {
+                          const months = form.getFieldValue('warrantyMonth') as number | null;
+                          if (value && months) {
+                            const endDate = addMonths(new Date(value), months);
+                            form.setFieldValue('warrantyEndDate', format(endDate, 'yyyy-MM-dd'));
+                          }
+                        }}
+                      />
+                    )}
+                  />
+                </div>
+                <div className='col-span-6 md:col-span-4 lg:col-span-3 xl:col-span-2'>
+                  <form.AppField
+                    name='warrantyEndDate'
+                    children={(field) => (
+                      <field.DatePickerField label={t('form.warrantyEndDate')} />
                     )}
                   />
                 </div>
@@ -376,23 +401,6 @@ const BatchAssetPage = () => {
             </h2>
             <div className='grid grid-cols-12 gap-4'>
               <div className='col-span-4 md:col-span-3'>
-                <Label>{t('batch.prefix')}</Label>
-                <Input
-                  value={prefix}
-                  onChange={(e) => setPrefix(e.target.value)}
-                  placeholder='LT-'
-                />
-              </div>
-              <div className='col-span-4 md:col-span-3'>
-                <Label>{t('batch.startNumber')}</Label>
-                <Input
-                  type='number'
-                  min={1}
-                  value={startNumber}
-                  onChange={(e) => setStartNumber(Number(e.target.value))}
-                />
-              </div>
-              <div className='col-span-4 md:col-span-3'>
                 <Label>{t('batch.quantity')}</Label>
                 <Input
                   type='number'
@@ -408,11 +416,7 @@ const BatchAssetPage = () => {
                 </Button>
               </div>
             </div>
-            <p className='text-muted-foreground mt-2 text-xs'>
-              {t('batch.preview')}: {prefix}
-              {String(startNumber).padStart(4, '0')} → {prefix}
-              {String(startNumber + quantity - 1).padStart(4, '0')}
-            </p>
+            <p className='text-muted-foreground mt-2 text-xs'>{t('batch.autoGenerate')}</p>
           </section>
 
           {/* Items Table */}
@@ -428,21 +432,17 @@ const BatchAssetPage = () => {
                     <thead className='bg-muted sticky top-0'>
                       <tr>
                         <th className='px-3 py-2 text-left'>#</th>
-                        <th className='px-3 py-2 text-left'>{t('columns.id')}</th>
-                        <th className='px-3 py-2 text-left'>{t('columns.assetCode')}</th>
-                        <th className='px-3 py-2 text-left'>{t('columns.serialNumber')}</th>
+                        <th className='px-3 py-2 text-left'>{t('form.id')}</th>
+                        <th className='px-3 py-2 text-left'>{t('form.assetCode')}</th>
+                        <th className='px-3 py-2 text-left'>{t('form.serialNumber')}</th>
                       </tr>
                     </thead>
                     <tbody>
                       {items.map((item, index) => (
                         <tr key={index} className='border-t'>
                           <td className='text-muted-foreground px-3 py-1.5'>{index + 1}</td>
-                          <td className='px-3 py-1.5'>
-                            <Input
-                              value={item.id}
-                              onChange={(e) => updateItem(index, 'id', e.target.value)}
-                              className='h-8'
-                            />
+                          <td className='text-muted-foreground px-3 py-1.5 italic'>
+                            {t('form.idAutoGenerate')}
                           </td>
                           <td className='px-3 py-1.5'>
                             <Input
