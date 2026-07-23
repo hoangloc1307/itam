@@ -15,6 +15,7 @@
     "attributeGroup": "Nhóm thuộc tính",
     "categoryAttribute": "Thuộc tính danh mục",
     "model": "Model",
+    "documentSequence": "Cấu hình mã phiếu",
     "admin": "Quản trị",
     "assetManagement": "Quản lý tài sản",
     "asset": "Tài sản",
@@ -47,5 +48,6 @@
     "ok": "Xác nhận",
     "cancel": "Hủy"
   },
-  "selectDate": "Chọn ngày"
+  "selectDate": "Chọn ngày",
+  "noOptions": "Không có lựa chọn nào"
 }

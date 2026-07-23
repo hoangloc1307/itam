@@ -12,13 +12,22 @@ import { useFieldContext } from '~/hooks/use-app-form';
 
 type SelectFieldProps = {
   label?: string;
+  placeholder?: string;
+  emptyText?: string;
   options: {
     label: string;
     value: string;
   }[];
+  disabled?: boolean;
 };
 
-export const SelectField = ({ label, options }: SelectFieldProps) => {
+export const SelectField = ({
+  label,
+  placeholder,
+  emptyText,
+  options,
+  disabled,
+}: SelectFieldProps) => {
   const id = useId();
   const { t } = useTranslation();
   const field = useFieldContext<string>();
@@ -28,16 +37,26 @@ export const SelectField = ({ label, options }: SelectFieldProps) => {
   return (
     <Field data-invalid={isInvalid}>
       <FieldLabel htmlFor={id}>{label}</FieldLabel>
-      <Select value={field.state.value} onValueChange={(val) => val && field.handleChange(val)}>
+      <Select
+        value={field.state.value}
+        onValueChange={(val) => val && field.handleChange(val)}
+        disabled={disabled}
+      >
         <SelectTrigger id={id} aria-invalid={isInvalid} onBlur={field.handleBlur}>
-          <SelectValue>{selectedOption?.label}</SelectValue>
+          <SelectValue placeholder={placeholder}>{selectedOption?.label}</SelectValue>
         </SelectTrigger>
         <SelectContent>
-          {options.map((opt) => (
-            <SelectItem key={opt.value} value={opt.value}>
-              {opt.label}
-            </SelectItem>
-          ))}
+          {options.length === 0 ? (
+            <p className='text-muted-foreground px-2 py-4 text-center text-sm'>
+              {emptyText ?? t('common:noOptions')}
+            </p>
+          ) : (
+            options.map((opt) => (
+              <SelectItem key={opt.value} value={opt.value}>
+                {opt.label}
+              </SelectItem>
+            ))
+          )}
         </SelectContent>
       </Select>
       {isInvalid && <FieldError>{t(field.state.meta.errors[0].message)}</FieldError>}

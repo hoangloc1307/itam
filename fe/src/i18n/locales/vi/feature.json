@@ -24,7 +24,7 @@
     "code": "Mã chức năng",
     "name": "Tên chức năng",
     "isActive": "Hoạt động",
-    "codePlaceholder": "Nhập mã chức năng",
+    "codePlaceholder": "Chọn mã chức năng",
     "namePlaceholder": "Nhập tên chức năng"
   },
   "validation": {

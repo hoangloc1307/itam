@@ -1,4 +1,5 @@
 import { createFeatureSchema, type CreateFeatureInput } from 'itam-shared/schemas/feature';
+import { FEATURES } from 'itam-shared/constants';
 import type { Feature } from 'itam-shared/types';
 import { useTranslation } from 'react-i18next';
 import { FieldGroup } from '~/components/ui/field';
@@ -7,14 +8,22 @@ import { useAppForm } from '~/hooks/use-app-form';
 
 interface FeatureFormProps {
   feature: Feature | null;
+  existingCodes: string[];
   onSuccess: () => void;
 }
 
-export function FeatureForm({ feature, onSuccess }: FeatureFormProps) {
+export function FeatureForm({ feature, existingCodes, onSuccess }: FeatureFormProps) {
   const { t } = useTranslation('feature');
   const createMutation = useCreateFeature();
   const updateMutation = useUpdateFeature();
   const isEditing = !!feature;
+
+  const featureCodeOptions = Object.values(FEATURES)
+    .filter((code) => !existingCodes.includes(code))
+    .map((code) => ({
+      label: code,
+      value: code,
+    }));
 
   const form = useAppForm({
     defaultValues: {
@@ -47,7 +56,14 @@ export function FeatureForm({ feature, onSuccess }: FeatureFormProps) {
       <FieldGroup>
         <form.AppField
           name='code'
-          children={(field) => <field.TextField label={t('form.code')} disabled={isEditing} />}
+          children={(field) => (
+            <field.SelectField
+              label={t('form.code')}
+              placeholder={t('form.codePlaceholder')}
+              options={featureCodeOptions}
+              disabled={isEditing}
+            />
+          )}
         />
         <form.AppField
           name='name'

@@ -75,7 +75,11 @@ const FeaturePage = () => {
               {editing ? t('edit') : t('addNew')}
             </DialogTitle>
           </DialogHeader>
-          <FeatureForm feature={editing} onSuccess={handleClose} />
+          <FeatureForm
+            feature={editing}
+            existingCodes={features.map((f) => f.code)}
+            onSuccess={handleClose}
+          />
         </DialogContent>
       </Dialog>
 

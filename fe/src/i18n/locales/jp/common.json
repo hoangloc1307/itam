@@ -15,6 +15,7 @@
     "attributeGroup": "属性グループ",
     "categoryAttribute": "カテゴリ属性",
     "model": "モデル",
+    "documentSequence": "採番設定",
     "admin": "管理",
     "assetManagement": "資産管理",
     "asset": "資産",
@@ -47,5 +48,6 @@
     "ok": "確認",
     "cancel": "キャンセル"
   },
-  "selectDate": "日付を選択"
+  "selectDate": "日付を選択",
+  "noOptions": "選択肢がありません"
 }

@@ -15,6 +15,7 @@
     "attributeGroup": "Attribute Groups",
     "categoryAttribute": "Category Attributes",
     "model": "Model",
+    "documentSequence": "Document Sequences",
     "admin": "Administration",
     "assetManagement": "Asset Management",
     "asset": "Assets",
@@ -47,5 +48,6 @@
     "ok": "Confirm",
     "cancel": "Cancel"
   },
-  "selectDate": "Select date"
+  "selectDate": "Select date",
+  "noOptions": "No options available"
 }

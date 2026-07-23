@@ -24,7 +24,7 @@
     "code": "Feature Code",
     "name": "Feature Name",
     "isActive": "Active",
-    "codePlaceholder": "Enter feature code",
+    "codePlaceholder": "Select feature code",
     "namePlaceholder": "Enter feature name"
   },
   "validation": {
