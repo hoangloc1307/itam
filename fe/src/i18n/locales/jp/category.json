@@ -30,7 +30,7 @@
     "isActive": "有効",
     "idPlaceholder": "カテゴリーIDを入力",
     "namePlaceholder": "カテゴリー名を入力",
-    "serialKeyPlaceholder": "シリアルキーを入力",
+    "serialKeyPlaceholder": "採番設定を選択",
     "maintenancePlaceholder": "時間を入力"
   },
   "validation": {

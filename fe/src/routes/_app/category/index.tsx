@@ -1,12 +1,13 @@
 'use no memo';
 
 import { IconPlus } from '@tabler/icons-react';
-import { useSuspenseQuery } from '@tanstack/react-query';
+import { useQuery, useSuspenseQuery } from '@tanstack/react-query';
 import { createFileRoute } from '@tanstack/react-router';
 import { type Category } from 'itam-shared/types';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { categoryQueries } from '~/api/category.queries';
+import { documentSequenceQueries } from '~/api/document-sequence.queries';
 import { ConfirmDialog } from '~/components/confirm-dialog';
 import DataTable from '~/components/datatable/datatable';
 import { Button } from '~/components/ui/button';
@@ -22,8 +23,10 @@ const CategoryPage = () => {
   const [editing, setEditing] = useState<Category | null>(null);
   const [deleteId, setDeleteId] = useState<string | null>(null);
   const { data } = useSuspenseQuery(categoryQueries.all());
+  const { data: sequencesData } = useQuery(documentSequenceQueries.all());
   const deleteMutation = useDeleteCategory();
   const categories = data?.data ?? [];
+  const sequences = sequencesData?.data ?? [];
 
   const handleEdit = (category: Category) => {
     setEditing(category);
@@ -75,7 +78,7 @@ const CategoryPage = () => {
               {editing ? t('edit') : t('addNew')}
             </DialogTitle>
           </DialogHeader>
-          <CategoryForm category={editing} onSuccess={handleClose} />
+          <CategoryForm category={editing} sequences={sequences} onSuccess={handleClose} />
         </DialogContent>
       </Dialog>
 

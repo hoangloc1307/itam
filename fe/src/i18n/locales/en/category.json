@@ -30,7 +30,7 @@
     "isActive": "Active",
     "idPlaceholder": "Enter category ID",
     "namePlaceholder": "Enter category name",
-    "serialKeyPlaceholder": "Enter serial key",
+    "serialKeyPlaceholder": "Select document sequence",
     "maintenancePlaceholder": "Enter hours"
   },
   "validation": {

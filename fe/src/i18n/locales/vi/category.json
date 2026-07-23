@@ -30,7 +30,7 @@
     "isActive": "Hoạt động",
     "idPlaceholder": "Nhập mã danh mục",
     "namePlaceholder": "Nhập tên danh mục",
-    "serialKeyPlaceholder": "Nhập serial key",
+    "serialKeyPlaceholder": "Chọn cấu hình mã phiếu",
     "maintenancePlaceholder": "Nhập số giờ"
   },
   "validation": {
