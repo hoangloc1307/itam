@@ -343,7 +343,6 @@ model Asset {
 }
 
 model AssetAttributeValue {
-  id          Int     @id @default(autoincrement())
   attributeId Int     @map("attribute_id")
   assetId     String  @map("asset_id") @db.VarChar(50)
   value       String? @db.Text
@@ -351,7 +350,7 @@ model AssetAttributeValue {
   attribute Attribute @relation(fields: [attributeId], references: [id])
   asset     Asset     @relation(fields: [assetId], references: [id])
 
-  @@unique([attributeId, assetId])
+  @@id([attributeId, assetId])
   @@map("asset_attribute_values")
 }
 
