@@ -133,6 +133,7 @@ const UserRolePage = () => {
             key={editData?.id ?? 'create'}
             username={selectedUser}
             roles={roles}
+            existingRoles={userRoles}
             editData={editData}
             onSuccess={handleClose}
           />

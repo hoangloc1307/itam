@@ -13,21 +13,32 @@ import { useAppForm } from '~/hooks/use-app-form';
 interface UserRoleFormProps {
   username: string;
   roles: Role[];
+  existingRoles: UserRole[];
   editData?: UserRole | null;
   onSuccess: () => void;
 }
 
-export function UserRoleForm({ username, roles, editData, onSuccess }: UserRoleFormProps) {
+export function UserRoleForm({
+  username,
+  roles,
+  existingRoles,
+  editData,
+  onSuccess,
+}: UserRoleFormProps) {
   const { t } = useTranslation('userRole');
   const createMutation = useCreateUserRole();
   const updateMutation = useUpdateUserRole();
 
   const isEdit = !!editData;
 
-  const roleOptions = roles.map((r) => ({
-    label: r.name,
-    value: r.code,
-  }));
+  // Chỉ hiện roles chưa được gán cho user này
+  const assignedRoleCodes = new Set(existingRoles.map((ur) => ur.roleCode));
+  const roleOptions = roles
+    .filter((r) => isEdit || !assignedRoleCodes.has(r.code))
+    .map((r) => ({
+      label: r.name,
+      value: r.code,
+    }));
 
   const form = useAppForm({
     defaultValues: isEdit
@@ -69,7 +80,12 @@ export function UserRoleForm({ username, roles, editData, onSuccess }: UserRoleF
         <form.AppField
           name='roleCode'
           children={(field) => (
-            <field.SelectField label={t('form.roleCode')} options={roleOptions} />
+            <field.ComboboxField
+              label={t('form.roleCode')}
+              placeholder={t('form.roleCodePlaceholder')}
+              options={roleOptions}
+              disabled={isEdit}
+            />
           )}
         />
         <form.AppField
