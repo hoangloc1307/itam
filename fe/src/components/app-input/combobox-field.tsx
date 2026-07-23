@@ -20,10 +20,17 @@ type ComboboxFieldProps = {
   label?: string;
   options: Option[];
   placeholder?: string;
+  disabled?: boolean;
   onChange?: (value: string) => void;
 };
 
-export const ComboboxField = ({ label, options, placeholder, onChange }: ComboboxFieldProps) => {
+export const ComboboxField = ({
+  label,
+  options,
+  placeholder,
+  disabled,
+  onChange,
+}: ComboboxFieldProps) => {
   const id = useId();
   const { t } = useTranslation();
   const field = useFieldContext<string>();
@@ -42,6 +49,7 @@ export const ComboboxField = ({ label, options, placeholder, onChange }: Combobo
           onChange?.(newValue);
         }}
         itemToStringValue={(item) => item.label}
+        disabled={disabled}
       >
         <ComboboxInput
           id={id}
@@ -49,6 +57,7 @@ export const ComboboxField = ({ label, options, placeholder, onChange }: Combobo
           showClear={!!field.state.value}
           onBlur={field.handleBlur}
           aria-invalid={isInvalid}
+          disabled={disabled}
         />
         <ComboboxContent>
           <ComboboxEmpty>{t('common:noResults', { defaultValue: 'Không tìm thấy' })}</ComboboxEmpty>

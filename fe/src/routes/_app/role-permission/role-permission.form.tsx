@@ -18,6 +18,7 @@ interface RolePermissionFormProps {
   roleCode: string;
   roles: Role[];
   features: Feature[];
+  existingPermissions: RolePermission[];
   editData?: RolePermission | null;
   onSuccess: () => void;
 }
@@ -30,6 +31,7 @@ const ACTION_OPTIONS = Object.values(ACTIONS).map((action) => ({
 export function RolePermissionForm({
   roleCode,
   features,
+  existingPermissions,
   editData,
   onSuccess,
 }: RolePermissionFormProps) {
@@ -39,10 +41,16 @@ export function RolePermissionForm({
 
   const isEdit = !!editData;
 
-  const featureOptions = features.map((f) => ({
-    label: f.name,
-    value: f.code,
-  }));
+  // Lấy danh sách feature codes đã được phân quyền cho role này
+  const assignedFeatureCodes = new Set(existingPermissions.map((p) => p.featureCode));
+
+  // Chỉ hiện features chưa có permission nào (khi tạo mới)
+  const featureOptions = features
+    .filter((f) => isEdit || !assignedFeatureCodes.has(f.code))
+    .map((f) => ({
+      label: f.name,
+      value: f.code,
+    }));
 
   const form = useAppForm({
     defaultValues: isEdit
@@ -86,7 +94,12 @@ export function RolePermissionForm({
         <form.AppField
           name='featureCode'
           children={(field) => (
-            <field.SelectField label={t('form.featureCode')} options={featureOptions} />
+            <field.ComboboxField
+              label={t('form.featureCode')}
+              placeholder={t('form.featureCodePlaceholder')}
+              options={featureOptions}
+              disabled={isEdit}
+            />
           )}
         />
         <form.AppField

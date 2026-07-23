@@ -138,6 +138,7 @@ const RolePermissionPage = () => {
             roleCode={selectedRole}
             roles={roles}
             features={features}
+            existingPermissions={permissions}
             editData={editData}
             onSuccess={handleClose}
           />
