@@ -241,13 +241,6 @@ const previewCode = async (sequenceCode: string) => {
   }
 
   const now = new Date();
-  const periodKey = buildPeriodKey(sequence.resetCycle, now);
-
-  const counter = await prisma.documentSequenceCounter.findUnique({
-    where: { sequenceId_periodKey: { sequenceId: sequence.id, periodKey } },
-  });
-
-  const nextNumber = (counter?.lastNumber ?? 0) + 1;
 
   const parts: string[] = [];
   if (sequence.prefix) parts.push(sequence.prefix);
@@ -255,11 +248,10 @@ const previewCode = async (sequenceCode: string) => {
   const datePart = applyDateFormat(now, sequence.dateFormat);
   if (datePart) parts.push(datePart);
 
-  parts.push(String(nextNumber).padStart(sequence.paddingLength, '0'));
+  parts.push('x'.repeat(sequence.paddingLength));
 
   return {
     code: parts.join(sequence.separator),
-    nextNumber,
   };
 };
 

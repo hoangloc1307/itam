@@ -6,6 +6,7 @@ import type {
 import { prisma } from '~/lib/prisma';
 import { AppError } from '~/errors';
 import { t } from '~/i18n';
+import { documentSequenceService } from '~/modules/document-sequence/document-sequence.service';
 
 interface ListParams {
   search?: string;
@@ -99,20 +100,33 @@ const getById = async (id: string) => {
 };
 
 const create = async (input: CreateAssetInput, createdBy: string) => {
-  const existing = await prisma.asset.findUnique({ where: { id: input.id } });
+  const { attributeValues, ...assetData } = input;
+
+  // Generate management code (id) from category's serial key if not provided
+  let managementId = assetData.id;
+  if (!managementId) {
+    const category = await prisma.category.findUnique({
+      where: { id: assetData.categoryId },
+      select: { serialKey: true },
+    });
+    if (category?.serialKey) {
+      const result = await documentSequenceService.generateCode(category.serialKey);
+      managementId = result.code;
+    }
+  }
+
+  const existing = await prisma.asset.findUnique({ where: { id: managementId } });
 
   if (existing && !existing.deletedAt) {
     throw AppError.conflict(t('asset:alreadyExists'));
   }
-
-  const { attributeValues, ...assetData } = input;
 
   const asset = await prisma.$transaction(async (tx) => {
     let created;
 
     if (existing && existing.deletedAt) {
       created = await tx.asset.update({
-        where: { id: assetData.id },
+        where: { id: managementId },
         data: {
           assetCode: assetData.assetCode ?? null,
           name: assetData.name,
@@ -148,7 +162,7 @@ const create = async (input: CreateAssetInput, createdBy: string) => {
     } else {
       created = await tx.asset.create({
         data: {
-          id: assetData.id,
+          id: managementId,
           assetCode: assetData.assetCode ?? null,
           name: assetData.name,
           categoryId: assetData.categoryId,
@@ -274,52 +288,77 @@ const remove = async (id: string) => {
 };
 
 const createBatch = async (input: CreateBatchAssetInput, createdBy: string) => {
-  const ids = input.items.map((item) => item.id);
+  const manualIds = input.items.map((item) => item.id).filter((id) => id);
 
-  const existingAssets = await prisma.asset.findMany({
-    where: { id: { in: ids }, deletedAt: null },
-  });
+  if (manualIds.length > 0) {
+    const existingAssets = await prisma.asset.findMany({
+      where: { id: { in: manualIds }, deletedAt: null },
+    });
 
-  if (existingAssets.length > 0) {
-    const conflictIds = existingAssets.map((a) => a.id).join(', ');
-    throw AppError.conflict(t('asset:batchConflict', { ids: conflictIds }));
+    if (existingAssets.length > 0) {
+      const conflictIds = existingAssets.map((a) => a.id).join(', ');
+      throw AppError.conflict(t('asset:batchConflict', { ids: conflictIds }));
+    }
   }
 
-  const data = input.items.map((item) => ({
-    id: item.id,
-    assetCode: item.assetCode ?? null,
-    serialNumber: item.serialNumber ?? null,
-    name: input.name,
-    categoryId: input.categoryId,
-    modelId: input.modelId ?? null,
-    vendorId: input.vendorId ?? null,
-    purchaseDate: input.purchaseDate ? new Date(input.purchaseDate) : null,
-    purchasePrice: input.purchasePrice ?? null,
-    warrantyStartDate: input.warrantyStartDate ? new Date(input.warrantyStartDate) : null,
-    warrantyEndDate: input.warrantyEndDate ? new Date(input.warrantyEndDate) : null,
-    warrantyMonth: input.warrantyMonth ?? null,
-    location: input.location ?? null,
-    maintenanceIntervalHours: input.maintenanceIntervalHours ?? null,
-    assignedTo: input.assignedTo ?? null,
-    currentSection: input.currentSection ?? null,
-    assetStatus: input.assetStatus,
-    quantity: 1,
-    remainQuantity: 1,
-    createdBy,
-  }));
+  // Generate asset codes from category's serial key
+  const category = await prisma.category.findUnique({
+    where: { id: input.categoryId },
+    select: { serialKey: true },
+  });
+
+  const data = await Promise.all(
+    input.items.map(async (item) => {
+      let itemId = item.id;
+      if (!itemId && category?.serialKey) {
+        const result = await documentSequenceService.generateCode(category.serialKey);
+        itemId = result.code;
+      }
+
+      return {
+        id: itemId,
+        assetCode: item.assetCode ?? null,
+        serialNumber: item.serialNumber ?? null,
+        name: input.name,
+        categoryId: input.categoryId,
+        modelId: input.modelId ?? null,
+        vendorId: input.vendorId ?? null,
+        purchaseDate: input.purchaseDate ? new Date(input.purchaseDate) : null,
+        purchasePrice: input.purchasePrice ?? null,
+        warrantyStartDate: input.warrantyStartDate ? new Date(input.warrantyStartDate) : null,
+        warrantyEndDate: input.warrantyEndDate ? new Date(input.warrantyEndDate) : null,
+        warrantyMonth: input.warrantyMonth ?? null,
+        location: input.location ?? null,
+        maintenanceIntervalHours: input.maintenanceIntervalHours ?? null,
+        assignedTo: input.assignedTo ?? null,
+        currentSection: input.currentSection ?? null,
+        assetStatus: input.assetStatus,
+        quantity: 1,
+        remainQuantity: 1,
+        createdBy,
+      };
+    }),
+  );
 
   const result = await prisma.asset.createMany({ data });
 
   // Save attribute values for each asset
   if (input.attributeValues && input.attributeValues.length > 0) {
-    const attrData = ids.flatMap((assetId) =>
-      input.attributeValues!.map((av) => ({
-        assetId,
-        attributeId: av.attributeId,
-        value: av.value ?? null,
-      })),
+    const createdIds = data.map((d) => d.id);
+    const attrData = createdIds.flatMap((assetId) =>
+      input
+        .attributeValues!.filter(
+          (av) => av.value !== null && av.value !== undefined && av.value !== '',
+        )
+        .map((av) => ({
+          assetId,
+          attributeId: av.attributeId,
+          value: av.value ?? null,
+        })),
     );
-    await prisma.assetAttributeValue.createMany({ data: attrData });
+    if (attrData.length > 0) {
+      await prisma.assetAttributeValue.createMany({ data: attrData });
+    }
   }
 
   return { count: result.count };
