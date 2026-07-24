@@ -1,0 +1,15 @@
+info:
+  name: GetProfile
+  type: http
+  seq: 5
+
+http:
+  method: GET
+  url: "{{API_URL}}/{{AUTH_ENDPOINT}}/profile"
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
