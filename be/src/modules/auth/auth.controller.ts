@@ -1,5 +1,5 @@
 import type { Request, Response } from 'express';
-import type { LoginResponse, RefreshResponse } from 'itam-shared/types';
+import type { LoginResponse, ProfileResponse, RefreshResponse } from 'itam-shared/types';
 import { AppError } from '~/errors';
 import { t } from '~/i18n';
 import { authService } from '~/modules/auth/auth.service';
@@ -43,4 +43,16 @@ const register = async (req: Request, res: Response) => {
   ApiResponse.created(res, null, t('auth:registerSuccess'));
 };
 
-export const authController = { login, refresh, logout, register };
+const getProfile = async (req: Request, res: Response) => {
+  const username = req.user!.username;
+  const profile = await authService.getProfile(username);
+  ApiResponse.ok<ProfileResponse>(res, profile);
+};
+
+const changePassword = async (req: Request, res: Response) => {
+  const username = req.user!.username;
+  await authService.changePassword(username, req.body);
+  ApiResponse.ok(res, null, t('auth:changePasswordSuccess'));
+};
+
+export const authController = { login, refresh, logout, register, getProfile, changePassword };

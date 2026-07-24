@@ -46,7 +46,7 @@ export default function UserOption() {
       >
         <DropdownMenuGroup>
           <DropdownMenuLabel>
-            <div className='grid flex-1 text-left text-sm leading-tight text-popover-foreground'>
+            <div className='text-popover-foreground grid flex-1 text-left text-sm leading-tight'>
               <span className='truncate font-medium'>{user?.name}</span>
               <span className='truncate text-xs font-normal'>{user?.username}</span>
             </div>
@@ -54,7 +54,7 @@ export default function UserOption() {
         </DropdownMenuGroup>
         <DropdownMenuSeparator />
         <DropdownMenuGroup>
-          <DropdownMenuItem>
+          <DropdownMenuItem onClick={() => navigate({ to: '/profile' })}>
             <IconUserCircle />
             {t('profile')}
           </DropdownMenuItem>

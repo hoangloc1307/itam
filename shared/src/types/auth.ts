@@ -6,6 +6,19 @@ export interface UserInfo {
   email: string;
 }
 
+export interface ProfileRole {
+  roleCode: string;
+  roleName: string;
+  section: string | null;
+}
+
+export interface ProfileResponse {
+  username: string;
+  name: string;
+  email: string;
+  roles: ProfileRole[];
+}
+
 export interface Permission {
   featureCode: string;
   action: Action;

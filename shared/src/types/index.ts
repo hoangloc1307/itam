@@ -10,7 +10,14 @@ export type {
 } from './asset';
 export type { Attribute, AttributeBase, AttributeEntity, AttributeGroupInfo } from './attribute';
 export type { AttributeGroup, AttributeGroupBase, AttributeGroupEntity } from './attribute-group';
-export type { LoginResponse, Permission, RefreshResponse, UserInfo } from './auth';
+export type {
+  LoginResponse,
+  Permission,
+  ProfileResponse,
+  ProfileRole,
+  RefreshResponse,
+  UserInfo,
+} from './auth';
 export type { Category, CategoryBase, CategoryEntity } from './category';
 export type { CategoryAttributeItem, SyncAttributePayload } from './category-attribute';
 export type {

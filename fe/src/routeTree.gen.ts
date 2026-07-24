@@ -14,6 +14,7 @@ import { Route as AppRouteImport } from './routes/_app';
 import { Route as IndexRouteImport } from './routes/index';
 import { Route as AuthRegisterRouteImport } from './routes/_auth/register';
 import { Route as AuthLoginRouteImport } from './routes/_auth/login';
+import { Route as AppProfileRouteImport } from './routes/_app/profile';
 import { Route as AppDashboardRouteImport } from './routes/_app/dashboard';
 import { Route as AppUserIndexRouteImport } from './routes/_app/user/index';
 import { Route as AppUserRoleIndexRouteImport } from './routes/_app/user-role/index';
@@ -55,6 +56,11 @@ const AuthLoginRoute = AuthLoginRouteImport.update({
   id: '/login',
   path: '/login',
   getParentRoute: () => AuthRoute,
+} as any);
+const AppProfileRoute = AppProfileRouteImport.update({
+  id: '/profile',
+  path: '/profile',
+  getParentRoute: () => AppRoute,
 } as any);
 const AppDashboardRoute = AppDashboardRouteImport.update({
   id: '/dashboard',
@@ -152,6 +158,7 @@ const AppAssetIdEditRoute = AppAssetIdEditRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute;
   '/dashboard': typeof AppDashboardRoute;
+  '/profile': typeof AppProfileRoute;
   '/login': typeof AuthLoginRoute;
   '/register': typeof AuthRegisterRoute;
   '/asset/batch': typeof AppAssetBatchRoute;
@@ -175,6 +182,7 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute;
   '/dashboard': typeof AppDashboardRoute;
+  '/profile': typeof AppProfileRoute;
   '/login': typeof AuthLoginRoute;
   '/register': typeof AuthRegisterRoute;
   '/asset/batch': typeof AppAssetBatchRoute;
@@ -201,6 +209,7 @@ export interface FileRoutesById {
   '/_app': typeof AppRouteWithChildren;
   '/_auth': typeof AuthRouteWithChildren;
   '/_app/dashboard': typeof AppDashboardRoute;
+  '/_app/profile': typeof AppProfileRoute;
   '/_auth/login': typeof AuthLoginRoute;
   '/_auth/register': typeof AuthRegisterRoute;
   '/_app/asset/batch': typeof AppAssetBatchRoute;
@@ -226,6 +235,7 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/dashboard'
+    | '/profile'
     | '/login'
     | '/register'
     | '/asset/batch'
@@ -249,6 +259,7 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/dashboard'
+    | '/profile'
     | '/login'
     | '/register'
     | '/asset/batch'
@@ -274,6 +285,7 @@ export interface FileRouteTypes {
     | '/_app'
     | '/_auth'
     | '/_app/dashboard'
+    | '/_app/profile'
     | '/_auth/login'
     | '/_auth/register'
     | '/_app/asset/batch'
@@ -337,6 +349,13 @@ declare module '@tanstack/react-router' {
       fullPath: '/login';
       preLoaderRoute: typeof AuthLoginRouteImport;
       parentRoute: typeof AuthRoute;
+    };
+    '/_app/profile': {
+      id: '/_app/profile';
+      path: '/profile';
+      fullPath: '/profile';
+      preLoaderRoute: typeof AppProfileRouteImport;
+      parentRoute: typeof AppRoute;
     };
     '/_app/dashboard': {
       id: '/_app/dashboard';
@@ -469,6 +488,7 @@ declare module '@tanstack/react-router' {
 
 interface AppRouteChildren {
   AppDashboardRoute: typeof AppDashboardRoute;
+  AppProfileRoute: typeof AppProfileRoute;
   AppAssetBatchRoute: typeof AppAssetBatchRoute;
   AppAssetCreateRoute: typeof AppAssetCreateRoute;
   AppAllocationIndexRoute: typeof AppAllocationIndexRoute;
@@ -490,6 +510,7 @@ interface AppRouteChildren {
 
 const AppRouteChildren: AppRouteChildren = {
   AppDashboardRoute: AppDashboardRoute,
+  AppProfileRoute: AppProfileRoute,
   AppAssetBatchRoute: AppAssetBatchRoute,
   AppAssetCreateRoute: AppAssetCreateRoute,
   AppAllocationIndexRoute: AppAllocationIndexRoute,

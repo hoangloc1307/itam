@@ -20,3 +20,16 @@ export const registerSchema = z.object({
 });
 
 export type RegisterInput = z.infer<typeof registerSchema>;
+
+export const changePasswordSchema = z
+  .object({
+    currentPassword: z.string().min(6, 'auth:validation.passwordMin'),
+    newPassword: z.string().min(6, 'auth:validation.passwordMin'),
+    confirmPassword: z.string().min(6, 'auth:validation.passwordMin'),
+  })
+  .refine((data) => data.newPassword === data.confirmPassword, {
+    message: 'auth:validation.confirmPasswordMismatch',
+    path: ['confirmPassword'],
+  });
+
+export type ChangePasswordInput = z.infer<typeof changePasswordSchema>;

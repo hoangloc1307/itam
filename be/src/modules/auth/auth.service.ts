@@ -1,4 +1,4 @@
-import type { LoginInput, RegisterInput } from 'itam-shared/schemas/auth';
+import type { ChangePasswordInput, LoginInput, RegisterInput } from 'itam-shared/schemas/auth';
 import type { Permission } from 'itam-shared/types';
 import { AppError } from '~/errors';
 import { t } from '~/i18n';
@@ -147,4 +147,49 @@ const register = async ({ username, email, name }: RegisterInput) => {
   });
 };
 
-export const authService = { login, refresh, register };
+const getProfile = async (username: string) => {
+  const user = await prisma.user.findUnique({
+    where: { username },
+    select: { username: true, name: true, email: true },
+  });
+
+  if (!user) {
+    throw AppError.notFound(t('auth:unauthorized'));
+  }
+
+  const userRoles = await prisma.userRole.findMany({
+    where: { username, role: { isActive: true, deletedAt: null } },
+    select: { roleCode: true, section: true, role: { select: { name: true } } },
+  });
+
+  const roles = userRoles.map((ur) => ({
+    roleCode: ur.roleCode,
+    roleName: ur.role.name,
+    section: ur.section,
+  }));
+
+  return { username: user.username, name: user.name ?? '', email: user.email ?? '', roles };
+};
+
+const changePassword = async (username: string, data: ChangePasswordInput) => {
+  const user = await prisma.user.findUnique({ where: { username } });
+
+  if (!user) {
+    throw AppError.notFound(t('auth:unauthorized'));
+  }
+
+  const isValid = await verifyPassword(user.password, data.currentPassword);
+
+  if (!isValid) {
+    throw AppError.badRequest(t('auth:currentPasswordIncorrect'));
+  }
+
+  const hashedPassword = await hashPassword(data.newPassword);
+
+  await prisma.user.update({
+    where: { username },
+    data: { password: hashedPassword, updatedBy: username, updatedAt: new Date() },
+  });
+};
+
+export const authService = { login, refresh, register, getProfile, changePassword };
