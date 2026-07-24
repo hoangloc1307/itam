@@ -48,6 +48,10 @@ const LoginPage = () => {
         </form.AppForm>
 
         <FieldDescription className='text-center'>
+          <Link to='/forgot-password'>{t('forgotPassword')}</Link>
+        </FieldDescription>
+
+        <FieldDescription className='text-center'>
           {t('doNotHaveAccount')} <Link to='/register'>{t('signUp')}</Link>
         </FieldDescription>
       </FieldGroup>

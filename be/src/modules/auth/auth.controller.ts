@@ -55,4 +55,23 @@ const changePassword = async (req: Request, res: Response) => {
   ApiResponse.ok(res, null, t('auth:changePasswordSuccess'));
 };
 
-export const authController = { login, refresh, logout, register, getProfile, changePassword };
+const forgotPassword = async (req: Request, res: Response) => {
+  await authService.forgotPassword(req.body);
+  ApiResponse.ok(res, null, t('auth:forgotPasswordSuccess'));
+};
+
+const resetPassword = async (req: Request, res: Response) => {
+  await authService.resetPassword(req.body);
+  ApiResponse.ok(res, null, t('auth:resetPasswordSuccess'));
+};
+
+export const authController = {
+  login,
+  refresh,
+  logout,
+  register,
+  getProfile,
+  changePassword,
+  forgotPassword,
+  resetPassword,
+};

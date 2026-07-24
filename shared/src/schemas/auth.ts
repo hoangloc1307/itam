@@ -33,3 +33,30 @@ export const changePasswordSchema = z
   });
 
 export type ChangePasswordInput = z.infer<typeof changePasswordSchema>;
+
+export const forgotPasswordSchema = z.object({
+  username: z
+    .string()
+    .nonempty('auth:validation.usernameRequired')
+    .length(8, 'auth:validation.usernameLength'),
+  email: z.email('auth:validation.emailInvalid'),
+});
+
+export type ForgotPasswordInput = z.infer<typeof forgotPasswordSchema>;
+
+export const resetPasswordSchema = z
+  .object({
+    username: z
+      .string()
+      .nonempty('auth:validation.usernameRequired')
+      .length(8, 'auth:validation.usernameLength'),
+    code: z.string().length(6, 'auth:validation.codeLength'),
+    newPassword: z.string().min(6, 'auth:validation.passwordMin'),
+    confirmPassword: z.string().min(6, 'auth:validation.passwordMin'),
+  })
+  .refine((data) => data.newPassword === data.confirmPassword, {
+    message: 'auth:validation.confirmPasswordMismatch',
+    path: ['confirmPassword'],
+  });
+
+export type ResetPasswordInput = z.infer<typeof resetPasswordSchema>;

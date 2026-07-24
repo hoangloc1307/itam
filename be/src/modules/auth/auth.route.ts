@@ -2,7 +2,13 @@ import { Router } from 'express';
 import { authController } from '~/modules/auth/auth.controller';
 import { requestValidator } from '~/middlewares/request-validator';
 import { authenticate } from '~/middlewares/authenticate';
-import { changePasswordSchema, loginSchema, registerSchema } from 'itam-shared/schemas/auth';
+import {
+  changePasswordSchema,
+  forgotPasswordSchema,
+  loginSchema,
+  registerSchema,
+  resetPasswordSchema,
+} from 'itam-shared/schemas/auth';
 
 const router = Router();
 
@@ -17,5 +23,11 @@ router.put(
   requestValidator(changePasswordSchema),
   authController.changePassword,
 );
+router.post(
+  '/forgot-password',
+  requestValidator(forgotPasswordSchema),
+  authController.forgotPassword,
+);
+router.post('/reset-password', requestValidator(resetPasswordSchema), authController.resetPassword);
 
 export default router;

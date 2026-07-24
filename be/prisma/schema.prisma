@@ -63,8 +63,22 @@ model User {
 
   userRoles       UserRole[]
   userPermissions UserPermission[]
+  passwordResets  PasswordReset[]
 
   @@map("users")
+}
+
+model PasswordReset {
+  id        Int      @id @default(autoincrement())
+  username  String   @db.Char(8)
+  code      String   @db.VarChar(6)
+  expiresAt DateTime @map("expires_at") @db.Timestamptz(0)
+  usedAt    DateTime? @map("used_at") @db.Timestamptz(0)
+  createdAt DateTime @default(now()) @map("created_at") @db.Timestamptz(0)
+
+  user User @relation(fields: [username], references: [username])
+
+  @@map("password_resets")
 }
 
 model Role {

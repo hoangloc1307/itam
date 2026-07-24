@@ -1,5 +1,11 @@
 import { ENDPOINTS } from 'itam-shared/constants';
-import type { ChangePasswordInput, LoginInput, RegisterInput } from 'itam-shared/schemas/auth';
+import type {
+  ChangePasswordInput,
+  ForgotPasswordInput,
+  LoginInput,
+  RegisterInput,
+  ResetPasswordInput,
+} from 'itam-shared/schemas/auth';
 import type { ApiResponse, LoginResponse, ProfileResponse } from 'itam-shared/types';
 import api from '~/lib/axios';
 
@@ -15,4 +21,17 @@ const getProfile = async (): Promise<ApiResponse<ProfileResponse>> =>
 const changePassword = async (payload: ChangePasswordInput): Promise<ApiResponse<null>> =>
   await api.put<ApiResponse<null>>(`${ENDPOINTS.AUTH}/change-password`, payload);
 
-export const authApi = { login, register, getProfile, changePassword };
+const forgotPassword = async (payload: ForgotPasswordInput): Promise<ApiResponse<null>> =>
+  await api.post<ApiResponse<null>>(`${ENDPOINTS.AUTH}/forgot-password`, payload);
+
+const resetPassword = async (payload: ResetPasswordInput): Promise<ApiResponse<null>> =>
+  await api.post<ApiResponse<null>>(`${ENDPOINTS.AUTH}/reset-password`, payload);
+
+export const authApi = {
+  login,
+  register,
+  getProfile,
+  changePassword,
+  forgotPassword,
+  resetPassword,
+};

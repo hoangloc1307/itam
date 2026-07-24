@@ -1,5 +1,11 @@
 import { useRouter } from '@tanstack/react-router';
-import type { ChangePasswordInput, LoginInput, RegisterInput } from 'itam-shared/schemas/auth';
+import type {
+  ChangePasswordInput,
+  ForgotPasswordInput,
+  LoginInput,
+  RegisterInput,
+  ResetPasswordInput,
+} from 'itam-shared/schemas/auth';
 import { useTranslation } from 'react-i18next';
 import { toast } from 'sonner';
 import { authApi } from '~/api/auth';
@@ -45,6 +51,30 @@ export function useChangePassword() {
     mutationFn: (payload: ChangePasswordInput) => authApi.changePassword(payload),
     onSuccess: () => {
       toast.success(t('profile.changePasswordSuccess'));
+    },
+  });
+}
+
+export function useForgotPassword() {
+  const { t } = useTranslation('auth');
+
+  return useAppMutation({
+    mutationFn: (payload: ForgotPasswordInput) => authApi.forgotPassword(payload),
+    onSuccess: () => {
+      toast.success(t('codeSent'));
+    },
+  });
+}
+
+export function useResetPassword() {
+  const router = useRouter();
+  const { t } = useTranslation('auth');
+
+  return useAppMutation({
+    mutationFn: (payload: ResetPasswordInput) => authApi.resetPassword(payload),
+    onSuccess: () => {
+      toast.success(t('resetSuccess'));
+      router.navigate({ to: '/login', replace: true });
     },
   });
 }

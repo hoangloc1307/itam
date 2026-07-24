@@ -1,9 +1,16 @@
-import type { ChangePasswordInput, LoginInput, RegisterInput } from 'itam-shared/schemas/auth';
+import type {
+  ChangePasswordInput,
+  ForgotPasswordInput,
+  LoginInput,
+  RegisterInput,
+  ResetPasswordInput,
+} from 'itam-shared/schemas/auth';
 import type { Permission } from 'itam-shared/types';
 import { AppError } from '~/errors';
 import { t } from '~/i18n';
 import { prisma } from '~/lib/prisma';
 import { mailService } from '~/services/mail.service';
+import crypto from 'crypto';
 import {
   generateAccessToken,
   generateRandomPassword,
@@ -192,4 +199,67 @@ const changePassword = async (username: string, data: ChangePasswordInput) => {
   });
 };
 
-export const authService = { login, refresh, register, getProfile, changePassword };
+const forgotPassword = async ({ username, email }: ForgotPasswordInput) => {
+  const user = await prisma.user.findUnique({ where: { username } });
+
+  if (!user || !user.isActive || user.email !== email) {
+    throw AppError.badRequest(t('auth:userNotFound'));
+  }
+
+  // Generate 6-digit OTP code
+  const code = crypto.randomInt(100000, 999999).toString();
+  const expiresAt = new Date(Date.now() + 5 * 60 * 1000); // 5 minutes
+
+  // Invalidate any existing unused codes for this user
+  await prisma.passwordReset.updateMany({
+    where: { username, usedAt: null },
+    data: { usedAt: new Date() },
+  });
+
+  // Create new reset code
+  await prisma.passwordReset.create({
+    data: { username, code, expiresAt },
+  });
+
+  // Send email
+  await mailService.sendEmail({
+    to: email,
+    subject: 'ITAM - Mã xác nhận đặt lại mật khẩu',
+    template: 'forgot-password',
+    data: { name: user.name ?? username, code },
+  });
+};
+
+const resetPassword = async ({ username, code, newPassword }: ResetPasswordInput) => {
+  const resetRecord = await prisma.passwordReset.findFirst({
+    where: { username, code, usedAt: null },
+    orderBy: { createdAt: 'desc' },
+  });
+
+  if (!resetRecord || resetRecord.expiresAt < new Date()) {
+    throw AppError.badRequest(t('auth:resetCodeInvalid'));
+  }
+
+  const hashedPw = await hashPassword(newPassword);
+
+  await prisma.$transaction([
+    prisma.passwordReset.update({
+      where: { id: resetRecord.id },
+      data: { usedAt: new Date() },
+    }),
+    prisma.user.update({
+      where: { username },
+      data: { password: hashedPw, updatedBy: username, updatedAt: new Date() },
+    }),
+  ]);
+};
+
+export const authService = {
+  login,
+  refresh,
+  register,
+  getProfile,
+  changePassword,
+  forgotPassword,
+  resetPassword,
+};
