@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { ASSET_STATUSES } from '../constants/asset-statuses';
+import { ASSET_STATUSES } from '../constants/asset';
 
 const assetStatusEnum = z.enum([
   ASSET_STATUSES.AVAILABLE,

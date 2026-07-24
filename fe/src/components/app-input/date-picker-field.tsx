@@ -11,11 +11,17 @@ import { useFieldContext } from '~/hooks/use-app-form';
 
 type DatePickerFieldProps = {
   label?: string;
+  required?: boolean;
   placeholder?: string;
   onChange?: (value: string | null) => void;
 };
 
-export const DatePickerField = ({ label, placeholder, onChange }: DatePickerFieldProps) => {
+export const DatePickerField = ({
+  label,
+  required,
+  placeholder,
+  onChange,
+}: DatePickerFieldProps) => {
   const id = useId();
   const { t } = useTranslation();
   const field = useFieldContext<string | null>();
@@ -33,7 +39,10 @@ export const DatePickerField = ({ label, placeholder, onChange }: DatePickerFiel
 
   return (
     <Field data-invalid={isInvalid}>
-      <FieldLabel htmlFor={id}>{label}</FieldLabel>
+      <FieldLabel htmlFor={id}>
+        {label}
+        {required && <span className='text-destructive'>*</span>}
+      </FieldLabel>
       <Popover>
         <PopoverTrigger
           render={

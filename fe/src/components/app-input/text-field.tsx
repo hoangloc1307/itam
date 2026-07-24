@@ -6,9 +6,10 @@ import { useFieldContext } from '~/hooks/use-app-form';
 
 type TextFieldProps = Omit<ComponentProps<'input'>, 'value' | 'onChange' | 'onBlur'> & {
   label?: string;
+  required?: boolean;
 };
 
-export const TextField = ({ label, ...props }: TextFieldProps) => {
+export const TextField = ({ label, required, ...props }: TextFieldProps) => {
   const id = useId();
   const { t } = useTranslation();
   const field = useFieldContext<string>();
@@ -16,7 +17,10 @@ export const TextField = ({ label, ...props }: TextFieldProps) => {
 
   return (
     <Field data-invalid={isInvalid}>
-      <FieldLabel htmlFor={id}>{label}</FieldLabel>
+      <FieldLabel htmlFor={id}>
+        {label}
+        {required && <span className='text-destructive'>*</span>}
+      </FieldLabel>
       <Input
         id={id}
         value={field.state.value ?? ''}

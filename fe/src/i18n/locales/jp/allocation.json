@@ -25,6 +25,13 @@
     "note": "備考",
     "submit": "割当"
   },
+  "validation": {
+    "assetIdRequired": "資産を選択してください",
+    "assetIdMaxLength": "資産IDは50文字以内にしてください",
+    "employeeIdMaxLength": "社員IDは8文字以内にしてください",
+    "sectionIdMaxLength": "部門IDは4文字以内にしてください",
+    "quantityPositive": "数量は正の数でなければなりません"
+  },
   "columns": {
     "actions": "操作",
     "assetName": "資産名",

@@ -1,4 +1,4 @@
-import type { AssetStatus } from '../constants/asset-statuses';
+import type { AssetStatus } from '../constants/asset';
 
 export type { AssetStatus };
 

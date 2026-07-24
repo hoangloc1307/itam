@@ -53,7 +53,11 @@ export function AttributeGroupForm({ group, onSuccess }: AttributeGroupFormProps
         <form.AppField
           name='name'
           children={(field) => (
-            <field.TextField label={t('form.name')} placeholder={t('form.namePlaceholder')} />
+            <field.TextField
+              label={t('form.name')}
+              required
+              placeholder={t('form.namePlaceholder')}
+            />
           )}
         />
 

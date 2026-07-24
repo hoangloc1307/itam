@@ -59,6 +59,7 @@ export function FeatureForm({ feature, existingCodes, onSuccess }: FeatureFormPr
           children={(field) => (
             <field.SelectField
               label={t('form.code')}
+              required
               placeholder={t('form.codePlaceholder')}
               options={featureCodeOptions}
               disabled={isEditing}
@@ -67,7 +68,7 @@ export function FeatureForm({ feature, existingCodes, onSuccess }: FeatureFormPr
         />
         <form.AppField
           name='name'
-          children={(field) => <field.TextField label={t('form.name')} />}
+          children={(field) => <field.TextField label={t('form.name')} required />}
         />
 
         <form.AppField

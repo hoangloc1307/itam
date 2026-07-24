@@ -101,7 +101,6 @@ function ModelAttributeValuesForm({ modelId, attributes, onSuccess }: FormProps)
                   ? `${attr.name} (${attr.measurementUnit})`
                   : attr.name;
                 const isRequired = requiredFields.has(fieldName);
-                const label = isRequired ? `${baseLabel} *` : baseLabel;
                 const validators = isRequired
                   ? {
                       onSubmit: ({ value }: { value: string }) =>
@@ -117,7 +116,8 @@ function ModelAttributeValuesForm({ modelId, attributes, onSuccess }: FormProps)
                         validators={validators}
                         children={(field) => (
                           <field.SelectField
-                            label={label}
+                            label={baseLabel}
+                            required={isRequired}
                             options={attr.options!.map((opt) => ({ value: opt, label: opt }))}
                           />
                         )}
@@ -134,7 +134,8 @@ function ModelAttributeValuesForm({ modelId, attributes, onSuccess }: FormProps)
                         validators={validators}
                         children={(field) => (
                           <field.SelectField
-                            label={label}
+                            label={baseLabel}
+                            required={isRequired}
                             options={[
                               { value: 'true', label: t('attributeValues.yes') },
                               { value: 'false', label: t('attributeValues.no') },
@@ -152,7 +153,9 @@ function ModelAttributeValuesForm({ modelId, attributes, onSuccess }: FormProps)
                       <form.AppField
                         name={fieldName}
                         validators={validators}
-                        children={(field) => <field.NumberField label={label} />}
+                        children={(field) => (
+                          <field.NumberField label={baseLabel} required={isRequired} />
+                        )}
                       />
                     </div>
                   );
@@ -163,7 +166,9 @@ function ModelAttributeValuesForm({ modelId, attributes, onSuccess }: FormProps)
                     <form.AppField
                       name={fieldName}
                       validators={validators}
-                      children={(field) => <field.TextField label={label} />}
+                      children={(field) => (
+                        <field.TextField label={baseLabel} required={isRequired} />
+                      )}
                     />
                   </div>
                 );

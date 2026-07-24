@@ -10,18 +10,30 @@ type NumberFieldProps = Omit<
   'value' | 'onValueChange' | 'onBlur' | 'onChange'
 > & {
   label?: string;
+  required?: boolean;
+  min?: number;
   onChange?: (value: number | null) => void;
 };
 
-export const NumberField = ({ label, onChange, ...props }: NumberFieldProps) => {
+export const NumberField = ({ label, required, min, onChange, ...props }: NumberFieldProps) => {
   const id = useId();
   const { t } = useTranslation();
   const field = useFieldContext<number | null>();
   const isInvalid = field.state.meta.isTouched && field.state.meta.errors.length > 0;
 
+  const handleBlur = () => {
+    if (min != null && (field.state.value == null || field.state.value < min)) {
+      field.handleChange(min);
+    }
+    field.handleBlur();
+  };
+
   return (
     <Field data-invalid={isInvalid}>
-      <FieldLabel htmlFor={id}>{label}</FieldLabel>
+      <FieldLabel htmlFor={id}>
+        {label}
+        {required && <span className='text-destructive'>*</span>}
+      </FieldLabel>
       <NumericFormat
         id={id}
         customInput={Input}
@@ -31,7 +43,7 @@ export const NumberField = ({ label, onChange, ...props }: NumberFieldProps) => 
           field.handleChange(newValue);
           onChange?.(newValue);
         }}
-        onBlur={field.handleBlur}
+        onBlur={handleBlur}
         aria-invalid={isInvalid}
         thousandSeparator=','
         {...props}

@@ -18,6 +18,7 @@ interface Option {
 
 type ComboboxFieldProps = {
   label?: string;
+  required?: boolean;
   options: Option[];
   placeholder?: string;
   disabled?: boolean;
@@ -26,6 +27,7 @@ type ComboboxFieldProps = {
 
 export const ComboboxField = ({
   label,
+  required,
   options,
   placeholder,
   disabled,
@@ -39,7 +41,10 @@ export const ComboboxField = ({
 
   return (
     <Field data-invalid={isInvalid}>
-      <FieldLabel htmlFor={id}>{label}</FieldLabel>
+      <FieldLabel htmlFor={id}>
+        {label}
+        {required && <span className='text-destructive'>*</span>}
+      </FieldLabel>
       <Combobox
         items={options}
         value={selectedOption}

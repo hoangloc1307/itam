@@ -96,6 +96,7 @@ export function RolePermissionForm({
           children={(field) => (
             <field.ComboboxField
               label={t('form.featureCode')}
+              required
               placeholder={t('form.featureCodePlaceholder')}
               options={featureOptions}
               disabled={isEdit}
@@ -105,7 +106,7 @@ export function RolePermissionForm({
         <form.AppField
           name='action'
           children={(field) => (
-            <field.SelectField label={t('form.action')} options={ACTION_OPTIONS} />
+            <field.SelectField label={t('form.action')} required options={ACTION_OPTIONS} />
           )}
         />
         <form.AppField

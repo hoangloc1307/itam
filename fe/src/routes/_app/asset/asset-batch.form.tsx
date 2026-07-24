@@ -104,7 +104,7 @@ export function AssetBatchForm({ onSuccess }: AssetBatchFormProps) {
         <FieldGroup>
           <form.AppField
             name='name'
-            children={(field) => <field.TextField label={t('form.name')} />}
+            children={(field) => <field.TextField label={t('form.name')} required />}
           />
 
           <div className='grid grid-cols-2 gap-4'>
@@ -113,6 +113,7 @@ export function AssetBatchForm({ onSuccess }: AssetBatchFormProps) {
               children={(field) => (
                 <field.ComboboxField
                   label={t('form.categoryId')}
+                  required
                   options={categoryOptions}
                   onChange={(value) => {
                     setSelectedCategoryId(value);

@@ -63,17 +63,20 @@ export function ModelForm({ model, categories, onSuccess }: ModelFormProps) {
       <FieldGroup>
         <form.AppField
           name='id'
-          children={(field) => <field.TextField label={t('form.id')} disabled={isEditing} />}
+          children={(field) => (
+            <field.TextField label={t('form.id')} required disabled={isEditing} />
+          )}
         />
         <form.AppField
           name='name'
-          children={(field) => <field.TextField label={t('form.name')} />}
+          children={(field) => <field.TextField label={t('form.name')} required />}
         />
         <form.AppField
           name='categoryId'
           children={(field) => (
             <field.ComboboxField
               label={t('form.categoryId')}
+              required
               options={categoryOptions}
               placeholder={t('form.categoryIdPlaceholder')}
             />

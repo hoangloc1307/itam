@@ -47,11 +47,13 @@ export function RoleForm({ role, onSuccess }: RoleFormProps) {
       <FieldGroup>
         <form.AppField
           name='code'
-          children={(field) => <field.TextField label={t('form.code')} disabled={isEditing} />}
+          children={(field) => (
+            <field.TextField label={t('form.code')} required disabled={isEditing} />
+          )}
         />
         <form.AppField
           name='name'
-          children={(field) => <field.TextField label={t('form.name')} />}
+          children={(field) => <field.TextField label={t('form.name')} required />}
         />
         <form.AppField
           name='isActive'

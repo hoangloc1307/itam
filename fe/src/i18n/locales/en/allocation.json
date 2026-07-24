@@ -25,6 +25,13 @@
     "note": "Note",
     "submit": "Allocate"
   },
+  "validation": {
+    "assetIdRequired": "Please select an asset",
+    "assetIdMaxLength": "Asset ID must be at most 50 characters",
+    "employeeIdMaxLength": "Employee ID must be at most 8 characters",
+    "sectionIdMaxLength": "Section ID must be at most 4 characters",
+    "quantityPositive": "Quantity must be a positive number"
+  },
   "columns": {
     "actions": "Actions",
     "assetName": "Asset Name",

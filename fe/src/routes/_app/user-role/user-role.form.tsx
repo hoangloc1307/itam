@@ -82,6 +82,7 @@ export function UserRoleForm({
           children={(field) => (
             <field.ComboboxField
               label={t('form.roleCode')}
+              required
               placeholder={t('form.roleCodePlaceholder')}
               options={roleOptions}
               disabled={isEdit}

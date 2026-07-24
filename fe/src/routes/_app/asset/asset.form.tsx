@@ -252,7 +252,7 @@ export function AssetFormPage({ asset = null }: AssetFormPageProps) {
                 <div className='col-span-12 md:col-span-6'>
                   <form.AppField
                     name='name'
-                    children={(field) => <field.TextField label={t('form.name')} />}
+                    children={(field) => <field.TextField label={t('form.name')} required />}
                   />
                 </div>
                 <div className='col-span-6 md:col-span-5 xl:col-span-4'>
@@ -261,6 +261,7 @@ export function AssetFormPage({ asset = null }: AssetFormPageProps) {
                     children={(field) => (
                       <field.ComboboxField
                         label={t('form.categoryId')}
+                        required
                         options={categoryOptions}
                         onChange={async (value) => {
                           setSelectedCategoryId(value);
@@ -322,6 +323,7 @@ export function AssetFormPage({ asset = null }: AssetFormPageProps) {
                         label={t('form.quantity')}
                         allowNegative={false}
                         decimalScale={0}
+                        min={1}
                       />
                     )}
                   />

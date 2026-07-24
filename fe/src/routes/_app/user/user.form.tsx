@@ -51,6 +51,7 @@ export function UserForm({ user, onSuccess }: UserFormProps) {
           children={(field) => (
             <field.TextField
               label={t('form.username')}
+              required
               placeholder={t('form.usernamePlaceholder')}
               disabled={isEditing}
             />
@@ -59,13 +60,21 @@ export function UserForm({ user, onSuccess }: UserFormProps) {
         <form.AppField
           name='name'
           children={(field) => (
-            <field.TextField label={t('form.name')} placeholder={t('form.namePlaceholder')} />
+            <field.TextField
+              label={t('form.name')}
+              required
+              placeholder={t('form.namePlaceholder')}
+            />
           )}
         />
         <form.AppField
           name='email'
           children={(field) => (
-            <field.TextField label={t('form.email')} placeholder={t('form.emailPlaceholder')} />
+            <field.TextField
+              label={t('form.email')}
+              required
+              placeholder={t('form.emailPlaceholder')}
+            />
           )}
         />
         <form.AppField

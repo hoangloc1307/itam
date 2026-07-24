@@ -7,3 +7,10 @@ export const ASSET_STATUSES = {
 } as const;
 
 export type AssetStatus = (typeof ASSET_STATUSES)[keyof typeof ASSET_STATUSES];
+
+export const MANAGE_TYPES = {
+  INDIVIDUAL: 'Individual',
+  BULK: 'Bulk',
+} as const;
+
+export type ManageType = (typeof MANAGE_TYPES)[keyof typeof MANAGE_TYPES];

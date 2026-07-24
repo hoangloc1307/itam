@@ -65,11 +65,13 @@ export function DocumentSequenceForm({ sequence, onSuccess }: DocumentSequenceFo
       <FieldGroup>
         <form.AppField
           name='code'
-          children={(field) => <field.TextField label={t('form.code')} disabled={isEditing} />}
+          children={(field) => (
+            <field.TextField label={t('form.code')} required disabled={isEditing} />
+          )}
         />
         <form.AppField
           name='name'
-          children={(field) => <field.TextField label={t('form.name')} />}
+          children={(field) => <field.TextField label={t('form.name')} required />}
         />
 
         <div className='grid grid-cols-2 gap-4'>

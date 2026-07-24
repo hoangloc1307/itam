@@ -57,17 +57,20 @@ export function CategoryForm({ category, sequences, onSuccess }: CategoryFormPro
       <FieldGroup>
         <form.AppField
           name='id'
-          children={(field) => <field.TextField label={t('form.id')} disabled={isEditing} />}
+          children={(field) => (
+            <field.TextField label={t('form.id')} required disabled={isEditing} />
+          )}
         />
         <form.AppField
           name='name'
-          children={(field) => <field.TextField label={t('form.name')} />}
+          children={(field) => <field.TextField label={t('form.name')} required />}
         />
         <form.AppField
           name='serialKey'
           children={(field) => (
             <field.ComboboxField
               label={t('form.serialKey')}
+              required
               placeholder={t('form.serialKeyPlaceholder')}
               options={sequenceOptions}
             />

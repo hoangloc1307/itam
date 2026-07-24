@@ -1,9 +1,6 @@
 import { useSuspenseQuery } from '@tanstack/react-query';
-import {
-  createAttributeSchema,
-  attributeDataTypes,
-  type CreateAttributeInput,
-} from 'itam-shared/schemas/attribute';
+import { attributeFormSchema, type CreateAttributeInput } from 'itam-shared/schemas/attribute';
+import { ATTRIBUTE_DATA_TYPES } from 'itam-shared/constants';
 import type { Attribute } from 'itam-shared/types';
 import { useTranslation } from 'react-i18next';
 import { attributeGroupQueries } from '~/api/attribute-group.queries';
@@ -38,18 +35,11 @@ export function AttributeForm({ attribute, onSuccess }: AttributeFormProps) {
       options: attribute?.options ?? null,
       isActive: attribute?.isActive ?? true,
     },
+    validators: {
+      onSubmit: attributeFormSchema,
+    },
     onSubmit: async ({ value }) => {
-      const payload: CreateAttributeInput = {
-        name: value.name,
-        groupId: value.groupId ? Number(value.groupId) : null,
-        measurementUnit: value.measurementUnit,
-        dataType: value.dataType,
-        options: value.options,
-        isActive: value.isActive,
-      };
-
-      const result = createAttributeSchema.safeParse(payload);
-      if (!result.success) return;
+      const payload = value as unknown as CreateAttributeInput;
 
       if (isEditing) {
         await updateMutation.mutateAsync({ id: attribute.id, ...payload });
@@ -71,7 +61,7 @@ export function AttributeForm({ attribute, onSuccess }: AttributeFormProps) {
       <FieldGroup>
         <form.AppField
           name='name'
-          children={(field) => <field.TextField label={t('form.name')} />}
+          children={(field) => <field.TextField label={t('form.name')} required />}
         />
 
         <form.AppField
@@ -96,7 +86,7 @@ export function AttributeForm({ attribute, onSuccess }: AttributeFormProps) {
             children={(field) => (
               <field.SelectField
                 label={t('form.dataType')}
-                options={attributeDataTypes.map((type) => ({
+                options={ATTRIBUTE_DATA_TYPES.map((type) => ({
                   value: type,
                   label: t(`dataTypes.${type}`),
                 }))}

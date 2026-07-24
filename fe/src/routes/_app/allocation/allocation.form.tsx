@@ -68,6 +68,7 @@ export function AllocationForm({ onSuccess }: AllocationFormProps) {
         children={(field) => (
           <field.ComboboxField
             label={t('form.assetId')}
+            required
             options={assetOptions}
             placeholder={t('form.assetPlaceholder')}
             onChange={handleAssetChange}
@@ -97,7 +98,12 @@ export function AllocationForm({ onSuccess }: AllocationFormProps) {
         <form.AppField
           name='quantity'
           children={(field) => (
-            <field.NumberField label={t('form.quantity')} allowNegative={false} decimalScale={0} />
+            <field.NumberField
+              label={t('form.quantity')}
+              allowNegative={false}
+              decimalScale={0}
+              min={1}
+            />
           )}
         />
         <form.AppField

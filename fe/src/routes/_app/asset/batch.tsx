@@ -204,7 +204,7 @@ const BatchAssetPage = () => {
                 <div className='col-span-12 md:col-span-6'>
                   <form.AppField
                     name='name'
-                    children={(field) => <field.TextField label={t('form.name')} />}
+                    children={(field) => <field.TextField label={t('form.name')} required />}
                   />
                 </div>
                 <div className='col-span-6 md:col-span-3'>
@@ -213,6 +213,7 @@ const BatchAssetPage = () => {
                     children={(field) => (
                       <field.ComboboxField
                         label={t('form.categoryId')}
+                        required
                         options={categoryOptions}
                         onChange={(value) => {
                           setSelectedCategoryId(value);

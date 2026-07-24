@@ -25,6 +25,13 @@
     "note": "Ghi chú",
     "submit": "Cấp phát"
   },
+  "validation": {
+    "assetIdRequired": "Vui lòng chọn tài sản",
+    "assetIdMaxLength": "Mã tài sản tối đa 50 ký tự",
+    "employeeIdMaxLength": "Mã nhân viên tối đa 8 ký tự",
+    "sectionIdMaxLength": "Mã bộ phận tối đa 4 ký tự",
+    "quantityPositive": "Số lượng phải là số dương"
+  },
   "columns": {
     "actions": "Thao tác",
     "assetName": "Tên tài sản",

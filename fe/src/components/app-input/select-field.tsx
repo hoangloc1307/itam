@@ -12,6 +12,7 @@ import { useFieldContext } from '~/hooks/use-app-form';
 
 type SelectFieldProps = {
   label?: string;
+  required?: boolean;
   placeholder?: string;
   emptyText?: string;
   options: {
@@ -23,6 +24,7 @@ type SelectFieldProps = {
 
 export const SelectField = ({
   label,
+  required,
   placeholder,
   emptyText,
   options,
@@ -36,7 +38,10 @@ export const SelectField = ({
 
   return (
     <Field data-invalid={isInvalid}>
-      <FieldLabel htmlFor={id}>{label}</FieldLabel>
+      <FieldLabel htmlFor={id}>
+        {label}
+        {required && <span className='text-destructive'>*</span>}
+      </FieldLabel>
       <Select
         value={field.state.value}
         onValueChange={(val) => val && field.handleChange(val)}
